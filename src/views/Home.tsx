@@ -15,7 +15,8 @@ export const Home = () => (
     >
       <source src="/videos/hero.mp4" type="video/mp4" />
     </video>
-    <div className="absolute inset-0 bg-black/55 z-10 pointer-events-none" />
+    {/* gradient darkens bottom-left (text area) while leaving the bear visible */}
+    <div className="absolute inset-0 bg-gradient-to-tr from-black/70 via-black/30 to-black/5 z-10 pointer-events-none" />
 
     <NavBar currentPath="/" dark />
 
@@ -29,28 +30,28 @@ export const Home = () => (
         initial={{ opacity: 0, y: 28 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.15, ease }}
-        className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tight text-white/70 leading-tight mb-4 max-w-2xl"
+        className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tight text-white leading-tight mb-4 max-w-2xl"
       >
-        learn spanish the way you actually <span className="text-lime-400/70">talk.</span>
+        learn spanish the way you actually <span className="text-lime-400">talk.</span>
       </motion.h1>
 
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.3, ease }}
-        className="text-lg sm:text-xl font-medium text-white/70"
+        className="text-lg sm:text-xl font-medium text-white/85"
       >
         not an app. a conversation.
       </motion.p>
-    </motion.main>
 
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, delay: 0.68, ease }}
-      className="absolute bottom-10 left-0 right-0 z-20 flex justify-center"
-    >
-      <SocialLinks dark />
-    </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.68, ease }}
+        className="mt-8"
+      >
+        <SocialLinks dark />
+      </motion.div>
+    </motion.main>
   </div>
 );
