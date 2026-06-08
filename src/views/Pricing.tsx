@@ -37,7 +37,6 @@ const plans = [
     ],
     cta: "get plus",
     highlight: true,
-    badge: "most popular",
   },
   {
     id: "pro",
