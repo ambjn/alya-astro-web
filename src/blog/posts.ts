@@ -21,7 +21,7 @@ export const posts: BlogPost[] = [
     {
         slug: "duolingo-alternative-for-conversation-practice",
         title: "The Best Duolingo Alternative for Conversation Practice in 2026",
-        metaTitle: "Best Duolingo Alternative for Conversation Practice | alya",
+        metaTitle: "Best Duolingo Alternative for Conversation Practice | ALYA: Learn Spanish with AI",
         metaDescription:
             "Tired of Duolingo's gamification but no real conversations? Here are the best Duolingo alternatives in 2026 for actually learning to speak a language.",
         publishedAt: "2026-06-01",
@@ -198,7 +198,7 @@ export const posts: BlogPost[] = [
     {
         slug: "best-ai-language-learning-app-2026",
         title: "Best AI Language Learning App in 2026",
-        metaTitle: "Best AI Language Learning App in 2026 | alya",
+        metaTitle: "Best AI Language Learning App in 2026 | ALYA: Learn Spanish with AI",
         metaDescription:
             "Looking for the best AI language learning app to learn Spanish in 2026? Here's what actually makes you fluent — and why conversation beats drills.",
         publishedAt: "2026-05-19",
@@ -337,7 +337,7 @@ export const posts: BlogPost[] = [
     {
         slug: "how-to-learn-spanish-fast",
         title: "How to Learn Spanish Fast: The Conversation Method",
-        metaTitle: "How to Learn Spanish Fast in 2026 | alya",
+        metaTitle: "How to Learn Spanish Fast in 2026 | ALYA: Learn Spanish with AI",
         metaDescription:
             "Learn Spanish fast with the conversation method. Skip the grammar tables and start speaking Spanish from day one. Here's how AI conversation practice accelerates fluency.",
         publishedAt: "2026-05-05",
@@ -468,7 +468,7 @@ export const posts: BlogPost[] = [
     {
         slug: "spanish-conversation-practice-scenarios",
         title: "8 Real-Life Spanish Scenarios to Practice Before You Travel",
-        metaTitle: "8 Spanish Conversation Scenarios to Practice Before You Travel | alya",
+        metaTitle: "8 Spanish Conversation Scenarios to Practice Before You Travel | ALYA: Learn Spanish with AI",
         metaDescription: "Don't freeze up on your trip. Practice these 8 real Spanish conversation scenarios before you go — café, hotel, doctor, market, and more. With key phrases for each.",
         publishedAt: "2026-06-06",
         readingTime: "9 min read",
@@ -568,7 +568,7 @@ export const posts: BlogPost[] = [
     {
         slug: "learn-spanish-vocabulary-spaced-repetition",
         title: "The Best Way to Learn Spanish Vocabulary (That Actually Sticks)",
-        metaTitle: "Best Way to Learn Spanish Vocabulary — Spaced Repetition | alya",
+        metaTitle: "Best Way to Learn Spanish Vocabulary — Spaced Repetition | ALYA: Learn Spanish with AI",
         metaDescription: "Flashcards forget you. Spaced repetition remembers. Here's how to build a Spanish vocabulary that actually sticks — using the science of memory, not marathon study sessions.",
         publishedAt: "2026-06-05",
         readingTime: "7 min read",
@@ -637,7 +637,7 @@ export const posts: BlogPost[] = [
     {
         slug: "spanish-grammar-cards-guide",
         title: "Spanish Grammar Cards: How to Actually Fix Your Grammar in Conversation",
-        metaTitle: "Spanish Grammar Cards: Fix Your Grammar While You Chat | alya",
+        metaTitle: "Spanish Grammar Cards: Fix Your Grammar While You Chat | ALYA: Learn Spanish with AI",
         metaDescription: "Stop memorizing grammar tables. Here's how Spanish grammar cards work in real conversation — and the 7 grammar rules that trip up English speakers most.",
         publishedAt: "2026-06-04",
         readingTime: "8 min read",
@@ -714,7 +714,7 @@ export const posts: BlogPost[] = [
     {
         slug: "how-to-learn-a-language-with-ai",
         title: "How to Learn a Language with AI (And Why It Actually Works)",
-        metaTitle: "How to Learn a Language with AI in 2026 | alya",
+        metaTitle: "How to Learn a Language with AI in 2026 | ALYA: Learn Spanish with AI",
         metaDescription:
             "Learn how AI language learning works and why it's faster than traditional methods. From conversation practice to instant corrections — here's how to use AI to become fluent.",
         publishedAt: "2026-04-21",
