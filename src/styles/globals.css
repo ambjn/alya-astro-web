@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: 84 81% 44%;
+    --primary-foreground: 0 0% 100%;
+    --border: 0 0% 88%;
+    --ring: 84 81% 44%;
+    --radius: 0.75rem;
+  }
+
+  * {
+    @apply border-border;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply text-neutral-900 font-sans antialiased selection:bg-lime-200/60 selection:text-neutral-900;
+    background-color: #f4f9f3;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hero-grid {
+    background-image:
+      linear-gradient(to right, rgb(0 0 0 / 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(0 0 0 / 0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .glass {
+    @apply bg-white/70 backdrop-blur-md border border-white/60;
+  }
+
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-sm border border-neutral-200/50 shadow-sm;
+  }
+
+  .glass-heavy {
+    @apply bg-white/90 backdrop-blur-xl border border-white/80;
+  }
+
+  .hero-frosted-overlay {
+    @apply absolute inset-0 bg-white/65 backdrop-blur-[2px] pointer-events-none;
+  }
+}
