@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Pricing from '../views/Pricing';
+---
+
+<Layout
+  title="Pricing | ALYA: Learn Spanish with AI"
+  description="ALYA is free to download with 5 messages per day. Upgrade to Plus ($6.99/mo) or Pro ($14.99/mo) for more conversations. No credit card needed to start."
+  ogTitle="ALYA Pricing — Free, Plus ($6.99/mo), Pro ($14.99/mo)"
+  ogDescription="Start free with 5 messages/day. Upgrade to Plus for $6.99/month or Pro for $14.99/month. No credit card needed to start."
+  twitterTitle="ALYA Pricing — Start Free, Upgrade Anytime"
+  twitterDescription="Free tier + $6.99/mo Plus + $14.99/mo Pro. No credit card to start."
+  canonical="/pricing"
+>
+  <Pricing currentPath="/pricing" client:load />
+</Layout>

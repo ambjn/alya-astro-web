@@ -1,0 +1,12 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Blog from '../../views/Blog';
+---
+
+<Layout
+  title="Blog | ALYA: Learn Spanish with AI"
+  description="Tips, guides, and insights on learning Spanish with AI — from the team at alya."
+  canonical="/blog"
+>
+  <Blog currentPath="/blog" client:load />
+</Layout>

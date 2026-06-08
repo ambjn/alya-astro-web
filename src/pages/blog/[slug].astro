@@ -1,0 +1,72 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogPostClient from '../../views/BlogPost';
+import { posts } from '../../blog/posts';
+import { BASE_URL } from '../../constants';
+
+export function getStaticPaths() {
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: post.title,
+  description: post.metaDescription,
+  url: `${BASE_URL}/blog/${post.slug}`,
+  datePublished: post.publishedAt,
+  dateModified: post.publishedAt,
+  author: { "@type": "Organization", name: "alya", url: BASE_URL },
+  publisher: {
+    "@type": "Organization",
+    name: "alya",
+    url: BASE_URL,
+    logo: { "@type": "ImageObject", url: `${BASE_URL}/logo/icon.png`, width: 512, height: 512 },
+  },
+  mainEntityOfPage: { "@type": "WebPage", "@id": `${BASE_URL}/blog/${post.slug}` },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+    { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE_URL}/blog` },
+    { "@type": "ListItem", position: 3, name: post.title, item: `${BASE_URL}/blog/${post.slug}` },
+  ],
+};
+
+const faqSchema = post.faqs
+  ? {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: post.faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: { "@type": "Answer", text: faq.answer },
+      })),
+    }
+  : null;
+
+const schemas = [articleSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema] : [])];
+---
+
+<Layout
+  title={post.metaTitle}
+  description={post.metaDescription}
+  ogTitle={post.metaTitle}
+  ogDescription={post.metaDescription}
+  ogType="article"
+  articlePublishedTime={post.publishedAt}
+  canonical={`/blog/${post.slug}`}
+>
+  {schemas.map((schema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  ))}
+  <BlogPostClient post={post} currentPath={`/blog/${post.slug}`} client:load />
+</Layout>

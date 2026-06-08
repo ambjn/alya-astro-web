@@ -1,0 +1,51 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { ComparisonPage } from '../../components/ComparisonPage';
+
+const faqs = [
+  { question: "Is alya better than Duolingo?", answer: "it depends on your goal. duolingo is better for building a daily habit and learning vocabulary through gamification. alya is better for developing real conversational fluency through AI practice. most serious learners use both." },
+  { question: "Does Duolingo use AI conversation?", answer: "duolingo has added some AI features, but the core experience is still gamified drills and translation exercises. alya is built from the ground up as an AI conversation partner — every interaction is a real back-and-forth exchange." },
+  { question: "Is alya free like Duolingo?", answer: "yes. alya is free to download with 5 messages per day, no credit card required. duolingo is also free but shows ads and has a hearts system that limits mistakes. alya plus is $4.99/month vs duolingo plus at $6.99/month." },
+  { question: "Can I use alya and Duolingo together?", answer: "absolutely. many learners use duolingo for vocabulary and grammar structure, then practice speaking and writing with alya. the two approaches complement each other well." },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })),
+};
+---
+
+<Layout
+  title="alya vs Duolingo — Which Is Better for Learning a Language? | alya"
+  description="alya vs Duolingo: AI conversation practice vs gamified drills. See which language learning app is better for real fluency. Try alya free on iOS."
+  canonical="/vs/duolingo"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
+  <ComparisonPage
+    competitorName="Duolingo"
+    competitorTagline="gamified vocabulary drills"
+    alyaTagline="AI conversation partner"
+    heroHeading="alya vs duolingo"
+    heroSubtitle="duolingo teaches you to translate sentences. alya teaches you to have real conversations. both are free — but only one makes you fluent."
+    verdict="if you want streaks and badges, use duolingo. if you want to actually speak the language, use alya."
+    rows={[
+      { feature: "learning method", alya: "real AI conversation", competitor: "gamified drills & translation" },
+      { feature: "free tier", alya: "5 msgs/day, forever", competitor: "limited hearts system" },
+      { feature: "AI conversation practice", alya: true, competitor: false },
+      { feature: "instant corrections in context", alya: true, competitor: false },
+      { feature: "adapts to your level", alya: true, competitor: "partially" },
+      { feature: "no ads", alya: true, competitor: "paid only" },
+      { feature: "no streak pressure", alya: true, competitor: false },
+      { feature: "monthly price", alya: "$4.99 (plus)", competitor: "$6.99" },
+    ]}
+    sections={[
+      { heading: "duolingo is great for building a habit. alya is great for building fluency.", body: "duolingo's gamification is genuinely effective at keeping you consistent — streaks, XP, leaderboards. if you've never studied a language before, it's a great starting point. but after a few months, you'll hit a wall. you can translate 'the bear drinks the milk' but you can't hold a 5-minute conversation. that's where alya comes in." },
+      { heading: "alya teaches through conversation, not translation", body: "every message you send to alya is a real exchange. she responds naturally, introduces new vocabulary in context, and corrects your mistakes the way a patient friend would — not with a red X, but woven into the reply. you're not drilling sentences. you're having a conversation. that's how humans actually learn language." },
+      { heading: "the verdict", body: "use both if you want. duolingo for the daily habit and vocabulary. alya for the actual conversation practice that builds real fluency. but if you have to pick one, pick the one that teaches you to speak." },
+    ]}
+    faqs={faqs}
+    currentPath="/vs/duolingo"
+    client:load
+  />
+</Layout>

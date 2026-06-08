@@ -36,7 +36,6 @@ out
 
 
 *.claude
-*.astro
 
 # wrangler files
 .wrangler
