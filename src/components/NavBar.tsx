@@ -41,13 +41,13 @@ export const NavBar = ({ currentPath = "", dark = false }: { currentPath?: strin
           </a>
 
           <div className="hidden md:flex items-center gap-6">
-            <div className={`flex items-center gap-1 px-2 py-1.5 rounded-full backdrop-blur-sm border ${dark && !isScrolled ? "bg-white/10 border-white/15" : "bg-white/70 border-neutral-200/60"}`}>
+            <div className={`flex items-center gap-1 px-2 py-1.5 rounded-full backdrop-blur-sm border ${dark && !isScrolled ? "bg-white/10 border-white/15" : "bg-transparent border-neutral-300/50"}`}>
               {NAV_LINKS.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   className={`px-4 py-1.5 text-sm font-medium rounded-full transition-all duration-200 relative ${currentPath === link.href
-                    ? dark && !isScrolled ? "text-white bg-white/20" : "text-neutral-900 bg-white shadow-sm"
+                    ? dark && !isScrolled ? "text-white bg-white/20" : "text-neutral-900 bg-neutral-300/50"
                     : dark && !isScrolled ? "text-white/70 hover:text-white" : "text-neutral-500 hover:text-neutral-900"
                     }`}
                 >
@@ -74,7 +74,7 @@ export const NavBar = ({ currentPath = "", dark = false }: { currentPath?: strin
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className={`fixed inset-0 z-40 backdrop-blur-xl md:hidden flex flex-col items-center justify-center space-y-6 ${dark ? "bg-black/60" : "bg-white/[0.98]"}`}
+            className={`fixed inset-0 z-40 backdrop-blur-xl md:hidden flex flex-col items-center justify-center space-y-6 ${dark ? "bg-black/60" : "bg-white/98"}`}
           >
             {NAV_LINKS.map((link) => (
               <a
