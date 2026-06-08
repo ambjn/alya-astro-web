@@ -56,7 +56,7 @@ function FooterLinkColumn({
 }
 
 export const Footer = () => (
-  <footer className="relative bg-white pt-16 pb-10 border-t border-neutral-100">
+  <footer className="relative pt-16 pb-10 border-t border-neutral-200/60">
     <div className="max-w-7xl mx-auto px-6 md:px-10 relative">
       <div className="grid grid-cols-2 md:grid-cols-12 gap-6 sm:gap-8 mb-16">
         <div className="col-span-2 md:col-span-4 pr-0 md:pr-12 flex flex-col justify-between h-full">
@@ -96,7 +96,7 @@ export const Footer = () => (
         </div>
       </div>
 
-      <div className="pt-8 border-t border-neutral-100 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="pt-8 border-t border-neutral-200/60 flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="text-neutral-400 text-xs font-medium uppercase tracking-widest">
           © 2026, All rights reserved
         </div>

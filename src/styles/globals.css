@@ -2,6 +2,10 @@
 @config "../../tailwind.config.js";
 
 @layer base {
+  :root {
+    --bg-page: #f4f9f3;
+  }
+
   * {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -9,7 +13,7 @@
 
   body {
     @apply text-neutral-900 font-sans antialiased;
-    background-color: #f4f9f3;
+    background-color: var(--bg-page);
   }
 
   ::selection {

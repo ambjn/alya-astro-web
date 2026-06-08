@@ -24,10 +24,8 @@ export const NavBar = ({ currentPath = "", dark = false }: { currentPath?: strin
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: ANIMATION_EASE }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-          ? "py-4 bg-white/90 backdrop-blur-xl border-b border-neutral-200/60 shadow-sm"
-          : dark
-            ? "py-6 bg-transparent"
-            : "py-6 bg-white/30 backdrop-blur-md"
+          ? "py-4 bg-transparent backdrop-blur-xl border-b border-neutral-200/60"
+          : "py-6 bg-transparent"
           }`}
       >
         <div className="container mx-auto px-6 md:px-10 flex items-center justify-between">
@@ -38,7 +36,7 @@ export const NavBar = ({ currentPath = "", dark = false }: { currentPath?: strin
               </div>
             )}
             <span className={`font-semibold text-3xl ${dark && !isScrolled ? "text-white" : "text-neutral-900"}`}>
-              alya.
+              alya<span className="text-lime-400/70">.</span>
             </span>
           </a>
 
