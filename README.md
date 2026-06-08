@@ -4,10 +4,9 @@ Website for [alyacompanion.xyz](https://www.alyacompanion.xyz) — learn a langu
 
 ## Stack
 
-- **Next.js 16** (App Router, full SSG)
+- **Astro 5** (fully static, SSG)
 - **React 19** + TypeScript
 - **TailwindCSS 3.4** + Framer Motion
-- **Bun** for package management
 
 ## Getting Started
 
@@ -16,7 +15,7 @@ bun install
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:4321](http://localhost:4321).
 
 ## Commands
 
@@ -24,43 +23,50 @@ Open [http://localhost:3000](http://localhost:3000).
 |---------|-------------|
 | `bun dev` | Start dev server |
 | `bun build` | Production build |
-| `bun start` | Serve production build |
-| `bun lint` | Run ESLint |
+| `bun preview` | Preview production build |
 
 ## Project Structure
 
 ```
 src/
-├── app/                  # Next.js App Router routes
-│   ├── layout.tsx        # Root layout (font, global metadata)
-│   ├── page.tsx          # Homepage
-│   ├── sitemap.ts        # Auto-generated /sitemap.xml
-│   ├── not-found.tsx     # 404 page
-│   ├── loading.tsx       # Loading state
-│   ├── error.tsx         # Error boundary
-│   ├── blog/             # Blog index + [slug] dynamic route
-│   ├── learn-*/          # Language landing pages (10 languages)
-│   └── vs/               # Competitor comparison pages (5 pages)
-├── components/           # Shared UI components ('use client' where needed)
-├── views/                # Client page components (used by app/ routes)
+├── layouts/
+│   └── Layout.astro          # Root layout
+├── pages/                    # File-based routing
+│   ├── index.astro           # Homepage
+│   ├── features.astro        # Features page
+│   ├── pricing.astro         # Pricing page
+│   ├── privacy.astro         # Privacy policy
+│   ├── terms.astro           # Terms of service
+│   ├── support.astro         # Support page
+│   ├── 404.astro             # 404 page
+│   ├── sitemap.xml.ts        # Auto-generated /sitemap.xml
+│   ├── blog/                 # Blog index + [slug] dynamic route
+│   ├── learn-spanish.astro   # Spanish landing page
+│   └── vs/                   # Competitor comparison pages (5 pages)
+├── components/               # Shared UI components (React)
+├── views/                    # React page views (used by pages/)
 ├── blog/
-│   └── posts.ts          # Blog post registry
-└── constants.ts          # APP_STORE_URL, BASE_URL, NAV_LINKS, etc.
+│   └── posts.ts              # Blog post registry
+├── styles/
+│   └── globals.css
+└── constants.ts              # APP_STORE_URL, BASE_URL, NAV_LINKS, etc.
 public/
-├── og/                   # Open Graph images
-├── logo/                 # App icon
-├── docs/                 # Markdown content (privacy, terms, support)
+├── og/                       # Open Graph images
+├── logo/                     # App icon
+├── videos/                   # Video assets
+├── docs/                     # Markdown content (privacy, terms, support)
+├── llms.txt
 └── robots.txt
 ```
 
 ## Adding Content
 
-**New language page:** create `src/app/learn-[language]/page.tsx` with `export const metadata` and `<LanguagePage>` props. Routing and sitemap update automatically.
+**New language page:** create `src/pages/learn-[language].astro` using the existing `learn-spanish.astro` as a template.
 
-**New comparison page:** create `src/app/vs/[competitor]/page.tsx` with `export const metadata` and `<ComparisonPage>` props.
+**New comparison page:** create `src/pages/vs/[competitor].astro` using an existing vs page as a template.
 
 **New blog post:** add an entry to `src/blog/posts.ts`. The blog index and post page render automatically.
 
 ## Deployment
 
-Deployed on Vercel via GitHub. Push to `main` → auto-deploy.
+Deployed on Cloudflare Pages via GitHub. Push to `main` → auto-deploy.
