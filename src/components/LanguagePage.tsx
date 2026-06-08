@@ -181,7 +181,7 @@ export const LanguagePage = ({
             initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.6, ease: ANIMATION_EASE }}
             className="relative mx-auto w-full max-w-md"
           >
             <div className="bg-neutral-50 rounded-3xl border border-neutral-200 overflow-hidden shadow-sm">
