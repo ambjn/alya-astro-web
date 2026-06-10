@@ -6,7 +6,7 @@ import { ANIMATION_EASE as ease } from "../constants";
 export const Home = () => (
   <div className="relative min-h-screen overflow-hidden font-sans">
     <video
-      className="absolute inset-0 w-full h-full object-cover z-0"
+      className="absolute inset-0 w-full h-full object-cover object-top-left z-0 scale-[1.05]"
       autoPlay
       muted
       loop
