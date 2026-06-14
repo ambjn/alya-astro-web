@@ -3,18 +3,18 @@ export interface BlogPost {
     title: string;
     metaTitle: string;
     metaDescription: string;
-    publishedAt: string; // ISO date string
-    readingTime: string; // e.g. "6 min read"
+    publishedAt: string;
+    readingTime: string;
     category: "tier1" | "tier2" | "tier3";
     excerpt: string;
     content: BlogSection[];
     faqs?: { question: string; answer: string }[];
-    relatedLanguage?: string; // e.g. "learn-japanese"
+    relatedLanguage?: string;
 }
 
 export interface BlogSection {
     type: "h2" | "h3" | "p" | "ul" | "cta" | "quote";
-    content: string | string[]; // string[] for ul items
+    content: string | string[];
 }
 
 export const posts: BlogPost[] = [
