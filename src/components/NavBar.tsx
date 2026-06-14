@@ -7,22 +7,40 @@ import { useState, useEffect } from "react";
 export const NavBar = ({ currentPath = "", dark = false }: { currentPath?: string; dark?: boolean }) => {
   const isHome = currentPath === "/";
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+      
+      // Scrolled state for background
+      setIsScrolled(currentScrollY > 20);
+
+      // Visibility logic: hide when scrolling down, show when scrolling up
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
     };
-    window.addEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   return (
     <>
       <motion.nav
         initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: ANIMATION_EASE }}
+        animate={{ 
+          y: isVisible ? 0 : -100,
+          opacity: isVisible ? 1 : 0 
+        }}
+        transition={{ duration: 0.4, ease: ANIMATION_EASE }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
           ? "py-4 bg-transparent backdrop-blur-xl border-b border-neutral-200/60"
           : "py-6 bg-transparent"
@@ -62,6 +80,8 @@ export const NavBar = ({ currentPath = "", dark = false }: { currentPath?: strin
           <button
             className={`md:hidden z-50 p-3 -mr-1 transition-colors ${dark && !isScrolled ? "text-white/80 hover:text-white" : "text-neutral-600 hover:text-neutral-900"}`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMobileMenuOpen}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -71,29 +91,37 @@ export const NavBar = ({ currentPath = "", dark = false }: { currentPath?: strin
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className={`fixed inset-0 z-40 backdrop-blur-xl md:hidden flex flex-col items-center justify-center space-y-6 ${dark ? "bg-black/60" : "bg-white/98"}`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className={`fixed inset-0 z-40 backdrop-blur-2xl md:hidden flex flex-col items-center justify-center ${dark ? "bg-black/80" : "bg-white/95"}`}
           >
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className={`text-2xl font-medium transition-colors ${dark ? "text-white/80 hover:text-white" : "text-neutral-600 hover:text-neutral-900"}`}
+            <div className="flex flex-col items-center space-y-8">
+              {NAV_LINKS.map((link, i) => (
+                <motion.a
+                  key={link.href}
+                  href={link.href}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1, ease: ANIMATION_EASE }}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`text-3xl font-semibold tracking-tight transition-colors ${dark ? "text-white/90 hover:text-white" : "text-neutral-900/80 hover:text-neutral-900"}`}
+                >
+                  {link.label}
+                </motion.a>
+              ))}
+              <motion.a
+                href={APP_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: NAV_LINKS.length * 0.1, ease: ANIMATION_EASE }}
+                className={`mt-4 px-10 py-4 rounded-full font-bold text-xl shadow-lg transition-transform active:scale-95 ${dark ? "bg-lime-400 text-neutral-900" : "bg-neutral-900 text-white"}`}
               >
-                {link.label}
-              </a>
-            ))}
-            <a
-              href={APP_STORE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`mt-6 px-8 py-3 rounded-full font-semibold text-lg ${dark ? "bg-white text-neutral-900" : "bg-neutral-900 text-white"}`}
-            >
-              download app
-            </a>
+                download app
+              </motion.a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -62,8 +62,8 @@ export const ComparisonPage = ({
     <div className="min-h-screen font-sans bg-lime-50">
       <NavBar currentPath={currentPath} />
 
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 pb-32 pt-32">
-        <section className="pb-16 md:pb-24 text-center">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6">
+        <section className="min-h-screen pb-16 md:pb-24 text-center scroll-snap-start flex flex-col justify-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -102,7 +102,7 @@ export const ComparisonPage = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease }}
-          className="mb-24"
+          className="min-h-screen mb-24 scroll-snap-start flex flex-col justify-center"
         >
           <div className="relative rounded-3xl overflow-hidden border border-neutral-200 bg-white shadow-sm">
             <div className="overflow-x-auto">
@@ -159,6 +159,7 @@ export const ComparisonPage = ({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.1, ease }}
+              className="min-h-[50vh] scroll-snap-start flex flex-col justify-center"
             >
               <h2 className="text-2xl md:text-3xl font-semibold text-neutral-900 mb-4 leading-tight">
                 {section.heading}
@@ -170,7 +171,7 @@ export const ComparisonPage = ({
           ))}
         </div>
 
-        <section className="max-w-3xl mx-auto">
+        <section className="min-h-screen scroll-snap-start flex flex-col justify-center max-w-3xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -184,7 +185,9 @@ export const ComparisonPage = ({
         </section>
       </main>
 
-      <Footer />
+      <div className="scroll-snap-start">
+        <Footer />
+      </div>
     </div>
   );
 };

@@ -65,8 +65,8 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
   <div className="min-h-screen font-sans bg-lime-50">
     <NavBar currentPath={currentPath} />
 
-    <main className="max-w-5xl mx-auto px-4 sm:px-6 pb-32 pt-24">
-      <section className="pt-10 pb-20">
+    <main className="max-w-5xl mx-auto px-4 sm:px-6">
+      <section className="min-h-screen pt-32 pb-20 scroll-snap-start flex flex-col justify-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -83,7 +83,7 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
         </motion.div>
       </section>
 
-      <section className="mb-4">
+      <section className="min-h-screen mb-4 scroll-snap-start flex flex-col justify-center">
         <div className="grid md:grid-cols-2 gap-4">
           {coreFeatures.map((f, i) => (
             <motion.div
@@ -104,7 +104,7 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
         </div>
       </section>
 
-      <section className="mb-24">
+      <section className="min-h-screen mb-24 scroll-snap-start flex flex-col justify-center">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {features.map((f, i) => (
             <motion.div
@@ -127,7 +127,7 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
         </div>
       </section>
 
-      <section className="mb-24">
+      <section className="min-h-screen mb-24 scroll-snap-start flex flex-col justify-center">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -170,7 +170,9 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
       </section>
     </main>
 
-    <Footer />
+    <div className="scroll-snap-start">
+      <Footer />
+    </div>
   </div>
 );
 

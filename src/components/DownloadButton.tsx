@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { APP_STORE_URL } from "../constants";
 
 const AppleIcon = () => (
@@ -7,13 +8,15 @@ const AppleIcon = () => (
 );
 
 export const DownloadButton = ({ className }: { className?: string }) => (
-  <a
+  <motion.a
     href={APP_STORE_URL}
     target="_blank"
     rel="noopener noreferrer"
+    whileHover={{ scale: 1.02 }}
+    whileTap={{ scale: 0.98 }}
     className={className}
   >
     <AppleIcon />
     <span>download on iOS</span>
-  </a>
+  </motion.a>
 );
