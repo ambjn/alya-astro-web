@@ -154,13 +154,13 @@ const BlogPostClient = ({ post, currentPath }: BlogPostClientProps) => {
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-32 bg-lime-200/50 blur-3xl" />
           <div className="relative">
             <p className="text-lime-600 font-bold text-xs uppercase tracking-widest mb-3">
-              Start learning today
+              put it into practice
             </p>
             <h3 className="text-3xl font-semibold text-neutral-900 mb-4">
-              Ready to try alya?
+              chat with alya.
             </h3>
             <p className="text-neutral-500 text-base mb-8 max-w-sm mx-auto">
-              5 free messages every day. No credit card required.
+              try what you just read in a real conversation. 5 free messages a day, no sign-up friction.
             </p>
             <DownloadButton className="inline-flex items-center gap-2.5 px-8 py-3.5 text-sm rounded-full bg-lime-500 text-white font-semibold hover:bg-lime-400 transition-all duration-300 shadow-md shadow-lime-200" />
           </div>

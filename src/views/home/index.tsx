@@ -132,7 +132,7 @@ export const Home = () => {
               <span className="text-lime-600">real situations.</span>
             </h2>
             <p className="text-neutral-500 text-base sm:text-lg md:text-xl font-light leading-relaxed mb-8 max-w-sm">
-              alya chats like a bilingual friend, teaching vocabulary, correcting grammar, and explaining culture naturally, inside every single message.
+              alya chats like a bilingual friend, teaching vocabulary, correcting grammar & explaining culture naturally, inside every single message.
             </p>
           </motion.div>
           <motion.div
@@ -425,7 +425,6 @@ export const Home = () => {
             <AppleIcon />
             download free on iOS
           </a>
-          <p className="text-neutral-400 text-xs mt-4">5 messages/day · forever free · no credit card needed</p>
         </motion.div>
       </section>
 

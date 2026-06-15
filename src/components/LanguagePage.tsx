@@ -290,35 +290,6 @@ export const LanguagePage = ({
           <FAQAccordion faqs={faqs} />
         </section>
 
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: ANIMATION_EASE }}
-          className="rounded-3xl bg-neutral-900 p-10 md:p-14 text-center relative overflow-hidden"
-        >
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-80 h-40 bg-lime-400/10 blur-3xl pointer-events-none" />
-          <div className="relative">
-            <p className="text-lime-400 font-bold text-xs uppercase tracking-widest mb-4">start today</p>
-            <h2 className="text-3xl sm:text-4xl font-semibold text-white tracking-tight leading-tight mb-4">
-              ready to speak<br />
-              <span className="text-lime-400">{languageName.toLowerCase()}?</span>
-            </h2>
-            <p className="text-neutral-400 text-base font-light mb-8 max-w-sm mx-auto">
-              5 free messages every day. no credit card required.
-            </p>
-            <a
-              href={APP_STORE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 bg-lime-400 hover:bg-lime-300 transition-colors text-neutral-900 font-semibold px-8 py-4 rounded-full text-base shadow-lg shadow-lime-400/20"
-            >
-              <AppleIcon size={14} />
-              download free on iOS
-            </a>
-            <p className="text-neutral-600 text-xs mt-4">5 messages/day · forever free · no credit card needed</p>
-          </div>
-        </motion.section>
       </main>
 
       <Footer />

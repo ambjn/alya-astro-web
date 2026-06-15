@@ -181,7 +181,7 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
           <span className="text-lime-500">free.</span>
         </h2>
         <p className="text-neutral-500 text-base font-light mb-8 max-w-sm mx-auto">
-          5 messages/day, no credit card. voice notes, corrections, scenario roleplay, all in the free plan.
+          everything above is included in the free plan. no credit card to start.
         </p>
         <a
           href={APP_STORE_URL}
