@@ -132,7 +132,7 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
     </main>
 
     {/* How alya works */}
-    <section className="bg-neutral-100 py-20 px-6 sm:px-10 md:px-16">
+    <section className="bg-lime-50 py-20 px-6 sm:px-10 md:px-16">
       <div className="max-w-5xl mx-auto w-full">
         <motion.div
           initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}

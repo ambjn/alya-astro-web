@@ -10,65 +10,50 @@ const AppleIcon = () => (
   </svg>
 );
 
-const sections = [
+const faqs = [
   {
-    label: "getting started",
-    faqs: [
-      {
-        question: "is alya actually free?",
-        answer: "Yes. Download alya and get 5 messages per day, forever, no credit card, no trial period. Upgrade to Plus ($4.99/mo) or Pro ($14.99/mo) anytime for more daily messages and deeper conversation memory.",
-      },
-      {
-        question: "how is alya different from Duolingo?",
-        answer: "Duolingo teaches you to study Spanish: vocabulary lists, hearts, streaks. Alya teaches you to speak it. Every session is a real conversation where alya corrects you in context, adapts to your level, and responds like a bilingual friend. No preset curriculum, no lives to lose.",
-      },
-      {
-        question: "do I need to speak English to use alya?",
-        answer: "Not at all. Alya detects the language you text in (Hindi, Japanese, French, Portuguese, and more) and responds in that same language while teaching you Spanish. Alya was built for learners worldwide, not just English speakers.",
-      },
-      {
-        question: "how long before I can hold a real conversation?",
-        answer: "Most learners can handle basic everyday conversations within 4 to 8 weeks of daily practice. The key is consistency over intensity: 10 to 15 minutes every day beats a 2-hour weekend session every time.",
-      },
-    ],
+    question: "is alya actually free?",
+    answer: "Yes. Download alya and get 5 messages per day, forever, no credit card, no trial period. Upgrade to Plus ($4.99/mo) or Pro ($14.99/mo) anytime for more daily messages and deeper conversation memory.",
   },
   {
-    label: "learning & features",
-    faqs: [
-      {
-        question: "can I practice speaking, not just typing?",
-        answer: "Yes. Send voice messages to alya and she'll transcribe, respond, and teach. Tap any Spanish word in alya's replies to hear native-accent pronunciation. Voice in, voice out.",
-      },
-      {
-        question: "what Spanish does alya teach?",
-        answer: "Latin American Spanish, the variety spoken in Mexico, Colombia, Argentina, and across the continent. Modern, natural, and understood everywhere. Alya deliberately avoids Spain-specific slang.",
-      },
-      {
-        question: "what counts as a message?",
-        answer: "Each message you send to alya counts as one. Alya's replies don't count. The limit resets every 24 hours.",
-      },
-      {
-        question: "what happens when I hit my daily limit?",
-        answer: "Alya lets you know you've reached your limit for the day and shows you upgrade options. Your conversation history is saved and ready when the limit resets.",
-      },
-    ],
+    question: "how is alya different from Duolingo?",
+    answer: "Duolingo teaches you to study Spanish: vocabulary lists, hearts, streaks. Alya teaches you to speak it. Every session is a real conversation where alya corrects you in context, adapts to your level, and responds like a bilingual friend. No preset curriculum, no lives to lose.",
   },
   {
-    label: "plans & billing",
-    faqs: [
-      {
-        question: "can I switch plans?",
-        answer: "Yes, anytime. Upgrade or downgrade from the settings screen in the app. Changes take effect at the next billing cycle.",
-      },
-      {
-        question: "what payment methods are accepted?",
-        answer: "Subscriptions are processed through the App Store using your Apple ID. All major cards, Apple Pay, and carrier billing are supported.",
-      },
-      {
-        question: "is there a student discount?",
-        answer: "Not yet, but the free plan is genuinely useful for casual learners. Plus at $4.99/month is less than a single coffee.",
-      },
-    ],
+    question: "do I need to speak English to use alya?",
+    answer: "Not at all. Alya detects the language you text in (Hindi, Japanese, French, Portuguese, and more) and responds in that same language while teaching you Spanish. Alya was built for learners worldwide, not just English speakers.",
+  },
+  {
+    question: "how long before I can hold a real conversation?",
+    answer: "Most learners can handle basic everyday conversations within 4 to 8 weeks of daily practice. The key is consistency over intensity: 10 to 15 minutes every day beats a 2-hour weekend session every time.",
+  },
+  {
+    question: "can I practice speaking, not just typing?",
+    answer: "Yes. Send voice messages to alya and she'll transcribe, respond, and teach. Tap any Spanish word in alya's replies to hear native-accent pronunciation. Voice in, voice out.",
+  },
+  {
+    question: "what Spanish does alya teach?",
+    answer: "Latin American Spanish, the variety spoken in Mexico, Colombia, Argentina, and across the continent. Modern, natural, and understood everywhere. Alya deliberately avoids Spain-specific slang.",
+  },
+  {
+    question: "what counts as a message?",
+    answer: "Each message you send to alya counts as one. Alya's replies don't count. The limit resets every 24 hours.",
+  },
+  {
+    question: "what happens when I hit my daily limit?",
+    answer: "Alya lets you know you've reached your limit for the day and shows you upgrade options. Your conversation history is saved and ready when the limit resets.",
+  },
+  {
+    question: "can I switch plans?",
+    answer: "Yes, anytime. Upgrade or downgrade from the settings screen in the app. Changes take effect at the next billing cycle.",
+  },
+  {
+    question: "what payment methods are accepted?",
+    answer: "Subscriptions are processed through the App Store using your Apple ID. All major cards, Apple Pay, and carrier billing are supported.",
+  },
+  {
+    question: "is there a student discount?",
+    answer: "Not yet, but the free plan is genuinely useful for casual learners. Plus at $4.99/month is less than a single coffee.",
   },
 ];
 
@@ -93,50 +78,15 @@ export const FAQ = ({ currentPath }: { currentPath?: string }) => {
           </p>
         </motion.div>
 
-        <div className="space-y-14">
-          {sections.map((section, si) => (
-            <motion.div
-              key={section.label}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.6, delay: si * 0.08, ease }}
-            >
-              <p className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 mb-5">
-                {section.label}
-              </p>
-              <FAQAccordion faqs={section.faqs} />
-            </motion.div>
-          ))}
-        </div>
-
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.6, ease }}
-          className="mt-20 rounded-3xl bg-neutral-900 px-8 py-12 text-center"
         >
-          <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-3 tracking-tight">
-            still have questions?
-          </h2>
-          <p className="text-neutral-400 text-base font-light mb-8">
-            reach out at{" "}
-            <a href="mailto:teamalya@outlook.com" className="text-lime-400 hover:underline">
-              teamalya@outlook.com
-            </a>{" "}
-            and we'll get back to you same day.
-          </p>
-          <a
-            href={APP_STORE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 bg-lime-400 hover:bg-lime-300 transition-colors text-neutral-900 font-semibold px-7 py-3.5 rounded-full text-sm shadow-lg"
-          >
-            <AppleIcon />
-            download free on iOS
-          </a>
+          <FAQAccordion faqs={faqs} />
         </motion.div>
+
       </main>
 
       <Footer />
