@@ -65,7 +65,7 @@ const pricingPlans = [
 export const Home = () => {
   return (
     <div className="font-sans bg-lime-50">
-      <section className="relative h-screen overflow-hidden scroll-snap-start flex flex-col justify-end">
+      <section className="relative h-screen overflow-hidden scroll-snap-start flex flex-col justify-end bg-black">
         <video
           className="absolute inset-0 w-full h-full object-cover object-center z-0 scale-[1.05]"
           autoPlay
@@ -73,7 +73,6 @@ export const Home = () => {
           loop
           playsInline
           aria-hidden="true"
-          poster="/logo/splash-icon.png"
           preload="auto"
         >
           <source src="/videos/hero.mp4" type="video/mp4" />
