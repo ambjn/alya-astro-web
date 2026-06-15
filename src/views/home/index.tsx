@@ -65,7 +65,6 @@ const pricingPlans = [
 export const Home = () => {
   return (
     <div className="font-sans bg-lime-50">
-
       <section className="relative h-screen overflow-hidden scroll-snap-start flex flex-col justify-end">
         <video
           className="absolute inset-0 w-full h-full object-cover object-center z-0 scale-[1.05]"
@@ -107,7 +106,6 @@ export const Home = () => {
             >
               not an app. a conversation
             </motion.p>
-
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -147,62 +145,6 @@ export const Home = () => {
       </section>
 
       <section className="bg-lime-50 min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16 items-center w-full">
-          <motion.div
-            initial={{ opacity: 0, x: -24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.7, ease }}
-            className="order-2 md:order-1"
-          >
-            <LevelMockup />
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 24, filter: "blur(4px)" }}
-            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.7, delay: 0.1, ease }}
-            className="order-1 md:order-2"
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-neutral-900 tracking-tight leading-[1.1] mb-5">
-              your level.<br />
-              <span className="text-lime-500">your pace.</span>
-            </h2>
-            <p className="text-neutral-600 text-base sm:text-lg md:text-xl font-light leading-relaxed max-w-sm">
-              beginner, intermediate, or advanced. or take a quick proficiency test. alya adapts in real time, never too easy, never overwhelming.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="bg-lime-50 min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16 items-center w-full">
-          <motion.div
-            initial={{ opacity: 0, x: -24, filter: "blur(4px)" }}
-            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.7, ease }}
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-neutral-900 tracking-tight leading-[1.1] mb-5">
-              mistakes welcome.<br />
-              <span className="text-lime-500">corrections instant.</span>
-            </h2>
-            <p className="text-neutral-500 text-base sm:text-lg md:text-xl font-light leading-relaxed max-w-sm">
-              every mistake is a micro-lesson. alya corrects in context, not with a red X, but the way a patient bilingual friend would. no judgment. no lost lives.
-            </p>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.7, delay: 0.1, ease }}
-          >
-            <CorrectionsMockup />
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="bg-lime-50 min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
         <div className="max-w-3xl mx-auto text-center w-full">
           <motion.div
             initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
@@ -235,6 +177,34 @@ export const Home = () => {
           </motion.div>
         </div>
       </section>
+
+      <section className="bg-lime-50 min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16 items-center w-full">
+          <motion.div
+            initial={{ opacity: 0, x: -24, filter: "blur(4px)" }}
+            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, ease }}
+          >
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-neutral-900 tracking-tight leading-[1.1] mb-5">
+              mistakes welcome.<br />
+              <span className="text-lime-500">corrections instant.</span>
+            </h2>
+            <p className="text-neutral-500 text-base sm:text-lg md:text-xl font-light leading-relaxed max-w-sm">
+              every mistake is a micro-lesson. alya corrects in context, not with a red X, but the way a patient bilingual friend would. no judgment. no lost lives.
+            </p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.1, ease }}
+          >
+            <CorrectionsMockup />
+          </motion.div>
+        </div>
+      </section>
+
 
       <section className="bg-lime-50 min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
         <div className="max-w-5xl mx-auto w-full">
@@ -285,45 +255,31 @@ export const Home = () => {
         </div>
       </section>
 
-      <section className="bg-lime-50 min-h-screen py-16 md:py-24 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
-        <div className="max-w-5xl mx-auto w-full grid md:grid-cols-[1fr_2fr] gap-12 md:gap-16 items-start">
+      <section className="bg-lime-50 min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16 items-center w-full">
           <motion.div
-            initial={{ opacity: 0, x: -20, filter: "blur(4px)" }}
-            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.7, ease }}
-            className="md:sticky md:top-28"
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-neutral-900 tracking-tight leading-[1.1] mb-4">
-              questions &amp;<br />
-              <span className="text-lime-600">answers.</span>
-            </h2>
-            <p className="text-neutral-400 text-base font-light leading-relaxed mb-8">
-              straight answers.<br className="hidden md:block" /> no fluff.
-            </p>
-            <a
-              href="/support"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-neutral-500 hover:text-lime-600 transition-colors group"
-            >
-              still have questions?
-              <span className="group-hover:translate-x-0.5 transition-transform inline-block">→</span>
-            </a>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -24 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, delay: 0.15, ease }}
+            transition={{ duration: 0.7, ease }}
+            className="order-2 md:order-1"
           >
-            <FAQAccordion faqs={faqs} />
-            <a
-              href="/faq"
-              className="inline-flex items-center gap-1.5 mt-6 text-sm font-medium text-neutral-500 hover:text-lime-600 transition-colors group"
-            >
-              see all questions
-              <span className="group-hover:translate-x-0.5 transition-transform inline-block">→</span>
-            </a>
+            <LevelMockup />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 24, filter: "blur(4px)" }}
+            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.1, ease }}
+            className="order-1 md:order-2"
+          >
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-neutral-900 tracking-tight leading-[1.1] mb-5">
+              your level.<br />
+              <span className="text-lime-500">your pace.</span>
+            </h2>
+            <p className="text-neutral-600 text-base sm:text-lg md:text-xl font-light leading-relaxed max-w-sm">
+              beginner, intermediate, or advanced. or take a quick proficiency test. alya adapts in real time, never too easy, never overwhelming.
+            </p>
           </motion.div>
         </div>
       </section>
@@ -398,6 +354,49 @@ export const Home = () => {
           >
             all plans start free. no credit card needed.
           </motion.p>
+        </div>
+      </section>
+
+      <section className="bg-lime-50 min-h-screen py-16 md:py-24 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
+        <div className="max-w-5xl mx-auto w-full grid md:grid-cols-[1fr_2fr] gap-12 md:gap-16 items-start">
+          <motion.div
+            initial={{ opacity: 0, x: -20, filter: "blur(4px)" }}
+            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, ease }}
+            className="md:sticky md:top-28"
+          >
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-neutral-900 tracking-tight leading-[1.1] mb-4">
+              questions &amp;<br />
+              <span className="text-lime-600">answers.</span>
+            </h2>
+            <p className="text-neutral-400 text-base font-light leading-relaxed mb-8">
+              straight answers.<br className="hidden md:block" /> no fluff.
+            </p>
+            <a
+              href="/support"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-neutral-500 hover:text-lime-600 transition-colors group"
+            >
+              still have questions?
+              <span className="group-hover:translate-x-0.5 transition-transform inline-block">→</span>
+            </a>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.15, ease }}
+          >
+            <FAQAccordion faqs={faqs} />
+            <a
+              href="/faq"
+              className="inline-flex items-center gap-1.5 mt-6 text-sm font-medium text-neutral-500 hover:text-lime-600 transition-colors group"
+            >
+              see all questions
+              <span className="group-hover:translate-x-0.5 transition-transform inline-block">→</span>
+            </a>
+          </motion.div>
         </div>
       </section>
 
