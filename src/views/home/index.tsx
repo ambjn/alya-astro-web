@@ -1,249 +1,17 @@
 import { motion } from "framer-motion";
-import { NavBar } from "../components/NavBar";
-import { SocialLinks } from "../components/SocialLinks";
-import { Footer } from "../components/Footer";
-import { FAQAccordion } from "../components/FAQAccordion";
+import { NavBar } from "../../components/NavBar";
+import { SocialLinks } from "../../components/SocialLinks";
+import { Footer } from "../../components/Footer";
+import { FAQAccordion } from "../../components/FAQAccordion";
+import { AppleIcon } from "../../components/DownloadButton";
 import { Check } from "lucide-react";
-import { ANIMATION_EASE as ease, APP_STORE_URL } from "../constants";
-
-const stagger = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
-};
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 22 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease } },
-};
-
-const fadeUpCard = {
-  hidden: { opacity: 0, y: 28 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease } },
-};
-
-const AppleIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
-    <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516s1.52.087 2.475-1.258.762-3.391.728-3.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422s1.675-2.789 1.698-2.854-.597-.79-1.254-1.157a3.7 3.7 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56s.625 1.924 1.273 2.796c.576.984 1.34 1.667 1.659 1.899s1.219.386 1.843.067c.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758q.52-1.148.581-1.515" />
-  </svg>
-);
-
-const StarFilled = () => (
-  <svg className="w-3.5 h-3.5 fill-lime-400" viewBox="0 0 20 20">
-    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-  </svg>
-);
-
-const ChatMockup = () => (
-  <div className="max-w-[300px] mx-auto w-full">
-    <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.6, ease }}
-      className="bg-neutral-800 rounded-3xl p-4 shadow-2xl border border-white/5"
-    >
-      <div className="flex items-center gap-2.5 pb-3 mb-3 border-b border-white/10">
-        <img src="/logo/splash-icon.png" alt="alya" className="w-7 h-7 rounded-full object-cover" />
-        <div>
-          <p className="text-white text-xs font-semibold">alya</p>
-          <p className="text-lime-400 text-[10px]">● online</p>
-        </div>
-      </div>
-      <div className="space-y-2.5">
-        {[
-          { side: "right", text: <p className="text-neutral-900 text-xs font-medium">tengo un perro!</p> },
-          { side: "left", text: <><p className="text-white text-xs"><span className="text-lime-400 font-semibold">mi perro se llama...</span> <span className="text-neutral-400 text-[10px]">mee peh-ro seh yah-ma</span>, meaning "my dog's name is..."</p><p className="text-white text-xs mt-1.5">you're speaking Spanish!! 🎉 what's your dog's name? try using that phrase!</p></> },
-          { side: "right", text: <p className="text-neutral-900 text-xs font-medium">can you teach me the colors?</p> },
-          { side: "left", text: <><p className="text-white text-xs"><span className="text-lime-400 font-semibold">rojo</span> ra-ho = red, <span className="text-lime-400 font-semibold">azul</span> ah-sool = blue, <span className="text-lime-400 font-semibold">verde</span> ver-deh = green, <span className="text-lime-400 font-semibold">amarillo</span> ah-mah-ree-yo = yellow 🌻</p><p className="text-white text-xs mt-1.5">colors are so fun! what color is your shirt? try answering with one of those!</p></> },
-        ].map((m, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, x: m.side === "left" ? -10 : 10, y: 5 }}
-            whileInView={{ opacity: 1, x: 0, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ delay: 0.2 + i * 0.15, duration: 0.4, ease }}
-            className={`flex ${m.side === "right" ? "justify-end" : ""}`}
-          >
-            <div className={`${m.side === "left" ? "bg-neutral-700 rounded-tl-sm" : "bg-lime-400 rounded-tr-sm"} rounded-2xl px-3 py-2.5 max-w-[90%]`}>
-              {m.text}
-            </div>
-          </motion.div>
-        ))}
-      </div>
-    </motion.div>
-  </div>
-);
-
-const LevelMockup = () => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, amount: 0.2 }}
-    transition={{ duration: 0.6, ease }}
-    className="max-w-[300px] mx-auto w-full bg-white rounded-3xl p-5 shadow-xl border border-neutral-200"
-  >
-    <p className="text-neutral-900 font-semibold text-sm mb-0.5">what's your Spanish level?</p>
-    <p className="text-neutral-400 text-[11px] mb-4">alya adapts to where you are right now</p>
-    <div className="space-y-2">
-      {[
-        { level: "beginner", desc: "learning basic words & phrases from scratch", active: true },
-        { level: "intermediate", desc: "you know some words; alya mixes languages", active: false },
-        { level: "advanced", desc: "challenge yourself; alya speaks mostly Spanish", active: false },
-      ].map((item, i) => (
-        <motion.div
-          key={item.level}
-          initial={{ opacity: 0, x: -10 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ delay: 0.3 + i * 0.1, duration: 0.4, ease }}
-          className={`rounded-xl px-3.5 py-3 border-2 transition-all cursor-default hover:border-lime-300 ${item.active ? "border-lime-400 bg-lime-50" : "border-neutral-100 bg-neutral-50"}`}
-        >
-          <p className={`font-semibold text-xs capitalize ${item.active ? "text-lime-700" : "text-neutral-600"}`}>{item.level}</p>
-          <p className="text-[11px] text-neutral-400 mt-0.5 leading-relaxed">{item.desc}</p>
-        </motion.div>
-      ))}
-    </div>
-    <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ delay: 0.7, duration: 0.4 }}
-      className="mt-4 bg-neutral-900 rounded-xl py-2.5 text-center"
-    >
-      <span className="text-white text-xs font-semibold">start learning →</span>
-    </motion.div>
-  </motion.div>
-);
-
-const CorrectionsMockup = () => (
-  <div className="max-w-[300px] mx-auto w-full">
-    <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.6, ease }}
-      className="bg-neutral-800 rounded-3xl p-4 shadow-xl border border-white/5"
-    >
-      <div className="flex items-center gap-2.5 pb-3 mb-3 border-b border-white/10">
-        <img src="/logo/splash-icon.png" alt="alya" className="w-7 h-7 rounded-full object-cover" />
-        <div>
-          <p className="text-white text-xs font-semibold">alya</p>
-          <p className="text-lime-400 text-[10px]">● online</p>
-        </div>
-      </div>
-      <div className="space-y-2.5">
-        {[
-          { side: "right", text: <p className="text-neutral-900 text-xs font-medium">me llamo Alya did i say right?</p> },
-          { side: "left", text: <><p className="text-white text-xs"><span className="text-lime-400 font-semibold">¡Me llamo Alya!</span> perfect 🎉</p><p className="text-neutral-300 text-[10px] mt-1">already speaking Spanish!</p><div className="mt-1.5 bg-neutral-800 rounded-lg px-2 py-1 inline-flex items-center gap-1"><span className="text-neutral-400 text-[10px]">🔊 tap for pronunciation</span></div></> },
-          { side: "right", text: <p className="text-neutral-900 text-xs font-medium">how do i ask for water?</p> },
-          { side: "left", text: <><p className="text-white text-xs">say: <span className="text-lime-400 font-semibold">quiero agua, por favor</span></p><p className="text-neutral-400 text-[10px] mt-1">means "I'd like water, please" 💧</p></> },
-        ].map((m, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, x: m.side === "left" ? -10 : 10, y: 5 }}
-            whileInView={{ opacity: 1, x: 0, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ delay: 0.2 + i * 0.15, duration: 0.4, ease }}
-            className={`flex ${m.side === "right" ? "justify-end" : ""}`}
-          >
-            <div className={`${m.side === "left" ? "bg-neutral-700 rounded-tl-sm" : "bg-lime-400 rounded-tr-sm"} rounded-2xl px-3 py-2.5 max-w-[90%]`}>
-              {m.text}
-            </div>
-          </motion.div>
-        ))}
-      </div>
-    </motion.div>
-  </div>
-);
-
-const VocabMockup = () => (
-  <div className="bg-neutral-900 rounded-2xl p-4 border border-neutral-800">
-    <div className="flex items-center justify-between mb-4">
-      <p className="text-neutral-400 text-[10px] font-bold uppercase tracking-widest">My Words</p>
-      <span className="bg-lime-400/20 text-lime-400 text-[9px] font-bold px-2 py-0.5 rounded-full">5 due for review</span>
-    </div>
-    <div className="flex gap-5 mb-4 pb-4 border-b border-neutral-800">
-      {[{ n: "47", label: "total", accent: false }, { n: "5", label: "due", accent: true }, { n: "12", label: "mastered", accent: false }].map(s => (
-        <div key={s.label}>
-          <p className={`text-xl font-bold leading-none ${s.accent ? "text-lime-400" : "text-white"}`}>{s.n}</p>
-          <p className="text-neutral-500 text-[9px] uppercase tracking-wider mt-1">{s.label}</p>
-        </div>
-      ))}
-    </div>
-    <div className="space-y-0">
-      {[
-        { word: "mariposa", def: "butterfly", status: "mastered" },
-        { word: "aprovechar", def: "to make the most of", status: "due now" },
-        { word: "añorar", def: "to miss deeply", status: "due now" },
-        { word: "cotidiano", def: "everyday, daily", status: "due now" },
-      ].map(w => (
-        <div key={w.word} className="flex items-center justify-between py-2.5 border-b border-neutral-800 last:border-0">
-          <div>
-            <p className="text-white text-xs font-medium">{w.word}</p>
-            <p className="text-neutral-500 text-[10px]">{w.def}</p>
-          </div>
-          <span className={`text-[9px] font-semibold ${w.status === "due now" ? "text-lime-400" : "text-neutral-600"}`}>{w.status}</span>
-        </div>
-      ))}
-    </div>
-  </div>
-);
-
-const GrammarMockup = () => (
-  <div className="bg-white rounded-2xl p-5 border border-neutral-200">
-    <div className="text-[9px] font-bold uppercase tracking-widest text-neutral-400 mb-2">Grammar Card ❤️</div>
-    <h3 className="text-neutral-900 font-bold text-base mb-1 leading-tight">ser vs. estar</h3>
-    <p className="text-neutral-400 text-xs mb-4 leading-relaxed">both mean "to be", but they're not the same.</p>
-    <div className="space-y-2 mb-4">
-      <div className="bg-lime-50 rounded-xl p-3 border border-lime-100">
-        <p className="text-lime-700 text-[9px] font-bold uppercase tracking-wide mb-1">ser: identity, origin</p>
-        <p className="text-neutral-500 text-xs italic">Soy estudiante. (I am a student.)</p>
-      </div>
-      <div className="bg-neutral-50 rounded-xl p-3 border border-neutral-100">
-        <p className="text-neutral-500 text-[9px] font-bold uppercase tracking-wide mb-1">estar: states, location</p>
-        <p className="text-neutral-500 text-xs italic">Estoy cansado. (I am tired.)</p>
-      </div>
-    </div>
-    <a
-      href={APP_STORE_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="block w-full bg-neutral-900 hover:bg-lime-500 transition-colors rounded-xl py-2.5 text-center cursor-pointer"
-    >
-      <span className="text-white text-xs font-semibold">practice with alya →</span>
-    </a>
-  </div>
-);
-
-const languagesRow1 = [
-  { flag: "🇺🇸", name: "English" },
-  { flag: "🇮🇳", name: "हिंदी" },
-  { flag: "🇯🇵", name: "日本語" },
-  { flag: "🇧🇷", name: "Português" },
-  { flag: "🇫🇷", name: "Français" },
-  { flag: "🇸🇦", name: "العربية" },
-  { flag: "🇷🇺", name: "Русский" },
-  { flag: "🇨🇳", name: "中文" },
-  { flag: "🇲🇽", name: "Español" },
-  { flag: "🇮🇩", name: "Bahasa" },
-  { flag: "🇳🇱", name: "Nederlands" },
-  { flag: "🇸🇪", name: "Svenska" },
-];
-
-const languagesRow2 = [
-  { flag: "🇧🇩", name: "বাংলা" },
-  { flag: "🇹🇷", name: "Türkçe" },
-  { flag: "🇮🇹", name: "Italiano" },
-  { flag: "🇰🇷", name: "한국어" },
-  { flag: "🇩🇪", name: "Deutsch" },
-  { flag: "🇻🇳", name: "Tiếng Việt" },
-  { flag: "🇵🇱", name: "Polski" },
-  { flag: "🇹🇭", name: "ภาษาไทย" },
-  { flag: "🇮🇷", name: "فارسی" },
-  { flag: "🇺🇦", name: "Українська" },
-  { flag: "🇬🇷", name: "Ελληνικά" },
-  { flag: "🇫🇮", name: "Suomi" },
-];
+import { staggerVariants, fadeUpCardVariants } from "../../lib/motion";
+import { ANIMATION_EASE as ease, APP_STORE_URL } from "../../constants";
+import { SUPPORTED_LANGUAGES } from "../../data/languages";
+import { ChatMockup } from "./ChatMockup";
+import { LevelMockup } from "./LevelMockup";
+import { CorrectionsMockup } from "./CorrectionsMockup";
+import { VocabMockup, GrammarMockup } from "./VocabGrammarMockup";
 
 const faqs = [
   {
@@ -271,13 +39,7 @@ const pricingPlans = [
     price: "free",
     sub: "forever free",
     tagline: "try alya, no commitment",
-    features: [
-      "5 messages per day",
-      "all 3 proficiency levels",
-      "20-message memory",
-      "instant corrections",
-    ],
-    cta: "download free",
+    features: ["5 messages per day", "all 3 proficiency levels", "20-message memory", "instant corrections"],
     highlight: false,
   },
   {
@@ -286,13 +48,7 @@ const pricingPlans = [
     price: "$4.99/mo",
     sub: "billed monthly",
     tagline: "for serious learners",
-    features: [
-      "25 messages per day",
-      "all 3 proficiency levels",
-      "40-message memory",
-      "instant corrections",
-    ],
-    cta: "get plus",
+    features: ["25 messages per day", "all 3 proficiency levels", "40-message memory", "instant corrections"],
     highlight: true,
   },
   {
@@ -301,14 +57,7 @@ const pricingPlans = [
     price: "$14.99/mo",
     sub: "billed monthly",
     tagline: "for daily immersion",
-    features: [
-      "75 messages per day",
-      "all 3 proficiency levels",
-      "60-message memory",
-      "instant corrections",
-      "deeper conversation memory",
-    ],
-    cta: "get pro",
+    features: ["75 messages per day", "all 3 proficiency levels", "60-message memory", "instant corrections", "deeper conversation memory"],
     highlight: false,
   },
 ];
@@ -478,11 +227,8 @@ export const Home = () => {
             transition={{ duration: 0.6, ease }}
             className="flex flex-wrap justify-center gap-3"
           >
-            {[...languagesRow1, ...languagesRow2].map((lang, i) => (
-              <span
-                key={i}
-                className="px-4 py-2 rounded-full glass text-neutral-600 text-sm font-medium"
-              >
+            {SUPPORTED_LANGUAGES.map((lang, i) => (
+              <span key={i} className="px-4 py-2 rounded-full glass text-neutral-600 text-sm font-medium">
                 {lang.flag} {lang.name}
               </span>
             ))}
@@ -506,14 +252,14 @@ export const Home = () => {
           </motion.div>
 
           <motion.div
-            variants={stagger}
+            variants={staggerVariants}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.15 }}
             className="grid md:grid-cols-2 gap-6"
           >
             <motion.div
-              variants={fadeUpCard}
+              variants={fadeUpCardVariants}
               className="bg-white rounded-3xl p-7 border border-neutral-200 shadow-sm"
             >
               <p className="text-neutral-400 text-[10px] font-bold uppercase tracking-widest mb-1">Vocabulary</p>
@@ -525,7 +271,7 @@ export const Home = () => {
             </motion.div>
 
             <motion.div
-              variants={fadeUpCard}
+              variants={fadeUpCardVariants}
               className="bg-white rounded-3xl p-7 border border-neutral-200 shadow-sm"
             >
               <p className="text-neutral-400 text-[10px] font-bold uppercase tracking-widest mb-1">Grammar</p>
@@ -598,7 +344,7 @@ export const Home = () => {
           </motion.div>
 
           <motion.div
-            variants={stagger}
+            variants={staggerVariants}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.15 }}
@@ -607,7 +353,7 @@ export const Home = () => {
             {pricingPlans.map((plan, i) => (
               <motion.div
                 key={plan.id}
-                variants={fadeUpCard}
+                variants={fadeUpCardVariants}
                 whileHover={{ y: -6, transition: { duration: 0.2 } }}
                 className={`relative rounded-2xl p-7 flex flex-col transition-all duration-300 shadow-sm hover:shadow-xl ${plan.highlight
                   ? "ring-2 ring-lime-400 bg-white"

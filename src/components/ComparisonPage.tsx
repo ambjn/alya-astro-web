@@ -96,7 +96,6 @@ export const ComparisonPage = ({
             </p>
           </motion.div>
         </section>
-
         <motion.section
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}

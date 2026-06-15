@@ -111,7 +111,6 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6">
 
-        {/* Hero + Billing Toggle */}
         <section className="pt-32 pb-14 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
@@ -157,7 +156,6 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
           </motion.div>
         </section>
 
-        {/* Plans Grid */}
         <section className="pb-20">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch">
             {plans.map((plan, i) => (
@@ -230,7 +228,6 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
 
-        {/* Compare section */}
         <section className="pb-16">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -254,7 +251,6 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
           </motion.div>
         </section>
 
-        {/* FAQ section */}
         <section className="pb-24">
           <div className="max-w-2xl mx-auto w-full">
             <motion.h2

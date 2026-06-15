@@ -4,13 +4,9 @@ import {
 } from "lucide-react";
 import { Footer } from "../components/Footer";
 import { NavBar } from "../components/NavBar";
+import { AppleIcon } from "../components/DownloadButton";
+import { staggerVariants, fadeUpVariants } from "../lib/motion";
 import { ANIMATION_EASE as ease, APP_STORE_URL } from "../constants";
-
-const AppleIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
-    <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516s1.52.087 2.475-1.258.762-3.391.728-3.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422s1.675-2.789 1.698-2.854-.597-.79-1.254-1.157a3.7 3.7 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56s.625 1.924 1.273 2.796c.576.984 1.34 1.667 1.659 1.899s1.219.386 1.843.067c.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758q.52-1.148.581-1.515" />
-  </svg>
-);
 
 const coreFeatures = [
   {
@@ -36,16 +32,6 @@ const features = [
   { icon: <Shield size={18} />, color: "text-slate-500 bg-slate-50 border-slate-100", title: "private & secure", body: "no ads. delete your data anytime." },
 ];
 
-const stagger = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.06, delayChildren: 0.05 } },
-};
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 18 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease } },
-};
-
 const steps = [
   { n: "1", title: "pick a level", body: "beginner, intermediate, or advanced. or take the quick proficiency test." },
   { n: "2", title: "say hi", body: "alya opens a real conversation in your own language." },
@@ -59,7 +45,6 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
 
     <main className="max-w-5xl mx-auto px-6 sm:px-8">
 
-      {/* Hero */}
       <section className="pt-36 pb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -76,7 +61,6 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
         </motion.div>
       </section>
 
-      {/* Core 2 features */}
       <section className="pb-4">
         <div className="grid md:grid-cols-2 gap-4">
           {coreFeatures.map((f, i) => (
@@ -98,14 +82,13 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
         </div>
       </section>
 
-      {/* All 8 features grid */}
       <section className="py-4 pb-20">
         <div className="flex items-center gap-4 mb-5">
           <div className="h-px flex-1 bg-neutral-100" />
           <div className="h-px flex-1 bg-neutral-100" />
         </div>
         <motion.div
-          variants={stagger}
+          variants={staggerVariants}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.1 }}
@@ -114,7 +97,7 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
           {features.map((f, i) => (
             <motion.div
               key={i}
-              variants={fadeUp}
+              variants={fadeUpVariants}
               className="p-5 rounded-2xl border border-neutral-100 bg-neutral-50 hover:border-neutral-200 hover:bg-white hover:shadow-sm transition-all duration-300 flex flex-col gap-3"
             >
               <div className={`inline-flex self-start p-2.5 rounded-xl border ${f.color}`}>
@@ -131,7 +114,6 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
 
     </main>
 
-    {/* How alya works */}
     <section className="bg-lime-50 py-20 px-6 sm:px-10 md:px-16">
       <div className="max-w-5xl mx-auto w-full">
         <motion.div
@@ -157,7 +139,7 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
             className="hidden md:block absolute top-5 left-[6.5%] right-[6.5%] h-px bg-neutral-300"
           />
           <motion.div
-            variants={stagger}
+            variants={staggerVariants}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.2 }}
@@ -166,7 +148,7 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
             {steps.map((step, i) => (
               <motion.div
                 key={i}
-                variants={fadeUp}
+                variants={fadeUpVariants}
                 className="relative flex flex-row md:flex-col items-start md:items-center gap-5 md:gap-0"
               >
                 {i < steps.length - 1 && (
@@ -186,7 +168,6 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
       </div>
     </section>
 
-    {/* CTA */}
     <section className="bg-lime-50 py-20 px-6">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
