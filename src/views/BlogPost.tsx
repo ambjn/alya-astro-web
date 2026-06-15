@@ -8,13 +8,11 @@ import { DownloadButton } from "../components/DownloadButton";
 import { NavBar } from "../components/NavBar";
 
 function renderSection(section: BlogSection, index: number) {
-  const base = { key: index };
-
   switch (section.type) {
     case "h2":
       return (
         <h2
-          {...base}
+          key={index}
           className="text-2xl md:text-3xl font-semibold text-neutral-900 mt-12 mb-5 leading-tight"
         >
           {section.content as string}
@@ -23,7 +21,7 @@ function renderSection(section: BlogSection, index: number) {
     case "h3":
       return (
         <h3
-          {...base}
+          key={index}
           className="text-xl font-semibold text-neutral-700 mt-8 mb-3"
         >
           {section.content as string}
@@ -32,7 +30,7 @@ function renderSection(section: BlogSection, index: number) {
     case "p":
       return (
         <p
-          {...base}
+          key={index}
           className="text-neutral-600 text-lg leading-relaxed mb-6"
         >
           {section.content as string}
@@ -40,13 +38,13 @@ function renderSection(section: BlogSection, index: number) {
       );
     case "ul":
       return (
-        <ul {...base} className="space-y-2.5 mb-8 pl-2">
+        <ul key={index} className="space-y-2.5 mb-8 pl-2">
           {(section.content as string[]).map((item, i) => (
             <li
               key={i}
               className="flex items-start gap-3 text-neutral-600 text-lg"
             >
-              <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-lime-500 flex-shrink-0" />
+              <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-lime-500 shrink-0" />
               <span className="leading-relaxed">{item}</span>
             </li>
           ))}
@@ -55,7 +53,7 @@ function renderSection(section: BlogSection, index: number) {
     case "quote":
       return (
         <blockquote
-          {...base}
+          key={index}
           className="border-l-4 border-lime-400 pl-6 py-4 my-10 bg-lime-50 rounded-r-2xl text-neutral-600 text-xl italic"
         >
           {section.content as string}
@@ -64,7 +62,7 @@ function renderSection(section: BlogSection, index: number) {
     case "cta":
       return (
         <div
-          {...base}
+          key={index}
           className="my-12 p-8 md:p-10 rounded-3xl border border-lime-100 bg-lime-50/60 text-center"
         >
           <p className="text-neutral-600 text-lg mb-6">

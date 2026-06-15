@@ -68,7 +68,7 @@ export const Home = () => {
 
       <section className="relative h-screen overflow-hidden scroll-snap-start flex flex-col justify-end">
         <video
-          className="absolute inset-0 w-full h-full object-cover object-top-left z-0 scale-[1.05]"
+          className="absolute inset-0 w-full h-full object-cover object-center z-0 scale-[1.05]"
           autoPlay
           muted
           loop
@@ -380,7 +380,7 @@ export const Home = () => {
                 <ul className="space-y-3">
                   {plan.features.map((feature, j) => (
                     <li key={j} className="flex items-center gap-2.5">
-                      <Check size={14} strokeWidth={2.5} className="flex-shrink-0 text-lime-500" />
+                      <Check size={14} strokeWidth={2.5} className="shrink-0 text-lime-500" />
                       <span className="text-sm leading-snug text-neutral-700">{feature}</span>
                     </li>
                   ))}

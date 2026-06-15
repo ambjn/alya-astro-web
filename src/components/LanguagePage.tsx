@@ -64,7 +64,7 @@ function ChatBubble({ msg, index }: { msg: ConversationMessage; index: number })
         <img
           src="/logo/splash-icon.png"
           alt="alya"
-          className="w-7 h-7 rounded-full object-cover mr-2 mt-0.5 flex-shrink-0"
+          className="w-7 h-7 rounded-full object-cover mr-2 mt-0.5 shrink-0"
         />
       )}
       <div
@@ -197,7 +197,7 @@ export const LanguagePage = ({
                 { title: "cultural context", desc: "learn slang and real usage", icon: <Globe size={18} /> },
               ].map((item, i) => (
                 <div key={i} className="flex gap-4">
-                  <div className="p-2.5 rounded-xl h-fit bg-lime-50 text-lime-600 border border-lime-100 flex-shrink-0">
+                  <div className="p-2.5 rounded-xl h-fit bg-lime-50 text-lime-600 border border-lime-100 shrink-0">
                     {item.icon}
                   </div>
                   <div>
@@ -265,7 +265,7 @@ export const LanguagePage = ({
                 <div className="inline-flex px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase mb-5 border border-lime-200 text-lime-600 bg-lime-50">
                   {level.name}
                 </div>
-                <p className="text-neutral-500 text-base leading-relaxed mb-6 font-light min-h-[4rem]">
+                <p className="text-neutral-500 text-base leading-relaxed mb-6 font-light min-h-16">
                   {level.description}
                 </p>
                 <div className="bg-neutral-50 p-4 rounded-xl border border-neutral-100">

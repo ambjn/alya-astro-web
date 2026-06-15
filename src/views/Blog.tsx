@@ -44,7 +44,7 @@ const Blog = ({ currentPath }: { currentPath?: string }) => {
               href={`/blog/${featured.slug}`}
               className="group block rounded-2xl border border-neutral-200 bg-white hover:border-neutral-300 hover:shadow-lg transition-all duration-300 overflow-hidden"
             >
-              <div className="h-1 w-full bg-gradient-to-r from-lime-400 to-lime-300" />
+              <div className="h-1 w-full bg-linear-to-r from-lime-400 to-lime-300" />
               <div className="p-8 sm:p-10">
                 <div className="flex items-center gap-3 mb-5">
                   <span className="px-2.5 py-1 rounded-full bg-lime-100 text-lime-600 text-[11px] font-semibold uppercase tracking-wide">

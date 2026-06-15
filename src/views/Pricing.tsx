@@ -202,7 +202,7 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
                       <Check
                         size={14}
                         strokeWidth={2.5}
-                        className="flex-shrink-0 text-lime-500"
+                        className="shrink-0 text-lime-500"
                       />
                       <span className="text-sm leading-snug text-neutral-700">
                         {feature}
