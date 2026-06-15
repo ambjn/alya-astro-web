@@ -4,7 +4,7 @@ export const APP_STORE_URL = "https://apps.apple.com/us/app/alya-learn-spanish-w
 
 export const BASE_URL = "https://www.alyacompanion.xyz";
 
-export const SUPPORT_EMAIL = "teamalya@outlook.com";
+export const SUPPORT_EMAIL = "amber@alyacompanion.xyz";
 
 export const TWITTER_URL = "https://x.com/alyacompanion";
 
