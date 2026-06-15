@@ -89,12 +89,6 @@ export const MarkdownPage = ({ file, currentPath }: MarkdownPageProps) => {
           <div className="glass-heavy rounded-3xl p-8 md:p-14 shadow-sm relative overflow-hidden">
             <div className="absolute top-0 left-0 right-0 h-1 bg-lime-400" />
 
-            <div className="mb-10 pb-6 border-b border-neutral-100">
-              <p className="text-neutral-400 text-xs font-mono uppercase tracking-widest">
-                Last Updated: February 2026
-              </p>
-            </div>
-
             <article className={proseClasses}>
               <ReactMarkdown>{content}</ReactMarkdown>
             </article>
