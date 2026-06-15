@@ -108,7 +108,7 @@ export const LanguagePage = ({
             <span className="text-lime-100 text-[80px] sm:text-[120px] md:text-[180px] font-bold select-none absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 pointer-events-none leading-none z-0 whitespace-nowrap overflow-hidden max-w-full">
               {nativeName}
             </span>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold tracking-tight text-neutral-900 relative z-10 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold tracking-tight text-lime-600 relative z-10 leading-tight">
               {tagline}
             </h1>
           </motion.div>
