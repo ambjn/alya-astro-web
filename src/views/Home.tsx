@@ -3,6 +3,7 @@ import { NavBar } from "../components/NavBar";
 import { SocialLinks } from "../components/SocialLinks";
 import { Footer } from "../components/Footer";
 import { FAQAccordion } from "../components/FAQAccordion";
+import { Check } from "lucide-react";
 import { ANIMATION_EASE as ease, APP_STORE_URL } from "../constants";
 
 const stagger = {
@@ -50,11 +51,10 @@ const ChatMockup = () => (
       </div>
       <div className="space-y-2.5">
         {[
-          { side: "left", text: <><p className="text-white text-xs">try: <span className="text-lime-400 font-semibold">estoy feliz hoy</span></p><p className="text-neutral-400 text-[10px] mt-1">es·TOY fe·LEES oy 🔊</p></> },
-          { side: "right", text: <p className="text-neutral-900 text-xs font-medium">estoy feliz hoy! 😊</p> },
-          { side: "left", text: <><p className="text-white text-xs">¡perfecto! 🎉 already speaking Spanish!</p><div className="mt-1.5 inline-flex items-center gap-1 bg-lime-400/15 rounded-lg px-2 py-1"><span className="text-lime-400 text-[9px] font-semibold">★ new word: feliz = happy</span></div></> },
-          { side: "right", text: <p className="text-neutral-900 text-xs font-medium">how do you say "I have a dog?"</p> },
-          { side: "left", text: <><p className="text-white text-xs"><span className="text-lime-400 font-semibold">tengo un perro</span> 🐶</p><p className="text-neutral-400 text-[10px] mt-1">tener = "to have" — super useful!</p></> },
+          { side: "right", text: <p className="text-neutral-900 text-xs font-medium">tengo un perro!</p> },
+          { side: "left", text: <><p className="text-white text-xs"><span className="text-lime-400 font-semibold">mi perro se llama...</span> <span className="text-neutral-400 text-[10px]">mee peh-ro seh yah-ma</span> — that means "my dog's name is..."</p><p className="text-white text-xs mt-1.5">you're speaking Spanish!! 🎉 what's your dog's name? try using that phrase!</p></> },
+          { side: "right", text: <p className="text-neutral-900 text-xs font-medium">can you teach me the colors?</p> },
+          { side: "left", text: <><p className="text-white text-xs"><span className="text-lime-400 font-semibold">rojo</span> ra-ho = red, <span className="text-lime-400 font-semibold">azul</span> ah-sool = blue, <span className="text-lime-400 font-semibold">verde</span> ver-deh = green, <span className="text-lime-400 font-semibold">amarillo</span> ah-mah-ree-yo = yellow 🌻</p><p className="text-white text-xs mt-1.5">colors are so fun! what color is your shirt? try answering with one of those!</p></> },
         ].map((m, i) => (
           <motion.div
             key={i}
@@ -252,24 +252,6 @@ const languagesRow2 = [
   { flag: "🇫🇮", name: "Suomi" },
 ];
 
-const testimonials = [
-  {
-    quote: "I tried Duolingo for two years and hit a wall. Two months with alya and I'm actually texting my Mexican coworkers in Spanish.",
-    name: "Priya S.",
-    handle: "@priyalearns",
-  },
-  {
-    quote: "I use alya in Japanese — it explains everything in Japanese and I'm learning Spanish at the same time. Wild that this exists.",
-    name: "Kenji T.",
-    handle: "@kenjispanish",
-  },
-  {
-    quote: "The corrections are so natural. I made the same ser/estar mistake four times and by the fifth time it just clicked. No judgment, just patience.",
-    name: "Marcus L.",
-    handle: "@marcusfluent",
-  },
-];
-
 const faqs = [
   {
     question: "how is alya different from Duolingo?",
@@ -297,10 +279,60 @@ const faqs = [
   },
 ];
 
+const pricingPlans = [
+  {
+    id: "free",
+    name: "free",
+    price: "free",
+    sub: "forever free",
+    tagline: "try alya, no commitment",
+    features: [
+      "5 messages per day",
+      "all 3 proficiency levels",
+      "20-message memory",
+      "instant corrections",
+    ],
+    cta: "download free",
+    highlight: false,
+  },
+  {
+    id: "plus",
+    name: "plus",
+    price: "$4.99/mo",
+    sub: "billed monthly",
+    tagline: "for serious learners",
+    features: [
+      "25 messages per day",
+      "all 3 proficiency levels",
+      "40-message memory",
+      "instant corrections",
+    ],
+    cta: "get plus",
+    highlight: true,
+  },
+  {
+    id: "pro",
+    name: "pro",
+    price: "$14.99/mo",
+    sub: "billed monthly",
+    tagline: "for daily immersion",
+    features: [
+      "75 messages per day",
+      "all 3 proficiency levels",
+      "60-message memory",
+      "instant corrections",
+      "deeper conversation memory",
+    ],
+    cta: "get pro",
+    highlight: false,
+  },
+];
+
 export const Home = () => {
   return (
     <div className="font-sans">
 
+      {/* 1 — Hero */}
       <section className="relative h-screen overflow-hidden scroll-snap-start flex flex-col justify-end">
         <video
           className="absolute inset-0 w-full h-full object-cover object-top-left z-0 scale-[1.05]"
@@ -343,10 +375,28 @@ export const Home = () => {
               not an app. a conversation
             </motion.p>
 
+            {/* <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.5, ease }}
+              className="mb-6"
+            >
+              <a
+                href={APP_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2.5 bg-white hover:bg-white/90 transition-colors text-neutral-900 font-semibold px-7 py-3.5 rounded-full text-sm shadow-lg"
+              >
+                <AppleIcon />
+                download free on iOS
+              </a>
+              <p className="text-white/60 text-xs mt-3">5 messages/day · forever free · no credit card needed</p>
+            </motion.div> */}
+
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.6, ease }}
+              transition={{ duration: 0.7, delay: 0.7, ease }}
             >
               <SocialLinks dark />
             </motion.div>
@@ -354,61 +404,22 @@ export const Home = () => {
         </motion.main>
       </section>
 
-      <section className="bg-neutral-100 min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
-        <div className="max-w-5xl mx-auto w-full">
-          <motion.div
-            initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
-            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.7, ease }}
-            className="mb-14"
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-neutral-900 tracking-tight mb-3">
-              how alya <span className="text-lime-600">works.</span>
-            </h2>
-            <p className="text-neutral-400 text-base sm:text-lg md:text-xl font-light">four steps. ten minutes a day.</p>
-          </motion.div>
-
-          <div className="relative">
-            <motion.div
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.9, ease }}
-              style={{ originX: 0 }}
-              className="hidden md:block absolute top-5 left-[6.5%] right-[6.5%] h-px bg-neutral-100"
-            />
-            <motion.div
-              variants={stagger}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.2 }}
-              className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-6"
-            >
-              {steps.map((step, i) => (
-                <motion.div
-                  key={i}
-                  variants={fadeUp}
-                  className="relative flex flex-row md:flex-col items-start md:items-center gap-5 md:gap-0"
-                >
-                  {i < steps.length - 1 && (
-                    <div className="md:hidden absolute left-5 top-10 h-8 w-px bg-neutral-100" />
-                  )}
-                  <div className="relative z-10 w-10 h-10 rounded-full bg-neutral-900 text-white text-sm font-bold flex items-center justify-center shrink-0 md:mb-6 ring-4 ring-white">
-                    {step.n}
-                  </div>
-                  <div className="md:text-center md:px-2">
-                    <h3 className="text-neutral-900 font-semibold text-lg mb-1 leading-snug">{step.title}</h3>
-                    <p className="text-neutral-500 text-base leading-relaxed font-light">{step.body}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
+      {/* 2 — Social proof bar */}
+      <div className="bg-white border-b border-neutral-200 py-3.5 px-6">
+        <div className="max-w-5xl mx-auto flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+          <div className="flex items-center gap-1">
+            {Array.from({ length: 5 }).map((_, i) => <StarFilled key={i} />)}
+            <span className="ml-1.5 text-xs font-medium text-neutral-600">4.8 on the App Store</span>
           </div>
+          <span className="hidden sm:block text-neutral-300 text-sm">·</span>
+          <span className="text-xs font-medium text-neutral-600">10,000+ learners</span>
+          <span className="hidden sm:block text-neutral-300 text-sm">·</span>
+          <span className="text-xs font-medium text-neutral-600">20+ native languages supported</span>
         </div>
-      </section>
+      </div>
 
-      <section className="bg-lime-50/50 min-h-screen py-16 md:py-24 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
+      {/* 3 — real spanish. real situations. */}
+      <section className="bg-lime-50/50 min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16 items-center w-full">
           <motion.div
             initial={{ opacity: 0, x: -24, filter: "blur(4px)" }}
@@ -435,7 +446,8 @@ export const Home = () => {
         </div>
       </section>
 
-      <section className="bg-lime-50 min-h-screen py-16 md:py-24 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
+      {/* 4 — your level. your pace. */}
+      <section className="bg-lime-50 min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16 items-center w-full">
           <motion.div
             initial={{ opacity: 0, x: -24 }}
@@ -464,7 +476,8 @@ export const Home = () => {
         </div>
       </section>
 
-      <section className="bg-neutral-100 min-h-screen py-16 md:py-24 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
+      {/* 5 — mistakes welcome. corrections instant. */}
+      <section className="bg-neutral-100 min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16 items-center w-full">
           <motion.div
             initial={{ opacity: 0, x: -24, filter: "blur(4px)" }}
@@ -491,7 +504,8 @@ export const Home = () => {
         </div>
       </section>
 
-      <section className="bg-neutral-100 min-h-screen py-16 md:py-24 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
+      {/* 6 — speak in yours. learn in spanish. */}
+      <section className="bg-neutral-100 min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
         <div className="max-w-3xl mx-auto text-center w-full">
           <motion.div
             initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
@@ -501,11 +515,11 @@ export const Home = () => {
             className="mb-12"
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-neutral-900 tracking-tight leading-[1.1] mb-5">
-              any language.<br />
-              <span className="text-lime-500">alya speaks yours.</span>
+              speak in yours.<br />
+              <span className="text-lime-500">learn in spanish.</span>
             </h2>
             <p className="text-neutral-500 text-base sm:text-lg md:text-xl font-light leading-relaxed max-w-lg mx-auto">
-              alya detects the language you text in and responds in it — teaching Spanish the whole time. the only Spanish tutor that's also fluent in yours.
+              text alya in English, Hindi, Japanese, French — whatever's natural for you. alya replies in your language while teaching Spanish the whole time. the only Spanish tutor that's also fluent in yours.
             </p>
           </motion.div>
 
@@ -528,7 +542,8 @@ export const Home = () => {
         </div>
       </section>
 
-      <section className="bg-lime-50 min-h-screen py-16 md:py-24 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
+      {/* 7 — built to make things stick. */}
+      <section className="bg-lime-50 min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
         <div className="max-w-5xl mx-auto w-full">
           <motion.div
             initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
@@ -577,16 +592,112 @@ export const Home = () => {
         </div>
       </section>
 
-      <section className="bg-neutral-100 min-h-screen py-16 md:py-24 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
+      {/* 8 — how alya works. (moved from position 2) */}
+      <section className="bg-neutral-100 min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
         <div className="max-w-5xl mx-auto w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, ease }}
+            className="mb-14"
+          >
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-neutral-900 tracking-tight mb-3">
+              how alya <span className="text-lime-600">works.</span>
+            </h2>
+            <p className="text-neutral-400 text-base sm:text-lg md:text-xl font-light">four steps. ten minutes a day.</p>
+          </motion.div>
+
+          <div className="relative">
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.9, ease }}
+              style={{ originX: 0 }}
+              className="hidden md:block absolute top-5 left-[6.5%] right-[6.5%] h-px bg-neutral-300"
+            />
+            <motion.div
+              variants={stagger}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.2 }}
+              className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-6"
+            >
+              {steps.map((step, i) => (
+                <motion.div
+                  key={i}
+                  variants={fadeUp}
+                  className="relative flex flex-row md:flex-col items-start md:items-center gap-5 md:gap-0"
+                >
+                  {i < steps.length - 1 && (
+                    <div className="md:hidden absolute left-5 top-10 h-8 w-px bg-neutral-300" />
+                  )}
+                  <div className="relative z-10 w-10 h-10 rounded-full bg-neutral-900 text-white text-sm font-bold flex items-center justify-center shrink-0 md:mb-6 ring-4 ring-neutral-100">
+                    {step.n}
+                  </div>
+                  <div className="md:text-center md:px-2">
+                    <h3 className="text-neutral-900 font-semibold text-lg mb-1 leading-snug">{step.title}</h3>
+                    <p className="text-neutral-500 text-base leading-relaxed font-light">{step.body}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* 9 — questions & answers. */}
+      <section className="bg-neutral-100 min-h-screen py-16 md:py-24 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
+        <div className="max-w-5xl mx-auto w-full grid md:grid-cols-[1fr_2fr] gap-12 md:gap-16 items-start">
+          <motion.div
+            initial={{ opacity: 0, x: -20, filter: "blur(4px)" }}
+            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, ease }}
+            className="md:sticky md:top-28"
+          >
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-neutral-900 tracking-tight leading-[1.1] mb-4">
+              questions &amp;<br />
+              <span className="text-lime-600">answers.</span>
+            </h2>
+            <p className="text-neutral-400 text-base font-light leading-relaxed mb-8">
+              straight answers.<br className="hidden md:block" /> no fluff.
+            </p>
+            <a
+              href="/support"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-neutral-500 hover:text-lime-600 transition-colors group"
+            >
+              still have questions?
+              <span className="group-hover:translate-x-0.5 transition-transform inline-block">→</span>
+            </a>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.15, ease }}
+          >
+            <FAQAccordion faqs={faqs} />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 11 — pricing. (new section) */}
+      <section className="bg-white min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
+        <div className="max-w-4xl mx-auto w-full">
           <motion.div
             initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.7, ease }}
-            className="text-center mb-14"
+            className="text-center mb-12"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-neutral-900 tracking-tight">what learners <span className="text-lime-600">say.</span></h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-neutral-900 tracking-tight mb-3">
+              simple <span className="text-lime-500">pricing.</span>
+            </h2>
+            <p className="text-neutral-500 text-base sm:text-lg font-light">start free. upgrade when you're ready.</p>
           </motion.div>
 
           <motion.div
@@ -594,44 +705,72 @@ export const Home = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.15 }}
-            className="grid md:grid-cols-3 gap-5"
+            className="grid grid-cols-1 md:grid-cols-3 gap-4"
           >
-            {testimonials.map((t, i) => (
+            {pricingPlans.map((plan, i) => (
               <motion.div
-                key={i}
+                key={plan.id}
                 variants={fadeUpCard}
-                whileHover={{ y: -5, borderColor: "rgba(163, 230, 53, 0.3)", transition: { duration: 0.2 } }}
-                className="rounded-3xl p-7 glass-heavy flex flex-col shadow-sm hover:shadow-xl transition-shadow"
+                whileHover={{ y: -6, transition: { duration: 0.2 } }}
+                className={`relative rounded-2xl p-7 flex flex-col transition-all duration-300 shadow-sm hover:shadow-xl ${plan.highlight
+                  ? "ring-2 ring-lime-400 bg-white"
+                  : "bg-neutral-50 hover:bg-white border border-neutral-100"
+                  }`}
               >
-                <div className="flex gap-0.5 mb-4">
-                  {Array.from({ length: 5 }).map((_, j) => <StarFilled key={j} />)}
+                {plan.highlight && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                    <span className="px-3 py-1 rounded-full bg-neutral-900 text-white text-[10px] font-bold uppercase tracking-widest">
+                      most popular
+                    </span>
+                  </div>
+                )}
+
+                <div className="mb-6">
+                  <p className="text-[11px] font-bold uppercase tracking-widest mb-3 text-neutral-400">{plan.name}</p>
+                  <p className="text-4xl font-semibold tracking-tight mb-1 text-neutral-900">{plan.price}</p>
+                  <p className="text-xs mb-3 text-neutral-400">{plan.sub}</p>
+                  <p className="text-sm text-neutral-500">{plan.tagline}</p>
                 </div>
-                <p className="text-neutral-600 text-base font-light leading-relaxed mb-5 flex-1">"{t.quote}"</p>
-                <div>
-                  <p className="text-neutral-900 text-sm font-semibold">{t.name}</p>
-                  <p className="text-neutral-400 text-xs mt-0.5">{t.handle}</p>
-                </div>
+
+                <div className="h-px mb-5 bg-neutral-100" />
+
+                <ul className="space-y-3 mb-7 flex-1">
+                  {plan.features.map((feature, j) => (
+                    <li key={j} className="flex items-center gap-2.5">
+                      <Check size={14} strokeWidth={2.5} className="flex-shrink-0 text-lime-500" />
+                      <span className="text-sm leading-snug text-neutral-700">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <a
+                  href={APP_STORE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`block w-full text-center py-3 rounded-xl text-sm font-semibold transition-colors ${plan.highlight
+                    ? "bg-neutral-900 hover:bg-neutral-800 text-white"
+                    : "bg-neutral-100 hover:bg-neutral-200 text-neutral-700"
+                    }`}
+                >
+                  {plan.cta}
+                </a>
               </motion.div>
             ))}
           </motion.div>
-        </div>
-      </section>
 
-      <section className="bg-neutral-100 min-h-screen py-16 md:py-24 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
-        <div className="max-w-2xl mx-auto w-full">
-          <motion.h2
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, ease }}
-            className="text-3xl sm:text-4xl md:text-5xl font-semibold text-neutral-900 tracking-tight mb-10 text-center"
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.4, ease }}
+            className="text-center text-neutral-400 text-sm mt-8"
           >
-            questions &amp; <span className="text-lime-600">answers.</span>
-          </motion.h2>
-          <FAQAccordion faqs={faqs} />
+            all plans start free. no credit card needed.
+          </motion.p>
         </div>
       </section>
 
+      {/* 12 — start talking. today. */}
       <section className="bg-lime-50/50 min-h-screen py-16 md:py-24 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
         <motion.div
           initial={{ opacity: 0, y: 24, filter: "blur(4px)" }}
