@@ -4,7 +4,7 @@ import { Check, ChevronRight } from "lucide-react";
 import { Footer } from "../components/Footer";
 import { NavBar } from "../components/NavBar";
 import { FAQAccordion } from "../components/FAQAccordion";
-import { ANIMATION_EASE as ease, COMPARE_LINKS, APP_STORE_URL } from "../constants";
+import { ANIMATION_EASE as ease, COMPARE_LINKS } from "../constants";
 
 type BillingCycle = "weekly" | "monthly" | "annual";
 
@@ -88,12 +88,6 @@ const faqs = [
   },
 ];
 
-const AppleIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-    <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516s1.52.087 2.475-1.258.762-3.391.728-3.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422s1.675-2.789 1.698-2.854-.597-.79-1.254-1.157a3.7 3.7 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56s.625 1.924 1.273 2.796c.576.984 1.34 1.667 1.659 1.899s1.219.386 1.843.067c.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758q.52-1.148.581-1.515" />
-  </svg>
-);
-
 const Pricing = ({ currentPath }: { currentPath?: string }) => {
   const [billing, setBilling] = useState<BillingCycle>("monthly");
 
@@ -165,13 +159,13 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
 
         {/* Plans Grid */}
         <section className="pb-20">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch">
             {plans.map((plan, i) => (
               <motion.div
                 key={plan.id}
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                whileHover={{ y: -6, transition: { duration: 0.2 } }}
                 transition={{ duration: 0.55, delay: i * 0.08, ease }}
                 className={`relative rounded-2xl p-7 flex flex-col transition-all duration-300 shadow-sm hover:shadow-xl ${
                   plan.highlight
@@ -180,7 +174,7 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
                 }`}
               >
                 {plan.highlight && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                     <span className="px-3 py-1 rounded-full bg-neutral-900 text-white text-[10px] font-bold uppercase tracking-widest whitespace-nowrap">
                       most popular
                     </span>
@@ -204,7 +198,7 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
 
                 <div className="h-px mb-5 bg-neutral-100" />
 
-                <ul className="space-y-3 mb-7 flex-1">
+                <ul className="space-y-3">
                   {plan.features.map((feature, j) => (
                     <li key={j} className="flex items-center gap-2.5">
                       <Check
@@ -218,20 +212,6 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
                     </li>
                   ))}
                 </ul>
-
-                <a
-                  href={APP_STORE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`flex items-center justify-center gap-2 w-full py-3 rounded-xl font-semibold text-sm transition-colors ${
-                    plan.highlight
-                      ? "bg-neutral-900 hover:bg-neutral-800 text-white"
-                      : "bg-neutral-100 hover:bg-neutral-200 text-neutral-700"
-                  }`}
-                >
-                  <AppleIcon />
-                  {plan.cta}
-                </a>
               </motion.div>
             ))}
           </div>
