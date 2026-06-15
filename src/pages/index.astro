@@ -39,7 +39,7 @@ const faqSchema = {
       name: "What language do I need to speak to use Alya?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Any language. Alya detects the language you text in — English, Hindi, French, Portuguese, Japanese, and more — and responds in that same language while teaching Spanish. You don't need to know English to use Alya.",
+        text: "Any language. Alya detects the language you text in, English, Hindi, French, Portuguese, Japanese, and more, and responds in that same language while teaching Spanish. You don't need to know English to use Alya.",
       },
     },
     {
@@ -47,7 +47,7 @@ const faqSchema = {
       name: "What kind of Spanish does Alya teach?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Alya teaches Latin American Spanish — the variety spoken in Mexico, Colombia, Argentina, and across the continent. It's modern, natural, and understood everywhere. Alya deliberately avoids Spain-specific slang.",
+        text: "Alya teaches Latin American Spanish, the variety spoken in Mexico, Colombia, Argentina, and across the continent. It's modern, natural, and understood everywhere. Alya deliberately avoids Spain-specific slang.",
       },
     },
     {
@@ -55,7 +55,7 @@ const faqSchema = {
       name: "How is Alya different from Duolingo or Babbel?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Duolingo and Babbel use structured lessons, gamification, and multiple-choice exercises. Alya is a conversation — you chat with an AI that responds like a bilingual friend, teaches through context, and adapts to your level in real time. There are no levels to unlock, no hearts to lose, and no preset curriculum.",
+        text: "Duolingo and Babbel use structured lessons, gamification, and multiple-choice exercises. Alya is a conversation, you chat with an AI that responds like a bilingual friend, teaches through context, and adapts to your level in real time. There are no levels to unlock, no hearts to lose, and no preset curriculum.",
       },
     },
     {
@@ -100,6 +100,10 @@ const websiteSchema = {
   },
 };
 ---
+
+<style is:global>
+  html { scroll-snap-type: y mandatory; }
+</style>
 
 <Layout
   title="ALYA: Learn Spanish with AI | Chat, Speak & Get Fluent"

@@ -85,7 +85,7 @@ export interface BlogPostClientProps {
 
 const BlogPostClient = ({ post, currentPath }: BlogPostClientProps) => {
   return (
-    <div className="min-h-screen font-sans">
+    <div className="min-h-screen font-sans bg-lime-50">
       <NavBar currentPath={currentPath} />
 
       <main className="max-w-3xl mx-auto px-4 sm:px-6 pb-32 pt-28">

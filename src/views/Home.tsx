@@ -52,7 +52,7 @@ const ChatMockup = () => (
       <div className="space-y-2.5">
         {[
           { side: "right", text: <p className="text-neutral-900 text-xs font-medium">tengo un perro!</p> },
-          { side: "left", text: <><p className="text-white text-xs"><span className="text-lime-400 font-semibold">mi perro se llama...</span> <span className="text-neutral-400 text-[10px]">mee peh-ro seh yah-ma</span> — that means "my dog's name is..."</p><p className="text-white text-xs mt-1.5">you're speaking Spanish!! 🎉 what's your dog's name? try using that phrase!</p></> },
+          { side: "left", text: <><p className="text-white text-xs"><span className="text-lime-400 font-semibold">mi perro se llama...</span> <span className="text-neutral-400 text-[10px]">mee peh-ro seh yah-ma</span>, meaning "my dog's name is..."</p><p className="text-white text-xs mt-1.5">you're speaking Spanish!! 🎉 what's your dog's name? try using that phrase!</p></> },
           { side: "right", text: <p className="text-neutral-900 text-xs font-medium">can you teach me the colors?</p> },
           { side: "left", text: <><p className="text-white text-xs"><span className="text-lime-400 font-semibold">rojo</span> ra-ho = red, <span className="text-lime-400 font-semibold">azul</span> ah-sool = blue, <span className="text-lime-400 font-semibold">verde</span> ver-deh = green, <span className="text-lime-400 font-semibold">amarillo</span> ah-mah-ree-yo = yellow 🌻</p><p className="text-white text-xs mt-1.5">colors are so fun! what color is your shirt? try answering with one of those!</p></> },
         ].map((m, i) => (
@@ -134,7 +134,7 @@ const CorrectionsMockup = () => (
       <div className="space-y-2.5">
         {[
           { side: "right", text: <p className="text-neutral-900 text-xs font-medium">me llamo Alya did i say right?</p> },
-          { side: "left", text: <><p className="text-white text-xs"><span className="text-lime-400 font-semibold">¡Me llamo Alya!</span> — perfect 🎉</p><p className="text-neutral-300 text-[10px] mt-1">already speaking Spanish!</p><div className="mt-1.5 bg-neutral-800 rounded-lg px-2 py-1 inline-flex items-center gap-1"><span className="text-neutral-400 text-[10px]">🔊 tap for pronunciation</span></div></> },
+          { side: "left", text: <><p className="text-white text-xs"><span className="text-lime-400 font-semibold">¡Me llamo Alya!</span> perfect 🎉</p><p className="text-neutral-300 text-[10px] mt-1">already speaking Spanish!</p><div className="mt-1.5 bg-neutral-800 rounded-lg px-2 py-1 inline-flex items-center gap-1"><span className="text-neutral-400 text-[10px]">🔊 tap for pronunciation</span></div></> },
           { side: "right", text: <p className="text-neutral-900 text-xs font-medium">how do i ask for water?</p> },
           { side: "left", text: <><p className="text-white text-xs">say: <span className="text-lime-400 font-semibold">quiero agua, por favor</span></p><p className="text-neutral-400 text-[10px] mt-1">means "I'd like water, please" 💧</p></> },
         ].map((m, i) => (
@@ -193,14 +193,14 @@ const GrammarMockup = () => (
   <div className="bg-white rounded-2xl p-5 border border-neutral-200">
     <div className="text-[9px] font-bold uppercase tracking-widest text-neutral-400 mb-2">Grammar Card ❤️</div>
     <h3 className="text-neutral-900 font-bold text-base mb-1 leading-tight">ser vs. estar</h3>
-    <p className="text-neutral-400 text-xs mb-4 leading-relaxed">both mean "to be" — but they're not the same.</p>
+    <p className="text-neutral-400 text-xs mb-4 leading-relaxed">both mean "to be", but they're not the same.</p>
     <div className="space-y-2 mb-4">
       <div className="bg-lime-50 rounded-xl p-3 border border-lime-100">
-        <p className="text-lime-700 text-[9px] font-bold uppercase tracking-wide mb-1">ser — identity, origin</p>
+        <p className="text-lime-700 text-[9px] font-bold uppercase tracking-wide mb-1">ser: identity, origin</p>
         <p className="text-neutral-500 text-xs italic">Soy estudiante. (I am a student.)</p>
       </div>
       <div className="bg-neutral-50 rounded-xl p-3 border border-neutral-100">
-        <p className="text-neutral-500 text-[9px] font-bold uppercase tracking-wide mb-1">estar — states, location</p>
+        <p className="text-neutral-500 text-[9px] font-bold uppercase tracking-wide mb-1">estar: states, location</p>
         <p className="text-neutral-500 text-xs italic">Estoy cansado. (I am tired.)</p>
       </div>
     </div>
@@ -216,7 +216,7 @@ const GrammarMockup = () => (
 );
 
 const steps = [
-  { n: "1", title: "pick a level", body: "beginner, intermediate, or advanced — or take the quick proficiency test." },
+  { n: "1", title: "pick a level", body: "beginner, intermediate, or advanced. or take the quick proficiency test." },
   { n: "2", title: "say hi", body: "alya opens a real conversation in your own language." },
   { n: "3", title: "get corrected", body: "grammar and vocab feedback woven naturally into every reply." },
   { n: "4", title: "fluency grows", body: "daily micro-conversations build real confidence faster than any drill." },
@@ -255,19 +255,19 @@ const languagesRow2 = [
 const faqs = [
   {
     question: "how is alya different from Duolingo?",
-    answer: "Duolingo teaches you to study Spanish — vocabulary lists, hearts, streaks. Alya teaches you to speak it. Every session is a real conversation where alya corrects you in context, adapts to your level, and responds like a bilingual friend. No preset curriculum, no lives to lose.",
+    answer: "Duolingo teaches you to study Spanish: vocabulary lists, hearts, streaks. Alya teaches you to speak it. Every session is a real conversation where alya corrects you in context, adapts to your level, and responds like a bilingual friend. No preset curriculum, no lives to lose.",
   },
   {
     question: "do I need to speak English to use alya?",
-    answer: "Not at all. Alya detects the language you text in — Hindi, Japanese, French, Portuguese, and more — and responds in that same language while teaching you Spanish. Alya was built for learners worldwide, not just English speakers.",
+    answer: "Not at all. Alya detects the language you text in (Hindi, Japanese, French, Portuguese, and more) and responds in that same language while teaching you Spanish. Alya was built for learners worldwide, not just English speakers.",
   },
   {
     question: "how long before I can hold a real conversation?",
-    answer: "Most learners can handle basic everyday conversations within 4–8 weeks of daily practice. The key is consistency over intensity — 10–15 minutes every day beats a 2-hour weekend session every time.",
+    answer: "Most learners can handle basic everyday conversations within 4–8 weeks of daily practice. The key is consistency over intensity: 10 to 15 minutes every day beats a 2-hour weekend session every time.",
   },
   {
     question: "is alya actually free?",
-    answer: "Yes. Download alya and get 5 messages per day, forever — no credit card, no trial period. Upgrade to Plus ($4.99/mo) or Pro ($14.99/mo) anytime for more daily messages and deeper conversation memory.",
+    answer: "Yes. Download alya and get 5 messages per day, forever, no credit card, no trial period. Upgrade to Plus ($4.99/mo) or Pro ($14.99/mo) anytime for more daily messages and deeper conversation memory.",
   },
   {
     question: "can I practice speaking, not just typing?",
@@ -275,7 +275,7 @@ const faqs = [
   },
   {
     question: "what Spanish does alya teach?",
-    answer: "Latin American Spanish — the variety spoken in Mexico, Colombia, Argentina, and across the continent. Modern, natural, and understood everywhere. Alya deliberately avoids Spain-specific slang.",
+    answer: "Latin American Spanish, the variety spoken in Mexico, Colombia, Argentina, and across the continent. Modern, natural, and understood everywhere. Alya deliberately avoids Spain-specific slang.",
   },
 ];
 
@@ -330,9 +330,8 @@ const pricingPlans = [
 
 export const Home = () => {
   return (
-    <div className="font-sans">
+    <div className="font-sans bg-lime-50">
 
-      {/* 1 — Hero */}
       <section className="relative h-screen overflow-hidden scroll-snap-start flex flex-col justify-end">
         <video
           className="absolute inset-0 w-full h-full object-cover object-top-left z-0 scale-[1.05]"
@@ -375,24 +374,6 @@ export const Home = () => {
               not an app. a conversation
             </motion.p>
 
-            {/* <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.5, ease }}
-              className="mb-6"
-            >
-              <a
-                href={APP_STORE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 bg-white hover:bg-white/90 transition-colors text-neutral-900 font-semibold px-7 py-3.5 rounded-full text-sm shadow-lg"
-              >
-                <AppleIcon />
-                download free on iOS
-              </a>
-              <p className="text-white/60 text-xs mt-3">5 messages/day · forever free · no credit card needed</p>
-            </motion.div> */}
-
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -404,7 +385,6 @@ export const Home = () => {
         </motion.main>
       </section>
 
-      {/* 3 — real spanish. real situations. */}
       <section className="bg-lime-50/50 min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16 items-center w-full">
           <motion.div
@@ -418,7 +398,7 @@ export const Home = () => {
               <span className="text-lime-600">real situations.</span>
             </h2>
             <p className="text-neutral-500 text-base sm:text-lg md:text-xl font-light leading-relaxed mb-8 max-w-sm">
-              alya chats like a bilingual friend — teaching vocabulary, correcting grammar, and explaining culture naturally, inside every single message.
+              alya chats like a bilingual friend, teaching vocabulary, correcting grammar, and explaining culture naturally, inside every single message.
             </p>
           </motion.div>
           <motion.div
@@ -432,7 +412,6 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* 4 — your level. your pace. */}
       <section className="bg-lime-50 min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16 items-center w-full">
           <motion.div
@@ -456,13 +435,12 @@ export const Home = () => {
               <span className="text-lime-500">your pace.</span>
             </h2>
             <p className="text-neutral-600 text-base sm:text-lg md:text-xl font-light leading-relaxed max-w-sm">
-              beginner, intermediate, or advanced — or take a quick proficiency test. alya adapts in real time, never too easy, never overwhelming.
+              beginner, intermediate, or advanced. or take a quick proficiency test. alya adapts in real time, never too easy, never overwhelming.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* 5 — mistakes welcome. corrections instant. */}
       <section className="bg-neutral-100 min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16 items-center w-full">
           <motion.div
@@ -476,7 +454,7 @@ export const Home = () => {
               <span className="text-lime-500">corrections instant.</span>
             </h2>
             <p className="text-neutral-500 text-base sm:text-lg md:text-xl font-light leading-relaxed max-w-sm">
-              every mistake is a micro-lesson. alya corrects in context — not with a red X, but the way a patient bilingual friend would. no judgment. no lost lives.
+              every mistake is a micro-lesson. alya corrects in context, not with a red X, but the way a patient bilingual friend would. no judgment. no lost lives.
             </p>
           </motion.div>
           <motion.div
@@ -490,7 +468,6 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* 6 — speak in yours. learn in spanish. */}
       <section className="bg-neutral-100 min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
         <div className="max-w-3xl mx-auto text-center w-full">
           <motion.div
@@ -505,7 +482,7 @@ export const Home = () => {
               <span className="text-lime-500">learn in spanish.</span>
             </h2>
             <p className="text-neutral-500 text-base sm:text-lg md:text-xl font-light leading-relaxed max-w-lg mx-auto">
-              text alya in English, Hindi, Japanese, French — whatever's natural for you. alya replies in your language while teaching Spanish the whole time. the only Spanish tutor that's also fluent in yours.
+              text alya in English, Hindi, Japanese, French, whatever's natural for you. alya replies in your language while teaching Spanish the whole time. the only Spanish tutor that's also fluent in yours.
             </p>
           </motion.div>
 
@@ -528,7 +505,6 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* 7 — built to make things stick. */}
       <section className="bg-lime-50 min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
         <div className="max-w-5xl mx-auto w-full">
           <motion.div
@@ -558,7 +534,7 @@ export const Home = () => {
               <p className="text-neutral-400 text-[10px] font-bold uppercase tracking-widest mb-1">Vocabulary</p>
               <h3 className="text-neutral-900 font-semibold text-2xl mb-2">words that actually stick.</h3>
               <p className="text-neutral-500 text-base font-light leading-relaxed mb-6">
-                tap any word in a conversation to save it. alya uses spaced repetition (SM-2) to show you each word at exactly the right moment — right before you'd forget it.
+                tap any word in a conversation to save it. alya uses spaced repetition (SM-2) to show you each word at exactly the right moment, right before you'd forget it.
               </p>
               <VocabMockup />
             </motion.div>
@@ -570,7 +546,7 @@ export const Home = () => {
               <p className="text-neutral-400 text-[10px] font-bold uppercase tracking-widest mb-1">Grammar</p>
               <h3 className="text-neutral-900 font-semibold text-2xl mb-2">grammar made human.</h3>
               <p className="text-neutral-500 text-base font-light leading-relaxed mb-6">
-                browse grammar cards for every tricky rule — ser vs. estar, por vs. para, the subjunctive — each explained simply with a "practice with alya" button.
+                browse grammar cards for every tricky rule: ser vs. estar, por vs. para, the subjunctive, each explained simply with a "practice with alya" button.
               </p>
               <GrammarMockup />
             </motion.div>
@@ -578,7 +554,6 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* 8 — how alya works. (moved from position 2) */}
       <section className="bg-neutral-100 min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
         <div className="max-w-5xl mx-auto w-full">
           <motion.div
@@ -633,7 +608,6 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* 9 — questions & answers. */}
       <section className="bg-neutral-100 min-h-screen py-16 md:py-24 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
         <div className="max-w-5xl mx-auto w-full grid md:grid-cols-[1fr_2fr] gap-12 md:gap-16 items-start">
           <motion.div
@@ -670,7 +644,6 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* 11 — pricing. (new section) */}
       <section className="bg-white min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
         <div className="max-w-4xl mx-auto w-full">
           <motion.div
@@ -756,7 +729,6 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* 12 — start talking. today. */}
       <section className="bg-lime-50/50 min-h-screen py-16 md:py-24 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
         <motion.div
           initial={{ opacity: 0, y: 24, filter: "blur(4px)" }}

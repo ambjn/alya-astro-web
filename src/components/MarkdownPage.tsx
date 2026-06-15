@@ -76,7 +76,7 @@ export const MarkdownPage = ({ file, currentPath }: MarkdownPageProps) => {
   }
 
   return (
-    <div className="min-h-screen text-neutral-900 flex flex-col font-sans">
+    <div className="min-h-screen text-neutral-900 flex flex-col font-sans bg-lime-50">
       <NavBar currentPath={currentPath} />
 
       <main className="w-full max-w-4xl mx-auto px-4 sm:px-6 pb-32 pt-28 flex-grow flex flex-col">
