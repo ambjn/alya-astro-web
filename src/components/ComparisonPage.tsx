@@ -97,7 +97,6 @@ export const ComparisonPage = ({
           </motion.div>
         </section>
 
-        {/* Comparison Table */}
         <motion.section
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -152,7 +151,6 @@ export const ComparisonPage = ({
           </div>
         </motion.section>
 
-        {/* Content Sections */}
         <div className="max-w-3xl mx-auto space-y-12 mb-16 md:mb-20">
           {sections.map((section, i) => (
             <motion.section
@@ -172,7 +170,6 @@ export const ComparisonPage = ({
           ))}
         </div>
 
-        {/* FAQ */}
         <section className="max-w-3xl mx-auto pb-20 md:pb-28">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
