@@ -1,7 +1,7 @@
 import { MarkdownPage } from "../components/MarkdownPage";
 
-const Privacy = ({ content, currentPath }: { content?: string; currentPath?: string }) => (
-  <MarkdownPage file="privacy.md" content={content} currentPath={currentPath} />
+const Privacy = ({ currentPath }: { currentPath?: string }) => (
+  <MarkdownPage file="privacy.md" currentPath={currentPath} />
 );
 
 export default Privacy;

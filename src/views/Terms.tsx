@@ -1,7 +1,7 @@
 import { MarkdownPage } from "../components/MarkdownPage";
 
-const Terms = ({ content, currentPath }: { content?: string; currentPath?: string }) => (
-  <MarkdownPage file="terms.md" content={content} currentPath={currentPath} />
+const Terms = ({ currentPath }: { currentPath?: string }) => (
+  <MarkdownPage file="terms.md" currentPath={currentPath} />
 );
 
 export default Terms;

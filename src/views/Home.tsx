@@ -404,20 +404,6 @@ export const Home = () => {
         </motion.main>
       </section>
 
-      {/* 2 — Social proof bar */}
-      <div className="bg-white border-b border-neutral-200 py-3.5 px-6">
-        <div className="max-w-5xl mx-auto flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
-          <div className="flex items-center gap-1">
-            {Array.from({ length: 5 }).map((_, i) => <StarFilled key={i} />)}
-            <span className="ml-1.5 text-xs font-medium text-neutral-600">4.8 on the App Store</span>
-          </div>
-          <span className="hidden sm:block text-neutral-300 text-sm">·</span>
-          <span className="text-xs font-medium text-neutral-600">10,000+ learners</span>
-          <span className="hidden sm:block text-neutral-300 text-sm">·</span>
-          <span className="text-xs font-medium text-neutral-600">20+ native languages supported</span>
-        </div>
-      </div>
-
       {/* 3 — real spanish. real situations. */}
       <section className="bg-lime-50/50 min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16 items-center w-full">
