@@ -67,7 +67,7 @@ export const Footer = () => (
                 alya
               </span>
             </a>
-            <p className="text-neutral-500 text-sm leading-relaxed max-w-sm font-light mb-8">
+            <p className="text-neutral-900 text-sm leading-relaxed max-w-sm font-light mb-8">
               Your AI Spanish learning buddy.
               <br />
               learn naturally through conversation,
