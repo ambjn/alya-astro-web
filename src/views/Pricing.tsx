@@ -173,35 +173,36 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
                 animate={{ opacity: 1, y: 0 }}
                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
                 transition={{ duration: 0.55, delay: i * 0.08, ease }}
-                className={`relative rounded-2xl p-7 flex flex-col transition-all duration-300 ${plan.highlight
-                  ? "bg-neutral-900 shadow-2xl shadow-neutral-900/20 md:-mt-4 md:mb-4"
-                  : "bg-white border border-neutral-100 hover:shadow-md"
-                  }`}
+                className={`relative rounded-2xl p-7 flex flex-col transition-all duration-300 shadow-sm hover:shadow-xl ${
+                  plan.highlight
+                    ? "ring-2 ring-lime-400 bg-white"
+                    : "bg-neutral-50 hover:bg-white border border-neutral-100"
+                }`}
               >
                 {plan.highlight && (
                   <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                    <span className="px-3 py-1 rounded-full bg-lime-400 text-neutral-900 text-[10px] font-bold uppercase tracking-widest whitespace-nowrap">
+                    <span className="px-3 py-1 rounded-full bg-neutral-900 text-white text-[10px] font-bold uppercase tracking-widest whitespace-nowrap">
                       most popular
                     </span>
                   </div>
                 )}
 
                 <div className="mb-6">
-                  <p className={`text-[11px] font-bold uppercase tracking-widest mb-3 ${plan.highlight ? "text-lime-400" : "text-neutral-400"}`}>
+                  <p className="text-[11px] font-bold uppercase tracking-widest mb-3 text-neutral-400">
                     {plan.name}
                   </p>
-                  <p className={`text-4xl font-semibold tracking-tight mb-1 ${plan.highlight ? "text-white" : "text-neutral-900"}`}>
+                  <p className="text-4xl font-semibold tracking-tight mb-1 text-neutral-900">
                     {getPrice(plan)}
                   </p>
-                  <p className={`text-xs mb-3 ${plan.highlight ? "text-neutral-500" : "text-neutral-400"}`}>
+                  <p className="text-xs mb-3 text-neutral-400">
                     {getSub(plan)}
                   </p>
-                  <p className={`text-sm ${plan.highlight ? "text-neutral-300" : "text-neutral-500"}`}>
+                  <p className="text-sm text-neutral-500">
                     {plan.tagline}
                   </p>
                 </div>
 
-                <div className={`h-px mb-5 ${plan.highlight ? "bg-white/10" : "bg-neutral-100"}`} />
+                <div className="h-px mb-5 bg-neutral-100" />
 
                 <ul className="space-y-3 mb-7 flex-1">
                   {plan.features.map((feature, j) => (
@@ -209,9 +210,9 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
                       <Check
                         size={14}
                         strokeWidth={2.5}
-                        className={`flex-shrink-0 ${plan.highlight ? "text-lime-400" : "text-lime-500"}`}
+                        className="flex-shrink-0 text-lime-500"
                       />
-                      <span className={`text-sm leading-snug ${plan.highlight ? "text-neutral-200" : "text-neutral-700"}`}>
+                      <span className="text-sm leading-snug text-neutral-700">
                         {feature}
                       </span>
                     </li>
@@ -222,12 +223,11 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
                   href={APP_STORE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex items-center justify-center gap-2 w-full py-3.5 rounded-full font-semibold text-sm transition-all duration-200 active:scale-[0.97] ${plan.highlight
-                    ? "bg-lime-400 text-neutral-900 hover:bg-lime-300"
-                    : plan.prices.monthly === 0
-                      ? "bg-neutral-900 text-white hover:bg-neutral-700"
-                      : "border border-neutral-200 text-neutral-700 hover:border-neutral-400 hover:text-neutral-900 bg-transparent"
-                    }`}
+                  className={`flex items-center justify-center gap-2 w-full py-3 rounded-xl font-semibold text-sm transition-colors ${
+                    plan.highlight
+                      ? "bg-neutral-900 hover:bg-neutral-800 text-white"
+                      : "bg-neutral-100 hover:bg-neutral-200 text-neutral-700"
+                  }`}
                 >
                   <AppleIcon />
                   {plan.cta}

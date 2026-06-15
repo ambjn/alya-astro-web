@@ -46,6 +46,13 @@ const fadeUp = {
   show: { opacity: 1, y: 0, transition: { duration: 0.45, ease } },
 };
 
+const steps = [
+  { n: "1", title: "pick a level", body: "beginner, intermediate, or advanced. or take the quick proficiency test." },
+  { n: "2", title: "say hi", body: "alya opens a real conversation in your own language." },
+  { n: "3", title: "get corrected", body: "grammar and vocab feedback woven naturally into every reply." },
+  { n: "4", title: "fluency grows", body: "daily micro-conversations build real confidence faster than any drill." },
+];
+
 const Features = ({ currentPath }: { currentPath?: string }) => (
   <div className="font-sans bg-lime-50">
     <NavBar currentPath={currentPath} />
@@ -71,7 +78,6 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
 
       {/* Core 2 features */}
       <section className="pb-4">
-        <p className="text-[11px] font-bold uppercase tracking-widest text-neutral-400 mb-5">headline features</p>
         <div className="grid md:grid-cols-2 gap-4">
           {coreFeatures.map((f, i) => (
             <motion.div
@@ -80,7 +86,7 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.5, delay: i * 0.1, ease }}
-              className="p-8 rounded-3xl bg-lime-50 border border-lime-100 hover:border-lime-200 hover:shadow-sm transition-all duration-300"
+              className="p-8 rounded-3xl bg-lime-50 border border-lime-200 hover:border-lime-300 hover:shadow-sm transition-all duration-300"
             >
               <div className="inline-flex p-3 rounded-2xl bg-lime-100 text-lime-600 mb-5">
                 {f.icon}
@@ -96,7 +102,6 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
       <section className="py-4 pb-20">
         <div className="flex items-center gap-4 mb-5">
           <div className="h-px flex-1 bg-neutral-100" />
-          <p className="text-[11px] font-bold uppercase tracking-widest text-neutral-400">everything else</p>
           <div className="h-px flex-1 bg-neutral-100" />
         </div>
         <motion.div
@@ -125,6 +130,61 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
       </section>
 
     </main>
+
+    {/* How alya works */}
+    <section className="bg-neutral-100 py-20 px-6 sm:px-10 md:px-16">
+      <div className="max-w-5xl mx-auto w-full">
+        <motion.div
+          initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7, ease }}
+          className="mb-14"
+        >
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-neutral-900 tracking-tight mb-3">
+            how alya <span className="text-lime-600">works.</span>
+          </h2>
+          <p className="text-neutral-400 text-base sm:text-lg md:text-xl font-light">four steps. ten minutes a day.</p>
+        </motion.div>
+
+        <div className="relative">
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.9, ease }}
+            style={{ originX: 0 }}
+            className="hidden md:block absolute top-5 left-[6.5%] right-[6.5%] h-px bg-neutral-300"
+          />
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-6"
+          >
+            {steps.map((step, i) => (
+              <motion.div
+                key={i}
+                variants={fadeUp}
+                className="relative flex flex-row md:flex-col items-start md:items-center gap-5 md:gap-0"
+              >
+                {i < steps.length - 1 && (
+                  <div className="md:hidden absolute left-5 top-10 h-8 w-px bg-neutral-300" />
+                )}
+                <div className="relative z-10 w-10 h-10 rounded-full bg-neutral-900 text-white text-sm font-bold flex items-center justify-center shrink-0 md:mb-6 ring-4 ring-neutral-100">
+                  {step.n}
+                </div>
+                <div className="md:text-center md:px-2">
+                  <h3 className="text-neutral-900 font-semibold text-lg mb-1 leading-snug">{step.title}</h3>
+                  <p className="text-neutral-500 text-base leading-relaxed font-light">{step.body}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+    </section>
 
     {/* CTA */}
     <section className="bg-lime-50 py-20 px-6">

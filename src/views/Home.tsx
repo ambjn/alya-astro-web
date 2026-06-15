@@ -215,13 +215,6 @@ const GrammarMockup = () => (
   </div>
 );
 
-const steps = [
-  { n: "1", title: "pick a level", body: "beginner, intermediate, or advanced. or take the quick proficiency test." },
-  { n: "2", title: "say hi", body: "alya opens a real conversation in your own language." },
-  { n: "3", title: "get corrected", body: "grammar and vocab feedback woven naturally into every reply." },
-  { n: "4", title: "fluency grows", body: "daily micro-conversations build real confidence faster than any drill." },
-];
-
 const languagesRow1 = [
   { flag: "🇺🇸", name: "English" },
   { flag: "🇮🇳", name: "हिंदी" },
@@ -268,14 +261,6 @@ const faqs = [
   {
     question: "is alya actually free?",
     answer: "Yes. Download alya and get 5 messages per day, forever, no credit card, no trial period. Upgrade to Plus ($4.99/mo) or Pro ($14.99/mo) anytime for more daily messages and deeper conversation memory.",
-  },
-  {
-    question: "can I practice speaking, not just typing?",
-    answer: "Yes. Send voice messages to alya and she'll transcribe, respond, and teach. Tap any Spanish word in alya's replies to hear native-accent pronunciation. Voice in, voice out.",
-  },
-  {
-    question: "what Spanish does alya teach?",
-    answer: "Latin American Spanish, the variety spoken in Mexico, Colombia, Argentina, and across the continent. Modern, natural, and understood everywhere. Alya deliberately avoids Spain-specific slang.",
   },
 ];
 
@@ -385,7 +370,7 @@ export const Home = () => {
         </motion.main>
       </section>
 
-      <section className="bg-lime-50/50 min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
+      <section className="bg-lime-50 min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16 items-center w-full">
           <motion.div
             initial={{ opacity: 0, x: -24, filter: "blur(4px)" }}
@@ -441,7 +426,7 @@ export const Home = () => {
         </div>
       </section>
 
-      <section className="bg-neutral-100 min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
+      <section className="bg-lime-50 min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16 items-center w-full">
           <motion.div
             initial={{ opacity: 0, x: -24, filter: "blur(4px)" }}
@@ -468,7 +453,7 @@ export const Home = () => {
         </div>
       </section>
 
-      <section className="bg-neutral-100 min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
+      <section className="bg-lime-50 min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
         <div className="max-w-3xl mx-auto text-center w-full">
           <motion.div
             initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
@@ -554,60 +539,6 @@ export const Home = () => {
         </div>
       </section>
 
-      <section className="bg-neutral-100 min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
-        <div className="max-w-5xl mx-auto w-full">
-          <motion.div
-            initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
-            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.7, ease }}
-            className="mb-14"
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-neutral-900 tracking-tight mb-3">
-              how alya <span className="text-lime-600">works.</span>
-            </h2>
-            <p className="text-neutral-400 text-base sm:text-lg md:text-xl font-light">four steps. ten minutes a day.</p>
-          </motion.div>
-
-          <div className="relative">
-            <motion.div
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.9, ease }}
-              style={{ originX: 0 }}
-              className="hidden md:block absolute top-5 left-[6.5%] right-[6.5%] h-px bg-neutral-300"
-            />
-            <motion.div
-              variants={stagger}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.2 }}
-              className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-6"
-            >
-              {steps.map((step, i) => (
-                <motion.div
-                  key={i}
-                  variants={fadeUp}
-                  className="relative flex flex-row md:flex-col items-start md:items-center gap-5 md:gap-0"
-                >
-                  {i < steps.length - 1 && (
-                    <div className="md:hidden absolute left-5 top-10 h-8 w-px bg-neutral-300" />
-                  )}
-                  <div className="relative z-10 w-10 h-10 rounded-full bg-neutral-900 text-white text-sm font-bold flex items-center justify-center shrink-0 md:mb-6 ring-4 ring-neutral-100">
-                    {step.n}
-                  </div>
-                  <div className="md:text-center md:px-2">
-                    <h3 className="text-neutral-900 font-semibold text-lg mb-1 leading-snug">{step.title}</h3>
-                    <p className="text-neutral-500 text-base leading-relaxed font-light">{step.body}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
       <section className="bg-neutral-100 min-h-screen py-16 md:py-24 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
         <div className="max-w-5xl mx-auto w-full grid md:grid-cols-[1fr_2fr] gap-12 md:gap-16 items-start">
           <motion.div
@@ -640,11 +571,18 @@ export const Home = () => {
             transition={{ duration: 0.6, delay: 0.15, ease }}
           >
             <FAQAccordion faqs={faqs} />
+            <a
+              href="/faq"
+              className="inline-flex items-center gap-1.5 mt-6 text-sm font-medium text-neutral-500 hover:text-lime-600 transition-colors group"
+            >
+              see all questions
+              <span className="group-hover:translate-x-0.5 transition-transform inline-block">→</span>
+            </a>
           </motion.div>
         </div>
       </section>
 
-      <section className="bg-white min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
+      <section className="bg-lime-50 min-h-screen py-16 md:py-20 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
         <div className="max-w-4xl mx-auto w-full">
           <motion.div
             initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
@@ -729,7 +667,7 @@ export const Home = () => {
         </div>
       </section>
 
-      <section className="bg-lime-50/50 min-h-screen py-16 md:py-24 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
+      <section className="bg-lime-50 min-h-screen py-16 md:py-24 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
         <motion.div
           initial={{ opacity: 0, y: 24, filter: "blur(4px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}

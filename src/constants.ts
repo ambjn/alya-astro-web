@@ -15,6 +15,7 @@ export const ANIMATION_EASE = [0.22, 1, 0.36, 1] as const;
 export const NAV_LINKS = [
   { label: "features", href: "/features" },
   { label: "pricing", href: "/pricing" },
+  { label: "faq", href: "/faq" },
   { label: "blog", href: "/blog" },
 ] as const;
 
