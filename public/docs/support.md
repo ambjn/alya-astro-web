@@ -10,6 +10,8 @@ If you have questions, need assistance, or want to provide feedback about Alya, 
 
 For all inquiries, please contact us at:
 
+**<amber@alyacompanion.xyz>**
+
 **<teamalya@outlook.com>**
 
 We typically respond within 24-48 hours during business days.
@@ -52,4 +54,4 @@ Stay updated with the latest news and updates:
 
 ---
 
-**Last updated: February 17, 2026**
+**Last updated: June 15, 2026**
