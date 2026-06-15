@@ -1,14 +1,10 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { NAV_LINKS, COMPARE_LINKS } from "../constants";
+import { NAV_LINKS, LEARN_LINKS, COMPARE_LINKS } from "../constants";
 import { SocialLinks } from "./SocialLinks";
 
-const learnLinks = [
-  { label: "Spanish", href: "/learn-spanish" },
-];
-
 const footerLinkClass =
-  "text-neutral hover:text-neutral-900 text-sm transition-colors duration-200";
+  "text-neutral-500 hover:text-neutral-900 text-sm transition-colors duration-200";
 
 const bottomLinkClass =
   "text-neutral-400 hover:text-neutral-900 text-xs transition-colors uppercase tracking-wider font-medium";
@@ -71,7 +67,7 @@ export const Footer = () => (
                 alya
               </span>
             </a>
-            <p className="text-neutral text-sm leading-relaxed max-w-sm font-light mb-8">
+            <p className="text-neutral-500 text-sm leading-relaxed max-w-sm font-light mb-8">
               Your AI Spanish learning buddy.
               <br />
               learn naturally through conversation,
@@ -89,7 +85,7 @@ export const Footer = () => (
           <FooterLinkColumn title="Product" links={NAV_LINKS} />
         </div>
         <div className="col-span-1 md:col-span-2">
-          <FooterLinkColumn title="Learn" links={learnLinks} />
+          <FooterLinkColumn title="Learn" links={LEARN_LINKS} />
         </div>
         <div className="col-span-2 md:col-span-2">
           <FooterLinkColumn title="Compare" links={COMPARE_LINKS} />

@@ -76,7 +76,7 @@ export const MarkdownPage = ({ file, currentPath }: MarkdownPageProps) => {
   }
 
   return (
-    <div className="min-h-screen text-neutral-900 flex flex-col font-sans">
+    <div className="min-h-screen text-neutral-900 flex flex-col font-sans bg-lime-50">
       <NavBar currentPath={currentPath} />
 
       <main className="w-full max-w-4xl mx-auto px-4 sm:px-6 pb-32 pt-28 flex-grow flex flex-col">
@@ -88,12 +88,6 @@ export const MarkdownPage = ({ file, currentPath }: MarkdownPageProps) => {
         >
           <div className="glass-heavy rounded-3xl p-8 md:p-14 shadow-sm relative overflow-hidden">
             <div className="absolute top-0 left-0 right-0 h-1 bg-lime-400" />
-
-            <div className="mb-10 pb-6 border-b border-neutral-100">
-              <p className="text-neutral-400 text-xs font-mono uppercase tracking-widest">
-                Last Updated: February 2026
-              </p>
-            </div>
 
             <article className={proseClasses}>
               <ReactMarkdown>{content}</ReactMarkdown>

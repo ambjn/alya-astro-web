@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Privacy from '../views/Privacy';
+import PrivacyView from '../views/Privacy';
 ---
 
 <Layout
@@ -8,5 +8,5 @@ import Privacy from '../views/Privacy';
   description="Read alya's privacy policy. We explain how we collect, use, and protect your data when you use our AI language learning app."
   canonical="/privacy"
 >
-  <Privacy currentPath="/privacy" client:load />
+  <PrivacyView currentPath="/privacy" client:only="react" />
 </Layout>

@@ -13,11 +13,11 @@ const faqs = [
   },
   {
     question: "Is alya better than Duolingo for Spanish?",
-    answer: "alya and Duolingo have different approaches. Duolingo uses gamified exercises and repetition. alya teaches through real conversation — you text like you're messaging a friend who happens to be a Spanish tutor. if you want to actually speak Spanish, conversation practice is more effective.",
+    answer: "alya and Duolingo have different approaches. Duolingo uses gamified exercises and repetition. alya teaches through real conversation, you text like you're messaging a friend who happens to be a Spanish tutor. if you want to actually speak Spanish, conversation practice is more effective.",
   },
   {
     question: "What kind of Spanish does alya teach?",
-    answer: "alya teaches general Spanish — the core vocabulary, grammar, and expressions that work everywhere. the focus is on building real conversational fluency, not locking you into a specific regional style.",
+    answer: "alya teaches general Spanish, the core vocabulary, grammar, and expressions that work everywhere. the focus is on building real conversational fluency, not locking you into a specific regional style.",
   },
   {
     question: "Is alya free?",
@@ -37,8 +37,8 @@ const faqSchema = {
 ---
 
 <Layout
-  title="Learn Spanish with AI | alya"
-  description="Learn Spanish by texting an AI friend. alya teaches you through real conversation — travel, culture, work. beginner to advanced. free on iOS."
+  title="Learn Spanish with AI | ALYA"
+  description="Learn Spanish by texting an AI friend. alya teaches you through real conversation, travel, culture, work. beginner to advanced. free on iOS."
   canonical="/learn-spanish"
 >
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
@@ -46,19 +46,19 @@ const faqSchema = {
     nativeName="Español"
     languageName="Spanish"
     tagline="learn spanish by texting a friend"
-    heroSubtitle="travel, work, culture, connection — alya teaches you real Spanish through conversation, not grammar tables."
+    heroSubtitle="travel, work, culture, connection, alya teaches you real Spanish through conversation, not grammar tables."
     speakers="500M+"
     difficulty="accessible"
     timeToConversation="1–3 months"
     conversation={[
       { role: "user", text: "how do I introduce myself in Spanish?" },
-      { role: "alya", text: "*me llamo* `meh yah-mo` — that's 'my name is.' so you'd say *me llamo [your name]* ✨\n\ntry it! what's your name?" },
+      { role: "alya", text: "*me llamo* `meh yah-mo`, that's 'my name is.' so you'd say *me llamo [your name]* ✨\n\ntry it! what's your name?" },
       { role: "user", text: "me llamo Alex!" },
-      { role: "alya", text: "¡perfecto! nailed it 🎉\n\nnow try: *¿de dónde eres?* `deh don-deh eh-res` — 'where are you from?' — go ahead and answer in Spanish!" },
+      { role: "alya", text: "¡perfecto! nailed it 🎉\n\nnow try: *¿de dónde eres?* `deh don-deh eh-res`, 'where are you from?', go ahead and answer in Spanish!" },
     ]}
     levels={[
       { name: "beginner", description: "learn greetings, numbers, colors, and everyday phrases. alya gets you talking from day one because you're actually using the language.", example: "¡Hola! ¿Cómo estás? (Hi! How are you?)" },
-      { name: "intermediate", description: "master verb tenses and start discussing real topics — travel, food, your life. alya keeps the conversation flowing naturally.", example: "El fin de semana fui al mercado. (I went to the market on the weekend.)" },
+      { name: "intermediate", description: "master verb tenses and start discussing real topics, travel, food, your life. alya keeps the conversation flowing naturally.", example: "El fin de semana fui al mercado. (I went to the market on the weekend.)" },
       { name: "advanced", description: "tackle subjunctive mood, idioms, and natural expressions. alya helps you sound fluent and confident, not like a textbook.", example: "Ojalá que puedas venir a la fiesta." },
     ]}
     faqs={faqs}

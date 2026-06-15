@@ -4,7 +4,7 @@ import { Check, ChevronRight } from "lucide-react";
 import { Footer } from "../components/Footer";
 import { NavBar } from "../components/NavBar";
 import { FAQAccordion } from "../components/FAQAccordion";
-import { ANIMATION_EASE, COMPARE_LINKS } from "../constants";
+import { ANIMATION_EASE as ease, COMPARE_LINKS } from "../constants";
 
 type BillingCycle = "weekly" | "monthly" | "annual";
 
@@ -13,6 +13,7 @@ const plans = [
     id: "free",
     name: "free",
     prices: { weekly: null, monthly: 0, annual: null },
+    annualMonthly: undefined as number | undefined,
     tagline: "try alya, no commitment",
     features: [
       "5 messages per day",
@@ -67,7 +68,7 @@ const faqs = [
   },
   {
     question: "what language do I need to speak to use alya?",
-    answer: "any language. alya detects the language you text in — english, hindi, french, portuguese, japanese, and more — and responds in that same language while teaching spanish. you don't need to know english.",
+    answer: "any language. alya detects the language you text in, english, hindi, french, portuguese, japanese, and more, and responds in that same language while teaching spanish. you don't need to know english.",
   },
   {
     question: "can I switch plans?",
@@ -108,30 +109,31 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
     <div className="min-h-screen font-sans bg-lime-50">
       <NavBar currentPath={currentPath} />
 
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 pb-32 pt-28">
+      <main className="max-w-4xl mx-auto px-4 sm:px-6">
 
-        <section className="pb-14 text-center">
+        <section className="pt-32 pb-14 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: ANIMATION_EASE }}
-            className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-lime-500 mb-3"
+            transition={{ duration: 0.7, ease }}
+            className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-neutral-900 leading-[1.05] mb-4"
           >
-            pricing.
+            start free.<br />
+            <span className="text-lime-500">upgrade when ready.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.12, ease: ANIMATION_EASE }}
-            className="text-neutral-500 text-base mb-8"
+            transition={{ duration: 0.6, delay: 0.12, ease }}
+            className="text-neutral-500 text-base mb-10"
           >
-            start free. upgrade when you&apos;re ready.
+            all plans start with a free tier. no credit card needed to download.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.25, ease: ANIMATION_EASE }}
+            transition={{ duration: 0.5, delay: 0.2, ease }}
             className="inline-flex items-center gap-1 p-1 rounded-full border border-neutral-200 bg-white shadow-sm"
           >
             {(["weekly", "monthly", "annual"] as BillingCycle[]).map((cycle) => (
@@ -154,59 +156,60 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
           </motion.div>
         </section>
 
-        <section className="mb-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <section className="pb-20">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch">
             {plans.map((plan, i) => (
               <motion.div
                 key={plan.id}
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, delay: i * 0.08, ease: ANIMATION_EASE }}
-                className={`relative rounded-2xl border p-7 flex flex-col transition-all duration-300 ${plan.highlight
-                  ? "border-neutral-900 bg-neutral-900 shadow-xl ring-1 ring-neutral-900/5"
-                  : "border-neutral-200 bg-white shadow-sm hover:shadow-md hover:border-neutral-300"
-                  }`}
+                whileHover={{ y: -6, transition: { duration: 0.2 } }}
+                transition={{ duration: 0.55, delay: i * 0.08, ease }}
+                className={`relative rounded-2xl p-7 flex flex-col transition-all duration-300 shadow-sm hover:shadow-xl ${
+                  plan.highlight
+                    ? "ring-2 ring-lime-400 bg-white"
+                    : "bg-neutral-50 hover:bg-white border border-neutral-100"
+                }`}
               >
-                {plan.badge && (
+                {plan.highlight && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <span className="px-3 py-1 rounded-full bg-lime-500 text-white text-[10px] font-bold uppercase tracking-widest">
-                      {plan.badge}
+                    <span className="px-3 py-1 rounded-full bg-neutral-900 text-white text-[10px] font-bold uppercase tracking-widest whitespace-nowrap">
+                      most popular
                     </span>
                   </div>
                 )}
 
                 <div className="mb-6">
-                  <p className={`text-[11px] font-bold uppercase tracking-widest mb-3 ${plan.highlight ? "text-neutral-500" : "text-neutral-400"}`}>
+                  <p className="text-[11px] font-bold uppercase tracking-widest mb-3 text-neutral-400">
                     {plan.name}
                   </p>
-                  <p className={`text-4xl font-semibold tracking-tight mb-1 ${plan.highlight ? "text-white" : "text-neutral-900"}`}>
+                  <p className="text-4xl font-semibold tracking-tight mb-1 text-neutral-900">
                     {getPrice(plan)}
                   </p>
-                  <p className={`text-xs mb-3 ${plan.highlight ? "text-neutral-500" : "text-neutral-400"}`}>
+                  <p className="text-xs mb-3 text-neutral-400">
                     {getSub(plan)}
                   </p>
-                  <p className={`text-sm ${plan.highlight ? "text-neutral-300" : "text-neutral-500"}`}>
+                  <p className="text-sm text-neutral-500">
                     {plan.tagline}
                   </p>
                 </div>
 
-                <div className={`h-px mb-5 ${plan.highlight ? "bg-white/10" : "bg-neutral-100"}`} />
+                <div className="h-px mb-5 bg-neutral-100" />
 
-                <ul className="space-y-3 mb-7 flex-1">
+                <ul className="space-y-3">
                   {plan.features.map((feature, j) => (
                     <li key={j} className="flex items-center gap-2.5">
                       <Check
                         size={14}
                         strokeWidth={2.5}
-                        className={`flex-shrink-0 ${plan.highlight ? "text-lime-400" : "text-lime-500"}`}
+                        className="shrink-0 text-lime-500"
                       />
-                      <span className={`text-sm leading-snug ${plan.highlight ? "text-neutral-200" : "text-neutral-700"}`}>
+                      <span className="text-sm leading-snug text-neutral-700">
                         {feature}
                       </span>
                     </li>
                   ))}
                 </ul>
-
               </motion.div>
             ))}
           </div>
@@ -214,47 +217,56 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.5, ease: ANIMATION_EASE }}
-            className="text-center text-neutral-400 text-xs mt-5"
+            transition={{ duration: 0.5, delay: 0.5, ease }}
+            className="text-center text-neutral-400 text-xs mt-10"
           >
             subscriptions managed via App Store · cancel anytime · iOS only
           </motion.p>
         </section>
 
-        <motion.section
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: ANIMATION_EASE }}
-          className="mb-16 text-center"
-        >
-          <p className="text-neutral-600 text-sm font-medium mb-4 uppercase tracking-widest">see how alya compares</p>
-          <div className="flex flex-wrap justify-center gap-2">
-            {COMPARE_LINKS.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="flex items-center gap-1.5 px-4 py-2 rounded-full border border-neutral-200 bg-white hover:border-neutral-300 hover:shadow-sm text-neutral-600 text-xs font-medium transition-all duration-200"
-              >
-                {item.label} <ChevronRight size={12} className="text-neutral-400" />
-              </a>
-            ))}
-          </div>
-        </motion.section>
+      </main>
 
-        <section className="max-w-2xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 12 }}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+
+        <section className="pb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: ANIMATION_EASE }}
-            className="text-2xl md:text-3xl font-semibold text-neutral-900 mb-8 text-center tracking-tight"
+            transition={{ duration: 0.5, ease }}
+            className="text-center"
           >
-            frequently asked questions
-          </motion.h2>
-          <FAQAccordion faqs={faqs} />
+            <p className="text-neutral-500 text-xs font-semibold mb-4 uppercase tracking-widest">see how alya compares</p>
+            <div className="flex flex-wrap justify-center gap-2">
+              {COMPARE_LINKS.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-full border border-neutral-200 bg-white hover:border-neutral-300 hover:shadow-sm text-neutral-600 text-xs font-medium transition-all duration-200"
+                >
+                  {item.label} <ChevronRight size={12} className="text-neutral-400" />
+                </a>
+              ))}
+            </div>
+          </motion.div>
         </section>
-      </main>
+
+        <section className="pb-24">
+          <div className="max-w-2xl mx-auto w-full">
+            <motion.h2
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, ease }}
+              className="text-2xl md:text-3xl font-semibold text-neutral-900 mb-8 text-center tracking-tight"
+            >
+              frequently asked questions
+            </motion.h2>
+            <FAQAccordion faqs={faqs} />
+          </div>
+        </section>
+
+      </div>
 
       <Footer />
     </div>

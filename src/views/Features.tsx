@@ -1,174 +1,199 @@
 import { motion } from "framer-motion";
 import {
-  Brain,
-  MessageCircle,
-  Repeat,
-  Shield,
-  Zap,
-  BookOpen,
-  Mic,
-  Flame,
-  ClipboardList,
-  TrendingUp,
+  Brain, MessageCircle, Repeat, Shield, Zap, BookOpen, Mic, Flame, ClipboardList, TrendingUp,
 } from "lucide-react";
 import { Footer } from "../components/Footer";
 import { NavBar } from "../components/NavBar";
-import { ANIMATION_EASE as ease } from "../constants";
+import { AppleIcon } from "../components/DownloadButton";
+import { staggerVariants, fadeUpVariants } from "../lib/motion";
+import { ANIMATION_EASE as ease, APP_STORE_URL } from "../constants";
 
 const coreFeatures = [
   {
-    icon: <MessageCircle size={28} />,
-    title: "Conversation-First",
-    body: "Every message is a real exchange. No drills, no flashcards — just finding your flow in Spanish.",
-    accent: "lime",
+    icon: <MessageCircle size={26} />,
+    title: "conversation-first",
+    body: "every message is a real exchange. no drills, no flashcards, just finding your flow in Spanish.",
   },
   {
-    icon: <BookOpen size={28} />,
-    title: "Vocabulary & Grammar",
-    body: "Save words from chat, review with spaced repetition (SM-2), and browse grammar cards built for Spanish.",
-    accent: "purple",
+    icon: <BookOpen size={26} />,
+    title: "vocabulary & grammar",
+    body: "save words from chat, review with spaced repetition (SM-2), and browse grammar cards built for Spanish.",
   },
 ];
 
 const features = [
-  { icon: <Zap size={20} />, title: "Instant Corrections", body: "Mistakes corrected in context, naturally.", accent: "amber" },
-  { icon: <Brain size={20} />, title: "Adaptive Levels", body: "Alya adjusts to your proficiency in real time.", accent: "blue" },
-  { icon: <Mic size={20} />, title: "Voice Notes", body: "Talk, get transcribed, hear native pronunciation back.", accent: "rose" },
-  { icon: <Repeat size={20} />, title: "Scenario Roleplay", body: "8 real-world scenes — café, airport, doctor, market.", accent: "cyan" },
-  { icon: <Flame size={20} />, title: "Daily Streaks", body: "Gentle nudges to stay consistent.", accent: "orange" },
-  { icon: <ClipboardList size={20} />, title: "Proficiency Test", body: "Start at exactly the right level.", accent: "sky" },
-  { icon: <TrendingUp size={20} />, title: "Progress Tracking", body: "Streak, words saved, messages sent — all in one view.", accent: "emerald" },
-  { icon: <Shield size={20} />, title: "Private & Secure", body: "No ads. Delete your data anytime.", accent: "slate" },
+  { icon: <Zap size={18} />, color: "text-amber-500 bg-amber-50 border-amber-100", title: "instant corrections", body: "mistakes corrected in context, naturally." },
+  { icon: <Brain size={18} />, color: "text-violet-500 bg-violet-50 border-violet-100", title: "adaptive levels", body: "alya adjusts to your proficiency in real time." },
+  { icon: <Mic size={18} />, color: "text-blue-500 bg-blue-50 border-blue-100", title: "voice notes", body: "talk, get transcribed, hear native pronunciation back." },
+  { icon: <Repeat size={18} />, color: "text-indigo-500 bg-indigo-50 border-indigo-100", title: "scenario roleplay", body: "8 real-world scenes, café, airport, doctor, market." },
+  { icon: <Flame size={18} />, color: "text-orange-500 bg-orange-50 border-orange-100", title: "daily streaks", body: "gentle nudges to stay consistent." },
+  { icon: <ClipboardList size={18} />, color: "text-teal-500 bg-teal-50 border-teal-100", title: "proficiency test", body: "start at exactly the right level." },
+  { icon: <TrendingUp size={18} />, color: "text-lime-600 bg-lime-50 border-lime-100", title: "progress tracking", body: "streak, words saved, messages sent, all in one view." },
+  { icon: <Shield size={18} />, color: "text-slate-500 bg-slate-50 border-slate-100", title: "private & secure", body: "no ads. delete your data anytime." },
 ];
 
 const steps = [
-  { n: "1", title: "Pick a level", body: "Beginner, intermediate, or advanced — or take a quick proficiency test." },
-  { n: "2", title: "Say hi", body: "Alya opens a natural conversation in your native language." },
-  { n: "3", title: "Get corrected", body: "Grammar and vocab feedback woven naturally into every reply." },
-  { n: "4", title: "Fluency grows", body: "Daily micro-conversations build real confidence faster than any drill." },
+  { n: "1", title: "pick a level", body: "beginner, intermediate, or advanced. or take the quick proficiency test." },
+  { n: "2", title: "say hi", body: "alya opens a real conversation in your own language." },
+  { n: "3", title: "get corrected", body: "grammar and vocab feedback woven naturally into every reply." },
+  { n: "4", title: "fluency grows", body: "daily micro-conversations build real confidence faster than any drill." },
 ];
 
-const accentClasses: Record<string, string> = {
-  lime: "bg-lime-50 text-lime-600 border-lime-100",
-  purple: "bg-purple-50 text-purple-600 border-purple-100",
-  amber: "bg-amber-50 text-amber-600 border-amber-100",
-  blue: "bg-blue-50 text-blue-600 border-blue-100",
-  rose: "bg-rose-50 text-rose-600 border-rose-100",
-  cyan: "bg-cyan-50 text-cyan-600 border-cyan-100",
-  orange: "bg-orange-50 text-orange-600 border-orange-100",
-  sky: "bg-sky-50 text-sky-600 border-sky-100",
-  emerald: "bg-emerald-50 text-emerald-600 border-emerald-100",
-  slate: "bg-slate-50 text-slate-600 border-slate-100",
-};
-
 const Features = ({ currentPath }: { currentPath?: string }) => (
-  <div className="min-h-screen font-sans bg-lime-50">
+  <div className="font-sans bg-lime-50">
     <NavBar currentPath={currentPath} />
 
-    <main className="max-w-5xl mx-auto px-4 sm:px-6 pb-32 pt-24">
-      <section className="pt-10 pb-20">
+    <main className="max-w-5xl mx-auto px-6 sm:px-8">
+
+      <section className="pt-36 pb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease }}
-          className="max-w-2xl"
         >
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-semibold tracking-tight text-neutral-900 leading-[1.05] mb-6">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-semibold tracking-tight text-neutral-900 leading-[1.05] mb-5 max-w-2xl">
             everything alya<br />
             <span className="text-lime-500">can do.</span>
           </h1>
-          <p className="text-neutral-600 text-lg font-light leading-relaxed max-w-lg">
+          <p className="text-neutral-500 text-lg font-light leading-relaxed max-w-lg">
             one conversation, built from ten features. no extra tabs. no mode switching. just texting.
           </p>
         </motion.div>
       </section>
 
-      <section className="mb-4">
+      <section className="pb-4">
         <div className="grid md:grid-cols-2 gap-4">
           {coreFeatures.map((f, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.5, delay: i * 0.1, ease }}
-              className="p-8 rounded-2xl border border-neutral-200 bg-white hover:border-neutral-300 hover:shadow-sm transition-all duration-300"
+              className="p-8 rounded-3xl bg-lime-50 border border-lime-200 hover:border-lime-300 hover:shadow-sm transition-all duration-300"
             >
-              <div className={`inline-flex p-3 rounded-xl border mb-6 ${accentClasses[f.accent]}`}>
+              <div className="inline-flex p-3 rounded-2xl bg-lime-100 text-lime-600 mb-5">
                 {f.icon}
               </div>
               <h3 className="text-neutral-900 font-semibold text-xl mb-2 tracking-tight">{f.title}</h3>
-              <p className="text-neutral-600 text-sm leading-relaxed font-light">{f.body}</p>
+              <p className="text-neutral-500 text-sm leading-relaxed font-light">{f.body}</p>
             </motion.div>
           ))}
         </div>
       </section>
 
-      <section className="mb-24">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <section className="py-4 pb-20">
+        <div className="flex items-center gap-4 mb-5">
+          <div className="h-px flex-1 bg-neutral-100" />
+          <div className="h-px flex-1 bg-neutral-100" />
+        </div>
+        <motion.div
+          variants={staggerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.1 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-3"
+        >
           {features.map((f, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.4, delay: i * 0.04, ease }}
-              className="p-5 rounded-2xl border border-neutral-200 bg-white hover:border-neutral-300 hover:shadow-sm transition-all duration-300 flex flex-col gap-3"
+              variants={fadeUpVariants}
+              className="p-5 rounded-2xl border border-neutral-100 bg-neutral-50 hover:border-neutral-200 hover:bg-white hover:shadow-sm transition-all duration-300 flex flex-col gap-3"
             >
-              <div className={`inline-flex self-start p-2 rounded-lg border ${accentClasses[f.accent]}`}>
+              <div className={`inline-flex self-start p-2.5 rounded-xl border ${f.color}`}>
                 {f.icon}
               </div>
               <div>
                 <h3 className="text-neutral-900 font-semibold text-sm mb-1">{f.title}</h3>
-                <p className="text-neutral-600 text-xs leading-relaxed font-light">{f.body}</p>
+                <p className="text-neutral-400 text-xs leading-relaxed font-light">{f.body}</p>
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
-      <section className="mb-24">
+    </main>
+
+    <section className="bg-lime-50 py-20 px-6 sm:px-10 md:px-16">
+      <div className="max-w-5xl mx-auto w-full">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease }}
+          initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7, ease }}
           className="mb-14"
         >
-          <h2 className="text-4xl md:text-5xl font-semibold text-neutral-900 tracking-tight mb-3">
-            how it works
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-neutral-900 tracking-tight mb-3">
+            how alya <span className="text-lime-600">works.</span>
           </h2>
-          <p className="text-neutral-600 text-xl font-light">four steps to fluency.</p>
+          <p className="text-neutral-400 text-base sm:text-lg md:text-xl font-light">four steps. ten minutes a day.</p>
         </motion.div>
 
         <div className="relative">
-          <div className="hidden md:block absolute top-6 left-[12.5%] right-[12.5%] h-px bg-neutral-200" />
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-6">
-            {steps.map((item, i) => (
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.9, ease }}
+            style={{ originX: 0 }}
+            className="hidden md:block absolute top-5 left-[6.5%] right-[6.5%] h-px bg-neutral-300"
+          />
+          <motion.div
+            variants={staggerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-6"
+          >
+            {steps.map((step, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.08, ease }}
+                variants={fadeUpVariants}
                 className="relative flex flex-row md:flex-col items-start md:items-center gap-5 md:gap-0"
               >
                 {i < steps.length - 1 && (
-                  <div className="md:hidden absolute left-6 top-12 h-10 w-px bg-neutral-200" />
+                  <div className="md:hidden absolute left-5 top-10 h-8 w-px bg-neutral-300" />
                 )}
-                <div className="relative z-10 w-12 h-12 rounded-full bg-neutral-900 text-white text-sm font-bold flex items-center justify-center flex-shrink-0 md:mb-6 ring-4 ring-lime-50">
-                  {item.n}
+                <div className="relative z-10 w-10 h-10 rounded-full bg-neutral-900 text-white text-sm font-bold flex items-center justify-center shrink-0 md:mb-6 ring-4 ring-neutral-100">
+                  {step.n}
                 </div>
-                <div className="md:text-center md:px-3">
-                  <h3 className="text-neutral-900 font-semibold text-lg mb-2 leading-snug">{item.title}</h3>
-                  <p className="text-neutral-600 text-base leading-relaxed font-light">{item.body}</p>
+                <div className="md:text-center md:px-2">
+                  <h3 className="text-neutral-900 font-semibold text-lg mb-1 leading-snug">{step.title}</h3>
+                  <p className="text-neutral-500 text-base leading-relaxed font-light">{step.body}</p>
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
+
+    <section className="bg-lime-50 py-20 px-6">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6, ease }}
+        className="max-w-md mx-auto text-center"
+      >
+        <h2 className="text-3xl sm:text-4xl font-semibold text-neutral-900 tracking-tight leading-tight mb-3">
+          try every feature<br />
+          <span className="text-lime-500">free.</span>
+        </h2>
+        <p className="text-neutral-500 text-base font-light mb-8 max-w-sm mx-auto">
+          everything above is included in the free plan. no credit card to start.
+        </p>
+        <a
+          href={APP_STORE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2.5 bg-neutral-900 hover:bg-neutral-800 transition-colors text-white font-semibold px-8 py-4 rounded-full text-base shadow-lg"
+        >
+          <AppleIcon />
+          download free on iOS
+        </a>
+      </motion.div>
+    </section>
 
     <Footer />
   </div>

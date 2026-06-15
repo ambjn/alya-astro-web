@@ -1,5 +1,5 @@
 import { Mail } from "lucide-react";
-import { TWITTER_URL, INSTAGRAM_URL, SUPPORT_EMAIL } from "@/constants";
+import { TWITTER_URL, INSTAGRAM_URL, SUPPORT_EMAIL } from "../constants";
 
 const XIcon = () => (
   <svg viewBox="0 0 24 24" width={16} height={16} fill="currentColor">

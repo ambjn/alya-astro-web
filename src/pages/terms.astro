@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Terms from '../views/Terms';
+import TermsView from '../views/Terms';
 ---
 
 <Layout
@@ -8,5 +8,5 @@ import Terms from '../views/Terms';
   description="Read alya's terms of service. Learn about the rules and guidelines for using our AI language learning app."
   canonical="/terms"
 >
-  <Terms currentPath="/terms" client:load />
+  <TermsView currentPath="/terms" client:only="react" />
 </Layout>
