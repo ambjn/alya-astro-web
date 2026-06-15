@@ -26,14 +26,14 @@ const coreFeatures = [
 ];
 
 const features = [
-  { icon: <Zap size={18} />, title: "instant corrections", body: "mistakes corrected in context, naturally." },
-  { icon: <Brain size={18} />, title: "adaptive levels", body: "alya adjusts to your proficiency in real time." },
-  { icon: <Mic size={18} />, title: "voice notes", body: "talk, get transcribed, hear native pronunciation back." },
-  { icon: <Repeat size={18} />, title: "scenario roleplay", body: "8 real-world scenes, café, airport, doctor, market." },
-  { icon: <Flame size={18} />, title: "daily streaks", body: "gentle nudges to stay consistent." },
-  { icon: <ClipboardList size={18} />, title: "proficiency test", body: "start at exactly the right level." },
-  { icon: <TrendingUp size={18} />, title: "progress tracking", body: "streak, words saved, messages sent, all in one view." },
-  { icon: <Shield size={18} />, title: "private & secure", body: "no ads. delete your data anytime." },
+  { icon: <Zap size={18} />, color: "text-amber-500 bg-amber-50 border-amber-100", title: "instant corrections", body: "mistakes corrected in context, naturally." },
+  { icon: <Brain size={18} />, color: "text-violet-500 bg-violet-50 border-violet-100", title: "adaptive levels", body: "alya adjusts to your proficiency in real time." },
+  { icon: <Mic size={18} />, color: "text-blue-500 bg-blue-50 border-blue-100", title: "voice notes", body: "talk, get transcribed, hear native pronunciation back." },
+  { icon: <Repeat size={18} />, color: "text-indigo-500 bg-indigo-50 border-indigo-100", title: "scenario roleplay", body: "8 real-world scenes, café, airport, doctor, market." },
+  { icon: <Flame size={18} />, color: "text-orange-500 bg-orange-50 border-orange-100", title: "daily streaks", body: "gentle nudges to stay consistent." },
+  { icon: <ClipboardList size={18} />, color: "text-teal-500 bg-teal-50 border-teal-100", title: "proficiency test", body: "start at exactly the right level." },
+  { icon: <TrendingUp size={18} />, color: "text-lime-600 bg-lime-50 border-lime-100", title: "progress tracking", body: "streak, words saved, messages sent, all in one view." },
+  { icon: <Shield size={18} />, color: "text-slate-500 bg-slate-50 border-slate-100", title: "private & secure", body: "no ads. delete your data anytime." },
 ];
 
 const stagger = {
@@ -117,7 +117,7 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
               variants={fadeUp}
               className="p-5 rounded-2xl border border-neutral-100 bg-neutral-50 hover:border-neutral-200 hover:bg-white hover:shadow-sm transition-all duration-300 flex flex-col gap-3"
             >
-              <div className="inline-flex self-start p-2.5 rounded-xl bg-white border border-neutral-100 text-neutral-500">
+              <div className={`inline-flex self-start p-2.5 rounded-xl border ${f.color}`}>
                 {f.icon}
               </div>
               <div>
@@ -196,10 +196,12 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
         className="max-w-md mx-auto text-center"
       >
         <h2 className="text-3xl sm:text-4xl font-semibold text-neutral-900 tracking-tight leading-tight mb-3">
-          ready to start<br />
-          <span className="text-lime-500">talking?</span>
+          try every feature<br />
+          <span className="text-lime-500">free.</span>
         </h2>
-        <p className="text-neutral-500 text-base font-light mb-8">free to start. no credit card. 10 minutes a day.</p>
+        <p className="text-neutral-500 text-base font-light mb-8 max-w-sm mx-auto">
+          5 messages/day, no credit card. voice notes, corrections, scenario roleplay, all in the free plan.
+        </p>
         <a
           href={APP_STORE_URL}
           target="_blank"
@@ -209,7 +211,6 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
           <AppleIcon />
           download free on iOS
         </a>
-        <p className="text-neutral-400 text-xs mt-4">5 messages/day · forever free · no credit card needed</p>
       </motion.div>
     </section>
 

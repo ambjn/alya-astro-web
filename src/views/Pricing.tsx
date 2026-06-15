@@ -246,6 +246,10 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
           </motion.p>
         </section>
 
+      </main>
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+
         {/* Compare section */}
         <section className="pb-16">
           <motion.div
@@ -286,7 +290,7 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
           </div>
         </section>
 
-      </main>
+      </div>
 
       <Footer />
     </div>

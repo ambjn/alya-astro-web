@@ -539,7 +539,7 @@ export const Home = () => {
         </div>
       </section>
 
-      <section className="bg-neutral-100 min-h-screen py-16 md:py-24 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
+      <section className="bg-lime-50 min-h-screen py-16 md:py-24 px-6 sm:px-10 md:px-16 scroll-snap-start flex flex-col justify-center">
         <div className="max-w-5xl mx-auto w-full grid md:grid-cols-[1fr_2fr] gap-12 md:gap-16 items-start">
           <motion.div
             initial={{ opacity: 0, x: -20, filter: "blur(4px)" }}
@@ -631,7 +631,7 @@ export const Home = () => {
 
                 <div className="h-px mb-5 bg-neutral-100" />
 
-                <ul className="space-y-3 mb-7 flex-1">
+                <ul className="space-y-3">
                   {plan.features.map((feature, j) => (
                     <li key={j} className="flex items-center gap-2.5">
                       <Check size={14} strokeWidth={2.5} className="flex-shrink-0 text-lime-500" />
@@ -639,18 +639,6 @@ export const Home = () => {
                     </li>
                   ))}
                 </ul>
-
-                <a
-                  href={APP_STORE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`block w-full text-center py-3 rounded-xl text-sm font-semibold transition-colors ${plan.highlight
-                    ? "bg-neutral-900 hover:bg-neutral-800 text-white"
-                    : "bg-neutral-100 hover:bg-neutral-200 text-neutral-700"
-                    }`}
-                >
-                  {plan.cta}
-                </a>
               </motion.div>
             ))}
           </motion.div>

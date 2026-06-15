@@ -84,9 +84,6 @@ export const FAQ = ({ currentPath }: { currentPath?: string }) => {
           transition={{ duration: 0.7, ease }}
           className="mb-16"
         >
-          <p className="text-[11px] font-bold uppercase tracking-widest text-lime-500 mb-4">
-            help & support
-          </p>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold text-neutral-900 tracking-tight leading-[1.05] mb-4">
             questions &amp;<br />
             <span className="text-lime-500">answers.</span>
