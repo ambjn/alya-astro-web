@@ -1,5 +1,5 @@
 import React from 'react';
-import type { QuoteCardData, QuoteCardTheme } from '@/lib/mockData';
+import type { QuoteCardData, QuoteCardTheme } from '../types';
 
 const DEFAULT_THEME: QuoteCardTheme = {
   bg: '#f7fee7',

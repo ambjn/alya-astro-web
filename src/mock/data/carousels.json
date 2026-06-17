@@ -1,0 +1,101 @@
+[
+  {
+    "id": "ser-vs-estar",
+    "brandName": "alya",
+    "brandTagline": "your ai spanish tutor",
+    "ctaText": "follow @helloalya",
+    "scatterWords": ["soy", "estoy", "ser", "estar", "siempre", "ahora", "identidad", "momento"],
+    "theme": {
+      "bg": "#f7fee7",
+      "gridColor": "rgba(101,163,13,0.08)",
+      "accentColor": "#65a30d",
+      "cardBg": "#ffffff"
+    },
+    "slides": [
+      {
+        "headline": "ser vs. estar:\nthe rule spanish class\nnever explains right 🤔",
+        "hideBadge": true,
+        "saveNote": "(save this)"
+      },
+      {
+        "headline": "SER is who you ARE.\npermanent. identity.",
+        "body": "soy doctora. soy alta.\nsoy de méxico.",
+        "badgeText": "1"
+      },
+      {
+        "headline": "ESTAR is how you FEEL.\ntemporary. state.",
+        "body": "estoy cansada. estoy\nfeliz. estoy en casa.",
+        "badgeText": "2"
+      },
+      {
+        "headline": "\"soy feliz.\"\nvs.\n\"estoy feliz.\"",
+        "body": "one means \"I'm a happy\nperson.\" the other means\n\"I feel happy right now.\"",
+        "badgeText": "3"
+      },
+      {
+        "headline": "tip: location ALWAYS\ntakes estar.",
+        "body": "méxico está en\nnorteamérica — even though\nthat's permanent!",
+        "badgeText": "4"
+      },
+      {
+        "headline": "the trick: ask yourself —\n\"is this permanent,\nor just right now?\"",
+        "badgeText": "5"
+      },
+      {
+        "headline": "save this for your next\n\"ser vs estar\" panic 💚",
+        "body": "follow @helloalya for\ndaily spanish lessons",
+        "hideBadge": true
+      }
+    ]
+  },
+  {
+    "id": "mexican-slang",
+    "brandName": "alya",
+    "brandTagline": "your ai spanish tutor",
+    "ctaText": "follow @helloalya",
+    "scatterWords": ["chido", "neta", "güey", "ahorita", "qué onda", "órale", "padre", "fresa"],
+    "theme": {
+      "bg": "#f7fee7",
+      "gridColor": "rgba(101,163,13,0.08)",
+      "accentColor": "#65a30d",
+      "cardBg": "#ffffff"
+    },
+    "slides": [
+      {
+        "headline": "5 mexican spanish words\nyou won't learn in class 🇲🇽",
+        "hideBadge": true,
+        "saveNote": "(save this)"
+      },
+      {
+        "headline": "\"chido\"",
+        "body": "cool / awesome.\n\"¡qué chido!\" = \"how cool!\"",
+        "badgeText": "1"
+      },
+      {
+        "headline": "\"neta\"",
+        "body": "really? / seriously? / the truth.\n\"¿neta?\" = \"for real?\"",
+        "badgeText": "2"
+      },
+      {
+        "headline": "\"ahorita\"",
+        "body": "technically \"right now\" —\nactually means \"eventually,\nmaybe, who knows.\" 😅",
+        "badgeText": "3"
+      },
+      {
+        "headline": "\"qué onda\"",
+        "body": "what's up? how's it going?\nthe classic mexican greeting.",
+        "badgeText": "4"
+      },
+      {
+        "headline": "\"güey\"",
+        "body": "dude / man — used between\nfriends, like 50 times\nper conversation.",
+        "badgeText": "5"
+      },
+      {
+        "headline": "save this before your\nnext trip to méxico 🌶️",
+        "body": "follow @helloalya for\nreal spanish, real culture",
+        "hideBadge": true
+      }
+    ]
+  }
+]

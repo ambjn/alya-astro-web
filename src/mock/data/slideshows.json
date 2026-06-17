@@ -1,0 +1,57 @@
+[
+  {
+    "id": "duolingo-burnout",
+    "persona": "Duolingo Burnout",
+    "hashtagSet": "Set A — Beginner Pain Points",
+    "caption": "400 day streak and still can't order coffee? we've all been there 😅 save this if duolingo's not cutting it anymore → link in bio",
+    "theme": { "accentColor": "#65a30d" },
+    "slides": [
+      { "text": "pov: 400 day\nduolingo streak\nand you still can't\norder coffee" },
+      { "text": "talked to alya\nfor 10 minutes.\nordered real coffee\nin spanish the\nnext day." }
+    ]
+  },
+  {
+    "id": "silent-speaker",
+    "persona": "Silent Speaker",
+    "hashtagSet": "Set B — Speaking Anxiety",
+    "caption": "knowing every conjugation chart by heart doesn't help if you freeze the second someone actually talks to you. save this 💚",
+    "theme": { "accentColor": "#0d9488" },
+    "slides": [
+      { "text": "you know every\nconjugation chart\nby heart" },
+      { "text": "talking to alya felt\nless scary than\ntalking to a human.\nturns out that's\nthe whole trick." }
+    ]
+  },
+  {
+    "id": "heritage-learner",
+    "persona": "Heritage Learner",
+    "hashtagSet": "Set C — Heritage Speakers",
+    "caption": "you understand every word your abuela says but reply in english anyway? this one's for you 🤍",
+    "theme": { "accentColor": "#be185d" },
+    "slides": [
+      { "text": "you understand\nevery word your\nabuela says" },
+      { "text": "alya helped me find\nthe words I always\nunderstood, but never\nhad to say." }
+    ]
+  },
+  {
+    "id": "frequent-flyer",
+    "persona": "Frequent Flyer",
+    "hashtagSet": "Set D — Travel Prep",
+    "caption": "3 weeks till your trip and still stuck on 'hola'? save this for your next trip ✈️",
+    "theme": { "accentColor": "#c2410c" },
+    "slides": [
+      { "text": "3 weeks till\nyour trip to\nmexico city" },
+      { "text": "10 minutes a day\nwith alya got me\nthrough a whole\ntaco order.\nen español." }
+    ]
+  },
+  {
+    "id": "subjunctive-struggler",
+    "persona": "Subjunctive Struggler",
+    "hashtagSet": "Set E — Grammar Nerds",
+    "caption": "the subjunctive mood made you question your life choices. it finally clicked like this 📚",
+    "theme": { "accentColor": "#4338ca" },
+    "slides": [
+      { "text": "the subjunctive\nmood made you\nquestion your\nlife choices" },
+      { "text": "\"ojalá que apruebe\"\nfinally clicked when\nalya explained it\nlike a friend,\nnot a textbook." }
+    ]
+  }
+]

@@ -1,5 +1,5 @@
 import React from 'react';
-import type { CarouselData, CarouselTheme, SlideData } from '@/lib/mockData';
+import type { CarouselData, CarouselTheme, SlideData } from '../types';
 
 const DEFAULT_BADGE_COLORS = ['#d9f99d', '#bef264', '#ecfccb', '#fef08a', '#bbf7d0', '#fbcfe8'];
 

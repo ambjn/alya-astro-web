@@ -3,8 +3,14 @@ import { Download } from 'lucide-react';
 import { CarouselSlide } from './CarouselSlide';
 import { QuoteCard } from './QuoteCard';
 import { SlideshowSlide } from './SlideshowSlide';
-import { mockCarousels, mockQuoteCards, mockSlideshows } from '@/lib/mockData';
-import type { CarouselData, SlideData, QuoteCardData, SlideshowData } from '@/lib/mockData';
+import carouselsJson from '../data/carousels.json';
+import quoteCardsJson from '../data/quoteCards.json';
+import slideshowsJson from '../data/slideshows.json';
+import type { CarouselData, SlideData, QuoteCardData, SlideshowData } from '../types';
+
+const mockCarousels = carouselsJson as CarouselData[];
+const mockQuoteCards = quoteCardsJson as QuoteCardData[];
+const mockSlideshows = slideshowsJson as SlideshowData[];
 
 const PREVIEW_SCALE = 0.37;
 const SLIDE_W = Math.round(1080 * PREVIEW_SCALE);
@@ -539,7 +545,7 @@ function CarouselSection({ data }: { data: CarouselData }) {
   );
 }
 
-export function CarouselMockPage() {
+export function MockPage() {
   return (
     <div style={{ minHeight: '100vh', padding: '48px 40px 80px', fontFamily: "'Outfit', sans-serif" }}>
       <div style={{ marginBottom: 52 }}>
@@ -551,7 +557,7 @@ export function CarouselMockPage() {
           social mock
         </h1>
         <p style={{ fontFamily: "'Outfit', sans-serif", fontSize: 15, fontWeight: 300, color: '#737373' }}>
-          edit <CodeTag>src/lib/mockData.ts</CodeTag> to swap content · carousels download at 1080 × 1350 px
+          edit <CodeTag>src/mock/data/carousels.json</CodeTag> to swap content · carousels download at 1080 × 1350 px
         </p>
       </div>
 
@@ -562,7 +568,7 @@ export function CarouselMockPage() {
       {/* ─── Quote Cards ─────────────────────────────────────────── */}
       <SectionHeading
         title="quote cards"
-        hint={<>edit <CodeTag>mockQuoteCards</CodeTag> in mockData.ts · downloads at 1080 × 1080 px</>}
+        hint={<>edit <CodeTag>src/mock/data/quoteCards.json</CodeTag> · downloads at 1080 × 1080 px</>}
       />
 
       {mockQuoteCards.map(card => (
@@ -572,7 +578,7 @@ export function CarouselMockPage() {
       {/* ─── Slideshow Reels ─────────────────────────────────────── */}
       <SectionHeading
         title="slideshow reels"
-        hint={<>slide 1 is your own photo/video — drop it in below, it's local-only and never saved. edit <CodeTag>mockSlideshows</CodeTag> in mockData.ts to change the text slides · downloads at 1080 × 1920 px</>}
+        hint={<>slide 1 is your own photo/video — drop it in below, it's local-only and never saved. edit <CodeTag>src/mock/data/slideshows.json</CodeTag> to change the text slides · downloads at 1080 × 1920 px</>}
       />
 
       {mockSlideshows.map(slideshow => (

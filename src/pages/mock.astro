@@ -1,5 +1,5 @@
 ---
-import { CarouselMockPage } from '../components/CarouselMockPage';
+import { MockPage } from '../mock/components/MockPage';
 
 if (!import.meta.env.DEV) {
   return Astro.redirect('/404', 404);
@@ -28,6 +28,6 @@ if (!import.meta.env.DEV) {
     </style>
   </head>
   <body>
-    <CarouselMockPage client:only="react" />
+    <MockPage client:only="react" />
   </body>
 </html>
