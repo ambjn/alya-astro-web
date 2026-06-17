@@ -11,26 +11,21 @@
     scroll-padding-top: 80px;
   }
 
-  .scroll-snap-start {
-    scroll-snap-align: start;
-  }
-
   * {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-user-drag: none;
+    user-select: none;
+    -webkit-user-select: none;
   }
 
   body {
-    @apply text-neutral-900 font-sans antialiased;
+    @apply text-neutral-900 font-sans;
     background-color: var(--bg-page);
   }
 
   :focus-visible {
     @apply outline-none ring-2 ring-lime-400 ring-offset-2;
-  }
-
-  ::selection {
-    @apply bg-lime-200/60 text-neutral-900;
   }
 }
 
@@ -45,6 +40,10 @@
 }
 
 @layer utilities {
+  .scroll-snap-start {
+    scroll-snap-align: start;
+  }
+
   .glass {
     @apply bg-white/40 backdrop-blur-md border border-white/20 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)];
   }
