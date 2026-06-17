@@ -77,8 +77,5 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${BASE_URL}${ogImage}
   </head>
   <body>
     <slot />
-    <script>
-      document.addEventListener('dragstart', (e) => e.preventDefault());
-    </script>
   </body>
 </html>
