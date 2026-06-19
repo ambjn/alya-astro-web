@@ -1,6 +1,6 @@
 # alya — AI Spanish Tutor
 
-> alya is a mobile app that teaches Spanish through natural AI conversation. You text alya like a friend — real back-and-forth exchanges, instant grammar corrections, vocabulary saved from chat, voice notes, and 8 real-life roleplay scenarios. Free on iOS and Android.
+> alya is a mobile app that teaches Spanish through natural AI conversation. You text alya like a friend — real back-and-forth exchanges, instant grammar corrections, vocabulary saved from chat, voice notes, and 8 real-life practice scenarios. Free on iOS and Android.
 
 **Tagline:** The Spanish friend you never had.
 **Primary claim:** Learn Spanish by texting an AI friend — not with drills or flashcards.
@@ -16,7 +16,7 @@
 - Vocabulary saved from chat with spaced repetition review (SM-2 algorithm)
 - Grammar cards: reference cards for the hardest Spanish rules, with memory tips
 - Voice notes: send voice messages, get transcribed replies with native pronunciation
-- Roleplay scenarios: 8 real-world scenes (café, airport, hotel, market, doctor, directions, restaurant, meeting people)
+- Practice scenarios: 8 real-world scenes (café, airport, hotel, market, doctor, directions, restaurant, meeting people)
 - Progress tracking: streak, words saved, messages sent
 - No ads. No streak pressure. No gamification guilt.
 
@@ -35,7 +35,7 @@ alya teaches Latin American Spanish — the variety spoken in Mexico, Colombia, 
 ## Pages
 
 - [Homepage](https://www.alyacompanion.xyz/): Main landing page. Brand: "The Spanish friend you never had."
-- [Features](https://www.alyacompanion.xyz/features): All app features — conversation, grammar, vocabulary, voice, roleplay, streaks, proficiency test.
+- [Features](https://www.alyacompanion.xyz/features): All app features — conversation, grammar, vocabulary, voice, practice scenarios, streaks, proficiency test.
 - [Pricing](https://www.alyacompanion.xyz/pricing): Free / Plus / Pro plans with full feature comparison.
 - [Learn Spanish](https://www.alyacompanion.xyz/learn-spanish): Spanish-specific language page with conversation demo and level breakdown.
 - [alya vs Duolingo](https://www.alyacompanion.xyz/vs/duolingo): Side-by-side comparison with feature table.

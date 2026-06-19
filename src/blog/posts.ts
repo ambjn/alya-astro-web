@@ -477,7 +477,7 @@ export const posts: BlogPost[] = [
         content: [
             { type: "p", content: "The biggest problem with language apps is the gap between app-world Spanish and real-world Spanish. You can complete every Duolingo lesson and still freeze up at the café when the waiter asks '¿Para aquí o para llevar?'" },
             { type: "p", content: "Scenario practice solves this. Instead of learning vocabulary in isolation, you practice entire conversations in the contexts you'll actually encounter. Your brain rehearses the situation, the words, the flow, the cultural nuances, so when you're actually there, you recognize the pattern and know what to say." },
-            { type: "h2", content: "The 8 Spanish Scenarios alya Uses for Roleplay Practice" },
+            { type: "h2", content: "The 8 Spanish Scenarios alya Uses for Conversation Practice" },
             { type: "h3", content: "1. The Café (La Cafetería)" },
             { type: "p", content: "Ordering coffee, food, and asking for the bill covers a huge percentage of everyday Spanish travel situations. Coffee culture is central to Spanish-speaking countries, and cafés are where you'll practice your Spanish more than almost anywhere else." },
             { type: "ul", content: [
@@ -540,7 +540,7 @@ export const posts: BlogPost[] = [
                 "Me ha encantado conocerte., It was great to meet you.",
             ]},
             { type: "h2", content: "How to Practice These Scenarios with alya" },
-            { type: "p", content: "alya has a built-in roleplay mode for all 8 of these scenarios. You select the scenario, alya plays the other person, the waiter, the receptionist, the doctor, and you practice the conversation in real time. alya corrects your mistakes and introduces vocabulary naturally, just like a real exchange." },
+            { type: "p", content: "alya has a built-in practice mode for all 8 of these scenarios. You select the scenario, alya plays the other person, the waiter, the receptionist, the doctor, and you practice the conversation in real time. alya corrects your mistakes and introduces vocabulary naturally, just like a real exchange." },
             { type: "p", content: "The key is to practice each scenario multiple times until it feels automatic. The first time you run through 'at the café', you'll need to think about each phrase. By the fifth time, it flows. That automaticity is what you want when you're actually there." },
             { type: "quote", content: "\"Confidence in a foreign language comes from rehearsing the situation before. Travel scenarios aren't random, practice the common ones and you'll be ready for most of what happens.\"" },
             { type: "cta", content: "Practice all 8 Spanish scenarios with alya, free with 5 messages/day. No credit card needed." },
@@ -552,7 +552,7 @@ export const posts: BlogPost[] = [
             },
             {
                 question: "How do I practice Spanish conversation before a trip?",
-                answer: "Use alya's roleplay scenarios, designed for exactly this. Select a scenario (café, airport, hotel, etc.), and alya plays the other person while you practice. Run each scenario multiple times until it feels automatic. 15-20 minutes per day for 2-4 weeks before your trip will make a noticeable difference.",
+                answer: "Use alya's practice scenarios, designed for exactly this. Select a scenario (café, airport, hotel, etc.), and alya plays the other person while you practice. Run each scenario multiple times until it feels automatic. 15-20 minutes per day for 2-4 weeks before your trip will make a noticeable difference.",
             },
             {
                 question: "What are the most important Spanish phrases for travelers?",
