@@ -27,6 +27,25 @@
   :focus-visible {
     @apply outline-none ring-2 ring-lime-400 ring-offset-2;
   }
+
+  /* Keep the global no-select for UI chrome, but let people copy real content
+     (blog posts, legal pages, FAQ answers, support email). */
+  .prose,
+  .prose * {
+    user-select: text;
+    -webkit-user-select: text;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    .animate-marquee,
+    .animate-marquee-reverse {
+      animation: none;
+    }
+  }
 }
 
 @keyframes marquee {
@@ -62,5 +81,11 @@
 
   .animate-marquee-reverse {
     animation: marquee-reverse 28s linear infinite;
+  }
+
+  .selectable,
+  .selectable * {
+    user-select: text;
+    -webkit-user-select: text;
   }
 }

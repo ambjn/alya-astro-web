@@ -18,6 +18,21 @@ export const NavBar = ({ currentPath = "", dark = false }: { currentPath?: strin
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+
+    document.body.style.overflow = "hidden";
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsMobileMenuOpen(false);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <>
       <motion.nav
@@ -25,7 +40,7 @@ export const NavBar = ({ currentPath = "", dark = false }: { currentPath?: strin
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.4, ease: ANIMATION_EASE }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-          ? "py-4 bg-transparent backdrop-blur-xl border-b border-neutral-200/60"
+          ? "py-4 bg-[#f4f9f3]/85 backdrop-blur-xl border-b border-neutral-200/60"
           : "py-6 bg-transparent"
           }`}
       >

@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, MotionConfig } from "framer-motion";
 import { NavBar } from "../../components/NavBar";
 import { SocialLinks } from "../../components/SocialLinks";
 import { Footer } from "../../components/Footer";
@@ -64,6 +64,7 @@ const pricingPlans = [
 
 export const Home = () => {
   return (
+    <MotionConfig reducedMotion="user">
     <div className="font-sans bg-lime-50">
       <section className="relative h-screen overflow-hidden scroll-snap-start flex flex-col justify-end bg-black">
         <video
@@ -74,6 +75,7 @@ export const Home = () => {
           playsInline
           aria-hidden="true"
           preload="auto"
+          poster="/videos/hero-poster.jpg"
         >
           <source src="/videos/hero.mp4" type="video/mp4" />
         </video>
@@ -101,15 +103,25 @@ export const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3, ease }}
-              className="text-lg sm:text-xl font-medium text-white/85 mb-6"
+              className="text-lg sm:text-xl font-medium text-white/85 mb-8"
             >
               not an app. a conversation
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.7, ease }}
+              transition={{ duration: 0.7, delay: 0.5, ease }}
+              className="flex flex-wrap items-center gap-x-6 gap-y-5"
             >
+              <a
+                href={APP_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2.5 bg-white text-neutral-900 hover:bg-lime-50 transition-colors font-semibold px-7 py-3.5 rounded-full text-base shadow-lg active:scale-[0.98]"
+              >
+                <AppleIcon size={17} />
+                download free on iOS
+              </a>
               <SocialLinks dark />
             </motion.div>
           </div>
@@ -430,5 +442,6 @@ export const Home = () => {
         <Footer />
       </div>
     </div>
+    </MotionConfig>
   );
 };

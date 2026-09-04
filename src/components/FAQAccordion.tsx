@@ -58,7 +58,7 @@ export const FAQAccordion = ({ faqs }: { faqs: FAQItem[] }) => {
               >
                 <div className="px-6 pb-6">
                   <div className="border-l-2 border-lime-400 pl-4">
-                    <p className="text-neutral-500 text-sm md:text-base leading-relaxed font-light">
+                    <p className="selectable text-neutral-500 text-sm md:text-base leading-relaxed font-light">
                       {faq.answer}
                     </p>
                   </div>
