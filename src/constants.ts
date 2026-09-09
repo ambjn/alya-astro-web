@@ -6,14 +6,18 @@ export const BASE_URL = "https://www.alyacompanion.xyz";
 
 export const SUPPORT_EMAIL = "amber@alyacompanion.xyz";
 
-export const TWITTER_URL = "https://x.com/alyacompanion";
-
-export const INSTAGRAM_URL = "https://instagram.com/helloalya";
-
 export const ANIMATION_EASE = [0.22, 1, 0.36, 1] as const;
+
+export const PLUS_FEATURES = [
+  { title: "Unlimited Immersion", desc: "Explore every clip and collection" },
+  { title: "Advanced Explanations", desc: "Understand nuance and natural phrasing" },
+  { title: "Unlimited Vocabulary", desc: "Save and review every phrase" },
+  { title: "ALYA Customization", desc: "Unlock outfits and room items" },
+] as const;
 
 export const NAV_LINKS = [
   { label: "features", href: "/features" },
+  { label: "topics", href: "/topics" },
   { label: "pricing", href: "/pricing" },
   { label: "faq", href: "/faq" },
   { label: "blog", href: "/blog" },
@@ -29,5 +33,6 @@ export const COMPARE_LINKS = [
   { label: "vs Babbel", href: "/vs/babbel" },
   { label: "vs HelloTalk", href: "/vs/hellotalk" },
   { label: "vs Praktika", href: "/vs/praktika" },
+  { label: "vs italki", href: "/vs/italki" },
+  { label: "vs Pimsleur", href: "/vs/pimsleur" },
 ] as const;
-

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { NAV_LINKS, LEARN_LINKS, COMPARE_LINKS } from "../constants";
-import { SocialLinks } from "./SocialLinks";
 
 const footerLinkClass =
   "text-neutral-500 hover:text-neutral-900 text-sm transition-colors duration-200";
@@ -52,14 +51,14 @@ function FooterLinkColumn({
 }
 
 export const Footer = () => (
-  <footer className="relative pt-16 pb-10 border-t border-neutral-200/60">
+  <footer className="relative pt-16 pb-10 border-t border-neutral-900/10 bg-[#ebe6da]">
     <div className="max-w-7xl mx-auto px-6 md:px-10 relative">
       <div className="grid grid-cols-2 md:grid-cols-12 gap-6 sm:gap-8 mb-16">
         <div className="col-span-2 md:col-span-4 pr-0 md:pr-12 flex flex-col justify-between h-full">
           <div>
             <a href="/" className="inline-flex items-center gap-2 group mb-5">
               <img
-                src="/logo/splash-icon.png"
+                src="/logo/icon.png"
                 alt="alya"
                 className="w-9 h-9 rounded-full object-cover"
               />
@@ -68,16 +67,12 @@ export const Footer = () => (
               </span>
             </a>
             <p className="text-neutral-900 text-sm leading-relaxed max-w-sm font-light mb-8">
-              Your AI Spanish learning buddy.
+              Your Spanish immersion feed.
               <br />
-              learn naturally through conversation,
+              learn by doomscrolling,
               <br />
               not drills.
             </p>
-          </div>
-
-          <div className="flex justify-center md:justify-start">
-            <SocialLinks />
           </div>
         </div>
 

@@ -1,0 +1,48 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { ComparisonPage } from '../../components/ComparisonPage';
+
+const faqs = [
+  { question: "Is alya better than italki?", answer: "for daily input, yes. italki is the gold standard for live speaking with a human tutor ($10–50/hour, scheduled). alya builds the comprehension that makes those expensive hours actually productive." },
+  { question: "Should I replace italki with alya?", answer: "no — pair them. scroll alya daily for understanding and vocabulary, book italki monthly to practice speaking. input daily, output monthly." },
+  { question: "Is alya free compared to italki?", answer: "alya has a free daily feed; Plus (Annual / Monthly, trial when eligible) is a fraction of one italki lesson. one lesson ≈ months of Plus." },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })),
+};
+---
+
+<Layout
+  title="alya vs italki, Daily Input vs Live Tutors | ALYA"
+  description="alya vs italki: Spanish immersion feed for daily understanding vs live human tutors. Why input first makes tutors 10x more valuable. Free on iOS."
+  canonical="/vs/italki"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
+  <ComparisonPage
+    competitorName="italki"
+    competitorTagline="live human tutors"
+    alyaTagline="spanish immersion feed"
+    heroSubtitle="italki rents you a tutor by the hour. alya gives you the language itself — every day, on demand."
+    verdict="if you want a human coach, book italki. if you want to understand spanish before you pay by the hour, scroll alya."
+    rows={[
+      { feature: "learning method", alya: "native video immersion", competitor: "1-on-1 live lessons" },
+      { feature: "available instantly", alya: true, competitor: "scheduled + paid hourly" },
+      { feature: "tap-to-translate + glosses", alya: true, competitor: "ask your tutor" },
+      { feature: "daily habit friendly", alya: "5–30 min/day", competitor: "$10–50/hour" },
+      { feature: "beginner friendly", alya: true, competitor: "needs basics first" },
+      { feature: "companion + streaks", alya: true, competitor: false },
+      { feature: "free tier", alya: "daily feed", competitor: "none (pay per lesson)" },
+    ]}
+    sections={[
+      { heading: "tutors are precious. don't waste them on basics.", body: "an italki hour is gold — conversation, correction, cultural nuance. spending it on '¿dónde está el baño?' is expensive. alya handles the hundreds of hours of input you need first, so tutor time goes to speaking, not vocabulary lists." },
+      { heading: "the ideal stack", body: "alya daily (input + words + ear training), italki monthly (output + confidence + human connection). learners who combine both progress visibly faster than either alone." },
+      { heading: "the verdict", body: "book the tutor. but scroll first — you'll get 10x more from every paid hour." },
+    ]}
+    faqs={faqs}
+    currentPath="/vs/italki"
+    client:load
+  />
+</Layout>

@@ -5,18 +5,17 @@ import { NavBar } from "./NavBar";
 import { FAQAccordion } from "./FAQAccordion";
 import { ANIMATION_EASE as ease } from "../constants";
 
-export interface ComparisonRow {
+interface ComparisonRow {
   feature: string;
   alya: string | boolean;
   competitor: string | boolean;
 }
 
-export interface ComparisonPageProps {
+interface ComparisonPageProps {
   competitorName: string;
   competitorTagline: string;
   alyaTagline: string;
   verdict: string;
-  heroHeading: string;
   heroSubtitle: string;
   rows: ComparisonRow[];
   sections: { heading: string; body: string }[];
@@ -51,7 +50,6 @@ export const ComparisonPage = ({
   competitorTagline,
   alyaTagline,
   verdict,
-  heroHeading,
   heroSubtitle,
   rows,
   sections,
@@ -106,8 +104,8 @@ export const ComparisonPage = ({
         >
           <div className="relative rounded-3xl overflow-hidden border border-neutral-200 bg-white shadow-sm">
             <div className="overflow-x-auto">
-              <div className="min-w-[480px]">
-                <div className="grid grid-cols-10 border-b border-neutral-200 bg-neutral-50 sticky top-[64px] z-20">
+              <div className="min-w-120">
+                <div className="grid grid-cols-10 border-b border-neutral-200 bg-neutral-50 sticky top-16 z-20">
                   <div className="col-span-4 px-4 sm:px-8 py-4 sm:py-5 text-neutral-400 text-xs font-bold uppercase tracking-widest flex items-center">
                     Feature
                   </div>

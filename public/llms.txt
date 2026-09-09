@@ -1,62 +1,67 @@
-# alya — AI Spanish Tutor
+# alya — learn spanish. by doomscrolling.
 
-> alya is a mobile app that teaches Spanish through natural AI conversation. You text alya like a friend — real back-and-forth exchanges, instant grammar corrections, vocabulary saved from chat, voice notes, and 8 real-life practice scenarios. Free on iOS and Android.
+> ALYA is a Spanish immersion feed. Scroll short real-world videos, tap any unfamiliar word for instant translation, save vocabulary, respond to contextual prompts, and grow your companion as you learn. Free on iOS.
 
-**Tagline:** The Spanish friend you never had.
-**Primary claim:** Learn Spanish by texting an AI friend — not with drills or flashcards.
-**Pricing:** Free (5 messages/day), Plus ($4.99/month), Pro ($14.99/month).
+**Tagline:** learn spanish. by doomscrolling.
+**Product loop:** scroll → tap to understand → save words → earn stars → grow ALYA.
+**Subscription:** Free + ALYA Plus (Annual / Monthly via RevenueCat, 7-day free trial when eligible, iOS only).
 **Available:** iOS App Store. App Store ID: 6758835552.
 **Website:** https://www.alyacompanion.xyz
 
 ## Key Features
 
-- Conversation-first learning: every session is a real back-and-forth exchange with Alya
-- Automatic in-context grammar corrections (no red X — corrections woven into replies)
-- Adaptive proficiency levels: beginner, intermediate, advanced — with a built-in proficiency test
-- Vocabulary saved from chat with spaced repetition review (SM-2 algorithm)
-- Grammar cards: reference cards for the hardest Spanish rules, with memory tips
-- Voice notes: send voice messages, get transcribed replies with native pronunciation
-- Practice scenarios: 8 real-world scenes (café, airport, hotel, market, doctor, directions, restaurant, meeting people)
-- Progress tracking: streak, words saved, messages sent
-- No ads. No streak pressure. No gamification guilt.
+- Vertical immersion feed: short Spanish videos, 20 on open, refill before you run out
+- Tap-to-translate with synchronized Spanish transcript + English meaning
+- Per-word glosses: tap any unfamiliar word for exact meaning
+- Tap-to-hear pronunciation (Deepgram Aura-2 selena-es), 0.75–1.5x playback speeds
+- Save vocabulary and review phrases, unlimited with Plus
+- Contextual response prompts that make you produce Spanish, not just recognize it
+- Companion: earn stars, grow energy / bond / curiosity, unlock rooms, outfits, rewards
+- Levels: beginner, intermediate, advanced — feed adapts to you
+- 20 topics: Travel, Food, Culture, Music, Comedy, Family, Work, Sports, Shopping, Health, Cooking, Fashion, Gaming, Animals, Beauty, Business, Exercise, Relationships, Technology, Morning Routine
+- Explore filters: levels, grammar (Questions, Present/Past tense, Commands, Polite phrases, Conversation), sources (Anime → Lesson), Shorts vs Videos
+- Personalized onboarding plan: goals, level, challenges, 5–30 min/day, reminders
+- Streaks, achievements, activity history, progress dashboard
+- ALYA Plus: Unlimited Immersion, Advanced Explanations, Unlimited Vocabulary, Customization
 
 ## What Kind of Spanish Does alya Teach?
 
-alya teaches Latin American Spanish — the variety spoken in Mexico, Colombia, Argentina, and across the continent. Modern, natural, understood everywhere. Deliberately avoids Spain-specific slang.
+Real-world Spanish from native content — street interviews, vlogs, food, travel, music, culture. Beginner to advanced, with translations and glosses so you always understand in context.
 
 ## How alya Compares
 
-- vs. Duolingo: Duolingo uses gamified drills and translation exercises. alya teaches through real conversation. alya is better for conversational fluency; Duolingo is better for vocabulary habit-building.
-- vs. ChatGPT: ChatGPT can speak Spanish but isn't built for language learning. alya automatically corrects mistakes, adapts to your level, and structures every conversation to move you forward. alya Plus is $4.99/month vs ChatGPT Plus at $20/month.
-- vs. Babbel: Babbel follows a structured curriculum with grammar lessons. alya teaches through conversation — no curriculum, just conversation that adapts to your level. alya is also significantly cheaper.
-- vs. HelloTalk: HelloTalk connects you with real human speakers. alya is always available, never judges, and automatically corrects. Best approach: use alya to build confidence, then add HelloTalk for human practice.
-- vs. Praktika: Praktika uses AI avatars for speaking practice. alya uses text-based conversation — no mic required, lower price ($4.99 vs $19.99+/month).
+- vs. Duolingo: Duolingo drills vocabulary with gamified exercises. ALYA gives you real native videos with instant understanding. Drill sentences vs real content.
+- vs. ChatGPT: ChatGPT can explain Spanish if you prompt it right. ALYA is a ready-made feed — no prompting, just scroll, tap, and learn.
+- vs. Babbel: Babbel follows a structured curriculum. ALYA teaches through immersion — real videos matched to your level.
+- vs. HelloTalk: HelloTalk needs a human partner and scheduling. ALYA is available instantly, endless content, no pressure.
+- vs. Praktika: Praktika uses AI avatars for speaking drills. ALYA uses real native videos + a companion that grows with you.
 
 ## Pages
 
-- [Homepage](https://www.alyacompanion.xyz/): Main landing page. Brand: "The Spanish friend you never had."
-- [Features](https://www.alyacompanion.xyz/features): All app features — conversation, grammar, vocabulary, voice, practice scenarios, streaks, proficiency test.
-- [Pricing](https://www.alyacompanion.xyz/pricing): Free / Plus / Pro plans with full feature comparison.
-- [Learn Spanish](https://www.alyacompanion.xyz/learn-spanish): Spanish-specific language page with conversation demo and level breakdown.
+- [Homepage](https://www.alyacompanion.xyz/): Main landing page. Brand: "learn spanish. by doomscrolling."
+- [Features](https://www.alyacompanion.xyz/features): Feed, tap-to-translate, vocabulary, companion, levels, topics.
+- [Pricing](https://www.alyacompanion.xyz/pricing): Free / ALYA Plus plans.
+- [FAQ](https://www.alyacompanion.xyz/faq): Straight answers about the feed, Plus, and learning method.
+- [Learn Spanish](https://www.alyacompanion.xyz/learn-spanish): Spanish immersion landing page with level breakdown.
+- [Topics](https://www.alyacompanion.xyz/topics): All 20 feed topics with descriptions.
 - [alya vs Duolingo](https://www.alyacompanion.xyz/vs/duolingo): Side-by-side comparison with feature table.
 - [alya vs ChatGPT](https://www.alyacompanion.xyz/vs/chatgpt): Side-by-side comparison with feature table.
 - [alya vs Babbel](https://www.alyacompanion.xyz/vs/babbel): Side-by-side comparison with feature table.
 - [alya vs HelloTalk](https://www.alyacompanion.xyz/vs/hellotalk): Side-by-side comparison with feature table.
 - [alya vs Praktika](https://www.alyacompanion.xyz/vs/praktika): Side-by-side comparison with feature table.
-- [Blog](https://www.alyacompanion.xyz/blog): Spanish learning guides, AI language learning explainers, app comparisons.
+- [alya vs italki](https://www.alyacompanion.xyz/vs/italki): Side-by-side comparison with feature table.
+- [alya vs Pimsleur](https://www.alyacompanion.xyz/vs/pimsleur): Side-by-side comparison with feature table.
+- [Blog](https://www.alyacompanion.xyz/blog): Immersion learning guides, feed explainers, app comparisons.
 
 ## Blog Posts
 
-- [Best Duolingo Alternative for Conversation Practice](https://www.alyacompanion.xyz/blog/duolingo-alternative-for-conversation-practice): Why Duolingo doesn't build conversational fluency and what to use instead.
-- [Best AI Language Learning App in 2026](https://www.alyacompanion.xyz/blog/best-ai-language-learning-app-2026): How to evaluate AI language apps for real fluency vs vocabulary quizzes.
-- [How to Learn Spanish Fast](https://www.alyacompanion.xyz/blog/how-to-learn-spanish-fast): The conversation method — zero to conversational in 3 months.
-- [How to Learn a Language with AI](https://www.alyacompanion.xyz/blog/how-to-learn-a-language-with-ai): The science behind AI language learning (Krashen's input hypothesis).
-- [Spanish Grammar Cards Guide](https://www.alyacompanion.xyz/blog/spanish-grammar-cards-guide): The 7 hardest Spanish grammar rules for English speakers, explained simply.
-- [Best Way to Learn Spanish Vocabulary](https://www.alyacompanion.xyz/blog/learn-spanish-vocabulary-spaced-repetition): How spaced repetition builds vocabulary that actually sticks.
-- [Spanish Conversation Practice Scenarios](https://www.alyacompanion.xyz/blog/spanish-conversation-practice-scenarios): 8 real-life Spanish scenarios to practice before you travel.
+- [Best Duolingo Alternative for Speaking Practice](https://www.alyacompanion.xyz/blog/duolingo-alternative-for-conversation-practice): Why drills don't build understanding and what immersion does instead.
+- [Best AI Language Learning App in 2026](https://www.alyacompanion.xyz/blog/best-ai-language-learning-app-2026): How to evaluate AI apps for real comprehension vs vocabulary quizzes.
+- [How to Learn Spanish Fast](https://www.alyacompanion.xyz/blog/how-to-learn-spanish-fast): The immersion method — zero to conversational with daily scrolling.
+- [Spanish Conversation Practice Scenarios](https://www.alyacompanion.xyz/blog/spanish-conversation-practice-scenarios): 8 real-life situations (café, airport, market…) you'll actually meet in videos.
+- [Best Way to Learn Spanish Vocabulary](https://www.alyacompanion.xyz/blog/learn-spanish-vocabulary-spaced-repetition): Save words from videos you love, review them until they stick.
+- [Spanish Grammar in Real Videos](https://www.alyacompanion.xyz/blog/spanish-grammar-cards-guide): The 7 rules that trip up English speakers, learned in context.
 
 ## Contact & Social
 
 - Support: https://www.alyacompanion.xyz/support
-- Twitter/X: https://x.com/alyacompanion
-- Instagram: https://instagram.com/helloalya

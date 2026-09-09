@@ -3,10 +3,10 @@ import Layout from '../../layouts/Layout.astro';
 import { ComparisonPage } from '../../components/ComparisonPage';
 
 const faqs = [
-  { question: "Is alya better than HelloTalk?", answer: "for beginners and intermediates who want consistent, judgment-free practice, alya is better. for authentic human conversation and cultural exchange, hellotalk is better. many learners use both." },
-  { question: "Does alya replace human conversation practice?", answer: "no. alya is the best way to build confidence and get to a level where you can hold real conversations. but eventually, talking to real native speakers is irreplaceable. alya gets you there faster." },
-  { question: "Is HelloTalk free?", answer: "hellotalk has a free tier with limited features. hellotalk plus is $6.99/month. alya is free with 5 messages/day and $4.99/month for plus." },
-  { question: "Can I use alya and HelloTalk together?", answer: "yes, and this is actually the recommended approach. use alya for daily AI conversation practice, and hellotalk for human exchange once you're comfortable enough. the two complement each other perfectly." },
+  { question: "Is alya better than HelloTalk?", answer: "for consistent daily input, yes. hellotalk needs a partner, scheduling, and enough Spanish to hold an exchange. alya is instant — endless native videos at your level, no pressure, no waiting." },
+  { question: "Does alya replace human conversation?", answer: "alya builds the comprehension you need before human exchange works. scroll, tap, save, understand — then bring that confidence to real conversations." },
+  { question: "Is HelloTalk free?", answer: "hellotalk has a free tier with limits. alya has a free daily feed, with Plus (Annual / Monthly, trial when eligible) for unlimited immersion." },
+  { question: "Can I use alya and HelloTalk together?", answer: "yes. use alya daily for input and vocabulary, hellotalk when you want live human exchange. input first, output second." },
 ];
 
 const faqSchema = {
@@ -17,34 +17,30 @@ const faqSchema = {
 ---
 
 <Layout
-  title="alya vs HelloTalk, AI Tutor vs Language Exchange | ALYA"
-  description="alya vs HelloTalk: AI language tutor vs human language exchange. alya is available 24/7, never judges, and adapts to your level. free on iOS."
+  title="alya vs HelloTalk, Immersion vs Exchange | ALYA"
+  description="alya vs HelloTalk: instant Spanish video immersion vs language exchange that needs a partner. No scheduling, just scroll. Free on iOS."
   canonical="/vs/hellotalk"
 >
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
   <ComparisonPage
     competitorName="HelloTalk"
     competitorTagline="human language exchange"
-    alyaTagline="AI conversation partner"
-    heroHeading="alya vs hellotalk"
-    heroSubtitle="hellotalk connects you with real humans. alya is an AI that's always available, always patient, and never judges your mistakes."
-    verdict="hellotalk is great once you're intermediate. alya is better for beginners who aren't ready to talk to real people yet."
+    alyaTagline="spanish immersion feed"
+    heroSubtitle="hellotalk finds you a partner. alya gives you the language itself — hundreds of native clips, instantly understandable."
+    verdict="if you want pen pals, use hellotalk. if you want daily spanish you understand, scroll alya."
     rows={[
-      { feature: "conversation partner", alya: "AI (always available)", competitor: "real humans (availability varies)" },
-      { feature: "available 24/7", alya: true, competitor: false },
-      { feature: "never judges mistakes", alya: true, competitor: "depends on partner" },
-      { feature: "adapts to your level", alya: true, competitor: false },
-      { feature: "automatic corrections", alya: true, competitor: "manual corrections by partner" },
-      { feature: "structured learning", alya: true, competitor: false },
-      { feature: "free tier", alya: "5 msgs/day", competitor: "limited features" },
-      { feature: "monthly price", alya: "$4.99 (plus)", competitor: "$6.99" },
+      { feature: "learning method", alya: "native video immersion", competitor: "human exchange" },
+      { feature: "available instantly", alya: true, competitor: "needs partner + scheduling" },
+      { feature: "tap-to-translate + glosses", alya: true, competitor: "ask a human" },
+      { feature: "beginner friendly", alya: true, competitor: "needs basics first" },
       { feature: "no social pressure", alya: true, competitor: false },
+      { feature: "vocabulary + companion", alya: true, competitor: "partially" },
+      { feature: "free tier", alya: "daily feed", competitor: "limited free" },
     ]}
     sections={[
-      { heading: "hellotalk requires you to find a good partner. alya is always there.", body: "hellotalk's concept is brilliant, connect language learners who want to exchange. in practice, finding a consistent, patient partner who matches your schedule and level is hard. alya is available whenever you open the app, for as long as you want, at exactly your level." },
-      { heading: "alya is better for beginners and intermediates", body: "most beginners are too embarrassed to make mistakes in front of real people. alya removes that pressure entirely. you can make the same mistake 10 times and alya will correct it patiently every time without judgment. once you're confident enough to talk to real people, hellotalk becomes a great complement." },
-      { heading: "alya corrects automatically. hellotalk relies on your partner.", body: "on hellotalk, corrections depend on your partner, some are thorough, some aren't. alya automatically corrects every mistake in context, every time. you always know when you've made an error and exactly how to fix it." },
-      { heading: "the verdict", body: "use alya to build confidence and get to intermediate level. then add hellotalk for real human conversation practice. the two work well together, alya for structured AI practice, hellotalk for authentic human exchange." },
+      { heading: "exchange is great — once you understand enough.", body: "hellotalk shines when you can already hold a basic conversation. before that, it's awkward: you can't understand, they can't teach. alya bridges that gap with comprehensible input." },
+      { heading: "input before output", body: "watch natives, tap what you miss, save words, build comprehension daily. when you open hellotalk later, you'll actually have something to say." },
+      { heading: "the verdict", body: "alya for daily understanding. hellotalk for human connection when you're ready." },
     ]}
     faqs={faqs}
     currentPath="/vs/hellotalk"

@@ -1,75 +1,52 @@
 # Privacy Policy
 
-**Last updated: June 15, 2026**
+**Last updated: September 9, 2026**
 
-## Our Commitment to Your Privacy
-
-Alya ("we," "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and share your personal information when you use our website, mobile applications, and related services ("Services").
+This policy explains how ALYA ("we," "us") handles information when you use our website and language-learning app (the "Services").
 
 ## Information We Collect
 
-- **Account information:** When you sign in using Google or Apple, we receive your name, email address, and profile picture from your authentication provider.
-- **Language learning preferences:** Your selected target language, base language, and proficiency level.
-- **Conversation data:** The content of your messages and AI-generated responses within the app. Conversations are stored to provide continuity in your learning experience.
-- **Voice messages:** If you send a voice message, the audio recording is transmitted to ElevenLabs for speech-to-text transcription. Audio files are not permanently stored by us after transcription is complete.
-- **Subscription and payment information:** When you subscribe to a paid plan (Alya Plus or Alya Pro), your purchase is processed by Apple (App Store) or Google (Play Store). We do not collect or store your payment details (such as credit card numbers) directly. We receive subscription status information (such as your plan type, purchase date, and renewal status) to manage your access to premium features.
-- **Usage data:** Daily message counts and usage patterns to enforce rate limits and improve our Services.
+- **Account:** your user ID and, when provided by Apple or Google sign-in, your name, email address, and profile image.
+- **Learning profile:** language level, interests, goals, challenges, daily target, preferred topics, reminder schedule, and onboarding status.
+- **Learning activity:** videos viewed, watch time and completion, saved words and reviews, responses, streaks, stars, achievements, and companion progress.
+- **App operations:** screen and feature events, subscription events, playback or app errors, device platform, and push-notification token if you enable notifications.
+- **Purchases:** product, entitlement, renewal, and trial status supplied by Apple and RevenueCat. We do not receive your full payment-card details.
+- **Support:** information you include when contacting us.
 
-## How We Use Your Information
+ALYA does not request your precise location, contacts, photos, or camera. Pronunciation is text-to-speech; we do not record your microphone.
 
-- To provide and maintain our Services, including personalized language lessons based on your selected language and proficiency level
-- To manage subscriptions and access to paid features
-- To generate AI-powered language learning responses tailored to your level
-- To communicate with you and respond to inquiries
-- To improve our Services and develop new features
-- For research using anonymized and aggregated data
+## How We Use Information
 
-## Sharing Your Information
+We use information to provide and personalize lessons, track progress, save vocabulary, schedule notifications, manage subscriptions, support users, maintain security, diagnose failures, measure product performance, and improve the Services.
 
-We share your data only with the specific third-party services required to operate the app. Each provider is bound by their own privacy policy and is required to protect your data.
+## Services We Use
 
-- **xAI (Grok):** Your chat messages and conversation context are sent to xAI to generate AI language learning responses. xAI's privacy practices are described at [x.ai/legal/privacy-policy](https://x.ai/legal/privacy-policy).
-- **ElevenLabs:** If you use voice messages, your audio recording is sent to ElevenLabs for speech-to-text transcription. Text responses are also sent to ElevenLabs for voice synthesis. ElevenLabs' privacy practices are described at [elevenlabs.io/privacy](https://elevenlabs.io/privacy).
-- **Clerk:** Account authentication (sign-in with Google or Apple) is handled by Clerk. See [clerk.com/legal/privacy](https://clerk.com/legal/privacy).
-- **Convex:** Your account data, messages, and preferences are stored on Convex's servers. See [convex.dev/privacy](https://www.convex.dev/privacy).
-- **RevenueCat:** Subscription status and purchase information are managed by RevenueCat. See [revenuecat.com/privacy](https://www.revenuecat.com/privacy).
-- **Business Transfers:** Your information may be transferred in a merger, acquisition, or sale.
-- **Legal Compliance:** To comply with legal obligations or protect our rights.
+We disclose only the information needed to operate ALYA:
 
-We do not sell your personal information. We do not use advertising trackers or analytics services that track you across other apps or websites.
+- **Clerk, Apple, and Google** for sign-in and account identity.
+- **Convex** for application hosting, database storage, and server functions. Sprout analytics runs with our Convex backend to record app events and errors.
+- **Apple App Store and RevenueCat** for purchases, entitlements, trials, and subscription management.
+- **Expo** for push-notification delivery when notifications are enabled.
+- **YouTube** for embedded video playback; YouTube may receive device and playback information under its own privacy policy.
+- **Deepgram** for generating pronunciation audio from text.
+- **xAI, YouTube Data API, and Google Cloud** for our background content pipeline. It processes public video audio and learning metadata before publication, not your private account content.
 
-## Data Retention
+We may also disclose information when required by law, to protect users or the Services, or as part of a merger, financing, acquisition, or sale of assets. We do not sell personal information or use it for cross-app advertising.
 
-- Conversation history is stored on our servers. Older messages are automatically removed over time.
-- Messages older than 12 months are automatically deleted from our servers, regardless of the message count.
-- You can clear your conversation history at any time from the app settings.
-- When you delete your account, all associated data (profile, conversations, preferences) is permanently removed from our systems.
-- Account and preference data is retained for as long as your account is active. If your account is inactive for more than 24 months, we may delete it and all associated data.
+## Retention and Deletion
 
-## Your Rights
+We keep account and learning data while your account is active. Recent viewing activity is used to reduce repeated videos. Notification delivery logs are generally kept for up to 90 days, and generated pronunciation audio may be cached for up to 180 days.
 
-- Request deletion of your account and all associated data
-- Clear your conversation history at any time
-- Opt out of communications
-- Access and correct your personal data
-- Request data portability where applicable
+You can delete your account in app settings. This removes your identity and associated profile, progress, saved vocabulary, reports, notification tokens, and notification records from our active systems. Limited transaction, security, backup, or deidentified analytics records may remain where reasonably required by law or operations.
 
-## Subscriptions and Payments
+## Your Choices and Rights
 
-Alya offers a free tier and optional paid subscription plans (Alya Plus and Alya Pro) with weekly, monthly, and annual billing options. All payments are processed through the Apple App Store or Google Play Store. We do not have access to your full payment details. Subscription management, including cancellation and renewal, is handled through your device's app store settings. You may restore previous purchases at any time through the app.
+You can update learning preferences, disable notifications in the app or device settings, manage subscriptions through the App Store, and request access, correction, deletion, or portability where applicable.
 
-## Security
+## Security and Children
 
-We implement measures to protect your information, including encrypted data transmission and secure authentication. However, no method of transmission over the internet is 100% secure.
+We use reasonable safeguards, including encrypted transmission and authenticated access, but no system is completely secure. ALYA is not intended for children under 18, and we do not knowingly collect their personal information.
 
-## Children's Privacy
+## Changes and Contact
 
-Our Services are not intended for children under 18. We do not knowingly collect information from children.
-
-## Changes to This Policy
-
-We may update this Privacy Policy periodically. We will notify you of material changes.
-
-## Contact Us
-
-If you have questions about this Privacy Policy, please contact us at **<teamalya@outlook.com>** or through the app.
+We may update this policy and will provide notice of material changes where required. Questions or privacy requests may be sent to **<amber@alyacompanion.xyz>**.

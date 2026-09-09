@@ -8,67 +8,34 @@ export const CorrectionsMockup = () => (
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.6, ease }}
-      className="bg-neutral-800 rounded-3xl p-4 shadow-xl border border-white/5"
+      className="bg-white rounded-3xl p-4 shadow-xl border border-neutral-200"
     >
-      <div className="flex items-center gap-2.5 pb-3 mb-3 border-b border-white/10">
-        <img src="/logo/splash-icon.png" alt="alya" className="w-7 h-7 rounded-full object-cover" />
-        <div>
-          <p className="text-white text-xs font-semibold">alya</p>
-          <p className="text-lime-400 text-[10px]">● online</p>
+      <p className="text-neutral-400 text-[10px] font-bold uppercase tracking-widest mb-3">
+        tap any word
+      </p>
+      <div className="bg-neutral-900 rounded-2xl p-4 mb-3">
+        <p className="text-white text-sm leading-relaxed">
+          Quiero <span className="bg-lime-400 text-neutral-900 px-1.5 py-0.5 rounded-md font-semibold">aprovechar</span> el viaje
+        </p>
+        <p className="text-neutral-400 text-xs mt-1.5">I want to make the most of the trip</p>
+      </div>
+      <motion.div
+        initial={{ opacity: 0, y: 8 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.4, duration: 0.4, ease }}
+        className="bg-lime-50 border border-lime-200 rounded-2xl p-3.5"
+      >
+        <div className="flex items-center justify-between mb-1">
+          <p className="text-neutral-900 font-bold text-sm">aprovechar</p>
+          <span className="text-[10px]">🔊</span>
         </div>
-      </div>
-      <div className="space-y-2.5">
-        {[
-          {
-            side: "right",
-            text: <p className="text-neutral-900 text-xs font-medium">me llamo Alya did i say right?</p>,
-          },
-          {
-            side: "left",
-            text: (
-              <>
-                <p className="text-white text-xs">
-                  <span className="text-lime-400 font-semibold">¡Me llamo Alya!</span> perfect 🎉
-                </p>
-                <p className="text-neutral-300 text-[10px] mt-1">already speaking Spanish!</p>
-                <div className="mt-1.5 bg-neutral-800 rounded-lg px-2 py-1 inline-flex items-center gap-1">
-                  <span className="text-neutral-400 text-[10px]">🔊 tap for pronunciation</span>
-                </div>
-              </>
-            ),
-          },
-          {
-            side: "right",
-            text: <p className="text-neutral-900 text-xs font-medium">how do i ask for water?</p>,
-          },
-          {
-            side: "left",
-            text: (
-              <>
-                <p className="text-white text-xs">
-                  say: <span className="text-lime-400 font-semibold">quiero agua, por favor</span>
-                </p>
-                <p className="text-neutral-400 text-[10px] mt-1">means "I'd like water, please" 💧</p>
-              </>
-            ),
-          },
-        ].map((m, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, x: m.side === "left" ? -10 : 10, y: 5 }}
-            whileInView={{ opacity: 1, x: 0, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ delay: 0.2 + i * 0.15, duration: 0.4, ease }}
-            className={`flex ${m.side === "right" ? "justify-end" : ""}`}
-          >
-            <div
-              className={`${m.side === "left" ? "bg-neutral-700 rounded-tl-sm" : "bg-lime-400 rounded-tr-sm"} rounded-2xl px-3 py-2.5 max-w-[90%]`}
-            >
-              {m.text}
-            </div>
-          </motion.div>
-        ))}
-      </div>
+        <p className="text-neutral-500 text-xs mb-2">to make the most of · verb</p>
+        <div className="flex gap-2">
+          <span className="px-2.5 py-1 rounded-full bg-neutral-900 text-white text-[10px] font-semibold">+ save word</span>
+          <span className="px-2.5 py-1 rounded-full bg-white border border-neutral-200 text-neutral-600 text-[10px] font-medium">hear it</span>
+        </div>
+      </motion.div>
     </motion.div>
   </div>
 );

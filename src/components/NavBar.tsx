@@ -1,6 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { APP_STORE_URL, NAV_LINKS, ANIMATION_EASE } from "../constants";
-import { DownloadButton } from "./DownloadButton";
 import { Menu, X, ArrowLeft } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -40,7 +39,7 @@ export const NavBar = ({ currentPath = "", dark = false }: { currentPath?: strin
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.4, ease: ANIMATION_EASE }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-          ? "py-4 bg-[#f4f9f3]/85 backdrop-blur-xl border-b border-neutral-200/60"
+          ? "py-3 bg-[#f4f0e7]/90 backdrop-blur-xl border-b border-neutral-900/10 shadow-[0_6px_24px_rgba(32,35,29,0.05)]"
           : "py-6 bg-transparent"
           }`}
       >
@@ -51,12 +50,12 @@ export const NavBar = ({ currentPath = "", dark = false }: { currentPath?: strin
                 <ArrowLeft size={16} className="text-neutral-500 group-hover:text-neutral-900" />
               </div>
             )}
-            <span className={`font-semibold text-3xl ${dark && !isScrolled ? "text-white" : "text-neutral-900"}`}>
-              alya<span className="text-lime-400/70">.</span>
+            <span className={`font-semibold text-3xl tracking-tighter ${dark && !isScrolled ? "text-white" : "text-neutral-900"}`}>
+              alya<span className="text-lime-600">.</span>
             </span>
           </a>
 
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center">
             <div className={`flex items-center gap-1 px-2 py-1.5 rounded-full backdrop-blur-sm border ${dark && !isScrolled ? "bg-white/10 border-white/15" : "bg-transparent border-neutral-300/50"}`}>
               {NAV_LINKS.map((link) => (
                 <a
@@ -72,7 +71,6 @@ export const NavBar = ({ currentPath = "", dark = false }: { currentPath?: strin
               ))}
             </div>
 
-            <DownloadButton className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 shadow-sm ${dark && !isScrolled ? "bg-white text-neutral-900 hover:bg-neutral-100" : "bg-neutral-900 text-white hover:bg-neutral-700"}`} />
           </div>
 
           <button
@@ -117,7 +115,7 @@ export const NavBar = ({ currentPath = "", dark = false }: { currentPath?: strin
                 transition={{ delay: NAV_LINKS.length * 0.1, ease: ANIMATION_EASE }}
                 className={`mt-4 px-10 py-4 rounded-full font-bold text-xl shadow-lg transition-transform active:scale-95 ${dark ? "bg-lime-400 text-neutral-900" : "bg-neutral-900 text-white"}`}
               >
-                download app
+                download on iOS
               </motion.a>
             </div>
           </motion.div>

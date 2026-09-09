@@ -12,32 +12,35 @@ For all inquiries, please contact us at:
 
 **<amber@alyacompanion.xyz>**
 
-**<teamalya@outlook.com>**
-
 We typically respond within 24-48 hours during business days.
 
 ## What We Can Help With
 
-- **Language Settings:** Help changing your target language, base language, or proficiency level
-- **Subscription & Billing:** Questions about Alya Plus, Alya Pro, restoring purchases, or managing your subscription
-- **Technical Issues:** Problems with the app, bugs, or errors
+- **Feed & Levels:** Help with your level (beginner / intermediate / advanced), topics, and Explore filters
+- **Vocabulary & Audio:** Saved words, pronunciation playback, playback speeds (0.75x–1.5x)
+- **Companion & Progress:** Stars, energy / bond / curiosity, rooms, outfits, streaks, achievements
+- **Subscription & Billing:** Questions about ALYA Plus (Annual / Monthly, free trial eligibility), restoring purchases, or managing your subscription (iOS only)
+- **Reminders & Plan:** Daily reminders, minutes-per-day plan, onboarding choices
+- **Technical Issues:** Playback problems, missing transcripts, bugs, or errors
 - **Account Questions:** Help with your account settings, data, or account deletion
-- **Feature Requests:** Suggestions for new languages, features, or improvements
+- **Feature Requests:** Suggestions for topics, sources, features, or improvements
 - **General Inquiries:** Any other questions about Alya
 
 ## Managing Your Subscription
 
-- You can view your current plan and daily message usage in the app settings.
+- You can view your current plan in the app settings.
+- ALYA Plus is iOS-only and billed via the App Store (Annual / Monthly, 7-day free trial when eligible).
 - To manage, cancel, or change your subscription, go to your device's App Store subscription settings.
-- To restore a previous purchase, use the restore option in the app.
+- To restore a previous purchase, use Billing & Restore Purchases in the app.
 
 ## Before You Contact Us
 
 To help us assist you more quickly, please include:
 
 - A clear description of your issue or question
-- Your device type and operating system (if relevant)
-- The language you're learning and your proficiency level (if relevant)
+- Your device type and iOS version (if relevant)
+- Your level and topics (if relevant)
+- The clip or word involved (if relevant)
 - Screenshots or error messages (if applicable)
 - Steps to reproduce the issue (for technical problems)
 
@@ -54,4 +57,4 @@ Stay updated with the latest news and updates:
 
 ---
 
-**Last updated: June 15, 2026**
+**Last updated: September 5, 2026**

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import {
-  Brain, MessageCircle, Repeat, Shield, Zap, BookOpen, Mic, Flame, ClipboardList, TrendingUp,
+  Play, MousePointerClick, Volume2, Bookmark, PawPrint, Layers, Compass, Bell, Flame, Shield,
 } from "lucide-react";
 import { Footer } from "../components/Footer";
 import { NavBar } from "../components/NavBar";
@@ -10,33 +10,33 @@ import { ANIMATION_EASE as ease, APP_STORE_URL } from "../constants";
 
 const coreFeatures = [
   {
-    icon: <MessageCircle size={26} />,
-    title: "conversation-first",
-    body: "every message is a real exchange. no drills, no flashcards, just finding your flow in Spanish.",
+    icon: <Play size={26} />,
+    title: "immersion feed",
+    body: "a vertical feed of short native Spanish videos. 20 clips on open, more before you run out. real content, matched to your level.",
   },
   {
-    icon: <BookOpen size={26} />,
-    title: "vocabulary & grammar",
-    body: "save words from chat, review with spaced repetition (SM-2), and browse grammar cards built for Spanish.",
+    icon: <MousePointerClick size={26} />,
+    title: "tap-to-understand",
+    body: "synchronized transcript + translation + per-word glosses. tap any word, hear it, save it. 0.75x–1.5x playback.",
   },
 ];
 
 const features = [
-  { icon: <Zap size={18} />, color: "text-amber-500 bg-amber-50 border-amber-100", title: "instant corrections", body: "mistakes corrected in context, naturally." },
-  { icon: <Brain size={18} />, color: "text-violet-500 bg-violet-50 border-violet-100", title: "adaptive levels", body: "alya adjusts to your proficiency in real time." },
-  { icon: <Mic size={18} />, color: "text-blue-500 bg-blue-50 border-blue-100", title: "voice notes", body: "talk, get transcribed, hear native pronunciation back." },
-  { icon: <Repeat size={18} />, color: "text-indigo-500 bg-indigo-50 border-indigo-100", title: "practice scenarios", body: "8 real-world scenes, café, airport, doctor, market." },
-  { icon: <Flame size={18} />, color: "text-orange-500 bg-orange-50 border-orange-100", title: "daily streaks", body: "gentle nudges to stay consistent." },
-  { icon: <ClipboardList size={18} />, color: "text-teal-500 bg-teal-50 border-teal-100", title: "proficiency test", body: "start at exactly the right level." },
-  { icon: <TrendingUp size={18} />, color: "text-lime-600 bg-lime-50 border-lime-100", title: "progress tracking", body: "streak, words saved, messages sent, all in one view." },
-  { icon: <Shield size={18} />, color: "text-slate-500 bg-slate-50 border-slate-100", title: "private & secure", body: "no ads. delete your data anytime." },
+  { icon: <Bookmark size={18} />, color: "text-amber-500 bg-amber-50 border-amber-100", title: "save vocabulary", body: "words saved with the video where you found them." },
+  { icon: <Volume2 size={18} />, color: "text-blue-500 bg-blue-50 border-blue-100", title: "native audio", body: "tap-to-hear pronunciation, Deepgram Aura-2 voice." },
+  { icon: <PawPrint size={18} />, color: "text-violet-500 bg-violet-50 border-violet-100", title: "companion", body: "stars, energy, bond, curiosity. rooms + outfits." },
+  { icon: <Layers size={18} />, color: "text-indigo-500 bg-indigo-50 border-indigo-100", title: "3 levels", body: "beginner, intermediate, advanced. feed adapts." },
+  { icon: <Compass size={18} />, color: "text-teal-500 bg-teal-50 border-teal-100", title: "20 topics + explore", body: "levels, grammar, sources, Shorts vs Videos." },
+  { icon: <Bell size={18} />, color: "text-orange-500 bg-orange-50 border-orange-100", title: "plans + reminders", body: "personalized plan, 5–30 min/day, daily nudges." },
+  { icon: <Flame size={18} />, color: "text-orange-500 bg-orange-50 border-orange-100", title: "streaks + achievements", body: "activity history and progress dashboard." },
+  { icon: <Shield size={18} />, color: "text-slate-500 bg-slate-50 border-slate-100", title: "private & secure", body: "no ads on feed. delete your data anytime." },
 ];
 
 const steps = [
-  { n: "1", title: "pick a level", body: "beginner, intermediate, or advanced. or take the quick proficiency test." },
-  { n: "2", title: "say hi", body: "alya opens a real conversation in your own language." },
-  { n: "3", title: "get corrected", body: "grammar and vocab feedback woven naturally into every reply." },
-  { n: "4", title: "fluency grows", body: "daily micro-conversations build real confidence faster than any drill." },
+  { n: "1", title: "pick your goal", body: "travel, shows, work, fun, family, culture — plus your level." },
+  { n: "2", title: "get your plan", body: "clips, words, and sessions per week. 5–30 minutes a day." },
+  { n: "3", title: "scroll + tap", body: "watch clips, tap words, answer prompts, earn stars." },
+  { n: "4", title: "grow ALYA", body: "companion levels up. streaks and rooms unlock." },
 ];
 
 const Features = ({ currentPath }: { currentPath?: string }) => (
@@ -56,7 +56,7 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
             <span className="text-lime-500">can do.</span>
           </h1>
           <p className="text-neutral-500 text-lg font-light leading-relaxed max-w-lg">
-            one conversation, built from ten features. no extra tabs. no mode switching. just texting.
+            one feed, built for understanding. no prompting. no drills. just scroll.
           </p>
         </motion.div>
       </section>
@@ -126,7 +126,7 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-neutral-900 tracking-tight mb-3">
             how alya <span className="text-lime-600">works.</span>
           </h2>
-          <p className="text-neutral-400 text-base sm:text-lg md:text-xl font-light">four steps. ten minutes a day.</p>
+          <p className="text-neutral-400 text-base sm:text-lg md:text-xl font-light">four steps. 5–30 minutes a day.</p>
         </motion.div>
 
         <div className="relative">
@@ -177,11 +177,11 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
         className="max-w-md mx-auto text-center"
       >
         <h2 className="text-3xl sm:text-4xl font-semibold text-neutral-900 tracking-tight leading-tight mb-3">
-          try every feature<br />
+          try the feed<br />
           <span className="text-lime-500">free.</span>
         </h2>
         <p className="text-neutral-500 text-base font-light mb-8 max-w-sm mx-auto">
-          everything above is included in the free plan. no credit card to start.
+          free daily immersion. no credit card to start.
         </p>
         <a
           href={APP_STORE_URL}

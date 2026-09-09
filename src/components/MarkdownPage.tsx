@@ -79,12 +79,12 @@ export const MarkdownPage = ({ file, currentPath }: MarkdownPageProps) => {
     <div className="min-h-screen text-neutral-900 flex flex-col font-sans bg-lime-50">
       <NavBar currentPath={currentPath} />
 
-      <main className="w-full max-w-4xl mx-auto px-4 sm:px-6 pb-32 pt-28 flex-grow flex flex-col">
+      <main className="w-full max-w-4xl mx-auto px-4 sm:px-6 pb-32 pt-28 grow flex flex-col">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: ANIMATION_EASE }}
-          className="flex-grow"
+          className="grow"
         >
           <div className="glass-heavy rounded-3xl p-8 md:p-14 shadow-sm relative overflow-hidden">
             <div className="absolute top-0 left-0 right-0 h-1 bg-lime-400" />

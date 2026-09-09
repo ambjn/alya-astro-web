@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Topics from '../views/Topics';
+import { FEED_TOPICS } from '../data/languages';
+
+const topicNames = [...FEED_TOPICS];
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Spanish immersion topics on ALYA",
+  description: "20 topics in the ALYA Spanish immersion feed, from Travel and Food to Comedy and Culture.",
+  itemListElement: topicNames.map((name, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name,
+  })),
+};
+---
+
+<Layout
+  title="20 Spanish Topics — Travel, Food, Culture, Music & More | ALYA"
+  description="Pick your topics and learn Spanish from videos about them: Travel, Food, Culture, Music, Comedy, Work, Sports + 13 more. Free daily feed on iOS."
+  ogTitle="20 Topics. Your Spanish Feed. | ALYA"
+  ogDescription="Travel, Food, Culture, Music, Comedy + 15 more. Learn Spanish from videos you actually care about."
+  canonical="/topics"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} slot="head" />
+  <Topics currentPath="/topics" client:load />
+</Layout>

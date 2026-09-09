@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { MessageCircle, Zap, Globe, Brain } from "lucide-react";
+import { Play, MousePointerClick, PawPrint } from "lucide-react";
 import { Footer } from "./Footer";
 import { NavBar } from "./NavBar";
 import { FAQAccordion } from "./FAQAccordion";
@@ -7,12 +7,7 @@ import type { FAQItem } from "./FAQAccordion";
 import { AppleIcon } from "./DownloadButton";
 import { ANIMATION_EASE, APP_STORE_URL } from "../constants";
 
-export interface ConversationMessage {
-  role: "user" | "alya";
-  text: string;
-}
-
-export interface LanguagePageProps {
+interface LanguagePageProps {
   nativeName: string;
   languageName: string;
   tagline: string;
@@ -20,64 +15,9 @@ export interface LanguagePageProps {
   speakers: string;
   difficulty: string;
   timeToConversation: string;
-  conversation: ConversationMessage[];
   levels: { name: string; description: string; example: string }[];
   faqs: FAQItem[];
   currentPath?: string;
-}
-
-function renderBubbleText(text: string, isAlya: boolean) {
-  const parts = text.split(/(\*[^*]+\*|`[^`]+`|\n\n)/g);
-  return parts.map((part, i) => {
-    if (part.startsWith("*") && part.endsWith("*")) {
-      return (
-        <strong key={i} className={`font-semibold ${isAlya ? "text-lime-400" : "font-semibold"}`}>
-          {part.slice(1, -1)}
-        </strong>
-      );
-    }
-    if (part.startsWith("`") && part.endsWith("`")) {
-      return (
-        <span key={i} className="text-neutral-400 text-[0.82em] font-medium tracking-tight">
-          {part.slice(1, -1)}
-        </span>
-      );
-    }
-    if (part === "\n\n") {
-      return <div key={i} className="h-1.5" />;
-    }
-    return <span key={i}>{part}</span>;
-  });
-}
-
-function ChatBubble({ msg, index }: { msg: ConversationMessage; index: number }) {
-  const isAlya = msg.role === "alya";
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 10, x: isAlya ? -6 : 6 }}
-      whileInView={{ opacity: 1, y: 0, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.12, ease: ANIMATION_EASE }}
-      className={`flex ${isAlya ? "justify-start" : "justify-end"} mb-2.5`}
-    >
-      {isAlya && (
-        <img
-          src="/logo/splash-icon.png"
-          alt="alya"
-          className="w-7 h-7 rounded-full object-cover mr-2 mt-0.5 shrink-0"
-        />
-      )}
-      <div
-        className={`max-w-[84%] px-3.5 py-2.5 rounded-2xl text-xs leading-relaxed ${
-          isAlya
-            ? "bg-neutral-700 text-white rounded-tl-sm"
-            : "bg-lime-400 text-neutral-900 rounded-tr-sm font-medium"
-        }`}
-      >
-        {renderBubbleText(msg.text, isAlya)}
-      </div>
-    </motion.div>
-  );
 }
 
 export const LanguagePage = ({
@@ -88,7 +28,6 @@ export const LanguagePage = ({
   speakers,
   difficulty,
   timeToConversation,
-  conversation,
   levels,
   faqs,
   currentPath,
@@ -137,7 +76,7 @@ export const LanguagePage = ({
               <AppleIcon size={14} />
               download free on iOS
             </a>
-            <p className="text-neutral-400 text-xs">5 messages/day · forever free · no credit card needed</p>
+            <p className="text-neutral-400 text-xs">free daily feed · Plus with 7-day trial · no credit card needed</p>
           </motion.div>
         </section>
 
@@ -149,9 +88,9 @@ export const LanguagePage = ({
           className="mb-24 grid grid-cols-1 md:grid-cols-3 gap-4"
         >
           {[
-            { label: "native speakers", value: speakers, icon: <Globe size={20} /> },
-            { label: "difficulty level", value: difficulty, icon: <Brain size={20} /> },
-            { label: "to basic fluency", value: timeToConversation, icon: <MessageCircle size={20} /> },
+            { label: "native speakers", value: speakers },
+            { label: "difficulty level", value: difficulty },
+            { label: "to basic understanding", value: timeToConversation },
           ].map((stat, i) => (
             <motion.div
               key={i}
@@ -161,9 +100,6 @@ export const LanguagePage = ({
               transition={{ duration: 0.5, delay: i * 0.1, ease: ANIMATION_EASE }}
               className="flex flex-col items-center justify-center p-8 rounded-2xl border border-neutral-200 bg-white hover:shadow-sm transition-all"
             >
-              <div className="mb-3 p-3 rounded-xl bg-lime-50 text-lime-600 border border-lime-100">
-                {stat.icon}
-              </div>
               <div className="text-neutral-900 text-2xl font-semibold mb-1">{stat.value}</div>
               <div className="text-neutral-500 text-xs font-medium uppercase tracking-wider">{stat.label}</div>
             </motion.div>
@@ -181,20 +117,19 @@ export const LanguagePage = ({
               how it works
             </span>
             <h2 className="text-3xl md:text-4xl font-semibold text-neutral-900 mb-5 leading-tight">
-              real conversation.<br />
-              real learning.
+              real videos.<br />
+              instant understanding.
             </h2>
             <p className="text-neutral-500 text-lg leading-relaxed mb-8 font-light">
-              forget flashcards and grammar tables. alya teaches you{" "}
-              {languageName.toLowerCase()} the way you learned your first language: by
-              actually using it.
+              forget drills and grammar tables. alya teaches you{" "}
+              {languageName.toLowerCase()} the way you actually encounter it: real people, real situations, with translation built in.
             </p>
 
             <div className="space-y-5">
               {[
-                { title: "conversation first", desc: "learn by doing in natural chats", icon: <MessageCircle size={18} /> },
-                { title: "contextual corrections", desc: "gentle fixes woven into replies", icon: <Zap size={18} /> },
-                { title: "cultural context", desc: "learn slang and real usage", icon: <Globe size={18} /> },
+                { title: "scroll the feed", desc: "short native clips matched to your level", icon: <Play size={18} /> },
+                { title: "tap to translate", desc: "transcript, glosses, native audio on demand", icon: <MousePointerClick size={18} /> },
+                { title: "grow your companion", desc: "stars, streaks, rooms, and rewards", icon: <PawPrint size={18} /> },
               ].map((item, i) => (
                 <div key={i} className="flex gap-4">
                   <div className="p-2.5 rounded-xl h-fit bg-lime-50 text-lime-600 border border-lime-100 shrink-0">
@@ -216,21 +151,22 @@ export const LanguagePage = ({
             transition={{ duration: 0.6, ease: ANIMATION_EASE }}
             className="relative mx-auto w-full max-w-md"
           >
-            <div className="bg-neutral-800 rounded-3xl overflow-hidden shadow-2xl border border-white/5">
-              <div className="flex items-center gap-2.5 px-4 py-3.5 border-b border-white/10">
+            <div className="bg-neutral-900 rounded-3xl overflow-hidden shadow-2xl border border-white/10">
+              <div className="relative bg-neutral-800 aspect-[9/11] p-4 flex flex-col justify-end">
+                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-black/30" />
+                <div className="absolute top-3 left-3 flex gap-1.5">
+                  <span className="px-2 py-1 rounded-full bg-black/50 text-white text-[9px] font-semibold">Mercado</span>
+                  <span className="px-2 py-1 rounded-full bg-lime-400 text-neutral-900 text-[9px] font-bold">Beginner</span>
+                </div>
                 <div className="relative">
-                  <img src="/logo/splash-icon.png" alt="alya" className="w-8 h-8 rounded-full object-cover" />
-                  <div className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-lime-400 border-2 border-neutral-800" />
+                  <p className="text-white text-sm font-medium mb-1">¿Cuánto cuesta?</p>
+                  <p className="text-white/70 text-xs mb-2">How much does it cost?</p>
+                  <div className="bg-white/10 rounded-xl p-2.5 mb-2">
+                    <p className="text-lime-300 text-[11px] font-semibold">cuesta → costs (from costar)</p>
+                    <p className="text-white/60 text-[10px]">tap any word for its gloss 🔊</p>
+                  </div>
+                  <p className="text-lime-400 text-[11px] font-semibold">★ +5 · saved “cuánto” to vocabulary</p>
                 </div>
-                <div>
-                  <div className="font-semibold text-white text-sm">alya</div>
-                  <div className="text-lime-400 text-xs">● online</div>
-                </div>
-              </div>
-              <div className="p-4 space-y-1">
-                {conversation.map((msg, i) => (
-                  <ChatBubble key={i} msg={msg} index={i} />
-                ))}
               </div>
             </div>
           </motion.div>
@@ -248,7 +184,7 @@ export const LanguagePage = ({
               every level, <span className="text-lime-500">covered.</span>
             </h2>
             <p className="text-neutral-500 text-lg font-light max-w-xl mx-auto">
-              whether you&apos;re starting from zero or polishing your fluency, alya adapts to you.
+              whether you&apos;re starting from zero or polishing fluency, the feed adapts to you.
             </p>
           </motion.div>
 
@@ -269,7 +205,7 @@ export const LanguagePage = ({
                   {level.description}
                 </p>
                 <div className="bg-neutral-50 p-4 rounded-xl border border-neutral-100">
-                  <p className="text-neutral-400 text-xs uppercase tracking-wider mb-1.5 font-semibold">example</p>
+                  <p className="text-neutral-400 text-xs uppercase tracking-wider mb-1.5 font-semibold">you'll hear</p>
                   <p className="text-neutral-700 text-sm italic">&ldquo;{level.example}&rdquo;</p>
                 </div>
               </motion.div>

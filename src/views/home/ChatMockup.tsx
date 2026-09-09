@@ -8,72 +8,34 @@ export const ChatMockup = () => (
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.6, ease }}
-      className="bg-neutral-800 rounded-3xl p-4 shadow-2xl border border-white/5"
+      className="bg-neutral-900 rounded-3xl overflow-hidden shadow-2xl border border-white/10"
     >
-      <div className="flex items-center gap-2.5 pb-3 mb-3 border-b border-white/10">
-        <img src="/logo/splash-icon.png" alt="alya" className="w-7 h-7 rounded-full object-cover" />
-        <div>
-          <p className="text-white text-xs font-semibold">alya</p>
-          <p className="text-lime-400 text-[10px]">● online</p>
+      <div className="relative bg-neutral-800 aspect-[9/11] flex flex-col justify-end p-4">
+        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-black/30" />
+        <div className="absolute top-3 left-3 flex gap-1.5">
+          <span className="px-2 py-1 rounded-full bg-black/50 text-white text-[9px] font-semibold">Travel</span>
+          <span className="px-2 py-1 rounded-full bg-lime-400 text-neutral-900 text-[9px] font-bold">Beginner</span>
+        </div>
+        <div className="relative">
+          <p className="text-white text-sm font-medium leading-snug mb-1">
+            ¿Dónde está <span className="bg-lime-400 text-neutral-900 px-1 rounded font-semibold">la estación</span>?
+          </p>
+          <p className="text-white/70 text-xs mb-3">Where is the station?</p>
+          <div className="flex items-center gap-2">
+            <div className="flex-1 h-1 rounded-full bg-white/20 overflow-hidden">
+              <div className="h-full w-2/3 bg-lime-400 rounded-full" />
+            </div>
+            <span className="text-white/60 text-[10px]">0:07</span>
+          </div>
         </div>
       </div>
-      <div className="space-y-2.5">
-        {[
-          {
-            side: "right",
-            text: <p className="text-neutral-900 text-xs font-medium">tengo un perro!</p>,
-          },
-          {
-            side: "left",
-            text: (
-              <>
-                <p className="text-white text-xs">
-                  <span className="text-lime-400 font-semibold">mi perro se llama...</span>{" "}
-                  <span className="text-neutral-400 text-[10px]">mee peh-ro seh yah-ma</span>,
-                  meaning "my dog's name is..."
-                </p>
-                <p className="text-white text-xs mt-1.5">
-                  you're speaking Spanish!! 🎉 what's your dog's name? try using that phrase!
-                </p>
-              </>
-            ),
-          },
-          {
-            side: "right",
-            text: <p className="text-neutral-900 text-xs font-medium">can you teach me the colors?</p>,
-          },
-          {
-            side: "left",
-            text: (
-              <>
-                <p className="text-white text-xs">
-                  <span className="text-lime-400 font-semibold">rojo</span> ra-ho = red,{" "}
-                  <span className="text-lime-400 font-semibold">azul</span> ah-sool = blue,{" "}
-                  <span className="text-lime-400 font-semibold">verde</span> ver-deh = green,{" "}
-                  <span className="text-lime-400 font-semibold">amarillo</span> ah-mah-ree-yo = yellow 🌻
-                </p>
-                <p className="text-white text-xs mt-1.5">
-                  colors are so fun! what color is your shirt? try answering with one of those!
-                </p>
-              </>
-            ),
-          },
-        ].map((m, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, x: m.side === "left" ? -10 : 10, y: 5 }}
-            whileInView={{ opacity: 1, x: 0, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ delay: 0.2 + i * 0.15, duration: 0.4, ease }}
-            className={`flex ${m.side === "right" ? "justify-end" : ""}`}
-          >
-            <div
-              className={`${m.side === "left" ? "bg-neutral-700 rounded-tl-sm" : "bg-lime-400 rounded-tr-sm"} rounded-2xl px-3 py-2.5 max-w-[90%]`}
-            >
-              {m.text}
-            </div>
-          </motion.div>
-        ))}
+      <div className="p-3.5 flex items-center justify-between border-t border-white/10">
+        <div className="flex gap-3">
+          <span className="text-white/70 text-xs">♥ 2.1k</span>
+          <span className="text-white/70 text-xs">💬 84</span>
+          <span className="text-lime-400 text-xs font-semibold">★ +5</span>
+        </div>
+        <span className="text-white/50 text-[10px]">0.75x · 1x · 1.5x</span>
       </div>
     </motion.div>
   </div>

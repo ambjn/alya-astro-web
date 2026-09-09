@@ -7,47 +7,43 @@ import { ANIMATION_EASE as ease } from "../constants";
 const faqs = [
   {
     question: "is alya actually free?",
-    answer: "Yes. Download alya and get 5 messages per day, forever, no credit card, no trial period. Upgrade to Plus ($4.99/mo) or Pro ($14.99/mo) anytime for more daily messages and deeper conversation memory.",
+    answer: "Yes. Download free and get a daily immersion feed — real Spanish videos with transcripts, translations, and word glosses. ALYA Plus (Annual / Monthly, 7-day free trial when eligible) unlocks Unlimited Immersion, Advanced Explanations, Unlimited Vocabulary, and Customization.",
   },
   {
     question: "how is alya different from Duolingo?",
-    answer: "Duolingo teaches you to study Spanish: vocabulary lists, hearts, streaks. Alya teaches you to speak it. Every session is a real conversation where alya corrects you in context, adapts to your level, and responds like a bilingual friend. No preset curriculum, no lives to lose.",
+    answer: "Duolingo drills vocabulary with exercises. Alya is immersion: short native videos where you tap to understand, save words, and grow a companion. If drills feel boring, scroll instead.",
   },
   {
-    question: "do I need to speak English to use alya?",
-    answer: "Not at all. Alya detects the language you text in (Hindi, Japanese, French, Portuguese, and more) and responds in that same language while teaching you Spanish. Alya was built for learners worldwide, not just English speakers.",
+    question: "do I need to know Spanish already?",
+    answer: "No. Beginner clips come with full translations and per-word glosses. The feed adapts from beginner to intermediate to advanced as you improve.",
   },
   {
-    question: "how long before I can hold a real conversation?",
-    answer: "Most learners can handle basic everyday conversations within 4 to 8 weeks of daily practice. The key is consistency over intensity: 10 to 15 minutes every day beats a 2-hour weekend session every time.",
+    question: "how much time per day?",
+    answer: "5–30 minutes. Onboarding builds a personalized plan (clips, words, sessions per week) and you can set daily reminders — morning, afternoon, evening, or night.",
   },
   {
-    question: "can I practice speaking, not just typing?",
-    answer: "Yes. Send voice messages to alya and she'll transcribe, respond, and teach. Tap any Spanish word in alya's replies to hear native-accent pronunciation. Voice in, voice out.",
+    question: "how does tap-to-translate work?",
+    answer: "Every clip has a synchronized Spanish transcript and English translation. Tap any unfamiliar word for its exact gloss in context, hear native pronunciation, and save it to your vocabulary.",
   },
   {
-    question: "what Spanish does alya teach?",
-    answer: "Latin American Spanish, the variety spoken in Mexico, Colombia, Argentina, and across the continent. Modern, natural, and understood everywhere. Alya deliberately avoids Spain-specific slang.",
+    question: "what is the ALYA companion?",
+    answer: "Watching, saving words, and completing prompts earns stars. Stars grow ALYA's energy, bond, and curiosity — unlocking rooms, outfits, streaks, and achievements.",
   },
   {
-    question: "what counts as a message?",
-    answer: "Each message you send to alya counts as one. Alya's replies don't count. The limit resets every 24 hours.",
+    question: "what does ALYA Plus include?",
+    answer: "Unlimited Immersion (every clip and collection), Advanced Explanations (nuance and natural phrasing), Unlimited Vocabulary (save and review every phrase), and ALYA Customization (outfits and room items).",
   },
   {
-    question: "what happens when I hit my daily limit?",
-    answer: "Alya lets you know you've reached your limit for the day and shows you upgrade options. Your conversation history is saved and ready when the limit resets.",
+    question: "is there a free trial?",
+    answer: "Eligible users get a 7-day free trial on Plus. Cancel anytime before it ends. Subscriptions are iOS-only via the App Store.",
   },
   {
-    question: "can I switch plans?",
-    answer: "Yes, anytime. Upgrade or downgrade from the settings screen in the app. Changes take effect at the next billing cycle.",
+    question: "can I filter what I watch?",
+    answer: "Yes. Explore lets you filter by level (Beginner / Intermediate / Advanced), grammar (Questions, Present/Past tense, Commands, Polite phrases, Conversation), source (Anime → Lesson), and format (Shorts vs Videos).",
   },
   {
-    question: "what payment methods are accepted?",
-    answer: "Subscriptions are processed through the App Store using your Apple ID. All major cards, Apple Pay, and carrier billing are supported.",
-  },
-  {
-    question: "is there a student discount?",
-    answer: "Not yet, but the free plan is genuinely useful for casual learners. Plus at $4.99/month is less than a single coffee.",
+    question: "what Spanish will I hear?",
+    answer: "Real-world Spanish from native videos — street interviews, vlogs, food, travel, music, culture. Always with translations so you understand in context.",
   },
 ];
 
@@ -87,5 +83,3 @@ export const FAQ = ({ currentPath }: { currentPath?: string }) => {
     </div>
   );
 };
-
-export default FAQ;

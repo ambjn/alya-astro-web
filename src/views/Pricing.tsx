@@ -4,22 +4,20 @@ import { Check, ChevronRight } from "lucide-react";
 import { Footer } from "../components/Footer";
 import { NavBar } from "../components/NavBar";
 import { FAQAccordion } from "../components/FAQAccordion";
-import { ANIMATION_EASE as ease, COMPARE_LINKS } from "../constants";
+import { ANIMATION_EASE as ease, COMPARE_LINKS, PLUS_FEATURES } from "../constants";
 
-type BillingCycle = "weekly" | "monthly" | "annual";
+type BillingCycle = "monthly" | "annual";
 
 const plans = [
   {
     id: "free",
     name: "free",
-    prices: { weekly: null, monthly: 0, annual: null },
-    annualMonthly: undefined as number | undefined,
-    tagline: "try alya, no commitment",
+    tagline: "daily immersion feed",
     features: [
-      "5 messages per day",
-      "all 3 proficiency levels",
-      "20-message memory",
-      "instant corrections",
+      "daily immersion feed",
+      "tap-to-translate + word glosses",
+      "save vocabulary",
+      "companion + stars",
     ],
     cta: "download free",
     highlight: false,
@@ -27,83 +25,45 @@ const plans = [
   {
     id: "plus",
     name: "plus",
-    prices: { weekly: 1.99, monthly: 4.99, annual: 29.99 },
-    annualMonthly: 2.5,
-    tagline: "for serious learners",
+    tagline: "unlimited everything",
     features: [
-      "25 messages per day",
-      "all 3 proficiency levels",
-      "40-message memory",
-      "instant corrections",
+      ...PLUS_FEATURES.map((f) => `${f.title} — ${f.desc}`),
+      "7-day free trial when eligible",
     ],
     cta: "get plus",
     highlight: true,
-  },
-  {
-    id: "pro",
-    name: "pro",
-    prices: { weekly: 4.99, monthly: 14.99, annual: 89.99 },
-    annualMonthly: 7.5,
-    tagline: "for daily immersion",
-    features: [
-      "75 messages per day",
-      "all 3 proficiency levels",
-      "60-message memory",
-      "instant corrections",
-      "deeper conversation memory",
-    ],
-    cta: "get pro",
-    highlight: false,
   },
 ];
 
 const faqs = [
   {
     question: "is alya really free?",
-    answer: "yes. download alya and get 5 messages per day, forever. no credit card required. upgrade to plus or pro anytime from within the app.",
+    answer: "yes. download free and get a daily immersion feed. ALYA Plus unlocks Unlimited Immersion, Advanced Explanations, Unlimited Vocabulary, and Customization.",
   },
   {
-    question: "what counts as a message?",
-    answer: "each message you send to alya counts as one. alya's replies don't count. the limit resets every 24 hours.",
+    question: "what does ALYA Plus include?",
+    answer: "Unlimited Immersion (every clip and collection), Advanced Explanations (nuance and natural phrasing), Unlimited Vocabulary (save and review every phrase), and ALYA Customization (outfits and room items).",
   },
   {
-    question: "what language do I need to speak to use alya?",
-    answer: "any language. alya detects the language you text in, english, hindi, french, portuguese, japanese, and more, and responds in that same language while teaching spanish. you don't need to know english.",
+    question: "is there a free trial?",
+    answer: "eligible users get a 7-day free trial on Plus. then the selected Annual or Monthly plan renews automatically. cancel anytime before the trial ends.",
   },
   {
-    question: "can I switch plans?",
-    answer: "yes, anytime. upgrade or downgrade from the settings screen in the app. changes take effect at the next billing cycle.",
+    question: "how do I pay?",
+    answer: "subscriptions are processed through the App Store with RevenueCat. iOS only. manage, upgrade, or cancel from Settings → Billing & Restore Purchases.",
   },
   {
-    question: "what payment methods are accepted?",
-    answer: "subscriptions are processed through the App Store using your Apple ID. all major cards, Apple Pay, and carrier billing are supported.",
+    question: "can I switch between Annual and Monthly?",
+    answer: "yes, anytime from the paywall or settings. changes take effect at the next billing cycle.",
   },
   {
-    question: "is there a student discount?",
-    answer: "not yet, but the free plan is genuinely useful for casual learners. plus at $4.99/month is less than a single coffee.",
-  },
-  {
-    question: "what happens when I hit my daily limit?",
-    answer: "alya lets you know you've reached your limit for the day and shows you upgrade options. your conversation history is saved and ready when the limit resets.",
+    question: "what happens if I cancel?",
+    answer: "you keep Plus until the end of the billing period, then return to the free daily feed. your words, stars, and companion progress stay saved.",
   },
 ];
 
 const Pricing = ({ currentPath }: { currentPath?: string }) => {
-  const [billing, setBilling] = useState<BillingCycle>("monthly");
-
-  const getPrice = (plan: (typeof plans)[0]) => {
-    if (plan.prices.monthly === 0) return "free";
-    if (billing === "weekly") return `$${plan.prices.weekly}/wk`;
-    if (billing === "annual") return `$${plan.annualMonthly}/mo`;
-    return `$${plan.prices.monthly}/mo`;
-  };
-
-  const getSub = (plan: (typeof plans)[0]) => {
-    if (plan.prices.monthly === 0) return "forever free";
-    if (billing === "annual") return `$${plan.prices.annual} billed annually`;
-    if (billing === "weekly") return "billed weekly";
-    return "billed monthly";
-  };
+  const [billing, setBilling] = useState<BillingCycle>("annual");
 
   return (
     <div className="min-h-screen font-sans bg-lime-50">
@@ -119,7 +79,7 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
             className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-neutral-900 leading-[1.05] mb-4"
           >
             start free.<br />
-            <span className="text-lime-500">upgrade when ready.</span>
+            <span className="text-lime-500">go Plus for unlimited.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
@@ -127,7 +87,7 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
             transition={{ duration: 0.6, delay: 0.12, ease }}
             className="text-neutral-500 text-base mb-10"
           >
-            all plans start with a free tier. no credit card needed to download.
+            free daily feed. Plus unlocks everything. 7-day free trial when eligible.
           </motion.p>
 
           <motion.div
@@ -136,7 +96,7 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
             transition={{ duration: 0.5, delay: 0.2, ease }}
             className="inline-flex items-center gap-1 p-1 rounded-full border border-neutral-200 bg-white shadow-sm"
           >
-            {(["weekly", "monthly", "annual"] as BillingCycle[]).map((cycle) => (
+            {(["monthly", "annual"] as BillingCycle[]).map((cycle) => (
               <button
                 key={cycle}
                 onClick={() => setBilling(cycle)}
@@ -148,16 +108,19 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
                 <span className="capitalize">{cycle}</span>
                 {cycle === "annual" && (
                   <span className={`ml-1.5 text-[10px] font-bold ${billing === cycle ? "text-lime-400" : "text-lime-500"}`}>
-                    −50%
+                    best value
                   </span>
                 )}
               </button>
             ))}
           </motion.div>
+          <p className="text-neutral-400 text-xs mt-3">
+            {billing === "annual" ? "Annual — best value · billed yearly" : "Monthly — flexible · billed monthly"}
+          </p>
         </section>
 
         <section className="pb-20">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch max-w-3xl mx-auto">
             {plans.map((plan, i) => (
               <motion.div
                 key={plan.id}
@@ -183,11 +146,11 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
                   <p className="text-[11px] font-bold uppercase tracking-widest mb-3 text-neutral-400">
                     {plan.name}
                   </p>
-                  <p className="text-4xl font-semibold tracking-tight mb-1 text-neutral-900">
-                    {getPrice(plan)}
+                  <p className="text-4xl font-semibold tracking-tight mb-1 text-neutral-900 capitalize">
+                    {plan.id === "free" ? "free" : billing}
                   </p>
                   <p className="text-xs mb-3 text-neutral-400">
-                    {getSub(plan)}
+                    {plan.id === "free" ? "daily feed" : "price in App Store · " + (billing === "annual" ? "billed yearly" : "billed monthly")}
                   </p>
                   <p className="text-sm text-neutral-500">
                     {plan.tagline}
@@ -220,8 +183,13 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
             transition={{ duration: 0.5, delay: 0.5, ease }}
             className="text-center text-neutral-400 text-xs mt-10"
           >
-            subscriptions managed via App Store · cancel anytime · iOS only
+            subscriptions via App Store (RevenueCat) · iOS only · cancel anytime
           </motion.p>
+          <p className="text-center text-sm mt-4">
+            <a href="/support" className="text-neutral-500 hover:text-lime-600 font-medium transition-colors">
+              how billing &amp; trials work →
+            </a>
+          </p>
         </section>
 
       </main>

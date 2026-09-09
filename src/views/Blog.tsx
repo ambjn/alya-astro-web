@@ -29,7 +29,7 @@ const Blog = ({ currentPath }: { currentPath?: string }) => {
             transition={{ duration: 0.6, delay: 0.1, ease }}
             className="text-neutral-500 text-base leading-relaxed"
           >
-            guides, tips, and insights on learning spanish with ai.
+            guides, tips, and insights on learning spanish through immersion.
           </motion.p>
         </section>
 
@@ -120,7 +120,7 @@ const Blog = ({ currentPath }: { currentPath?: string }) => {
           className="mt-14 p-8 rounded-2xl border border-neutral-100 bg-white text-center"
         >
           <p className="text-neutral-400 text-[11px] font-bold uppercase tracking-widest mb-2">more posts coming soon</p>
-          <p className="text-neutral-500 text-sm">new guides every week on learning spanish with ai.</p>
+          <p className="text-neutral-500 text-sm">new guides on learning spanish through immersion.</p>
         </motion.div>
       </main>
 
