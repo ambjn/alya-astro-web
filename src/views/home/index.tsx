@@ -9,7 +9,7 @@ export const Home = () => {
     <div className="font-sans bg-lime-50">
       <section className="relative min-h-170 h-svh overflow-hidden scroll-snap-start flex flex-col justify-end bg-[#eee9df]">
         <video
-          className="absolute inset-0 w-full h-full object-cover object-[58%_center] md:object-center z-0"
+          className="absolute inset-0 w-full h-full object-cover object-[58%_center] md:object-left z-0"
           autoPlay
           muted
           loop

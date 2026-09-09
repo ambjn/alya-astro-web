@@ -7,6 +7,7 @@ export const NavBar = ({ currentPath = "", dark = false }: { currentPath?: strin
   const isHome = currentPath === "/";
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const useDarkNavPill = (dark || isHome) && !isScrolled;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,11 +41,11 @@ export const NavBar = ({ currentPath = "", dark = false }: { currentPath?: strin
         transition={{ duration: 0.4, ease: ANIMATION_EASE }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
           ? "py-3 bg-[#f4f0e7]/90 backdrop-blur-xl border-b border-neutral-900/10 shadow-[0_6px_24px_rgba(32,35,29,0.05)]"
-          : "py-6 bg-transparent"
+          : "py-10 bg-transparent"
           }`}
       >
-        <div className="container mx-auto px-6 md:px-10 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-2 group z-50">
+        <div className="container relative mx-auto px-6 md:px-10 flex items-center justify-between">
+          <a href="/" className="flex items-center gap-2 group z-50 md:fixed md:left-6 lg:left-10">
             {!isHome && (
               <div className="p-2 rounded-full bg-neutral-100 group-hover:bg-neutral-200 border border-neutral-200 transition-all">
                 <ArrowLeft size={16} className="text-neutral-500 group-hover:text-neutral-900" />
@@ -55,15 +56,15 @@ export const NavBar = ({ currentPath = "", dark = false }: { currentPath?: strin
             </span>
           </a>
 
-          <div className="hidden md:flex items-center">
-            <div className={`flex items-center gap-1 px-2 py-1.5 rounded-full backdrop-blur-sm border ${dark && !isScrolled ? "bg-white/10 border-white/15" : "bg-transparent border-neutral-300/50"}`}>
+          <div className="hidden md:flex items-center md:fixed md:right-6 lg:right-10">
+            <div className={`flex items-center gap-1 px-2.5 py-2 rounded-full border backdrop-blur-xl ${useDarkNavPill ? "bg-neutral-950/85 border-white/15 shadow-[0_10px_30px_rgba(0,0,0,0.18)]" : "bg-[#f4f0e7]/90 border-neutral-300/60 shadow-sm"}`}>
               {NAV_LINKS.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   className={`px-4 py-1.5 text-sm font-medium rounded-full transition-all duration-200 relative ${currentPath === link.href
-                    ? dark && !isScrolled ? "text-white bg-white/20" : "text-neutral-900 bg-neutral-300/50"
-                    : dark && !isScrolled ? "text-white/70 hover:text-white" : "text-neutral-500 hover:text-neutral-900"
+                    ? useDarkNavPill ? "text-white bg-white/15" : "text-neutral-900 bg-neutral-300/50"
+                    : useDarkNavPill ? "text-white/70 hover:text-white hover:bg-white/10" : "text-neutral-500 hover:text-neutral-900"
                     }`}
                 >
                   {link.label}
