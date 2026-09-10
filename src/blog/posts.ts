@@ -33,7 +33,7 @@ export const posts: BlogPost[] = [
             {
                 type: "p",
                 content:
-                    "Duolingo made language learning feel like a game. Streaks, hearts, leaderboards — genuinely fun. But users say the same thing after months: they still can't understand a real conversation.",
+                    "Duolingo made language learning feel like a game. Streaks, hearts, leaderboards, genuinely fun. But users say the same thing after months: they still can't understand a real conversation.",
             },
             {
                 type: "p",
@@ -47,7 +47,7 @@ export const posts: BlogPost[] = [
             {
                 type: "p",
                 content:
-                    "Translating 'the bear drinks milk' builds recognition. It doesn't train your ear for speed, slang, mumbling, or real situations. Comprehension comes from comprehensible input — real language you can almost understand, with support.",
+                    "Translating 'the bear drinks milk' builds recognition. It doesn't train your ear for speed, slang, mumbling, or real situations. Comprehension comes from comprehensible input, real language you can almost understand, with support.",
             },
             {
                 type: "quote",
@@ -84,7 +84,7 @@ export const posts: BlogPost[] = [
             {
                 type: "p",
                 content:
-                    "The gold standard for speaking — a real person, live. Costs $10–50/hour and needs scheduling. Use alya daily for input, italki monthly for output.",
+                    "The gold standard for speaking, a real person, live. Costs $10–50/hour and needs scheduling. Use alya daily for input, italki monthly for output.",
             },
             {
                 type: "h3",
@@ -130,14 +130,14 @@ export const posts: BlogPost[] = [
             {
                 type: "cta",
                 content:
-                    "Ready to understand real Spanish? Try alya free — scroll the feed today.",
+                    "Ready to understand real Spanish? Try alya free, scroll the feed today.",
             },
         ],
         faqs: [
             {
                 question: "What is the best alternative to Duolingo?",
                 answer:
-                    "For real understanding, alya — a Spanish immersion feed with tap-to-translate instead of drills. For human tutors, italki. For curriculum structure, Babbel.",
+                    "For real understanding, alya, a Spanish immersion feed with tap-to-translate instead of drills. For human tutors, italki. For curriculum structure, Babbel.",
             },
             {
                 question: "Why do people stop using Duolingo?",
@@ -152,7 +152,7 @@ export const posts: BlogPost[] = [
             {
                 question: "Can you become fluent using only Duolingo?",
                 answer:
-                    "Unlikely. Duolingo builds vocabulary and habits, not comprehension of fast native speech. Add daily immersion — even 10 minutes of video with translations — for real progress.",
+                    "Unlikely. Duolingo builds vocabulary and habits, not comprehension of fast native speech. Add daily immersion, even 10 minutes of video with translations, for real progress.",
             },
         ],
     },
@@ -162,7 +162,7 @@ export const posts: BlogPost[] = [
         title: "Best AI Spanish App in 2026",
         metaTitle: "Best AI Spanish App in 2026 | ALYA",
         metaDescription:
-            "Looking for the best AI Spanish app in 2026? Here's why immersion feeds beat chatboxes and drills — and how to pick.",
+            "Looking for the best AI Spanish app in 2026? Here's why immersion feeds beat chatboxes and drills, and how to pick.",
         publishedAt: "2026-05-19",
         readingTime: "8 min read",
         category: "tier1",
@@ -172,7 +172,7 @@ export const posts: BlogPost[] = [
             {
                 type: "p",
                 content:
-                    "In 2026 the best learners aren't grinding flashcards — they're scrolling native content with AI support. But dozens of apps claim 'AI' while serving the same drills.",
+                    "In 2026 the best learners aren't grinding flashcards, they're scrolling native content with AI support. But dozens of apps claim 'AI' while serving the same drills.",
             },
             {
                 type: "h2",
@@ -245,7 +245,7 @@ export const posts: BlogPost[] = [
             {
                 type: "p",
                 content:
-                    "Linguists call it comprehensible input: language you can almost understand, with support. Every alya clip is exactly that — real Spanish made understandable by transcript, translation, and glosses. That's why 10 minutes of scrolling beats 10 minutes of multiple choice.",
+                    "Linguists call it comprehensible input: language you can almost understand, with support. Every alya clip is exactly that, real Spanish made understandable by transcript, translation, and glosses. That's why 10 minutes of scrolling beats 10 minutes of multiple choice.",
             },
             {
                 type: "quote",
@@ -255,14 +255,14 @@ export const posts: BlogPost[] = [
             {
                 type: "cta",
                 content:
-                    "Try alya free — scroll real Spanish today.",
+                    "Try alya free, scroll real Spanish today.",
             },
         ],
         faqs: [
             {
                 question: "What is the best AI app for learning Spanish?",
                 answer:
-                    "For real comprehension, alya — an immersion feed with tap-to-translate, levels, topics, and a companion. Free to download to start.",
+                    "For real comprehension, alya, an immersion feed with tap-to-translate, levels, topics, and a companion. Free to download to start.",
             },
             {
                 question: "Is AI language learning effective?",
@@ -277,7 +277,7 @@ export const posts: BlogPost[] = [
             {
                 question: "What is the best free AI Spanish app?",
                 answer:
-                    "alya is free to download — real videos with translations, 7-day trial when eligible. Duolingo is also free but drill-based rather than immersion-based.",
+                    "alya is free to download, real videos with translations, 7-day trial when eligible. Duolingo is also free but drill-based rather than immersion-based.",
             },
         ],
     },
@@ -292,7 +292,7 @@ export const posts: BlogPost[] = [
         readingTime: "7 min read",
         category: "tier1",
         excerpt:
-            "The fastest way to learn Spanish isn't drills — it's daily immersion you actually understand. Here's a 3-month plan.",
+            "The fastest way to learn Spanish isn't drills, it's daily immersion you actually understand. Here's a 3-month plan.",
         relatedLanguage: "learn-spanish",
         content: [
             {
@@ -320,7 +320,7 @@ export const posts: BlogPost[] = [
             {
                 type: "p",
                 content:
-                    "Watch natives, with support: transcript, translation, tap-to-translate, slowdown. Your brain maps sound to meaning — the skill drills skip.",
+                    "Watch natives, with support: transcript, translation, tap-to-translate, slowdown. Your brain maps sound to meaning, the skill drills skip.",
             },
             {
                 type: "h2",
@@ -333,7 +333,7 @@ export const posts: BlogPost[] = [
             {
                 type: "p",
                 content:
-                    "Greetings, food, travel, numbers — in real clips, with full translations. 5–15 min/day. Tap everything. Save 5–10 words a day.",
+                    "Greetings, food, travel, numbers, in real clips, with full translations. 5–15 min/day. Tap everything. Save 5–10 words a day.",
             },
             {
                 type: "h3",
@@ -360,12 +360,12 @@ export const posts: BlogPost[] = [
             {
                 type: "ul",
                 content: [
-                    "¿Cómo estás? — How are you?",
-                    "¿Dónde está...? — Where is...?",
-                    "¿Cuánto cuesta? — How much?",
-                    "Quisiera... — I would like...",
-                    "No entiendo — I don't understand",
-                    "¿Puedes repetir? — Can you repeat?",
+                    "¿Cómo estás?: How are you?",
+                    "¿Dónde está...?: Where is...?",
+                    "¿Cuánto cuesta?: How much?",
+                    "Quisiera..., I would like...",
+                    "No entiendo, I don't understand",
+                    "¿Puedes repetir?: Can you repeat?",
                 ],
             },
             {
@@ -376,7 +376,7 @@ export const posts: BlogPost[] = [
             {
                 type: "cta",
                 content:
-                    "Start your immersion today with alya — free to download.",
+                    "Start your immersion today with alya, free to download.",
             },
         ],
         faqs: [
@@ -398,7 +398,7 @@ export const posts: BlogPost[] = [
             {
                 question: "Is Spanish hard for English speakers?",
                 answer:
-                    "One of the easiest: phonetic spelling, shared vocabulary (-tion → -ción), straightforward basics. The hard part is speed — which immersion trains directly.",
+                    "One of the easiest: phonetic spelling, shared vocabulary (-tion → -ción), straightforward basics. The hard part is speed, which immersion trains directly.",
             },
         ],
     },
@@ -407,69 +407,69 @@ export const posts: BlogPost[] = [
         slug: "spanish-conversation-practice-scenarios",
         title: "8 Real-Life Spanish Situations You'll Meet in Videos",
         metaTitle: "8 Spanish Situations to Understand Before You Travel | ALYA",
-        metaDescription: "Don't freeze on your trip. Learn these 8 real Spanish situations — café, hotel, doctor, market — with key phrases for each.",
+        metaDescription: "Don't freeze on your trip. Learn these 8 real Spanish situations, café, hotel, doctor, market, with key phrases for each.",
         publishedAt: "2026-06-06",
         readingTime: "9 min read",
         category: "tier1",
-        excerpt: "Ordering food, asking directions, handling an emergency — the worst time to meet these is for the first time. Preview them here.",
+        excerpt: "Ordering food, asking directions, handling an emergency, the worst time to meet these is for the first time. Preview them here.",
         content: [
             { type: "p", content: "Apps teach 'the bear drinks milk.' Travel needs '¿Para aquí o para llevar?' Scenario immersion closes that gap: you hear whole situations, with translations, before you live them." },
             { type: "h2", content: "8 Situations to Understand First" },
             { type: "h3", content: "1. The Café" },
             { type: "ul", content: [
-                "¿Me pone un café con leche, por favor? — A coffee with milk, please?",
-                "¿Cuánto es? — How much?",
-                "La cuenta, por favor. — The bill, please.",
+                "¿Me pone un café con leche, por favor?: A coffee with milk, please?",
+                "¿Cuánto es?: How much?",
+                "La cuenta, por favor., The bill, please.",
             ]},
             { type: "h3", content: "2. The Airport" },
             { type: "ul", content: [
-                "¿Dónde está la puerta de embarque? — Where is the gate?",
-                "Mi maleta no ha llegado. — My suitcase didn't arrive.",
+                "¿Dónde está la puerta de embarque?: Where is the gate?",
+                "Mi maleta no ha llegado., My suitcase didn't arrive.",
             ]},
             { type: "h3", content: "3. The Market" },
             { type: "ul", content: [
-                "¿A cuánto está el kilo? — How much per kilo?",
-                "¿Me lo puede rebajar? — Can you lower it a bit?",
+                "¿A cuánto está el kilo?: How much per kilo?",
+                "¿Me lo puede rebajar?: Can you lower it a bit?",
             ]},
             { type: "h3", content: "4. The Hotel" },
             { type: "ul", content: [
-                "Tengo una reserva a nombre de... — Reservation under...",
-                "El aire no funciona. — The AC isn't working.",
-                "¿A qué hora es el desayuno? — What time is breakfast?",
+                "Tengo una reserva a nombre de..., Reservation under...",
+                "El aire no funciona., The AC isn't working.",
+                "¿A qué hora es el desayuno?: What time is breakfast?",
             ]},
             { type: "h3", content: "5. The Doctor" },
             { type: "ul", content: [
-                "Me duele aquí. — It hurts here.",
-                "Soy alérgico a... — I'm allergic to...",
-                "Necesito un médico que hable inglés. — I need an English-speaking doctor.",
+                "Me duele aquí.: It hurts here.",
+                "Soy alérgico a...: I'm allergic to...",
+                "Necesito un médico que hable inglés.: I need an English-speaking doctor.",
             ]},
             { type: "h3", content: "6. Directions" },
             { type: "ul", content: [
-                "¿Cómo llego a...? — How do I get to...?",
-                "Gira a la izquierda / derecha. — Turn left / right.",
-                "Sigue recto. — Go straight.",
+                "¿Cómo llego a...?: How do I get to...?",
+                "Gira a la izquierda / derecha., Turn left / right.",
+                "Sigue recto., Go straight.",
             ]},
             { type: "h3", content: "7. The Restaurant" },
             { type: "ul", content: [
-                "¿Tienen mesa para dos? — Table for two?",
-                "¿Cuál es el plato del día? — What's today's special?",
-                "Sin mariscos, por favor. — No seafood, please.",
+                "¿Tienen mesa para dos?: Table for two?",
+                "¿Cuál es el plato del día?: What's today's special?",
+                "Sin mariscos, por favor., No seafood, please.",
             ]},
             { type: "h3", content: "8. Meeting People" },
             { type: "ul", content: [
-                "¿De dónde eres? — Where are you from?",
-                "¿Cuánto tiempo llevas aquí? — How long have you been here?",
-                "Me ha encantado conocerte. — Great to meet you.",
+                "¿De dónde eres?: Where are you from?",
+                "¿Cuánto tiempo llevas aquí?: How long have you been here?",
+                "Me ha encantado conocerte., Great to meet you.",
             ]},
             { type: "h2", content: "How to Learn These with alya" },
-            { type: "p", content: "Search Explore by topic — Travel, Food, Shopping, Health — and watch natives in these exact situations. Tap phrases, save them, hear them slowed down. By trip day, you've heard each situation dozens of times." },
+            { type: "p", content: "Search Explore by topic, Travel, Food, Shopping, Health, and watch natives in these exact situations. Tap phrases, save them, hear them slowed down. By trip day, you've heard each situation dozens of times." },
             { type: "quote", content: "\"Confidence comes from recognizing the situation. Immersion lets you rehearse dozens before you travel.\"" },
-            { type: "cta", content: "Preview all 8 situations in the alya feed — free." },
+            { type: "cta", content: "Preview all 8 situations in the alya feed, free." },
         ],
         faqs: [
             {
                 question: "What Spanish should I learn before traveling?",
-                answer: "Café/restaurant ordering, directions, hotel phrases, introductions — plus survival lines: No entiendo, ¿Puede repetir?, ¿Habla inglés?, Necesito ayuda.",
+                answer: "Café/restaurant ordering, directions, hotel phrases, introductions, plus survival lines: No entiendo, ¿Puede repetir?, ¿Habla inglés?, Necesito ayuda.",
             },
             {
                 question: "How do I practice Spanish before a trip?",
@@ -481,7 +481,7 @@ export const posts: BlogPost[] = [
             },
             {
                 question: "Is Spanish useful for South America travel?",
-                answer: "Essential — official in 19 Latin American countries plus Mexico and Spain, 500M+ natives. Even basic comprehension transforms food, prices, and connections.",
+                answer: "Essential, official in 19 Latin American countries plus Mexico and Spain, 500M+ natives. Even basic comprehension transforms food, prices, and connections.",
             },
         ],
     },
@@ -490,23 +490,23 @@ export const posts: BlogPost[] = [
         slug: "learn-spanish-vocabulary-spaced-repetition",
         title: "The Best Way to Learn Spanish Vocabulary (That Actually Sticks)",
         metaTitle: "Best Way to Learn Spanish Vocabulary | ALYA",
-        metaDescription: "Stop cramming lists. Save words from videos you love and review them — here's how video-context vocabulary sticks.",
+        metaDescription: "Stop cramming lists. Save words from videos you love and review them, here's how video-context vocabulary sticks.",
         publishedAt: "2026-06-05",
         readingTime: "7 min read",
         category: "tier1",
-        excerpt: "Study 50 words, remember 10? It's not effort — it's method. Words from videos stick because they come with a memory.",
+        excerpt: "Study 50 words, remember 10? It's not effort, it's method. Words from videos stick because they come with a memory.",
         relatedLanguage: "learn-spanish",
         content: [
-            { type: "p", content: "You study 50 words, feel good, return in three days, remember 10. Not a memory problem — a context problem. Words learned in real moments stick. Words from lists evaporate." },
+            { type: "p", content: "You study 50 words, feel good, return in three days, remember 10. Not a memory problem, a context problem. Words learned in real moments stick. Words from lists evaporate." },
             { type: "h2", content: "Why Video Context Wins" },
             { type: "p", content: "A word saved from a clip carries a face, a situation, a sound, an emotion. 'Aprovechar' from a travel vlog beats 'aprovechar = to take advantage of' on a card. Context is the mnemonic." },
             { type: "h2", content: "The Right Way to Build Vocabulary" },
             { type: "h3", content: "1. Save Words Where You Find Them" },
-            { type: "p", content: "In alya, tap any word in any clip to save it. It remembers the video, the sentence, and the gloss — far more recallable than an isolated list." },
+            { type: "p", content: "In alya, tap any word in any clip to save it. It remembers the video, the sentence, and the gloss, far more recallable than an isolated list." },
             { type: "h3", content: "2. High-Frequency First" },
-            { type: "p", content: "Top 1,000 words cover ~85% of conversation. Top 3,000 cover nearly everything daily. Save from Travel, Food, Work — your domains — not rare literary words." },
+            { type: "p", content: "Top 1,000 words cover ~85% of conversation. Top 3,000 cover nearly everything daily. Save from Travel, Food, Work, your domains, not rare literary words." },
             { type: "h3", content: "3. Review Briefly, Daily" },
-            { type: "p", content: "5 minutes of review beats weekly marathons. With Plus, vocabulary is unlimited — save everything, review what matters." },
+            { type: "p", content: "5 minutes of review beats weekly marathons. With Plus, vocabulary is unlimited, save everything, review what matters." },
             { type: "h3", content: "4. Re-hear Every Word" },
             { type: "p", content: "Tap to hear native pronunciation (Aura-2 selena-es). Slow to 0.75x. Mimic. Hearing + seeing + saving triples retention." },
             { type: "h2", content: "How Many Words Do You Need?" },
@@ -517,14 +517,14 @@ export const posts: BlogPost[] = [
                 "5,000 words: professionally fluent",
                 "10,000+: near-native",
             ]},
-            { type: "p", content: "At 500 words you already understand a lot — with translations filling the rest. Don't wait to start watching." },
+            { type: "p", content: "At 500 words you already understand a lot, with translations filling the rest. Don't wait to start watching." },
             { type: "quote", content: "\"Vocabulary is the flesh of language. Get it from living content, not lists.\"" },
-            { type: "cta", content: "Build vocabulary from real videos with alya — free." },
+            { type: "cta", content: "Build vocabulary from real videos with alya, free." },
         ],
         faqs: [
             {
                 question: "How many Spanish words per day?",
-                answer: "Save 5–15 from clips you watch. Review daily for 5 minutes. Consistency beats quantity — 5/day every day beats 100 once a week.",
+                answer: "Save 5–15 from clips you watch. Review daily for 5 minutes. Consistency beats quantity, 5/day every day beats 100 once a week.",
             },
             {
                 question: "Best way to memorize Spanish vocabulary?",
@@ -532,7 +532,7 @@ export const posts: BlogPost[] = [
             },
             {
                 question: "How many words for conversational Spanish?",
-                answer: "1,000–2,000 for comfortable casual topics. The top 1,000 cover ~85% of conversation. Start watching at 500 — translations cover the rest.",
+                answer: "1,000–2,000 for comfortable casual topics. The top 1,000 cover ~85% of conversation. Start watching at 500, translations cover the rest.",
             },
             {
                 question: "Flashcards or videos?",
@@ -545,7 +545,7 @@ export const posts: BlogPost[] = [
         slug: "spanish-grammar-cards-guide",
         title: "Spanish Grammar Guide: 7 Rules You'll Hear in Real Videos",
         metaTitle: "Spanish Grammar Guide: 7 Rules in Real Videos | ALYA",
-        metaDescription: "Stop memorizing tables. Here are the 7 Spanish rules that trip up English speakers — learned by hearing them in real clips.",
+        metaDescription: "Stop memorizing tables. Here are the 7 Spanish rules that trip up English speakers, learned by hearing them in real clips.",
         publishedAt: "2026-06-04",
         readingTime: "8 min read",
         category: "tier1",
@@ -565,27 +565,27 @@ export const posts: BlogPost[] = [
                 "Esto es para ti. (recipient → para)",
             ]},
             { type: "h3", content: "3. The Subjunctive" },
-            { type: "p", content: "Quiero que vengas. Ojalá llueva. Desire, wishes, doubt — everywhere in native speech. You'll hear it before you can explain it, and that's fine." },
+            { type: "p", content: "Quiero que vengas. Ojalá llueva. Desire, wishes, doubt, everywhere in native speech. You'll hear it before you can explain it, and that's fine." },
             { type: "h3", content: "4. Me gusta (Indirect Objects)" },
-            { type: "p", content: "'Me gusta el café' = 'coffee pleases me.' Backwards from English — but after 20 clips, it feels natural." },
+            { type: "p", content: "'Me gusta el café' = 'coffee pleases me.' Backwards from English, but after 20 clips, it feels natural." },
             { type: "h3", content: "5. Reflexives (levantarse, llamarse)" },
             { type: "p", content: "Constant in vlogs and routines. Filter Morning Routine + intermediate and you'll drown in them (usefully)." },
             { type: "h3", content: "6. Gender Agreement" },
-            { type: "p", content: "El libro / la mesa. Adjectives follow. Exposure beats rules — tap and notice." },
+            { type: "p", content: "El libro / la mesa. Adjectives follow. Exposure beats rules, tap and notice." },
             { type: "h3", content: "7. Preterite vs. Imperfect" },
             { type: "ul", content: [
                 "Comí pizza ayer. (done → preterite)",
                 "Comía pizza los viernes. (habit → imperfect)",
             ]},
             { type: "h2", content: "How to Learn These in alya" },
-            { type: "p", content: "Filter Explore by grammar — Questions, Present/Past tense, Commands, Polite phrases, Conversation. Watch natives use the rule, tap the words, save examples. Pattern first, name second." },
-            { type: "quote", content: "\"Grammar isn't memorized. It's recognized — after enough real examples.\"" },
-            { type: "cta", content: "Hear grammar in real clips with alya — free." },
+            { type: "p", content: "Filter Explore by grammar, Questions, Present/Past tense, Commands, Polite phrases, Conversation. Watch natives use the rule, tap the words, save examples. Pattern first, name second." },
+            { type: "quote", content: "\"Grammar isn't memorized. It's recognized, after enough real examples.\"" },
+            { type: "cta", content: "Hear grammar in real clips with alya, free." },
         ],
         faqs: [
             {
                 question: "Hardest Spanish grammar for English speakers?",
-                answer: "The subjunctive — desire, doubt, emotion, hypotheticals. Best learned by hearing it in dozens of clips, not memorizing conjugations first.",
+                answer: "The subjunctive, desire, doubt, emotion, hypotheticals. Best learned by hearing it in dozens of clips, not memorizing conjugations first.",
             },
             {
                 question: "How long to learn Spanish grammar?",
@@ -617,7 +617,7 @@ export const posts: BlogPost[] = [
             {
                 type: "p",
                 content:
-                    "A year ago AI language learning meant chatbots. In 2026 it means immersion at scale: thousands of native clips, each transcribed, translated, and glossed — so you understand real Spanish from day one.",
+                    "A year ago AI language learning meant chatbots. In 2026 it means immersion at scale: thousands of native clips, each transcribed, translated, and glossed, so you understand real Spanish from day one.",
             },
             {
                 type: "h2",
@@ -626,7 +626,7 @@ export const posts: BlogPost[] = [
             {
                 type: "p",
                 content:
-                    "Krashen's Input Hypothesis: we acquire language from messages slightly above our level that we can still understand. alya manufactures exactly that — real videos + transcript + translation + tap-to-translate = understandable input at any level.",
+                    "Krashen's Input Hypothesis: we acquire language from messages slightly above our level that we can still understand. alya manufactures exactly that, real videos + transcript + translation + tap-to-translate = understandable input at any level.",
             },
             {
                 type: "h2",
@@ -635,11 +635,11 @@ export const posts: BlogPost[] = [
             {
                 type: "ul",
                 content: [
-                    "Real content, pre-supported — no blank chatbox, no prompting",
+                    "Real content, pre-supported, no blank chatbox, no prompting",
                     "Available whenever you have 5 minutes",
-                    "No embarrassment — rewind and re-tap freely",
+                    "No embarrassment, rewind and re-tap freely",
                     "Level-matched + topic-filtered",
-                    "Infinite patience — same clip 20 times, zero judgment",
+                    "Infinite patience, same clip 20 times, zero judgment",
                     "Companion + streaks keep you consistent",
                 ],
             },
@@ -681,7 +681,7 @@ export const posts: BlogPost[] = [
             {
                 type: "p",
                 content:
-                    "Input builds comprehension; prompts build production. Respond in Spanish when nudged — short answers count.",
+                    "Input builds comprehension; prompts build production. Respond in Spanish when nudged, short answers count.",
             },
             {
                 type: "h3",
@@ -700,29 +700,29 @@ export const posts: BlogPost[] = [
             {
                 type: "cta",
                 content:
-                    "Start your immersion loop with alya — free.",
+                    "Start your immersion loop with alya, free.",
             },
         ],
         faqs: [
             {
                 question: "Can you really learn with AI immersion?",
                 answer:
-                    "Yes — it's Krashen's hypothesis at scale. Real messages you understand, slightly above your level, daily. Pre-translated video delivers that without a tutor on call.",
+                    "Yes, it's Krashen's hypothesis at scale. Real messages you understand, slightly above your level, daily. Pre-translated video delivers that without a tutor on call.",
             },
             {
                 question: "How does alya's AI work?",
                 answer:
-                    "Clips are transcribed, translated, and word-aligned in advance with timing, glosses, levels, and topics — so playback shows prepared learning data instantly. Pronunciation uses Deepgram Aura-2.",
+                    "Clips are transcribed, translated, and word-aligned in advance with timing, glosses, levels, and topics, so playback shows prepared learning data instantly. Pronunciation uses Deepgram Aura-2.",
             },
             {
                 question: "Is immersion better than Duolingo?",
                 answer:
-                    "For comprehension, yes. Duolingo builds habits and vocab. Immersion builds the ear. Most serious learners do both — drills plus daily video.",
+                    "For comprehension, yes. Duolingo builds habits and vocab. Immersion builds the ear. Most serious learners do both, drills plus daily video.",
             },
             {
                 question: "What can I learn with alya?",
                 answer:
-                    "Spanish comprehension from beginner to advanced — 20 topics, 3 levels, grammar filters — with a companion that rewards consistency.",
+                    "Spanish comprehension from beginner to advanced, 20 topics, 3 levels, grammar filters, with a companion that rewards consistency.",
             },
         ],
     },
@@ -751,9 +751,9 @@ export const posts: BlogPost[] = [
             {
                 type: "ul",
                 content: [
-                    "Unlimited Immersion — every clip, picked for your level",
-                    "Instant Explanations — tap any phrase to understand it in context",
-                    "Your Evolving Companion — complete clips and save words to grow ALYA",
+                    "Unlimited Immersion, every clip, picked for your level",
+                    "Instant Explanations, tap any phrase to understand it in context",
+                    "Your Evolving Companion, complete clips and save words to grow ALYA",
                 ],
             },
             {
@@ -763,10 +763,10 @@ export const posts: BlogPost[] = [
             {
                 type: "ul",
                 content: [
-                    "7 days free when eligible — paywall shows Start Free Trial only then",
-                    "Annual (best value) or Monthly — price shown in the App Store",
-                    "Via App Store with RevenueCat — iOS only",
-                    "Renews automatically — cancel anytime before it ends",
+                    "7 days free when eligible, paywall shows Start Free Trial only then",
+                    "Annual (best value) or Monthly, price shown in the App Store",
+                    "Via App Store with RevenueCat, iOS only",
+                    "Renews automatically, cancel anytime before it ends",
                     "Already subscribed? Tap Restore in the paywall",
                 ],
             },
@@ -782,7 +782,7 @@ export const posts: BlogPost[] = [
             {
                 type: "cta",
                 content:
-                    "Start with the 7-day trial when eligible — download alya.",
+                    "Start with the 7-day trial when eligible, download alya.",
             },
         ],
         faqs: [

@@ -14,7 +14,7 @@ const plans = [
     name: "plus monthly",
     tagline: "flexible · per month",
     features: [
-      ...PLUS_FEATURES.map((f) => `${f.title} — ${f.desc}`),
+      ...PLUS_FEATURES.map((f) => `${f.title}, ${f.desc}`),
       "7-day free trial when eligible",
       "Billing handled securely by the App Store",
     ],
@@ -26,7 +26,7 @@ const plans = [
     name: "plus annual",
     tagline: "best value · per year",
     features: [
-      ...PLUS_FEATURES.map((f) => `${f.title} — ${f.desc}`),
+      ...PLUS_FEATURES.map((f) => `${f.title}, ${f.desc}`),
       "7-day free trial when eligible",
       "Annual savings vs monthly · renews automatically",
     ],
@@ -38,7 +38,7 @@ const plans = [
 const faqs = [
   {
     question: "is alya free to download?",
-    answer: "Yes — free to download on iOS. ALYA Plus membership is required to use the feed. New users get a 7-day free trial when eligible, then the selected Annual or Monthly plan renews automatically.",
+    answer: "Yes, free to download on iOS. ALYA Plus membership is required to use the feed. New users get a 7-day free trial when eligible, then the selected Annual or Monthly plan renews automatically.",
   },
   {
     question: "what does ALYA Plus include?",
@@ -46,11 +46,11 @@ const faqs = [
   },
   {
     question: "is there a free trial?",
-    answer: "Eligible new users get 7 days free. The paywall shows Start Free Trial only when your Apple ID is eligible. Then the plan price shown renews automatically — cancel anytime before the trial ends.",
+    answer: "Eligible new users get 7 days free. The paywall shows Start Free Trial only when your Apple ID is eligible. Then the plan price shown renews automatically, cancel anytime before the trial ends.",
   },
   {
     question: "how do I pay, restore, or cancel?",
-    answer: "Subscriptions are processed through the App Store with RevenueCat — iOS only. Already subscribed? Tap Restore in the paywall. Manage, upgrade, or cancel from Settings → Billing, or your Apple ID subscriptions.",
+    answer: "Subscriptions are processed through the App Store with RevenueCat, iOS only. Already subscribed? Tap Restore in the paywall. Manage, upgrade, or cancel from Settings → Billing, or your Apple ID subscriptions.",
   },
   {
     question: "can I switch between Annual and Monthly?",
@@ -58,7 +58,7 @@ const faqs = [
   },
   {
     question: "what happens if I cancel?",
-    answer: "You keep Plus until the end of the billing period. Your words, stars, and companion progress stay saved. Without Plus you return to the paywall — there is no free tier.",
+    answer: "You keep Plus until the end of the billing period. Your words, stars, and companion progress stay saved. Without Plus you return to the paywall, there is no free tier.",
   },
 ];
 
@@ -117,7 +117,7 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
             ))}
           </motion.div>
           <p className="text-neutral-400 text-xs mt-3">
-            {billing === "annual" ? "Annual — best value · billed yearly" : "Monthly — flexible · billed monthly"}
+            {billing === "annual" ? "Annual, best value · billed yearly" : "Monthly, flexible · billed monthly"}
           </p>
         </section>
 
@@ -189,7 +189,7 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
             className="text-center mt-10 max-w-xl mx-auto"
           >
             <p className="text-neutral-500 text-sm font-medium">
-              {activePlan.id === "annual" ? "Start free trial" : "Choose monthly"} in the app — price shown in the App Store.
+              {activePlan.id === "annual" ? "Start free trial" : "Choose monthly"} in the app, price shown in the App Store.
             </p>
             <p className="text-neutral-400 text-xs mt-2">
               subscriptions via App Store (RevenueCat) · iOS only · 7 days free when eligible · renews automatically · cancel anytime

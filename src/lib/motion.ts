@@ -1,6 +1,6 @@
 import { ANIMATION_EASE as ease } from "../constants";
 
-/** Stagger parent — animates children in sequence */
+/** Stagger parent, animates children in sequence */
 export const staggerVariants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },

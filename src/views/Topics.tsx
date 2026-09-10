@@ -11,21 +11,21 @@ const TOPIC_BLURBS: Record<string, string> = {
   Animals: "pets and wildlife vocabulary you'll actually use.",
   Beauty: "routines, salons, and everyday self-care Spanish.",
   Business: "companies, money, and professional conversations.",
-  Comedy: "jokes, memes, and street humor — the hardest, funniest test.",
+  Comedy: "jokes, memes, and street humor, the hardest, funniest test.",
   Cooking: "recipes and kitchens, step by step.",
   Exercise: "gyms, workouts, and fitness routines.",
-  Food: "ordering, markets, menus — eat well anywhere.",
-  Travel: "airports, hotels, directions — the phrases your trip runs on.",
+  Food: "ordering, markets, menus, eat well anywhere.",
+  Travel: "airports, hotels, directions, the phrases your trip runs on.",
   Family: "introductions, small talk, meeting people.",
   Fashion: "clothes, style, shopping for outfits.",
   Gaming: "streams and slang from Spanish-speaking gamers.",
   Health: "doctor visits, pharmacy, describing symptoms.",
   "Spanish Culture": "how Spanish speakers actually live, celebrate, and talk.",
-  "Morning Routine": "daily life vlogs — the most relatable input there is.",
+  "Morning Routine": "daily life vlogs, the most relatable input there is.",
   Music: "songs and artists, with lyrics you finally understand.",
   Relationships: "friendship, dating, and real talk.",
   Shopping: "prices, bargaining, stores, markets.",
-  Sports: "fútbol and beyond — commentary speed included.",
+  Sports: "fútbol and beyond: commentary speed included.",
   Work: "meetings, interviews, office life.",
   Technology: "phones, apps, and digital life.",
 };
@@ -33,7 +33,7 @@ const TOPIC_BLURBS: Record<string, string> = {
 const faqs = [
   {
     question: "how do topics work?",
-    answer: "Pick the topics you love during onboarding — or anytime in Explore. The feed prioritizes matching clips while keeping enough variety that it never runs dry.",
+    answer: "Pick the topics you love during onboarding, or anytime in Explore. The feed prioritizes matching clips while keeping enough variety that it never runs dry.",
   },
   {
     question: "what if my topic runs out of clips?",
@@ -41,15 +41,15 @@ const faqs = [
   },
   {
     question: "can I filter by level and topic together?",
-    answer: "Yes. Explore combines level (Beginner / Intermediate / Advanced), grammar (Questions, Present/Past tense, Commands, Polite phrases, Conversation), source (Anime, Cartoon, Drama, Movie, Music, News, Vlog, Podcast, Interview, Lesson), and format (Shorts ≤90s vs Videos) — plus search in Spanish, English, or a phrase.",
+    answer: "Yes. Explore combines level (Beginner / Intermediate / Advanced), grammar (Questions, Present/Past tense, Commands, Polite phrases, Conversation), source (Anime, Cartoon, Drama, Movie, Music, News, Vlog, Podcast, Interview, Lesson), and format (Shorts ≤90s vs Videos), plus search in Spanish, English, or a phrase.",
   },
   {
     question: "which topics are best for beginners?",
-    answer: "Food, Travel, Shopping, and Morning Routine — concrete vocabulary, clear situations, slower speech. Comedy and Music are tastier at intermediate and above.",
+    answer: "Food, Travel, Shopping, and Morning Routine, concrete vocabulary, clear situations, slower speech. Comedy and Music are tastier at intermediate and above.",
   },
   {
     question: "is Spanish Culture different from language lessons?",
-    answer: "Yes. Spanish Culture clips are real native videos about how Spanish speakers live — not classroom lessons. Every clip still ships with transcript, translation, and tap-to-translate so you understand in context.",
+    answer: "Yes. Spanish Culture clips are real native videos about how Spanish speakers live, not classroom lessons. Every clip still ships with transcript, translation, and tap-to-translate so you understand in context.",
   },
 ];
 
@@ -65,7 +65,7 @@ const Topics = ({ currentPath }: { currentPath?: string }) => (
             <span className="text-lime-500">your feed.</span>
           </h1>
           <p className="text-neutral-500 text-lg font-light leading-relaxed max-w-lg">
-            not a curriculum — a feed. pick what you love, and learn Spanish from videos about it. Travel, Food, Spanish Culture, Music, Comedy + 15 more.
+            not a curriculum, a feed. pick what you love, and learn Spanish from videos about it. Travel, Food, Spanish Culture, Music, Comedy + 15 more.
           </p>
         </motion.div>
       </section>

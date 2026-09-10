@@ -12,7 +12,7 @@ const coreFeatures = [
   {
     icon: <Play size={26} />,
     title: "immersion feed",
-    body: "a vertical feed of short native Spanish videos. 20 clips on open, more before you run out — with 14-day cooldown so you never rewatch too soon.",
+    body: "a vertical feed of short native Spanish videos. 20 clips on open, more before you run out, with 14-day cooldown so you never rewatch too soon.",
   },
   {
     icon: <MousePointerClick size={26} />,
@@ -35,7 +35,7 @@ const features = [
 ];
 
 const steps = [
-  { n: "1", title: "pick your goal", body: "travel, movies & shows, work, fun, friends & family, culture — plus your level." },
+  { n: "1", title: "pick your goal", body: "travel, movies & shows, work, fun, friends & family, culture, plus your level." },
   { n: "2", title: "get your plan", body: "minutes/day, streak goal, level + focus. 5–30 minutes a day beats marathons." },
   { n: "3", title: "scroll + tap", body: "watch clips, tap phrases, save words, answer prompts, earn stars." },
   { n: "4", title: "grow ALYA", body: "energy, bond + curiosity grow. streaks + achievements unlock." },
@@ -123,7 +123,7 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
 
       <section className="pb-20">
         <div className="p-7 sm:p-8 rounded-3xl border border-neutral-200 bg-white">
-          <p className="text-[11px] font-bold uppercase tracking-widest text-neutral-400 mb-5">Explore filters — find exactly your clip</p>
+          <p className="text-[11px] font-bold uppercase tracking-widest text-neutral-400 mb-5">Explore filters, find exactly your clip</p>
           <div className="grid sm:grid-cols-2 gap-4">
             {exploreFilters.map((f) => (
               <div key={f.label} className="rounded-2xl bg-neutral-50 border border-neutral-100 p-4">
