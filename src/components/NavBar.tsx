@@ -7,7 +7,7 @@ export const NavBar = ({ currentPath = "", dark = false }: { currentPath?: strin
   const isHome = currentPath === "/";
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const useDarkNavPill = (dark || isHome) && !isScrolled;
+  const useDarkNavPill = isHome && !isScrolled;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,32 +39,32 @@ export const NavBar = ({ currentPath = "", dark = false }: { currentPath?: strin
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.4, ease: ANIMATION_EASE }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-          ? "py-3 bg-[#f4f0e7]/90 backdrop-blur-xl border-b border-neutral-900/10 shadow-[0_6px_24px_rgba(32,35,29,0.05)]"
+        className={`fixed top-0 left-0 right-0 z-50 isolate transition-all duration-500 ${isScrolled
+          ? "py-3 bg-[#f4f0e7] border-b border-neutral-900/10 shadow-[0_6px_24px_rgba(32,35,29,0.05)]"
           : "py-10 bg-transparent"
           }`}
       >
         <div className="container relative mx-auto px-6 md:px-10 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-2 group z-50 md:fixed md:left-6 lg:left-10">
+          <a href="/" className="flex items-center gap-2 group">
             {!isHome && (
               <div className="p-2 rounded-full bg-neutral-100 group-hover:bg-neutral-200 border border-neutral-200 transition-all">
                 <ArrowLeft size={16} className="text-neutral-500 group-hover:text-neutral-900" />
               </div>
             )}
-            <span className={`font-semibold text-3xl tracking-tighter ${dark && !isScrolled ? "text-white" : "text-neutral-900"}`}>
+            <span className="font-semibold text-3xl tracking-tighter text-neutral-900">
               alya<span className="text-lime-600">.</span>
             </span>
           </a>
 
-          <div className="hidden md:flex items-center md:fixed md:right-6 lg:right-10">
-            <div className={`flex items-center gap-1 px-2.5 py-2 rounded-full border backdrop-blur-xl ${useDarkNavPill ? "bg-neutral-950/85 border-white/15 shadow-[0_10px_30px_rgba(0,0,0,0.18)]" : "bg-[#f4f0e7]/90 border-neutral-300/60 shadow-sm"}`}>
+          <div className="hidden md:flex items-center">
+            <div className={`flex items-center gap-1 px-2.5 py-2 rounded-full border backdrop-blur-xl ${useDarkNavPill ? "bg-neutral-950 border-neutral-800 shadow-[0_10px_30px_rgba(0,0,0,0.25)]" : "bg-white/85 border-lime-200/70 shadow-sm"}`}>
               {NAV_LINKS.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   className={`px-4 py-1.5 text-sm font-medium rounded-full transition-all duration-200 relative ${currentPath === link.href
-                    ? useDarkNavPill ? "text-white bg-white/15" : "text-neutral-900 bg-neutral-300/50"
-                    : useDarkNavPill ? "text-white/70 hover:text-white hover:bg-white/10" : "text-neutral-500 hover:text-neutral-900"
+                    ? useDarkNavPill ? "bg-lime-400 text-neutral-950" : "text-neutral-900 bg-lime-200"
+                    : useDarkNavPill ? "text-white/70 hover:text-white hover:bg-white/10" : "text-neutral-500 hover:text-neutral-900 hover:bg-lime-100"
                     }`}
                 >
                   {link.label}
@@ -75,7 +75,7 @@ export const NavBar = ({ currentPath = "", dark = false }: { currentPath?: strin
           </div>
 
           <button
-            className={`md:hidden z-50 p-3 -mr-1 transition-colors ${dark && !isScrolled ? "text-white/80 hover:text-white" : "text-neutral-600 hover:text-neutral-900"}`}
+            className="md:hidden z-50 p-3 -mr-1 transition-colors text-neutral-600 hover:text-neutral-900"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMobileMenuOpen}
@@ -91,7 +91,7 @@ export const NavBar = ({ currentPath = "", dark = false }: { currentPath?: strin
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className={`fixed inset-0 z-40 backdrop-blur-2xl md:hidden flex flex-col items-center justify-center ${dark ? "bg-black/80" : "bg-white/95"}`}
+            className="fixed inset-0 z-40 backdrop-blur-2xl md:hidden flex flex-col items-center justify-center bg-white/95"
           >
             <div className="flex flex-col items-center space-y-8">
               {NAV_LINKS.map((link, i) => (
@@ -102,7 +102,7 @@ export const NavBar = ({ currentPath = "", dark = false }: { currentPath?: strin
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1, ease: ANIMATION_EASE }}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`text-3xl font-semibold tracking-tight transition-colors ${dark ? "text-white/90 hover:text-white" : "text-neutral-900/80 hover:text-neutral-900"}`}
+                  className="text-3xl font-semibold tracking-tight transition-colors text-neutral-900/80 hover:text-neutral-900"
                 >
                   {link.label}
                 </motion.a>
@@ -114,7 +114,7 @@ export const NavBar = ({ currentPath = "", dark = false }: { currentPath?: strin
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: NAV_LINKS.length * 0.1, ease: ANIMATION_EASE }}
-                className={`mt-4 px-10 py-4 rounded-full font-bold text-xl shadow-lg transition-transform active:scale-95 ${dark ? "bg-lime-400 text-neutral-900" : "bg-neutral-900 text-white"}`}
+                className="mt-4 px-10 py-4 rounded-full font-bold text-xl shadow-lg transition-transform active:scale-95 bg-neutral-900 text-white"
               >
                 download on iOS
               </motion.a>

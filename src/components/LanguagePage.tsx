@@ -76,7 +76,7 @@ export const LanguagePage = ({
               <AppleIcon size={14} />
               download free on iOS
             </a>
-            <p className="text-neutral-400 text-xs">free daily feed · Plus with 7-day trial · no credit card needed</p>
+            <p className="text-neutral-400 text-xs">free to download · Plus with 7-day trial when eligible · iOS only</p>
           </motion.div>
         </section>
 
@@ -129,7 +129,7 @@ export const LanguagePage = ({
               {[
                 { title: "scroll the feed", desc: "short native clips matched to your level", icon: <Play size={18} /> },
                 { title: "tap to translate", desc: "transcript, glosses, native audio on demand", icon: <MousePointerClick size={18} /> },
-                { title: "grow your companion", desc: "stars, streaks, rooms, and rewards", icon: <PawPrint size={18} /> },
+                { title: "grow your companion", desc: "stars, energy, bond, curiosity, streaks", icon: <PawPrint size={18} /> },
               ].map((item, i) => (
                 <div key={i} className="flex gap-4">
                   <div className="p-2.5 rounded-xl h-fit bg-lime-50 text-lime-600 border border-lime-100 shrink-0">

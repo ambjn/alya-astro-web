@@ -4,7 +4,7 @@ import { ComparisonPage } from '../../components/ComparisonPage';
 
 const faqs = [
   { question: "Is alya better than Praktika?", answer: "for real-content immersion, yes. praktika uses AI avatars for speaking drills. alya uses real native videos with tap-to-translate — plus a companion that grows with you." },
-  { question: "How much does Praktika cost vs alya?", answer: "praktika's paid plans are premium-priced. alya has a free daily feed, with Plus (Annual / Monthly, 7-day free trial when eligible) for unlimited immersion and customization." },
+  { question: "How much does Praktika cost vs alya?", answer: "praktika's paid plans are premium-priced. alya is free to download, with Plus (Annual / Monthly, 7-day free trial when eligible) for unlimited immersion." },
   { question: "Do I need a microphone for alya?", answer: "no. just scroll, tap, listen, and save. use headphones on the bus — no speaking out loud required. prompts invite you to produce Spanish when you want to." },
 ];
 
@@ -32,9 +32,9 @@ const faqSchema = {
       { feature: "real native content", alya: true, competitor: "synthetic avatars" },
       { feature: "tap-to-translate + glosses", alya: true, competitor: "limited" },
       { feature: "no mic needed", alya: true, competitor: "speaking-focused" },
-      { feature: "companion + customization", alya: true, competitor: "avatar only" },
+      { feature: "companion that grows", alya: true, competitor: "avatar only" },
       { feature: "20 topics + explore", alya: true, competitor: false },
-      { feature: "free tier", alya: "daily feed", competitor: "limited" },
+      { feature: "free tier", alya: "free download + trial", competitor: "limited" },
     ]}
     sections={[
       { heading: "avatars drill. natives immerse.", body: "praktika's avatars are consistent and patient — but they're still simulations. alya shows you how people actually talk: speed, slang, interruptions, humor — with translation so you keep up." },

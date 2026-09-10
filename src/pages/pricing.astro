@@ -3,12 +3,12 @@ import Layout from '../layouts/Layout.astro';
 import PricingView from '../views/Pricing';
 
 const pricingFaqs = [
-  { question: "is alya really free?", answer: "yes. download free and get a daily immersion feed. ALYA Plus unlocks Unlimited Immersion, Advanced Explanations, Unlimited Vocabulary, and Customization." },
-  { question: "what does ALYA Plus include?", answer: "Unlimited Immersion (every clip and collection), Advanced Explanations (nuance and natural phrasing), Unlimited Vocabulary (save and review every phrase), and ALYA Customization (outfits and room items)." },
-  { question: "is there a free trial?", answer: "eligible users get a 7-day free trial on Plus. then the selected Annual or Monthly plan renews automatically. cancel anytime before the trial ends." },
-  { question: "how do I pay?", answer: "subscriptions are processed through the App Store with RevenueCat. iOS only. manage, upgrade, or cancel from Settings → Billing & Restore Purchases." },
+  { question: "is alya free to download?", answer: "yes — free to download on iOS. ALYA Plus membership is required to use the feed. New users get a 7-day free trial when eligible, then Annual or Monthly renews automatically." },
+  { question: "what does ALYA Plus include?", answer: "Unlimited Immersion (every clip, picked for your level), Instant Explanations (tap any phrase to understand it in context), and Your Evolving Companion (complete clips and save words to grow ALYA)." },
+  { question: "is there a free trial?", answer: "eligible new users get 7 days free. the paywall shows Start Free Trial only when your Apple ID is eligible. then the selected plan price renews automatically. cancel anytime before the trial ends." },
+  { question: "how do I pay, restore, or cancel?", answer: "subscriptions are processed through the App Store with RevenueCat. iOS only. already subscribed? tap Restore in the paywall. manage, upgrade, or cancel from Settings → Billing or your Apple ID subscriptions." },
   { question: "can I switch between Annual and Monthly?", answer: "yes, anytime from the paywall or settings. changes take effect at the next billing cycle." },
-  { question: "what happens if I cancel?", answer: "you keep Plus until the end of the billing period, then return to the free daily feed. your words, stars, and companion progress stay saved." },
+  { question: "what happens if I cancel?", answer: "you keep Plus until the end of the billing period. your words, stars, and companion progress stay saved. without Plus you return to the paywall — there is no free tier." },
 ];
 
 const faqSchema = {
@@ -23,12 +23,12 @@ const faqSchema = {
 ---
 
 <Layout
-  title="Pricing | ALYA: Free + ALYA Plus"
-  description="ALYA is free with a daily immersion feed. ALYA Plus (Annual / Monthly, 7-day free trial when eligible) unlocks Unlimited Immersion, Advanced Explanations, Unlimited Vocabulary, Customization. iOS only."
-  ogTitle="ALYA Pricing — Free + ALYA Plus"
-  ogDescription="Free daily feed. Plus: Unlimited Immersion, Advanced Explanations, Unlimited Vocabulary, Customization. 7-day trial when eligible."
-  twitterTitle="ALYA Pricing — Start Free, Go Plus"
-  twitterDescription="Free feed + Plus Annual/Monthly. 7-day trial when eligible."
+  title="Pricing | ALYA Plus: Annual / Monthly"
+  description="ALYA is free to download. ALYA Plus membership (Annual / Monthly, 7-day free trial when eligible) unlocks Unlimited Immersion, Instant Explanations, Your Evolving Companion. iOS only, via App Store."
+  ogTitle="ALYA Pricing — Plus Annual / Monthly"
+  ogDescription="Free to download. Plus: Unlimited Immersion, Instant Explanations, Evolving Companion. 7-day trial when eligible."
+  twitterTitle="ALYA Pricing — Start with a Free Trial"
+  twitterDescription="Plus Annual/Monthly. 7-day trial when eligible. iOS only."
   canonical="/pricing"
 >
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />

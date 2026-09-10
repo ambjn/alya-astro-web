@@ -8,26 +8,26 @@ import { ANIMATION_EASE as ease, APP_STORE_URL } from "../constants";
 import { FEED_TOPICS } from "../data/languages";
 
 const TOPIC_BLURBS: Record<string, string> = {
-  Travel: "airports, hotels, directions — the phrases your trip runs on.",
-  Food: "ordering, markets, menus — eat well anywhere.",
-  Culture: "how Spanish speakers actually live, celebrate, and talk.",
-  Music: "songs and artists, with lyrics you finally understand.",
-  Comedy: "jokes, memes, and street humor — the hardest, funniest test.",
-  Family: "introductions, small talk, meeting people.",
-  Work: "meetings, interviews, office life.",
-  Sports: "fútbol and beyond — commentary speed included.",
-  Shopping: "prices, bargaining, stores, markets.",
-  Health: "doctor visits, pharmacy, describing symptoms.",
-  Cooking: "recipes and kitchens, step by step.",
-  Fashion: "clothes, style, shopping for outfits.",
-  Gaming: "streams and slang from Spanish-speaking gamers.",
   Animals: "pets and wildlife vocabulary you'll actually use.",
   Beauty: "routines, salons, and everyday self-care Spanish.",
   Business: "companies, money, and professional conversations.",
+  Comedy: "jokes, memes, and street humor — the hardest, funniest test.",
+  Cooking: "recipes and kitchens, step by step.",
   Exercise: "gyms, workouts, and fitness routines.",
-  Relationships: "friendship, dating, and real talk.",
-  Technology: "phones, apps, and digital life.",
+  Food: "ordering, markets, menus — eat well anywhere.",
+  Travel: "airports, hotels, directions — the phrases your trip runs on.",
+  Family: "introductions, small talk, meeting people.",
+  Fashion: "clothes, style, shopping for outfits.",
+  Gaming: "streams and slang from Spanish-speaking gamers.",
+  Health: "doctor visits, pharmacy, describing symptoms.",
+  "Spanish Culture": "how Spanish speakers actually live, celebrate, and talk.",
   "Morning Routine": "daily life vlogs — the most relatable input there is.",
+  Music: "songs and artists, with lyrics you finally understand.",
+  Relationships: "friendship, dating, and real talk.",
+  Shopping: "prices, bargaining, stores, markets.",
+  Sports: "fútbol and beyond — commentary speed included.",
+  Work: "meetings, interviews, office life.",
+  Technology: "phones, apps, and digital life.",
 };
 
 const faqs = [
@@ -37,15 +37,19 @@ const faqs = [
   },
   {
     question: "what if my topic runs out of clips?",
-    answer: "The feed falls back to nearby content so scrolling never stops, and the content worker refills topic coverage in the background (5+ clips per topic target).",
+    answer: "The feed falls back to nearby content so scrolling never stops. New clips are transcribed and published in the background, with a 5+ clips-per-topic coverage target.",
   },
   {
     question: "can I filter by level and topic together?",
-    answer: "Yes. Explore combines level (Beginner / Intermediate / Advanced), grammar, source, format (Shorts vs Videos), and your topics.",
+    answer: "Yes. Explore combines level (Beginner / Intermediate / Advanced), grammar (Questions, Present/Past tense, Commands, Polite phrases, Conversation), source (Anime, Cartoon, Drama, Movie, Music, News, Vlog, Podcast, Interview, Lesson), and format (Shorts ≤90s vs Videos) — plus search in Spanish, English, or a phrase.",
   },
   {
     question: "which topics are best for beginners?",
-    answer: "Food, Travel, Shopping, and Morning Routine — concrete vocabulary, clear situations, slower speech. Comedy and Music are tastier at intermediate+.",
+    answer: "Food, Travel, Shopping, and Morning Routine — concrete vocabulary, clear situations, slower speech. Comedy and Music are tastier at intermediate and above.",
+  },
+  {
+    question: "is Spanish Culture different from language lessons?",
+    answer: "Yes. Spanish Culture clips are real native videos about how Spanish speakers live — not classroom lessons. Every clip still ships with transcript, translation, and tap-to-translate so you understand in context.",
   },
 ];
 
@@ -61,7 +65,7 @@ const Topics = ({ currentPath }: { currentPath?: string }) => (
             <span className="text-lime-500">your feed.</span>
           </h1>
           <p className="text-neutral-500 text-lg font-light leading-relaxed max-w-lg">
-            not a curriculum — a feed. pick what you love, and learn Spanish from videos about it.
+            not a curriculum — a feed. pick what you love, and learn Spanish from videos about it. Travel, Food, Spanish Culture, Music, Comedy + 15 more.
           </p>
         </motion.div>
       </section>
@@ -71,7 +75,7 @@ const Topics = ({ currentPath }: { currentPath?: string }) => (
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.05 }}
-        className="grid sm:grid-cols-2 md:grid-cols-3 gap-3 pb-20"
+        className="grid sm:grid-cols-2 md:grid-cols-3 gap-3 pb-12"
       >
         {FEED_TOPICS.map((topic) => (
           <motion.div
@@ -85,6 +89,15 @@ const Topics = ({ currentPath }: { currentPath?: string }) => (
         ))}
       </motion.div>
 
+      <section className="pb-12">
+        <div className="p-6 sm:p-7 rounded-3xl border border-neutral-200 bg-white text-center">
+          <p className="text-neutral-900 font-semibold text-sm mb-1">Combine topics with Explore filters</p>
+          <p className="text-neutral-500 text-xs font-light leading-relaxed max-w-2xl mx-auto">
+            Beginner / Intermediate / Advanced · Questions · Present tense · Past tense · Commands · Polite phrases · Conversation · 10 sources · Shorts vs Videos · search anything
+          </p>
+        </div>
+      </section>
+
       <section className="pb-20 max-w-3xl mx-auto">
         <h2 className="text-2xl md:text-3xl font-semibold text-neutral-900 mb-8 text-center tracking-tight">
           topic questions
@@ -97,7 +110,7 @@ const Topics = ({ currentPath }: { currentPath?: string }) => (
           pick your topics.<br />
           <span className="text-lime-500">start scrolling.</span>
         </h2>
-        <p className="text-neutral-500 font-light mb-8">free daily feed · 5–30 minutes a day</p>
+        <p className="text-neutral-500 font-light mb-8">free to download · 7-day trial when eligible · 5–30 min a day</p>
         <a
           href={APP_STORE_URL}
           target="_blank"

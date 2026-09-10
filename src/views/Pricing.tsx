@@ -10,60 +10,62 @@ type BillingCycle = "monthly" | "annual";
 
 const plans = [
   {
-    id: "free",
-    name: "free",
-    tagline: "daily immersion feed",
-    features: [
-      "daily immersion feed",
-      "tap-to-translate + word glosses",
-      "save vocabulary",
-      "companion + stars",
-    ],
-    cta: "download free",
-    highlight: false,
-  },
-  {
-    id: "plus",
-    name: "plus",
-    tagline: "unlimited everything",
+    id: "monthly",
+    name: "plus monthly",
+    tagline: "flexible · per month",
     features: [
       ...PLUS_FEATURES.map((f) => `${f.title} — ${f.desc}`),
       "7-day free trial when eligible",
+      "Billing handled securely by the App Store",
     ],
-    cta: "get plus",
+    cta: "choose monthly",
+    highlight: false,
+  },
+  {
+    id: "annual",
+    name: "plus annual",
+    tagline: "best value · per year",
+    features: [
+      ...PLUS_FEATURES.map((f) => `${f.title} — ${f.desc}`),
+      "7-day free trial when eligible",
+      "Annual savings vs monthly · renews automatically",
+    ],
+    cta: "start free trial",
     highlight: true,
   },
 ];
 
 const faqs = [
   {
-    question: "is alya really free?",
-    answer: "yes. download free and get a daily immersion feed. ALYA Plus unlocks Unlimited Immersion, Advanced Explanations, Unlimited Vocabulary, and Customization.",
+    question: "is alya free to download?",
+    answer: "Yes — free to download on iOS. ALYA Plus membership is required to use the feed. New users get a 7-day free trial when eligible, then the selected Annual or Monthly plan renews automatically.",
   },
   {
     question: "what does ALYA Plus include?",
-    answer: "Unlimited Immersion (every clip and collection), Advanced Explanations (nuance and natural phrasing), Unlimited Vocabulary (save and review every phrase), and ALYA Customization (outfits and room items).",
+    answer: "Unlimited Immersion (every clip, picked for your level), Instant Explanations (tap any phrase to understand it in context), and Your Evolving Companion (complete clips and save words to grow ALYA).",
   },
   {
     question: "is there a free trial?",
-    answer: "eligible users get a 7-day free trial on Plus. then the selected Annual or Monthly plan renews automatically. cancel anytime before the trial ends.",
+    answer: "Eligible new users get 7 days free. The paywall shows Start Free Trial only when your Apple ID is eligible. Then the plan price shown renews automatically — cancel anytime before the trial ends.",
   },
   {
-    question: "how do I pay?",
-    answer: "subscriptions are processed through the App Store with RevenueCat. iOS only. manage, upgrade, or cancel from Settings → Billing & Restore Purchases.",
+    question: "how do I pay, restore, or cancel?",
+    answer: "Subscriptions are processed through the App Store with RevenueCat — iOS only. Already subscribed? Tap Restore in the paywall. Manage, upgrade, or cancel from Settings → Billing, or your Apple ID subscriptions.",
   },
   {
     question: "can I switch between Annual and Monthly?",
-    answer: "yes, anytime from the paywall or settings. changes take effect at the next billing cycle.",
+    answer: "Yes, anytime from the paywall or Settings → Billing. Changes take effect at the next billing cycle.",
   },
   {
     question: "what happens if I cancel?",
-    answer: "you keep Plus until the end of the billing period, then return to the free daily feed. your words, stars, and companion progress stay saved.",
+    answer: "You keep Plus until the end of the billing period. Your words, stars, and companion progress stay saved. Without Plus you return to the paywall — there is no free tier.",
   },
 ];
 
 const Pricing = ({ currentPath }: { currentPath?: string }) => {
   const [billing, setBilling] = useState<BillingCycle>("annual");
+
+  const activePlan = billing === "annual" ? plans[1] : plans[0];
 
   return (
     <div className="min-h-screen font-sans bg-lime-50">
@@ -78,8 +80,8 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
             transition={{ duration: 0.7, ease }}
             className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-neutral-900 leading-[1.05] mb-4"
           >
-            start free.<br />
-            <span className="text-lime-500">go Plus for unlimited.</span>
+            free to download.<br />
+            <span className="text-lime-500">Plus to keep scrolling.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
@@ -87,7 +89,7 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
             transition={{ duration: 0.6, delay: 0.12, ease }}
             className="text-neutral-500 text-base mb-10"
           >
-            free daily feed. Plus unlocks everything. 7-day free trial when eligible.
+            ALYA Plus membership required. 7-day free trial when eligible.
           </motion.p>
 
           <motion.div
@@ -121,7 +123,9 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
 
         <section className="pb-20">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch max-w-3xl mx-auto">
-            {plans.map((plan, i) => (
+            {plans.map((plan, i) => {
+              const isActive = plan.id === billing;
+              return (
               <motion.div
                 key={plan.id}
                 initial={{ opacity: 0, y: 24 }}
@@ -132,7 +136,7 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
                   plan.highlight
                     ? "ring-2 ring-lime-400 bg-white"
                     : "bg-neutral-50 hover:bg-white border border-neutral-100"
-                }`}
+                } ${isActive ? "" : "opacity-70"}`}
               >
                 {plan.highlight && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
@@ -147,10 +151,10 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
                     {plan.name}
                   </p>
                   <p className="text-4xl font-semibold tracking-tight mb-1 text-neutral-900 capitalize">
-                    {plan.id === "free" ? "free" : billing}
+                    {plan.id}
                   </p>
                   <p className="text-xs mb-3 text-neutral-400">
-                    {plan.id === "free" ? "daily feed" : "price in App Store · " + (billing === "annual" ? "billed yearly" : "billed monthly")}
+                    {"price in App Store · " + (plan.id === "annual" ? "billed yearly" : "billed monthly")}
                   </p>
                   <p className="text-sm text-neutral-500">
                     {plan.tagline}
@@ -174,20 +178,26 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
                   ))}
                 </ul>
               </motion.div>
-            ))}
+              );
+            })}
           </div>
 
-          <motion.p
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5, ease }}
-            className="text-center text-neutral-400 text-xs mt-10"
+            className="text-center mt-10 max-w-xl mx-auto"
           >
-            subscriptions via App Store (RevenueCat) · iOS only · cancel anytime
-          </motion.p>
+            <p className="text-neutral-500 text-sm font-medium">
+              {activePlan.id === "annual" ? "Start free trial" : "Choose monthly"} in the app — price shown in the App Store.
+            </p>
+            <p className="text-neutral-400 text-xs mt-2">
+              subscriptions via App Store (RevenueCat) · iOS only · 7 days free when eligible · renews automatically · cancel anytime
+            </p>
+          </motion.div>
           <p className="text-center text-sm mt-4">
             <a href="/support" className="text-neutral-500 hover:text-lime-600 font-medium transition-colors">
-              how billing &amp; trials work →
+              how billing, trials &amp; restore work →
             </a>
           </p>
         </section>

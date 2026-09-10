@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import {
-  Play, MousePointerClick, Volume2, Bookmark, PawPrint, Layers, Compass, Bell, Flame, Shield,
+  Play, MousePointerClick, Volume2, Bookmark, PawPrint, Layers, Compass, Bell, Flame, Shield, Search, Repeat,
 } from "lucide-react";
 import { Footer } from "../components/Footer";
 import { NavBar } from "../components/NavBar";
@@ -12,31 +12,40 @@ const coreFeatures = [
   {
     icon: <Play size={26} />,
     title: "immersion feed",
-    body: "a vertical feed of short native Spanish videos. 20 clips on open, more before you run out. real content, matched to your level.",
+    body: "a vertical feed of short native Spanish videos. 20 clips on open, more before you run out — with 14-day cooldown so you never rewatch too soon.",
   },
   {
     icon: <MousePointerClick size={26} />,
     title: "tap-to-understand",
-    body: "synchronized transcript + translation + per-word glosses. tap any word, hear it, save it. 0.75x–1.5x playback.",
+    body: "synchronized transcript + English translation + per-word glosses. tap any phrase for instant explanation in context. 0.75x–1.5x playback, 10s skip.",
   },
 ];
 
 const features = [
-  { icon: <Bookmark size={18} />, color: "text-amber-500 bg-amber-50 border-amber-100", title: "save vocabulary", body: "words saved with the video where you found them." },
-  { icon: <Volume2 size={18} />, color: "text-blue-500 bg-blue-50 border-blue-100", title: "native audio", body: "tap-to-hear pronunciation, Deepgram Aura-2 voice." },
-  { icon: <PawPrint size={18} />, color: "text-violet-500 bg-violet-50 border-violet-100", title: "companion", body: "stars, energy, bond, curiosity. rooms + outfits." },
-  { icon: <Layers size={18} />, color: "text-indigo-500 bg-indigo-50 border-indigo-100", title: "3 levels", body: "beginner, intermediate, advanced. feed adapts." },
-  { icon: <Compass size={18} />, color: "text-teal-500 bg-teal-50 border-teal-100", title: "20 topics + explore", body: "levels, grammar, sources, Shorts vs Videos." },
-  { icon: <Bell size={18} />, color: "text-orange-500 bg-orange-50 border-orange-100", title: "plans + reminders", body: "personalized plan, 5–30 min/day, daily nudges." },
-  { icon: <Flame size={18} />, color: "text-orange-500 bg-orange-50 border-orange-100", title: "streaks + achievements", body: "activity history and progress dashboard." },
-  { icon: <Shield size={18} />, color: "text-slate-500 bg-slate-50 border-slate-100", title: "private & secure", body: "no ads on feed. delete your data anytime." },
+  { icon: <Bookmark size={18} />, color: "text-amber-500 bg-amber-50 border-amber-100", title: "My Words + spaced review", body: "tap any word to save it. ALYA schedules a spaced review with video context." },
+  { icon: <Volume2 size={18} />, color: "text-blue-500 bg-blue-50 border-blue-100", title: "native audio", body: "tap-to-hear pronunciation (Aura-2 Selena voice), slowed down on demand." },
+  { icon: <PawPrint size={18} />, color: "text-violet-500 bg-violet-50 border-violet-100", title: "evolving companion", body: "clips + saved words earn stars. stars grow energy, bond, curiosity." },
+  { icon: <Layers size={18} />, color: "text-indigo-500 bg-indigo-50 border-indigo-100", title: "3 levels", body: "beginner 🌱, intermediate 📚, advanced 🚀. the feed meets your level." },
+  { icon: <Compass size={18} />, color: "text-teal-500 bg-teal-50 border-teal-100", title: "20 topics + Explore", body: "Spanish Culture to Gaming. filter by level, grammar, source, Shorts vs Videos." },
+  { icon: <Search size={18} />, color: "text-cyan-600 bg-cyan-50 border-cyan-100", title: "search + prompts", body: "search Spanish, English, or a phrase. answer contextual prompts to produce." },
+  { icon: <Bell size={18} />, color: "text-orange-500 bg-orange-50 border-orange-100", title: "plans + reminders", body: "personalized plan from your goals + 5–30 min/day. reminders at 8:00, 14:00, 19:00, 21:30." },
+  { icon: <Flame size={18} />, color: "text-orange-500 bg-orange-50 border-orange-100", title: "streaks + achievements", body: "7 / 14 / 30 / 60-day goals. streak milestones at 7, 14, every 30." },
+  { icon: <Repeat size={18} />, color: "text-emerald-600 bg-emerald-50 border-emerald-100", title: "never-ending feed", body: "session exclusions + creator variety. 20 on open, refill with ~10 left." },
+  { icon: <Shield size={18} />, color: "text-slate-500 bg-slate-50 border-slate-100", title: "private & secure", body: "billing via App Store. delete progress, vocabulary + account anytime." },
 ];
 
 const steps = [
-  { n: "1", title: "pick your goal", body: "travel, shows, work, fun, family, culture — plus your level." },
-  { n: "2", title: "get your plan", body: "clips, words, and sessions per week. 5–30 minutes a day." },
-  { n: "3", title: "scroll + tap", body: "watch clips, tap words, answer prompts, earn stars." },
-  { n: "4", title: "grow ALYA", body: "companion levels up. streaks and rooms unlock." },
+  { n: "1", title: "pick your goal", body: "travel, movies & shows, work, fun, friends & family, culture — plus your level." },
+  { n: "2", title: "get your plan", body: "minutes/day, streak goal, level + focus. 5–30 minutes a day beats marathons." },
+  { n: "3", title: "scroll + tap", body: "watch clips, tap phrases, save words, answer prompts, earn stars." },
+  { n: "4", title: "grow ALYA", body: "energy, bond + curiosity grow. streaks + achievements unlock." },
+];
+
+const exploreFilters = [
+  { label: "levels", value: "Beginner · Intermediate · Advanced" },
+  { label: "grammar", value: "Questions · Present · Past · Commands · Polite phrases · Conversation" },
+  { label: "sources", value: "Anime · Cartoon · Drama · Movie · Music · News · Vlog · Podcast · Interview · Lesson" },
+  { label: "format", value: "Shorts (≤90s) · Videos · All" },
 ];
 
 const Features = ({ currentPath }: { currentPath?: string }) => (
@@ -82,7 +91,7 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
         </div>
       </section>
 
-      <section className="py-4 pb-20">
+      <section className="py-4 pb-8">
         <div className="flex items-center gap-4 mb-5">
           <div className="h-px flex-1 bg-neutral-100" />
           <div className="h-px flex-1 bg-neutral-100" />
@@ -92,7 +101,7 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.1 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-3"
+          className="grid grid-cols-2 md:grid-cols-3 gap-3"
         >
           {features.map((f, i) => (
             <motion.div
@@ -110,6 +119,23 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
             </motion.div>
           ))}
         </motion.div>
+      </section>
+
+      <section className="pb-20">
+        <div className="p-7 sm:p-8 rounded-3xl border border-neutral-200 bg-white">
+          <p className="text-[11px] font-bold uppercase tracking-widest text-neutral-400 mb-5">Explore filters — find exactly your clip</p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {exploreFilters.map((f) => (
+              <div key={f.label} className="rounded-2xl bg-neutral-50 border border-neutral-100 p-4">
+                <p className="text-neutral-900 font-semibold text-sm capitalize mb-1">{f.label}</p>
+                <p className="text-neutral-500 text-xs leading-relaxed font-light">{f.value}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-neutral-400 text-xs mt-5 font-light">
+            topics: Animals · Beauty · Business · Comedy · Cooking · Exercise · Food · Travel · Family · Fashion · Gaming · Health · Spanish Culture · Morning Routine · Music · Relationships · Shopping · Sports · Work · Technology
+          </p>
+        </div>
       </section>
 
     </main>
@@ -178,10 +204,10 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
       >
         <h2 className="text-3xl sm:text-4xl font-semibold text-neutral-900 tracking-tight leading-tight mb-3">
           try the feed<br />
-          <span className="text-lime-500">free.</span>
+          <span className="text-lime-500">with a free trial.</span>
         </h2>
         <p className="text-neutral-500 text-base font-light mb-8 max-w-sm mx-auto">
-          free daily immersion. no credit card to start.
+          free to download. 7-day free trial when eligible, then Plus. iOS only.
         </p>
         <a
           href={APP_STORE_URL}

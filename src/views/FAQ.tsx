@@ -6,44 +6,48 @@ import { ANIMATION_EASE as ease } from "../constants";
 
 const faqs = [
   {
-    question: "is alya actually free?",
-    answer: "Yes. Download free and get a daily immersion feed — real Spanish videos with transcripts, translations, and word glosses. ALYA Plus (Annual / Monthly, 7-day free trial when eligible) unlocks Unlimited Immersion, Advanced Explanations, Unlimited Vocabulary, and Customization.",
+    question: "is alya free to download?",
+    answer: "Yes — free to download on iOS. ALYA Plus membership is required to use the feed. New users get a 7-day free trial when eligible, then Annual or Monthly renews automatically. Cancel anytime.",
   },
   {
     question: "how is alya different from Duolingo?",
-    answer: "Duolingo drills vocabulary with exercises. Alya is immersion: short native videos where you tap to understand, save words, and grow a companion. If drills feel boring, scroll instead.",
+    answer: "Duolingo drills vocabulary with exercises. Alya is immersion: short native videos where you tap to understand, save words to My Words, and grow a companion. Drills teach recognition. Immersion builds understanding.",
   },
   {
     question: "do I need to know Spanish already?",
-    answer: "No. Beginner clips come with full translations and per-word glosses. The feed adapts from beginner to intermediate to advanced as you improve.",
+    answer: "No. Beginner clips come with full translations and per-word glosses. The feed adapts from Beginner to Intermediate to Advanced as you improve — onboarding maps brand-new and elementary starters to Beginner.",
   },
   {
     question: "how much time per day?",
-    answer: "5–30 minutes. Onboarding builds a personalized plan (clips, words, sessions per week) and you can set daily reminders — morning, afternoon, evening, or night.",
+    answer: "5–30 minutes. Onboarding builds a personalized plan (minutes/day, streak goal, level, focus) from your goals and challenges, and you can set reminders for Morning (8:00), Afternoon (14:00), Evening (19:00), or Night (21:30).",
   },
   {
     question: "how does tap-to-translate work?",
-    answer: "Every clip has a synchronized Spanish transcript and English translation. Tap any unfamiliar word for its exact gloss in context, hear native pronunciation, and save it to your vocabulary.",
+    answer: "Every clip ships pre-transcribed with a synchronized Spanish transcript, English translation, and word timing. Tap any phrase for its instant explanation in context, hear native pronunciation (Aura-2 Selena), slow to 0.75x, and save it to My Words for spaced review.",
   },
   {
     question: "what is the ALYA companion?",
-    answer: "Watching, saving words, and completing prompts earns stars. Stars grow ALYA's energy, bond, and curiosity — unlocking rooms, outfits, streaks, and achievements.",
+    answer: "Completing clips and saving words earns stars. Stars grow ALYA's energy, bond, and curiosity — with streaks (7 / 14 / 30 / 60-day goals, milestones at 7, 14, every 30) and achievements to keep you consistent.",
   },
   {
     question: "what does ALYA Plus include?",
-    answer: "Unlimited Immersion (every clip and collection), Advanced Explanations (nuance and natural phrasing), Unlimited Vocabulary (save and review every phrase), and ALYA Customization (outfits and room items).",
+    answer: "Unlimited Immersion (every clip, picked for your level), Instant Explanations (tap any phrase to understand it in context), and Your Evolving Companion (complete clips and save words to grow ALYA).",
   },
   {
     question: "is there a free trial?",
-    answer: "Eligible users get a 7-day free trial on Plus. Cancel anytime before it ends. Subscriptions are iOS-only via the App Store.",
+    answer: "Eligible new users get 7 days free — the paywall shows Start Free Trial only when your Apple ID is eligible. Billing is via the App Store with RevenueCat, iOS only. Already subscribed? Tap Restore.",
   },
   {
     question: "can I filter what I watch?",
-    answer: "Yes. Explore lets you filter by level (Beginner / Intermediate / Advanced), grammar (Questions, Present/Past tense, Commands, Polite phrases, Conversation), source (Anime → Lesson), and format (Shorts vs Videos).",
+    answer: "Yes. Explore filters by level (Beginner / Intermediate / Advanced), grammar (Questions, Present/Past tense, Commands, Polite phrases, Conversation), source (Anime, Cartoon, Drama, Movie, Music, News, Vlog, Podcast, Interview, Lesson), and format (Shorts ≤90s vs Videos) — plus 20 topics and search.",
   },
   {
     question: "what Spanish will I hear?",
-    answer: "Real-world Spanish from native videos — street interviews, vlogs, food, travel, music, culture. Always with translations so you understand in context.",
+    answer: "Real-world Spanish from native videos — street interviews, vlogs, food, travel, music, Spanish Culture. Always pre-transcribed and translated so you understand in context, with 0.75x–1.5x playback and 10s skip.",
+  },
+  {
+    question: "how do I manage billing or delete my data?",
+    answer: "Manage, upgrade, or cancel from Settings → Billing or your Apple ID subscriptions. You can delete progress, vocabulary, preferences, and your account from Settings — it signs you out and clears local data.",
   },
 ];
 

@@ -74,7 +74,7 @@ export const posts: BlogPost[] = [
                     "Tap-to-translate + per-word glosses in context",
                     "0.75x–1.5x playback, hear every word clearly",
                     "20 topics + Explore filters by level, grammar, source",
-                    "Free daily feed, Plus for unlimited",
+                    "Free to download, Plus for unlimited",
                 ],
             },
             {
@@ -147,7 +147,7 @@ export const posts: BlogPost[] = [
             {
                 question: "Is there a free Duolingo alternative?",
                 answer:
-                    "Yes. alya has a free daily immersion feed. YouTube has free native content (without translations). Combined, they beat drills alone.",
+                    "Yes. alya is free to download with a 7-day trial when eligible. YouTube has free native content (without translations). Combined, they beat drills alone.",
             },
             {
                 question: "Can you become fluent using only Duolingo?",
@@ -199,7 +199,7 @@ export const posts: BlogPost[] = [
             {
                 type: "p",
                 content:
-                    "Scroll short native videos. Every clip arrives pre-transcribed and translated with word timing. Tap, listen, save, earn stars, grow your companion. Free daily feed.",
+                    "Scroll short native videos. Every clip arrives pre-transcribed and translated with word timing. Tap, listen, save, earn stars, grow your companion. Free to download.",
             },
             {
                 type: "ul",
@@ -208,7 +208,7 @@ export const posts: BlogPost[] = [
                     "Explore filters: level, grammar, source, Shorts vs Videos",
                     "Save vocabulary with video context",
                     "Companion, streaks, achievements",
-                    "Plus: Unlimited Immersion, Advanced Explanations, Unlimited Vocabulary, Customization",
+                    "Plus: Unlimited Immersion, Instant Explanations, Your Evolving Companion",
                 ],
             },
             {
@@ -262,7 +262,7 @@ export const posts: BlogPost[] = [
             {
                 question: "What is the best AI app for learning Spanish?",
                 answer:
-                    "For real comprehension, alya — an immersion feed with tap-to-translate, levels, topics, and a companion. Free daily feed to start.",
+                    "For real comprehension, alya — an immersion feed with tap-to-translate, levels, topics, and a companion. Free to download to start.",
             },
             {
                 question: "Is AI language learning effective?",
@@ -277,7 +277,7 @@ export const posts: BlogPost[] = [
             {
                 question: "What is the best free AI Spanish app?",
                 answer:
-                    "alya's free daily feed — real videos with translations, no credit card. Duolingo is also free but drill-based rather than immersion-based.",
+                    "alya is free to download — real videos with translations, 7-day trial when eligible. Duolingo is also free but drill-based rather than immersion-based.",
             },
         ],
     },
@@ -376,7 +376,7 @@ export const posts: BlogPost[] = [
             {
                 type: "cta",
                 content:
-                    "Start your immersion today with alya — free daily feed.",
+                    "Start your immersion today with alya — free to download.",
             },
         ],
         faqs: [
@@ -723,6 +723,83 @@ export const posts: BlogPost[] = [
                 question: "What can I learn with alya?",
                 answer:
                     "Spanish comprehension from beginner to advanced — 20 topics, 3 levels, grammar filters — with a companion that rewards consistency.",
+            },
+        ],
+    },
+
+    {
+        slug: "alya-plus-trial-billing-explained",
+        title: "ALYA Plus Explained: Trial, Billing, and What's Included",
+        metaTitle: "ALYA Plus: Trial, Billing, What's Included | ALYA",
+        metaDescription:
+            "ALYA Plus in 2 minutes: 7-day free trial when eligible, Annual or Monthly via App Store, and the 3 Plus features.",
+        publishedAt: "2026-06-10",
+        readingTime: "3 min read",
+        category: "tier1",
+        excerpt:
+            "Plus in 2 minutes: what's included, how the 7-day trial works, and how billing works.",
+        content: [
+            {
+                type: "p",
+                content:
+                    "ALYA is free to download on iOS. Plus membership is required to use the feed. Here's the short version.",
+            },
+            {
+                type: "h2",
+                content: "What's included",
+            },
+            {
+                type: "ul",
+                content: [
+                    "Unlimited Immersion — every clip, picked for your level",
+                    "Instant Explanations — tap any phrase to understand it in context",
+                    "Your Evolving Companion — complete clips and save words to grow ALYA",
+                ],
+            },
+            {
+                type: "h2",
+                content: "Trial and billing",
+            },
+            {
+                type: "ul",
+                content: [
+                    "7 days free when eligible — paywall shows Start Free Trial only then",
+                    "Annual (best value) or Monthly — price shown in the App Store",
+                    "Via App Store with RevenueCat — iOS only",
+                    "Renews automatically — cancel anytime before it ends",
+                    "Already subscribed? Tap Restore in the paywall",
+                ],
+            },
+            {
+                type: "h2",
+                content: "If you cancel",
+            },
+            {
+                type: "p",
+                content:
+                    "You keep Plus until the end of the billing period. Words, stars, and companion progress stay saved.",
+            },
+            {
+                type: "cta",
+                content:
+                    "Start with the 7-day trial when eligible — download alya.",
+            },
+        ],
+        faqs: [
+            {
+                question: "Is ALYA free?",
+                answer:
+                    "Free to download on iOS. Plus membership is required to use the feed, with a 7-day free trial when eligible.",
+            },
+            {
+                question: "What does ALYA Plus include?",
+                answer:
+                    "Unlimited Immersion, Instant Explanations, and Your Evolving Companion.",
+            },
+            {
+                question: "How do I cancel or restore?",
+                answer:
+                    "Manage or cancel from Settings → Billing or your Apple ID subscriptions. Already subscribed on a new device? Tap Restore in the paywall.",
             },
         ],
     },

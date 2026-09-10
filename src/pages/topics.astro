@@ -9,7 +9,7 @@ const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   name: "Spanish immersion topics on ALYA",
-  description: "20 topics in the ALYA Spanish immersion feed, from Travel and Food to Comedy and Culture.",
+  description: "20 topics in the ALYA Spanish immersion feed, from Travel and Food to Comedy and Spanish Culture.",
   itemListElement: topicNames.map((name, i) => ({
     "@type": "ListItem",
     position: i + 1,
@@ -19,10 +19,10 @@ const itemListSchema = {
 ---
 
 <Layout
-  title="20 Spanish Topics — Travel, Food, Culture, Music & More | ALYA"
-  description="Pick your topics and learn Spanish from videos about them: Travel, Food, Culture, Music, Comedy, Work, Sports + 13 more. Free daily feed on iOS."
+  title="20 Spanish Topics — Travel, Food, Spanish Culture, Music & More | ALYA"
+  description="Pick your topics and learn Spanish from videos about them: Travel, Food, Spanish Culture, Music, Comedy, Work, Sports + 13 more. Free to download on iOS."
   ogTitle="20 Topics. Your Spanish Feed. | ALYA"
-  ogDescription="Travel, Food, Culture, Music, Comedy + 15 more. Learn Spanish from videos you actually care about."
+  ogDescription="Travel, Food, Spanish Culture, Music, Comedy + 15 more. Learn Spanish from videos you actually care about."
   canonical="/topics"
 >
   <script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} slot="head" />

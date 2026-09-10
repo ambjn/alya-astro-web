@@ -161,7 +161,7 @@ const BlogPostClient = ({ post, currentPath }: BlogPostClientProps) => {
               scroll with alya.
             </h3>
             <p className="text-neutral-500 text-base mb-8 max-w-sm mx-auto">
-              try what you just read in the feed. free daily immersion, no credit card.
+              try what you just read in the feed. 7-day free trial when eligible.
             </p>
             <DownloadButton className="inline-flex items-center gap-2.5 px-8 py-3.5 text-sm rounded-full bg-lime-500 text-white font-semibold hover:bg-lime-400 transition-all duration-300 shadow-md shadow-lime-200" />
           </div>
