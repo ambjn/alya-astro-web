@@ -9,6 +9,7 @@ import { ANIMATION_EASE } from "../constants";
 interface MarkdownPageProps {
   file: string;
   currentPath?: string;
+  content?: string;
 }
 
 const proseClasses = `
@@ -25,12 +26,13 @@ const proseClasses = `
   prose-hr:border-neutral-200 prose-hr:my-16
 `;
 
-export const MarkdownPage = ({ file, currentPath }: MarkdownPageProps) => {
-  const [content, setContent] = useState("");
+export const MarkdownPage = ({ file, currentPath, content: initialContent }: MarkdownPageProps) => {
+  const [content, setContent] = useState(initialContent ?? "");
   const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!initialContent);
 
   useEffect(() => {
+    if (initialContent) return;
     setLoading(true);
     fetch(`/docs/${file}`)
       .then((res) => {
@@ -45,7 +47,7 @@ export const MarkdownPage = ({ file, currentPath }: MarkdownPageProps) => {
         setError(err.message);
         setLoading(false);
       });
-  }, [file]);
+  }, [file, initialContent]);
 
   if (loading) {
     return (

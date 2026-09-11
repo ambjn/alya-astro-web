@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SupportView from '../views/Support';
+import supportContent from '../../public/docs/support.md?raw';
 ---
 
 <Layout
@@ -8,5 +9,5 @@ import SupportView from '../views/Support';
   description="Get help with alya, our AI language learning app. Contact us at amber@alyacompanion.xyz."
   canonical="/support"
 >
-  <SupportView currentPath="/support" client:only="react" />
+  <SupportView currentPath="/support" content={supportContent} />
 </Layout>
