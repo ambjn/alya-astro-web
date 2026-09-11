@@ -9,5 +9,5 @@ import supportContent from '../../public/docs/support.md?raw';
   description="Get help with alya, our AI language learning app. Contact us at amber@alyacompanion.xyz."
   canonical="/support"
 >
-  <SupportView currentPath="/support" content={supportContent} />
+  <SupportView currentPath="/support" content={supportContent} client:only="react" />
 </Layout>
