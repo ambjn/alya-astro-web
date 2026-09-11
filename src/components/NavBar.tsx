@@ -41,17 +41,17 @@ export const NavBar = ({ currentPath = "", dark = false }: { currentPath?: strin
         transition={{ duration: 0.4, ease: ANIMATION_EASE }}
         className={`fixed top-0 left-0 right-0 z-50 isolate transition-all duration-500 ${isScrolled
           ? "py-3 bg-[#f4f0e7] border-b border-neutral-900/10 shadow-[0_6px_24px_rgba(32,35,29,0.05)]"
-          : "py-10 bg-transparent"
+          : "py-6 sm:py-8 md:py-10 bg-transparent"
           }`}
       >
-        <div className="container relative mx-auto px-6 md:px-10 flex items-center justify-between">
+        <div className="container relative mx-auto px-5 sm:px-6 md:px-10 flex items-center justify-between">
           <a href="/" className="flex items-center gap-2 group">
             {!isHome && (
               <div className="p-2 rounded-full bg-neutral-100 group-hover:bg-neutral-200 border border-neutral-200 transition-all">
                 <ArrowLeft size={16} className="text-neutral-500 group-hover:text-neutral-900" />
               </div>
             )}
-            <span className="font-semibold text-3xl tracking-tighter text-neutral-900">
+            <span className="font-semibold text-2xl sm:text-3xl tracking-tighter text-neutral-900">
               alya<span className="text-lime-600">.</span>
             </span>
           </a>
@@ -75,7 +75,7 @@ export const NavBar = ({ currentPath = "", dark = false }: { currentPath?: strin
           </div>
 
           <button
-            className="md:hidden z-50 p-3 -mr-1 transition-colors text-neutral-600 hover:text-neutral-900"
+            className="md:hidden z-50 p-2.5 -mr-1 transition-colors text-neutral-700 hover:text-neutral-900"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMobileMenuOpen}
