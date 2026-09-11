@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowLeft, Clock, ChevronRight } from "lucide-react";
 import { Footer } from "../components/Footer";
+import { FAQAccordion } from "../components/FAQAccordion";
 import { posts, type BlogPost, type BlogSection } from "../blog/posts";
 import { ANIMATION_EASE, COMPARE_LINKS } from "../constants";
 import { DownloadButton } from "../components/DownloadButton";
@@ -128,6 +129,13 @@ const BlogPostClient = ({ post, currentPath }: BlogPostClientProps) => {
         >
           {post.content.map((section, i) => renderSection(section, i))}
         </motion.article>
+
+        {post.faqs && post.faqs.length > 0 && (
+          <section className="mt-16">
+            <h2 className="text-2xl font-semibold text-neutral-900 mb-6 tracking-tight">frequently asked questions</h2>
+            <FAQAccordion faqs={post.faqs} />
+          </section>
+        )}
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}

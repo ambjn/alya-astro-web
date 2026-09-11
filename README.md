@@ -51,15 +51,16 @@ src/
 ├── blog/
 │   └── posts.ts              # Blog post registry
 ├── data/
-│   └── languages.ts          # FEED_TOPICS, LEVELS, onboarding goals
+│   └── languages.ts          # FEED_TOPICS (20 feed topics)
 ├── styles/
 │   └── globals.css
-└── constants.ts              # APP_STORE_URL, BASE_URL, NAV_LINKS, PLUS_FEATURES, etc.
+└── constants.ts              # APP_STORE_URL, BASE_URL, NAV_LINKS, etc.
 public/
 ├── og/                       # Open Graph images
-├── logo/                     # App icon
-├── videos/                   # Video assets
+├── logo/                     # App icon + favicons
+├── videos/                   # alya-background.mp4 + poster
 ├── docs/                     # Markdown content (privacy, terms, support)
+├── .well-known/              # Apple app-site-association (Universal Links)
 ├── llms.txt
 └── robots.txt
 ```

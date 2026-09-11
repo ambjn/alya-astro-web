@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Play, MousePointerClick, PawPrint } from "lucide-react";
 import { Footer } from "./Footer";
 import { NavBar } from "./NavBar";
+import { FAQAccordion } from "./FAQAccordion";
 import type { FAQItem } from "./FAQAccordion";
 import { AppleIcon } from "./DownloadButton";
 import { ANIMATION_EASE, APP_STORE_URL } from "../constants";
@@ -28,6 +29,7 @@ export const LanguagePage = ({
   difficulty,
   timeToConversation,
   levels,
+  faqs,
   currentPath,
 }: LanguagePageProps) => {
   return (
@@ -210,6 +212,15 @@ export const LanguagePage = ({
             ))}
           </div>
         </section>
+
+        {faqs.length > 0 && (
+          <section className="mb-24 max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-semibold text-neutral-900 mb-8 text-center">
+              frequently asked <span className="text-lime-500">questions.</span>
+            </h2>
+            <FAQAccordion faqs={faqs} />
+          </section>
+        )}
 
       </main>
 

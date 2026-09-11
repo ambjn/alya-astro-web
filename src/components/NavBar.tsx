@@ -3,7 +3,7 @@ import { APP_STORE_URL, NAV_LINKS, ANIMATION_EASE } from "../constants";
 import { Menu, X, ArrowLeft } from "lucide-react";
 import { useState, useEffect } from "react";
 
-export const NavBar = ({ currentPath = "", dark = false }: { currentPath?: string; dark?: boolean }) => {
+export const NavBar = ({ currentPath = "" }: { currentPath?: string }) => {
   const isHome = currentPath === "/";
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

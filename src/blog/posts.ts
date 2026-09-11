@@ -5,11 +5,9 @@ export interface BlogPost {
     metaDescription: string;
     publishedAt: string;
     readingTime: string;
-    category: "tier1" | "tier2" | "tier3";
     excerpt: string;
     content: BlogSection[];
     faqs?: { question: string; answer: string }[];
-    relatedLanguage?: string;
 }
 
 export interface BlogSection {
@@ -26,7 +24,6 @@ export const posts: BlogPost[] = [
             "Tired of drills you can't use in real conversations? Here are the best Duolingo alternatives in 2026 for understanding and practicing real Spanish.",
         publishedAt: "2026-06-01",
         readingTime: "7 min read",
-        category: "tier1",
         excerpt:
             "Duolingo is great for streaks. It's not great for understanding natives. Here are the best alternatives if you want real comprehension.",
         content: [
@@ -165,7 +162,6 @@ export const posts: BlogPost[] = [
             "Looking for the best AI Spanish app in 2026? Here's why immersion feeds beat chatboxes and drills, and how to pick.",
         publishedAt: "2026-05-19",
         readingTime: "8 min read",
-        category: "tier1",
         excerpt:
             "AI changed language learning. But not all AI apps are equal. Here's how to pick one for comprehension, not just quizzes.",
         content: [
@@ -290,10 +286,8 @@ export const posts: BlogPost[] = [
             "Learn Spanish fast with immersion. Scroll real videos daily, tap what you miss, save words. Here's a 3-month plan.",
         publishedAt: "2026-05-05",
         readingTime: "7 min read",
-        category: "tier1",
         excerpt:
             "The fastest way to learn Spanish isn't drills, it's daily immersion you actually understand. Here's a 3-month plan.",
-        relatedLanguage: "learn-spanish",
         content: [
             {
                 type: "p",
@@ -410,7 +404,6 @@ export const posts: BlogPost[] = [
         metaDescription: "Don't freeze on your trip. Learn these 8 real Spanish situations, café, hotel, doctor, market, with key phrases for each.",
         publishedAt: "2026-06-06",
         readingTime: "9 min read",
-        category: "tier1",
         excerpt: "Ordering food, asking directions, handling an emergency, the worst time to meet these is for the first time. Preview them here.",
         content: [
             { type: "p", content: "Apps teach 'the bear drinks milk.' Travel needs '¿Para aquí o para llevar?' Scenario immersion closes that gap: you hear whole situations, with translations, before you live them." },
@@ -493,9 +486,7 @@ export const posts: BlogPost[] = [
         metaDescription: "Stop cramming lists. Save words from videos you love and review them, here's how video-context vocabulary sticks.",
         publishedAt: "2026-06-05",
         readingTime: "7 min read",
-        category: "tier1",
         excerpt: "Study 50 words, remember 10? It's not effort, it's method. Words from videos stick because they come with a memory.",
-        relatedLanguage: "learn-spanish",
         content: [
             { type: "p", content: "You study 50 words, feel good, return in three days, remember 10. Not a memory problem, a context problem. Words learned in real moments stick. Words from lists evaporate." },
             { type: "h2", content: "Why Video Context Wins" },
@@ -548,9 +539,7 @@ export const posts: BlogPost[] = [
         metaDescription: "Stop memorizing tables. Here are the 7 Spanish rules that trip up English speakers, learned by hearing them in real clips.",
         publishedAt: "2026-06-04",
         readingTime: "8 min read",
-        category: "tier1",
         excerpt: "Grammar tables don't survive native speed. Hearing rules in real videos does. Here are the 7 that matter most.",
-        relatedLanguage: "learn-spanish",
         content: [
             { type: "p", content: "You can ace a conjugation quiz and blank when a native speaks. Rules in isolation don't transfer. Rules heard 50 times in context do." },
             { type: "h2", content: "7 Rules That Trip Up English Speakers" },
@@ -610,7 +599,6 @@ export const posts: BlogPost[] = [
             "Why AI immersion works: comprehensible input, instant support, infinite patience. Here's the science and how to use it.",
         publishedAt: "2026-04-21",
         readingTime: "9 min read",
-        category: "tier1",
         excerpt:
             "AI immersion isn't hype. Here's the science (Krashen's input hypothesis) and how pre-translated video makes it daily-usable.",
         content: [
@@ -735,7 +723,6 @@ export const posts: BlogPost[] = [
             "ALYA Plus in 2 minutes: 7-day free trial when eligible, Annual or Monthly via App Store, and the 3 Plus features.",
         publishedAt: "2026-06-10",
         readingTime: "3 min read",
-        category: "tier1",
         excerpt:
             "Plus in 2 minutes: what's included, how the 7-day trial works, and how billing works.",
         content: [

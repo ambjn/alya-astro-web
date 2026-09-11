@@ -11,9 +11,3 @@ export const fadeUpVariants = {
   hidden: { opacity: 0, y: 22 },
   show: { opacity: 1, y: 0, transition: { duration: 0.55, ease } },
 } as const;
-
-/** Slightly taller fade-up for cards */
-export const fadeUpCardVariants = {
-  hidden: { opacity: 0, y: 28 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease } },
-} as const;

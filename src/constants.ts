@@ -8,12 +8,6 @@ export const SUPPORT_EMAIL = "amber@alyacompanion.xyz";
 
 export const ANIMATION_EASE = [0.22, 1, 0.36, 1] as const;
 
-export const PLUS_FEATURES = [
-  { title: "Unlimited Immersion", desc: "Explore every clip, picked for your level" },
-  { title: "Instant Explanations", desc: "Tap any phrase to understand it in context" },
-  { title: "Your Evolving Companion", desc: "Complete clips and save words to grow ALYA" },
-] as const;
-
 export const NAV_LINKS = [
   { label: "features", href: "/features" },
   { label: "topics", href: "/topics" },

@@ -87,11 +87,3 @@
     -webkit-user-select: text;
   }
 }
-
-@layer components {
-  .paper-card {
-    background: rgb(251 248 241 / 94%);
-    border: 1px solid rgb(32 35 29 / 12%);
-    box-shadow: 0 18px 50px rgb(59 61 47 / 9%);
-  }
-}

@@ -2,11 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import SupportView from '../views/Support';
 import supportContent from '../../public/docs/support.md?raw';
+import { SUPPORT_EMAIL } from '../constants';
 ---
 
 <Layout
   title="Support | ALYA"
-  description="Get help with alya, our AI language learning app. Contact us at amber@alyacompanion.xyz."
+  description={`Get help with alya, our AI language learning app. Contact us at ${SUPPORT_EMAIL}.`}
   canonical="/support"
 >
   <SupportView currentPath="/support" content={supportContent} client:only="react" />
