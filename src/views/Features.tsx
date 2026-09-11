@@ -79,7 +79,7 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.5, delay: i * 0.1, ease }}
-              className="p-8 rounded-3xl bg-lime-50 border border-lime-200 hover:border-lime-300 hover:shadow-sm transition-all duration-300"
+              className="p-8 rounded-3xl bg-lime-50 border border-lime-400 hover:border-lime-500 hover:shadow-sm transition-all duration-300"
             >
               <div className="inline-flex p-3 rounded-2xl bg-lime-100 text-lime-600 mb-5">
                 {f.icon}
