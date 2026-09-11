@@ -4,7 +4,7 @@
 
 **Tagline:** learn spanish. by doomscrolling.
 **Product loop:** scroll → tap to understand → save words → earn stars → grow ALYA.
-**Subscription:** Free + ALYA Plus (Annual / Monthly via RevenueCat, 7-day free trial when eligible, iOS only).
+**Subscription:** Free + ALYA Plus (Monthly $4.99/month, Annual $29.99/year = $2.50/month, save 50% vs monthly, via RevenueCat, 7 days free subject to RevenueCat eligibility, iOS only).
 **Available:** iOS App Store. App Store ID: 6758835552.
 **Website:** https://www.alyacompanion.xyz
 

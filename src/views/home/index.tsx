@@ -20,8 +20,8 @@ export const Home = () => {
         >
           <source src="/videos/alya-background.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-linear-to-r from-[#f4f0e7]/95 via-[#f4f0e7]/45 to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-[#f4f0e7] to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-0 bg-linear-to-r from-[#f4f0e7]/70 via-[#f4f0e7]/20 to-transparent md:from-[#f4f0e7]/85 md:via-[#f4f0e7]/35 z-10 pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-28 bg-linear-to-t from-[#f4f0e7]/90 to-transparent z-10 pointer-events-none" />
 
         <NavBar currentPath="/" />
 

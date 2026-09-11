@@ -12,10 +12,13 @@ const plans = [
   {
     id: "monthly",
     name: "plus monthly",
-    tagline: "flexible · per month",
+    tagline: "flexible · $4.99 per month",
+    price: "$4.99",
+    per: "/month",
+    priceNote: "billed monthly",
     features: [
       ...PLUS_FEATURES.map((f) => `${f.title}, ${f.desc}`),
-      "7-day free trial when eligible",
+      "7 days free, subject to RevenueCat eligibility",
       "Billing handled securely by the App Store",
     ],
     cta: "choose monthly",
@@ -24,11 +27,14 @@ const plans = [
   {
     id: "annual",
     name: "plus annual",
-    tagline: "best value · per year",
+    tagline: "best value · $29.99 per year",
+    price: "$29.99",
+    per: "/year",
+    priceNote: "$2.50/month · billed yearly · save 50%",
     features: [
       ...PLUS_FEATURES.map((f) => `${f.title}, ${f.desc}`),
-      "7-day free trial when eligible",
-      "Annual savings vs monthly · renews automatically",
+      "7 days free, subject to RevenueCat eligibility",
+      "Annual savings vs monthly (50%) · renews automatically",
     ],
     cta: "start free trial",
     highlight: true,
@@ -38,7 +44,7 @@ const plans = [
 const faqs = [
   {
     question: "is alya free to download?",
-    answer: "Yes, free to download on iOS. ALYA Plus membership is required to use the feed. New users get a 7-day free trial when eligible, then the selected Annual or Monthly plan renews automatically.",
+    answer: "Yes, free to download on iOS. ALYA Plus membership is required to use the feed. New users get 7 days free, subject to RevenueCat eligibility, then Plus Monthly ($4.99/month) or Plus Annual ($29.99/year) renews automatically.",
   },
   {
     question: "what does ALYA Plus include?",
@@ -46,7 +52,11 @@ const faqs = [
   },
   {
     question: "is there a free trial?",
-    answer: "Eligible new users get 7 days free. The paywall shows Start Free Trial only when your Apple ID is eligible. Then the plan price shown renews automatically, cancel anytime before the trial ends.",
+    answer: "Eligible new users get 7 days free, subject to RevenueCat eligibility. The paywall shows Start Free Trial only when your Apple ID is eligible. Then the plan price shown ($4.99/month or $29.99/year) renews automatically, cancel anytime before the trial ends.",
+  },
+  {
+    question: "how much does ALYA Plus cost?",
+    answer: "Plus Monthly is $4.99/month. Plus Annual is $29.99/year ($2.50/month), saving 50% vs monthly. Prices in USD, billed via the App Store.",
   },
   {
     question: "how do I pay, restore, or cancel?",
@@ -89,7 +99,7 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
             transition={{ duration: 0.6, delay: 0.12, ease }}
             className="text-neutral-500 text-base mb-10"
           >
-            ALYA Plus membership required. 7-day free trial when eligible.
+            ALYA Plus membership required. 7 days free, subject to RevenueCat eligibility.
           </motion.p>
 
           <motion.div
@@ -117,7 +127,7 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
             ))}
           </motion.div>
           <p className="text-neutral-400 text-xs mt-3">
-            {billing === "annual" ? "Annual, best value · billed yearly" : "Monthly, flexible · billed monthly"}
+            {billing === "annual" ? "Annual $29.99/year ($2.50/month) · save 50% · billed yearly" : "Monthly $4.99/month · billed monthly"}
           </p>
         </section>
 
@@ -150,11 +160,17 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
                   <p className="text-[11px] font-bold uppercase tracking-widest mb-3 text-neutral-400">
                     {plan.name}
                   </p>
-                  <p className="text-4xl font-semibold tracking-tight mb-1 text-neutral-900 capitalize">
-                    {plan.id}
+                  <p className="text-4xl font-semibold tracking-tight mb-1 text-neutral-900">
+                    {plan.price}
+                    <span className="text-lg font-medium text-neutral-400">{plan.per}</span>
                   </p>
                   <p className="text-xs mb-3 text-neutral-400">
-                    {"price in App Store · " + (plan.id === "annual" ? "billed yearly" : "billed monthly")}
+                    {plan.id === "annual" && (
+                      <span className="inline-block mr-1.5 px-2 py-0.5 rounded-full bg-lime-100 text-lime-700 text-[10px] font-bold uppercase tracking-wide">
+                        save 50%
+                      </span>
+                    )}
+                    {plan.priceNote}
                   </p>
                   <p className="text-sm text-neutral-500">
                     {plan.tagline}
@@ -189,10 +205,10 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
             className="text-center mt-10 max-w-xl mx-auto"
           >
             <p className="text-neutral-500 text-sm font-medium">
-              {activePlan.id === "annual" ? "Start free trial" : "Choose monthly"} in the app, price shown in the App Store.
+              {activePlan.id === "annual" ? "Start free trial" : "Choose monthly"} in the app · $29.99/year ($2.50/month) or $4.99/month.
             </p>
             <p className="text-neutral-400 text-xs mt-2">
-              subscriptions via App Store (RevenueCat) · iOS only · 7 days free when eligible · renews automatically · cancel anytime
+              subscriptions via App Store (RevenueCat) · iOS only · 7 days free, subject to RevenueCat eligibility · renews automatically · cancel anytime
             </p>
           </motion.div>
           <p className="text-center text-sm mt-4">
