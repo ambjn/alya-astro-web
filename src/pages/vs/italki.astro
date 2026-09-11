@@ -8,11 +8,6 @@ const faqs = [
   { question: "Is alya free compared to italki?", answer: "alya is free to download; Plus (Annual / Monthly, trial when eligible) is a fraction of one italki lesson. one lesson ≈ months of Plus." },
 ];
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })),
-};
 ---
 
 <Layout
@@ -20,7 +15,6 @@ const faqSchema = {
   description="alya vs italki: Spanish immersion feed for daily understanding vs live human tutors. Why input first makes tutors 10x more valuable. Free on iOS."
   canonical="/vs/italki"
 >
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
   <ComparisonPage
     competitorName="italki"
     competitorTagline="live human tutors"

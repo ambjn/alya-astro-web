@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { NavBar } from "../components/NavBar";
 import { Footer } from "../components/Footer";
-import { FAQAccordion } from "../components/FAQAccordion";
 import { AppleIcon } from "../components/DownloadButton";
 import { staggerVariants, fadeUpVariants } from "../lib/motion";
 import { ANIMATION_EASE as ease, APP_STORE_URL } from "../constants";
@@ -29,29 +28,6 @@ const TOPIC_BLURBS: Record<string, string> = {
   Work: "meetings, interviews, office life.",
   Technology: "phones, apps, and digital life.",
 };
-
-const faqs = [
-  {
-    question: "how do topics work?",
-    answer: "Pick the topics you love during onboarding, or anytime in Explore. The feed prioritizes matching clips while keeping enough variety that it never runs dry.",
-  },
-  {
-    question: "what if my topic runs out of clips?",
-    answer: "The feed falls back to nearby content so scrolling never stops. New clips are transcribed and published in the background, with a 5+ clips-per-topic coverage target.",
-  },
-  {
-    question: "can I filter by level and topic together?",
-    answer: "Yes. Explore combines level (Beginner / Intermediate / Advanced), grammar (Questions, Present/Past tense, Commands, Polite phrases, Conversation), source (Anime, Cartoon, Drama, Movie, Music, News, Vlog, Podcast, Interview, Lesson), and format (Shorts ≤90s vs Videos), plus search in Spanish, English, or a phrase.",
-  },
-  {
-    question: "which topics are best for beginners?",
-    answer: "Food, Travel, Shopping, and Morning Routine, concrete vocabulary, clear situations, slower speech. Comedy and Music are tastier at intermediate and above.",
-  },
-  {
-    question: "is Spanish Culture different from language lessons?",
-    answer: "Yes. Spanish Culture clips are real native videos about how Spanish speakers live, not classroom lessons. Every clip still ships with transcript, translation, and tap-to-translate so you understand in context.",
-  },
-];
 
 const Topics = ({ currentPath }: { currentPath?: string }) => (
   <div className="min-h-screen font-sans bg-lime-50">
@@ -96,13 +72,6 @@ const Topics = ({ currentPath }: { currentPath?: string }) => (
             Beginner / Intermediate / Advanced · Questions · Present tense · Past tense · Commands · Polite phrases · Conversation · 10 sources · Shorts vs Videos · search anything
           </p>
         </div>
-      </section>
-
-      <section className="pb-20 max-w-3xl mx-auto">
-        <h2 className="text-2xl md:text-3xl font-semibold text-neutral-900 mb-8 text-center tracking-tight">
-          topic questions
-        </h2>
-        <FAQAccordion faqs={faqs} />
       </section>
 
       <section className="pb-24 text-center">

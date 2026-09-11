@@ -9,11 +9,6 @@ const faqs = [
   { question: "Can I use alya and Duolingo together?", answer: "absolutely. many learners drill with duolingo, then build real comprehension by scrolling alya. drills for recognition, immersion for understanding." },
 ];
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })),
-};
 ---
 
 <Layout
@@ -21,7 +16,6 @@ const faqSchema = {
   description="alya vs Duolingo: real Spanish video feed with tap-to-translate vs gamified drills. See which builds real understanding. Try alya free on iOS."
   canonical="/vs/duolingo"
 >
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
   <ComparisonPage
     competitorName="Duolingo"
     competitorTagline="gamified vocabulary drills"

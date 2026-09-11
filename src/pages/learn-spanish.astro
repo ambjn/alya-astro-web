@@ -25,15 +25,6 @@ const faqs = [
   },
 ];
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: { "@type": "Answer", text: faq.answer },
-  })),
-};
 ---
 
 <Layout
@@ -41,7 +32,6 @@ const faqSchema = {
   description="Learn Spanish from real videos. Scroll an immersion feed, tap any word for translation, save vocabulary, grow your companion. Beginner to advanced. Free on iOS."
   canonical="/learn-spanish"
 >
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
   <LanguagePage
     nativeName="Español"
     languageName="Spanish"

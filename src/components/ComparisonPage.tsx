@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { Check, X } from "lucide-react";
 import { Footer } from "./Footer";
 import { NavBar } from "./NavBar";
-import { FAQAccordion } from "./FAQAccordion";
 import { ANIMATION_EASE as ease } from "../constants";
 
 interface ComparisonRow {
@@ -53,7 +52,6 @@ export const ComparisonPage = ({
   heroSubtitle,
   rows,
   sections,
-  faqs,
   currentPath,
 }: ComparisonPageProps) => {
   return (
@@ -168,18 +166,6 @@ export const ComparisonPage = ({
           ))}
         </div>
 
-        <section className="max-w-3xl mx-auto pb-20 md:pb-28">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease }}
-            className="text-2xl md:text-3xl font-semibold text-neutral-900 mb-8 text-center tracking-tight"
-          >
-            Questions &amp; Answers
-          </motion.h2>
-          <FAQAccordion faqs={faqs} />
-        </section>
       </main>
 
       <Footer />

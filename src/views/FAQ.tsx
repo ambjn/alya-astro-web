@@ -7,7 +7,7 @@ import { ANIMATION_EASE as ease } from "../constants";
 const faqs = [
   {
     question: "is alya free to download?",
-    answer: "Yes, free to download on iOS. ALYA Plus membership is required to use the feed. New users get 7 days free, subject to RevenueCat eligibility, then Plus Monthly ($4.99/month) or Plus Annual ($29.99/year) renews automatically. Cancel anytime.",
+    answer: "Yes, free to download on iOS. ALYA Plus membership is required to use the feed. Eligible new users get 7 days free, then Plus Monthly ($4.99/month) or Plus Annual ($29.99/year) renews automatically. Cancel anytime.",
   },
   {
     question: "how is alya different from Duolingo?",
@@ -35,7 +35,7 @@ const faqs = [
   },
   {
     question: "is there a free trial?",
-    answer: "Eligible new users get 7 days free, subject to RevenueCat eligibility, the paywall shows Start Free Trial only when your Apple ID is eligible. Then $4.99/month or $29.99/year renews automatically. Billing is via the App Store with RevenueCat, iOS only. Already subscribed? Tap Restore.",
+    answer: "Eligible new users get 7 days free. The paywall shows Start Free Trial only when your Apple ID is eligible. Then $4.99/month or $29.99/year renews automatically. Billing is via the App Store, iOS only. Already subscribed? Tap Restore.",
   },
   {
     question: "can I filter what I watch?",

@@ -8,11 +8,6 @@ const faqs = [
   { question: "Is alya free compared to Pimsleur?", answer: "alya is free to download; Plus (Annual / Monthly, trial when eligible) costs less than Pimsleur's ~$20/month subscription." },
 ];
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })),
-};
 ---
 
 <Layout
@@ -20,7 +15,6 @@ const faqSchema = {
   description="alya vs Pimsleur: Spanish video immersion with tap-to-translate vs audio listen-and-repeat. Comprehension vs pronunciation drills. Free on iOS."
   canonical="/vs/pimsleur"
 >
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
   <ComparisonPage
     competitorName="Pimsleur"
     competitorTagline="audio listen-and-repeat"

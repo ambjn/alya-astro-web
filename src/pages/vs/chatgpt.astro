@@ -8,11 +8,6 @@ const faqs = [
   { question: "How much does alya cost vs ChatGPT?", answer: "alya is free to download, with Plus (Annual / Monthly, 7-day free trial when eligible) built for learners. ChatGPT Plus is $20/month for a general chatbot." },
 ];
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })),
-};
 ---
 
 <Layout
@@ -20,7 +15,6 @@ const faqSchema = {
   description="alya vs ChatGPT: curated Spanish immersion feed with tap-to-translate vs general chatbot that needs prompting. Free on iOS."
   canonical="/vs/chatgpt"
 >
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
   <ComparisonPage
     competitorName="ChatGPT"
     competitorTagline="general chatbot"

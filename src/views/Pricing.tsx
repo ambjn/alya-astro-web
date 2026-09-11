@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Check, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { Footer } from "../components/Footer";
 import { NavBar } from "../components/NavBar";
-import { FAQAccordion } from "../components/FAQAccordion";
-import { ANIMATION_EASE as ease, COMPARE_LINKS, PLUS_FEATURES } from "../constants";
+import { ANIMATION_EASE as ease, COMPARE_LINKS } from "../constants";
 
 type BillingCycle = "monthly" | "annual";
 
@@ -12,63 +11,18 @@ const plans = [
   {
     id: "monthly",
     name: "plus monthly",
-    tagline: "flexible · $4.99 per month",
     price: "$4.99",
     per: "/month",
     priceNote: "billed monthly",
-    features: [
-      ...PLUS_FEATURES.map((f) => `${f.title}, ${f.desc}`),
-      "7 days free, subject to RevenueCat eligibility",
-      "Billing handled securely by the App Store",
-    ],
-    cta: "choose monthly",
     highlight: false,
   },
   {
     id: "annual",
     name: "plus annual",
-    tagline: "best value · $29.99 per year",
     price: "$29.99",
     per: "/year",
     priceNote: "$2.50/month · billed yearly · save 50%",
-    features: [
-      ...PLUS_FEATURES.map((f) => `${f.title}, ${f.desc}`),
-      "7 days free, subject to RevenueCat eligibility",
-      "Annual savings vs monthly (50%) · renews automatically",
-    ],
-    cta: "start free trial",
     highlight: true,
-  },
-];
-
-const faqs = [
-  {
-    question: "is alya free to download?",
-    answer: "Yes, free to download on iOS. ALYA Plus membership is required to use the feed. New users get 7 days free, subject to RevenueCat eligibility, then Plus Monthly ($4.99/month) or Plus Annual ($29.99/year) renews automatically.",
-  },
-  {
-    question: "what does ALYA Plus include?",
-    answer: "Unlimited Immersion (every clip, picked for your level), Instant Explanations (tap any phrase to understand it in context), and Your Evolving Companion (complete clips and save words to grow ALYA).",
-  },
-  {
-    question: "is there a free trial?",
-    answer: "Eligible new users get 7 days free, subject to RevenueCat eligibility. The paywall shows Start Free Trial only when your Apple ID is eligible. Then the plan price shown ($4.99/month or $29.99/year) renews automatically, cancel anytime before the trial ends.",
-  },
-  {
-    question: "how much does ALYA Plus cost?",
-    answer: "Plus Monthly is $4.99/month. Plus Annual is $29.99/year ($2.50/month), saving 50% vs monthly. Prices in USD, billed via the App Store.",
-  },
-  {
-    question: "how do I pay, restore, or cancel?",
-    answer: "Subscriptions are processed through the App Store with RevenueCat, iOS only. Already subscribed? Tap Restore in the paywall. Manage, upgrade, or cancel from Settings → Billing, or your Apple ID subscriptions.",
-  },
-  {
-    question: "can I switch between Annual and Monthly?",
-    answer: "Yes, anytime from the paywall or Settings → Billing. Changes take effect at the next billing cycle.",
-  },
-  {
-    question: "what happens if I cancel?",
-    answer: "You keep Plus until the end of the billing period. Your words, stars, and companion progress stay saved. Without Plus you return to the paywall, there is no free tier.",
   },
 ];
 
@@ -99,7 +53,7 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
             transition={{ duration: 0.6, delay: 0.12, ease }}
             className="text-neutral-500 text-base mb-10"
           >
-            ALYA Plus membership required. 7 days free, subject to RevenueCat eligibility.
+            ALYA Plus membership required. Eligible new users get 7 days free.
           </motion.p>
 
           <motion.div
@@ -136,64 +90,43 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
             {plans.map((plan, i) => {
               const isActive = plan.id === billing;
               return (
-              <motion.div
-                key={plan.id}
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                whileHover={{ y: -6, transition: { duration: 0.2 } }}
-                transition={{ duration: 0.55, delay: i * 0.08, ease }}
-                className={`relative rounded-2xl p-7 flex flex-col transition-all duration-300 shadow-sm hover:shadow-xl ${
-                  plan.highlight
-                    ? "ring-2 ring-lime-400 bg-white"
-                    : "bg-neutral-50 hover:bg-white border border-neutral-100"
-                } ${isActive ? "" : "opacity-70"}`}
-              >
-                {plan.highlight && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <span className="px-3 py-1 rounded-full bg-neutral-900 text-white text-[10px] font-bold uppercase tracking-widest whitespace-nowrap">
-                      most popular
-                    </span>
+                <motion.div
+                  key={plan.id}
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  whileHover={{ y: -6, transition: { duration: 0.2 } }}
+                  transition={{ duration: 0.55, delay: i * 0.08, ease }}
+                  className={`relative rounded-2xl p-7 flex flex-col transition-all duration-300 shadow-sm hover:shadow-xl ${plan.highlight
+                      ? "ring-2 ring-lime-400 bg-white"
+                      : "bg-neutral-50 hover:bg-white border border-neutral-100"
+                    } ${isActive ? "" : "opacity-70"}`}
+                >
+                  {plan.highlight && (
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                      <span className="px-3 py-1 rounded-full bg-neutral-900 text-white text-[10px] font-bold uppercase tracking-widest whitespace-nowrap">
+                        most popular
+                      </span>
+                    </div>
+                  )}
+
+                  <div>
+                    <p className="text-[11px] font-bold uppercase tracking-widest mb-3 text-neutral-400">
+                      {plan.name}
+                    </p>
+                    <p className="text-4xl font-semibold tracking-tight mb-1 text-neutral-900">
+                      {plan.price}
+                      <span className="text-lg font-medium text-neutral-400">{plan.per}</span>
+                    </p>
+                    <p className="text-xs text-neutral-400">
+                      {plan.id === "annual" && (
+                        <span className="inline-block mr-1.5 px-2 py-0.5 rounded-full bg-lime-100 text-lime-700 text-[10px] font-bold uppercase tracking-wide">
+                          save 50%
+                        </span>
+                      )}
+                      {plan.priceNote}
+                    </p>
                   </div>
-                )}
-
-                <div className="mb-6">
-                  <p className="text-[11px] font-bold uppercase tracking-widest mb-3 text-neutral-400">
-                    {plan.name}
-                  </p>
-                  <p className="text-4xl font-semibold tracking-tight mb-1 text-neutral-900">
-                    {plan.price}
-                    <span className="text-lg font-medium text-neutral-400">{plan.per}</span>
-                  </p>
-                  <p className="text-xs mb-3 text-neutral-400">
-                    {plan.id === "annual" && (
-                      <span className="inline-block mr-1.5 px-2 py-0.5 rounded-full bg-lime-100 text-lime-700 text-[10px] font-bold uppercase tracking-wide">
-                        save 50%
-                      </span>
-                    )}
-                    {plan.priceNote}
-                  </p>
-                  <p className="text-sm text-neutral-500">
-                    {plan.tagline}
-                  </p>
-                </div>
-
-                <div className="h-px mb-5 bg-neutral-100" />
-
-                <ul className="space-y-3">
-                  {plan.features.map((feature, j) => (
-                    <li key={j} className="flex items-center gap-2.5">
-                      <Check
-                        size={14}
-                        strokeWidth={2.5}
-                        className="shrink-0 text-lime-500"
-                      />
-                      <span className="text-sm leading-snug text-neutral-700">
-                        {feature}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
+                </motion.div>
               );
             })}
           </div>
@@ -208,7 +141,7 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
               {activePlan.id === "annual" ? "Start free trial" : "Choose monthly"} in the app · $29.99/year ($2.50/month) or $4.99/month.
             </p>
             <p className="text-neutral-400 text-xs mt-2">
-              subscriptions via App Store (RevenueCat) · iOS only · 7 days free, subject to RevenueCat eligibility · renews automatically · cancel anytime
+              subscriptions via App Store · iOS only · 7 days free for eligible new users · renews automatically · cancel anytime
             </p>
           </motion.div>
           <p className="text-center text-sm mt-4">
@@ -243,21 +176,6 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
               ))}
             </div>
           </motion.div>
-        </section>
-
-        <section className="pb-24">
-          <div className="max-w-2xl mx-auto w-full">
-            <motion.h2
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, ease }}
-              className="text-2xl md:text-3xl font-semibold text-neutral-900 mb-8 text-center tracking-tight"
-            >
-              frequently asked questions
-            </motion.h2>
-            <FAQAccordion faqs={faqs} />
-          </div>
         </section>
 
       </div>

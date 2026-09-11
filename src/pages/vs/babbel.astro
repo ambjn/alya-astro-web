@@ -8,11 +8,6 @@ const faqs = [
   { question: "Does alya have grammar like Babbel?", answer: "alya teaches grammar in context, you hear it in real videos with translations and glosses, and filter Explore by grammar (Questions, Present/Past tense, Commands, Polite phrases, Conversation). less textbook, more real usage." },
 ];
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })),
-};
 ---
 
 <Layout
@@ -20,7 +15,6 @@ const faqSchema = {
   description="alya vs Babbel: Spanish video immersion with tap-to-translate vs structured lessons. Real content vs curriculum. Free on iOS."
   canonical="/vs/babbel"
 >
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
   <ComparisonPage
     competitorName="Babbel"
     competitorTagline="structured curriculum"

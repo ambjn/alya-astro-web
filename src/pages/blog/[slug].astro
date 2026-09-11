@@ -41,19 +41,7 @@ const breadcrumbSchema = {
   ],
 };
 
-const faqSchema = post.faqs
-  ? {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: post.faqs.map((faq) => ({
-        "@type": "Question",
-        name: faq.question,
-        acceptedAnswer: { "@type": "Answer", text: faq.answer },
-      })),
-    }
-  : null;
-
-const schemas = [articleSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema] : [])];
+const schemas = [articleSchema, breadcrumbSchema];
 ---
 
 <Layout

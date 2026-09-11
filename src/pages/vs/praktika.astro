@@ -8,11 +8,6 @@ const faqs = [
   { question: "Do I need a microphone for alya?", answer: "no. just scroll, tap, listen, and save. use headphones on the bus, no speaking out loud required. prompts invite you to produce Spanish when you want to." },
 ];
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })),
-};
 ---
 
 <Layout
@@ -20,7 +15,6 @@ const faqSchema = {
   description="alya vs Praktika: real native Spanish videos with tap-to-translate vs AI avatar drills. Immersion that feels like scrolling. Free on iOS."
   canonical="/vs/praktika"
 >
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
   <ComparisonPage
     competitorName="Praktika"
     competitorTagline="AI avatar tutors"

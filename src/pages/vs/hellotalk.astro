@@ -9,11 +9,6 @@ const faqs = [
   { question: "Can I use alya and HelloTalk together?", answer: "yes. use alya daily for input and vocabulary, hellotalk when you want live human exchange. input first, output second." },
 ];
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })),
-};
 ---
 
 <Layout
@@ -21,7 +16,6 @@ const faqSchema = {
   description="alya vs HelloTalk: instant Spanish video immersion vs language exchange that needs a partner. No scheduling, just scroll. Free on iOS."
   canonical="/vs/hellotalk"
 >
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
   <ComparisonPage
     competitorName="HelloTalk"
     competitorTagline="human language exchange"

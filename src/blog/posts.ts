@@ -765,7 +765,7 @@ export const posts: BlogPost[] = [
                 content: [
                     "7 days free when eligible, paywall shows Start Free Trial only then",
                     "Annual (best value) or Monthly, price shown in the App Store",
-                    "Via App Store with RevenueCat, iOS only",
+                    "Via App Store, iOS only",
                     "Renews automatically, cancel anytime before it ends",
                     "Already subscribed? Tap Restore in the paywall",
                 ],

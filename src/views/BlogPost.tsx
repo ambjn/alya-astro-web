@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowLeft, Clock, ChevronRight } from "lucide-react";
 import { Footer } from "../components/Footer";
-import { FAQAccordion } from "../components/FAQAccordion";
 import { posts, type BlogPost, type BlogSection } from "../blog/posts";
 import { ANIMATION_EASE, COMPARE_LINKS } from "../constants";
 import { DownloadButton } from "../components/DownloadButton";
@@ -129,21 +128,6 @@ const BlogPostClient = ({ post, currentPath }: BlogPostClientProps) => {
         >
           {post.content.map((section, i) => renderSection(section, i))}
         </motion.article>
-
-        {post.faqs && post.faqs.length > 0 && (
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: ANIMATION_EASE }}
-            className="mt-20 pt-12 border-t border-neutral-100"
-          >
-            <h2 className="text-2xl font-semibold text-neutral-900 mb-8">
-              Frequently Asked Questions
-            </h2>
-            <FAQAccordion faqs={post.faqs} />
-          </motion.section>
-        )}
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
