@@ -7,9 +7,15 @@ export const Home = () => {
   return (
     <MotionConfig reducedMotion="user">
     <div className="font-sans bg-lime-50">
-      <section className="relative min-h-[100svh] overflow-hidden scroll-snap-start flex flex-col justify-end bg-[#eee9df]">
+      <section className="home-hero relative min-h-svh overflow-hidden scroll-snap-start flex flex-col justify-end bg-[#eee9df]">
+        <img
+          className="home-hero-poster absolute inset-0 z-0 hidden h-full w-full object-cover object-center"
+          src="/videos/alya-background-poster.jpg"
+          alt=""
+          aria-hidden="true"
+        />
         <video
-          className="absolute inset-0 w-full h-full object-cover object-[54%_center] sm:object-[58%_center] md:object-left z-0"
+          className="home-hero-video absolute inset-0 w-full h-full object-cover object-[54%_center] sm:object-[58%_center] md:object-left z-0"
           autoPlay
           muted
           loop
@@ -29,14 +35,14 @@ export const Home = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, ease }}
-          className="relative z-20 w-full flex flex-col justify-end px-5 sm:px-10 md:px-16 pb-[max(2rem,env(safe-area-inset-bottom))] sm:pb-14 md:pb-20"
+          className="home-hero-content relative z-20 w-full flex flex-col justify-end px-5 sm:px-10 md:px-16 pb-[max(2rem,env(safe-area-inset-bottom))] sm:pb-14 md:pb-20"
         >
-          <div className="flex flex-col items-start">
+          <div className="home-hero-copy flex flex-col items-start">
             <motion.h1
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.15, ease }}
-              className="text-[2.65rem] min-[390px]:text-[2.8rem] sm:text-6xl md:text-7xl font-semibold tracking-[-0.045em] text-neutral-900 leading-[0.94] mb-4 sm:mb-5 max-w-xl"
+              className="home-hero-title text-[2.65rem] min-[390px]:text-[2.8rem] sm:text-6xl md:text-7xl font-semibold tracking-[-0.045em] text-neutral-900 leading-[0.94] mb-4 sm:mb-5 max-w-xl"
             >
               learn spanish.<br /><span className="text-lime-600 whitespace-nowrap">by doomscrolling.</span>
             </motion.h1>
@@ -45,7 +51,7 @@ export const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3, ease }}
-              className="text-base sm:text-xl leading-relaxed sm:leading-normal font-medium text-neutral-700 mb-6 sm:mb-8 max-w-lg"
+              className="home-hero-description text-base sm:text-xl leading-relaxed sm:leading-normal font-medium text-neutral-700 mb-6 sm:mb-8 max-w-lg"
             >
               scroll real videos. tap what you don't know.<br />
               grow your companion.

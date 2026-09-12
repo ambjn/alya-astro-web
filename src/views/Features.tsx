@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import {
-  Play, MousePointerClick, Volume2, Bookmark, PawPrint, Layers, Compass, Bell, Flame, Shield, Search, Repeat,
+  Play, MousePointerClick, Volume2, Bookmark, PawPrint, Layers, Compass, Flame,
 } from "lucide-react";
 import { Footer } from "../components/Footer";
 import { NavBar } from "../components/NavBar";
@@ -23,15 +23,11 @@ const coreFeatures = [
 
 const features = [
   { icon: <Bookmark size={18} />, color: "text-amber-500 bg-amber-50 border-amber-100", title: "My Words + spaced review", body: "tap any word to save it. ALYA schedules a spaced review with video context." },
-  { icon: <Volume2 size={18} />, color: "text-blue-500 bg-blue-50 border-blue-100", title: "native audio", body: "tap-to-hear pronunciation (Aura-2 Selena voice), slowed down on demand." },
+  { icon: <Volume2 size={18} />, color: "text-blue-500 bg-blue-50 border-blue-100", title: "native audio", body: "tap-to-hear pronunciation, slowed down on demand." },
   { icon: <PawPrint size={18} />, color: "text-violet-500 bg-violet-50 border-violet-100", title: "evolving companion", body: "clips + saved words earn stars. stars grow energy, bond, curiosity." },
-  { icon: <Layers size={18} />, color: "text-indigo-500 bg-indigo-50 border-indigo-100", title: "3 levels", body: "beginner 🌱, intermediate 📚, advanced 🚀. the feed meets your level." },
-  { icon: <Compass size={18} />, color: "text-teal-500 bg-teal-50 border-teal-100", title: "20 topics + Explore", body: "Spanish Culture to Gaming. filter by level, grammar, source, Shorts vs Videos." },
-  { icon: <Search size={18} />, color: "text-cyan-600 bg-cyan-50 border-cyan-100", title: "search + prompts", body: "search Spanish, English, or a phrase. answer contextual prompts to produce." },
-  { icon: <Bell size={18} />, color: "text-orange-500 bg-orange-50 border-orange-100", title: "plans + reminders", body: "personalized plan from your goals + 5–30 min/day. reminders at 8:00, 14:00, 19:00, 21:30." },
-  { icon: <Flame size={18} />, color: "text-orange-500 bg-orange-50 border-orange-100", title: "streaks + achievements", body: "7 / 14 / 30 / 60-day goals. streak milestones at 7, 14, every 30." },
-  { icon: <Repeat size={18} />, color: "text-emerald-600 bg-emerald-50 border-emerald-100", title: "never-ending feed", body: "session exclusions + creator variety. 20 on open, refill with ~10 left." },
-  { icon: <Shield size={18} />, color: "text-slate-500 bg-slate-50 border-slate-100", title: "private & secure", body: "billing via App Store. delete progress, vocabulary + account anytime." },
+  { icon: <Layers size={18} />, color: "text-indigo-500 bg-indigo-50 border-indigo-100", title: "3 levels", body: "beginner, intermediate, advanced. the feed meets your level." },
+  { icon: <Compass size={18} />, color: "text-teal-500 bg-teal-50 border-teal-100", title: "20 topics + Explore", body: "Culture to Gaming. filter by level, grammar, source, Shorts vs Videos." },
+  { icon: <Flame size={18} />, color: "text-orange-500 bg-orange-50 border-orange-100", title: "streaks + achievements", body: "daily goals and milestones that keep you consistent." },
 ];
 
 const steps = [
@@ -39,13 +35,6 @@ const steps = [
   { n: "2", title: "get your plan", body: "minutes/day, streak goal, level + focus. 5–30 minutes a day beats marathons." },
   { n: "3", title: "scroll + tap", body: "watch clips, tap phrases, save words, answer prompts, earn stars." },
   { n: "4", title: "grow ALYA", body: "energy, bond + curiosity grow. streaks + achievements unlock." },
-];
-
-const exploreFilters = [
-  { label: "levels", value: "Beginner · Intermediate · Advanced" },
-  { label: "grammar", value: "Questions · Present · Past · Commands · Polite phrases · Conversation" },
-  { label: "sources", value: "Anime · Cartoon · Drama · Movie · Music · News · Vlog · Podcast · Interview · Lesson" },
-  { label: "format", value: "Shorts (≤90s) · Videos · All" },
 ];
 
 const Features = ({ currentPath }: { currentPath?: string }) => (
@@ -91,68 +80,18 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
         </div>
       </section>
 
-      <section className="py-4 pb-8">
-        <div className="flex items-center gap-4 mb-5">
-          <div className="h-px flex-1 bg-neutral-100" />
-          <div className="h-px flex-1 bg-neutral-100" />
-        </div>
-        <motion.div
-          variants={staggerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
-          className="grid grid-cols-2 md:grid-cols-3 gap-3"
-        >
-          {features.map((f, i) => (
-            <motion.div
-              key={i}
-              variants={fadeUpVariants}
-              className="p-5 rounded-2xl border border-neutral-100 bg-neutral-50 hover:border-neutral-200 hover:bg-white hover:shadow-sm transition-all duration-300 flex flex-col gap-3"
-            >
-              <div className={`inline-flex self-start p-2.5 rounded-xl border ${f.color}`}>
-                {f.icon}
-              </div>
-              <div>
-                <h3 className="text-neutral-900 font-semibold text-sm mb-1">{f.title}</h3>
-                <p className="text-neutral-400 text-xs leading-relaxed font-light">{f.body}</p>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </section>
-
-      <section className="pb-20">
-        <div className="p-7 sm:p-8 rounded-3xl border border-neutral-200 bg-white">
-          <p className="text-[11px] font-bold uppercase tracking-widest text-neutral-400 mb-5">Explore filters, find exactly your clip</p>
-          <div className="grid sm:grid-cols-2 gap-4">
-            {exploreFilters.map((f) => (
-              <div key={f.label} className="rounded-2xl bg-neutral-50 border border-neutral-100 p-4">
-                <p className="text-neutral-900 font-semibold text-sm capitalize mb-1">{f.label}</p>
-                <p className="text-neutral-500 text-xs leading-relaxed font-light">{f.value}</p>
-              </div>
-            ))}
-          </div>
-          <p className="text-neutral-400 text-xs mt-5 font-light">
-            topics: Animals · Beauty · Business · Comedy · Cooking · Exercise · Food · Travel · Family · Fashion · Gaming · Health · Spanish Culture · Morning Routine · Music · Relationships · Shopping · Sports · Work · Technology
-          </p>
-        </div>
-      </section>
-
-    </main>
-
-    <section className="bg-lime-50 py-20 px-6 sm:px-10 md:px-16">
-      <div className="max-w-5xl mx-auto w-full">
+      <section className="py-10 sm:py-14">
         <motion.div
           initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7, ease }}
-          className="mb-14"
+          className="mb-10"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-neutral-900 tracking-tight mb-3">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-neutral-900 tracking-tight mb-3">
             how alya <span className="text-lime-600">works.</span>
           </h2>
-          <p className="text-neutral-400 text-base sm:text-lg md:text-xl font-light">four steps. 5–30 minutes a day.</p>
+          <p className="text-neutral-400 text-base sm:text-lg font-light">four steps. 5–30 minutes a day.</p>
         </motion.div>
 
         <div className="relative">
@@ -191,8 +130,39 @@ const Features = ({ currentPath }: { currentPath?: string }) => (
             ))}
           </motion.div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section className="py-4 pb-8">
+        <div className="flex items-center gap-4 mb-5">
+          <div className="h-px flex-1 bg-neutral-100" />
+          <div className="h-px flex-1 bg-neutral-100" />
+        </div>
+        <motion.div
+          variants={staggerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.1 }}
+          className="grid grid-cols-2 md:grid-cols-3 gap-3"
+        >
+          {features.map((f, i) => (
+            <motion.div
+              key={i}
+              variants={fadeUpVariants}
+              className="p-5 rounded-2xl border border-neutral-100 bg-neutral-50 hover:border-neutral-200 hover:bg-white hover:shadow-sm transition-all duration-300 flex flex-col gap-3"
+            >
+              <div className={`inline-flex self-start p-2.5 rounded-xl border ${f.color}`}>
+                {f.icon}
+              </div>
+              <div>
+                <h3 className="text-neutral-900 font-semibold text-sm mb-1">{f.title}</h3>
+                <p className="text-neutral-400 text-xs leading-relaxed font-light">{f.body}</p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </section>
+
+    </main>
 
     <section className="bg-lime-50 py-20 px-6">
       <motion.div

@@ -44,10 +44,13 @@ export const LanguagePage = ({
             transition={{ duration: 0.8, delay: 0.1, ease: ANIMATION_EASE }}
             className="mb-6 relative"
           >
-            <span className="text-lime-100 text-[80px] sm:text-[120px] md:text-[180px] font-bold select-none absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 pointer-events-none leading-none z-0 whitespace-nowrap overflow-hidden max-w-full">
+            <span
+              aria-hidden="true"
+              className="text-lime-300/50 text-[64px] sm:text-[96px] md:text-[120px] font-bold tracking-tight select-none absolute left-1/2 -translate-x-1/2 top-0 -translate-y-1/4 pointer-events-none leading-none z-0 whitespace-nowrap overflow-hidden max-w-full mask-[radial-gradient(ellipse_75%_85%_at_50%_50%,black_40%,transparent_78%)]"
+            >
               {nativeName}
             </span>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold tracking-tight text-lime-600 relative z-10 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-lime-600 relative z-10 leading-[1.05] text-balance max-w-3xl mx-auto pt-10 sm:pt-14 md:pt-16">
               {tagline}
             </h1>
           </motion.div>
@@ -80,94 +83,57 @@ export const LanguagePage = ({
           </motion.div>
         </section>
 
-        <motion.section
-          initial={{ opacity: 0, y: 24 }}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: ANIMATION_EASE }}
-          className="mb-24 grid grid-cols-1 md:grid-cols-3 gap-4"
+          transition={{ duration: 0.6, ease: ANIMATION_EASE }}
+          className="mb-24 max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-3 rounded-3xl border border-neutral-200 bg-white overflow-hidden"
         >
           {[
-            { label: "native speakers", value: speakers },
-            { label: "difficulty level", value: difficulty },
-            { label: "to basic understanding", value: timeToConversation },
+            { value: speakers, label: "native speakers" },
+            { value: difficulty, label: "difficulty" },
+            { value: timeToConversation, label: "to understanding" },
           ].map((stat, i) => (
-            <motion.div
+            <div
               key={i}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1, ease: ANIMATION_EASE }}
-              className="flex flex-col items-center justify-center p-8 rounded-2xl border border-neutral-200 bg-white hover:shadow-sm transition-all"
+              className={`px-6 py-8 text-center ${i > 0 ? "border-t sm:border-t-0 sm:border-l border-neutral-100" : ""}`}
             >
-              <div className="text-neutral-900 text-2xl font-semibold mb-1">{stat.value}</div>
-              <div className="text-neutral-500 text-xs font-medium uppercase tracking-wider">{stat.label}</div>
-            </motion.div>
+              <p className="text-neutral-900 text-3xl sm:text-4xl font-semibold tracking-tight mb-1.5">{stat.value}</p>
+              <p className="text-neutral-400 text-xs font-semibold uppercase tracking-widest">{stat.label}</p>
+            </div>
           ))}
-        </motion.section>
+        </motion.div>
 
-        <section className="mb-24 grid lg:grid-cols-2 gap-12 items-center">
+        <section className="mb-24 max-w-4xl mx-auto text-center">
           <motion.div
-            initial={{ opacity: 0, x: -24 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: ANIMATION_EASE }}
           >
-            <span className="inline-block mb-3 text-xs font-bold tracking-widest uppercase text-lime-600">
-              how it works
-            </span>
-            <h2 className="text-3xl md:text-4xl font-semibold text-neutral-900 mb-5 leading-tight">
-              real videos.<br />
-              instant understanding.
+            <h2 className="text-3xl md:text-4xl font-semibold text-neutral-900 mb-4 leading-tight">
+              real videos. instant understanding.
             </h2>
-            <p className="text-neutral-500 text-lg leading-relaxed mb-8 font-light">
+            <p className="text-neutral-500 text-lg leading-relaxed mb-10 font-light max-w-xl mx-auto">
               forget drills and grammar tables. alya teaches you{" "}
               {languageName.toLowerCase()} the way you actually encounter it: real people, real situations, with translation built in.
             </p>
 
-            <div className="space-y-5">
+            <div className="grid sm:grid-cols-3 gap-3 text-left">
               {[
                 { title: "scroll the feed", desc: "short native clips matched to your level", icon: <Play size={18} /> },
                 { title: "tap to translate", desc: "transcript, glosses, native audio on demand", icon: <MousePointerClick size={18} /> },
                 { title: "grow your companion", desc: "stars, energy, bond, curiosity, streaks", icon: <PawPrint size={18} /> },
               ].map((item, i) => (
-                <div key={i} className="flex gap-4">
-                  <div className="p-2.5 rounded-xl h-fit bg-lime-50 text-lime-600 border border-lime-100 shrink-0">
+                <div key={i} className="p-5 rounded-2xl border border-neutral-200 bg-white">
+                  <div className="p-2.5 rounded-xl w-fit bg-lime-50 text-lime-600 border border-lime-100 shrink-0 mb-3">
                     {item.icon}
                   </div>
-                  <div>
-                    <h3 className="text-neutral-900 font-semibold text-base">{item.title}</h3>
-                    <p className="text-neutral-500 text-sm font-light">{item.desc}</p>
-                  </div>
+                  <h3 className="text-neutral-900 font-semibold text-base">{item.title}</h3>
+                  <p className="text-neutral-500 text-sm font-light">{item.desc}</p>
                 </div>
               ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: ANIMATION_EASE }}
-            className="relative mx-auto w-full max-w-md"
-          >
-            <div className="bg-neutral-900 rounded-3xl overflow-hidden shadow-2xl border border-white/10">
-              <div className="relative bg-neutral-800 aspect-[9/11] p-4 flex flex-col justify-end">
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-black/30" />
-                <div className="absolute top-3 left-3 flex gap-1.5">
-                  <span className="px-2 py-1 rounded-full bg-black/50 text-white text-[9px] font-semibold">Mercado</span>
-                  <span className="px-2 py-1 rounded-full bg-lime-400 text-neutral-900 text-[9px] font-bold">Beginner</span>
-                </div>
-                <div className="relative">
-                  <p className="text-white text-sm font-medium mb-1">¿Cuánto cuesta?</p>
-                  <p className="text-white/70 text-xs mb-2">How much does it cost?</p>
-                  <div className="bg-white/10 rounded-xl p-2.5 mb-2">
-                    <p className="text-lime-300 text-[11px] font-semibold">cuesta → costs (from costar)</p>
-                    <p className="text-white/60 text-[10px]">tap any word for its gloss 🔊</p>
-                  </div>
-                  <p className="text-lime-400 text-[11px] font-semibold">★ +5 · saved “cuánto” to vocabulary</p>
-                </div>
-              </div>
             </div>
           </motion.div>
         </section>
@@ -221,6 +187,32 @@ export const LanguagePage = ({
             <FAQAccordion faqs={faqs} />
           </section>
         )}
+
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: ANIMATION_EASE }}
+          className="max-w-md mx-auto text-center"
+        >
+          <h2 className="text-3xl sm:text-4xl font-semibold text-neutral-900 tracking-tight leading-tight mb-3">
+            start understanding
+            <br />
+            <span className="text-lime-500">real spanish.</span>
+          </h2>
+          <p className="text-neutral-500 text-base font-light mb-8 max-w-sm mx-auto">
+            free to download. 7-day free trial when eligible, then Plus. iOS only.
+          </p>
+          <a
+            href={APP_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2.5 bg-neutral-900 hover:bg-neutral-800 transition-colors text-white font-semibold px-8 py-4 rounded-full text-base shadow-lg"
+          >
+            <AppleIcon />
+            download free on iOS
+          </a>
+        </motion.section>
 
       </main>
 
