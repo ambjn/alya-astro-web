@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Topics from '../views/Topics';
 import { FEED_TOPICS } from '../data/languages';
+import { BASE_URL } from '../constants';
 
 const topicNames = [...FEED_TOPICS];
 
@@ -16,15 +17,26 @@ const itemListSchema = {
     name,
   })),
 };
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+    { "@type": "ListItem", position: 2, name: "Topics", item: `${BASE_URL}/topics` },
+  ],
+};
 ---
 
 <Layout
-  title="20 Spanish Topics, Travel, Food, Spanish Culture, Music & More | ALYA"
-  description="Pick your topics and learn Spanish from videos about them: Travel, Food, Spanish Culture, Music, Comedy, Work, Sports + 13 more. Free to download on iOS."
+  title="20 Spanish Topics: Travel, Food, Culture & More | ALYA"
+  description="Pick your topics and learn Spanish from videos about them: Travel, Food, Spanish Culture, Music, Comedy, Work, Sports + 13 more. Free on iOS."
   ogTitle="20 Topics. Your Spanish Feed. | ALYA"
   ogDescription="Travel, Food, Spanish Culture, Music, Comedy + 15 more. Learn Spanish from videos you actually care about."
+  twitterTitle="20 Spanish Topics: Travel, Food, Culture & More | ALYA"
+  twitterDescription="Travel, Food, Culture, Music, Comedy + 15 more. Learn Spanish from videos you love. Free on iOS."
   canonical="/topics"
 >
-  <script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} slot="head" />
+  <script type="application/ld+json" set:html={JSON.stringify([itemListSchema, breadcrumbSchema])} slot="head" />
   <Topics currentPath="/topics" client:load />
 </Layout>

@@ -1,8 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { FAQ } from '../views/FAQ';
+import { BASE_URL } from '../constants';
 
 const allFaqs = [
+  { question: "What is ALYA?", answer: "ALYA is a Spanish immersion feed for iOS. Scroll short real-world videos, tap any unfamiliar word for instant translation, save vocabulary for review, respond to contextual prompts, and grow your companion as you learn. Free to download with ALYA Plus for unlimited immersion." },
   { question: "is alya free to download?", answer: "Yes, free to download on iOS. ALYA Plus membership is required to use the feed. New users get a 7-day free trial when eligible, then Annual or Monthly renews automatically. Cancel anytime." },
   { question: "how is alya different from Duolingo?", answer: "Duolingo drills vocabulary with exercises. Alya is immersion: short native videos where you tap to understand, save words to My Words, and grow a companion. Drills teach recognition. Immersion builds understanding." },
   { question: "do I need to know Spanish already?", answer: "No. Beginner clips come with full translations and per-word glosses. The feed adapts from Beginner to Intermediate to Advanced as you improve." },
@@ -28,15 +30,26 @@ const schema = {
     },
   })),
 };
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+    { "@type": "ListItem", position: 2, name: "FAQ", item: `${BASE_URL}/faq` },
+  ],
+};
 ---
 
 <Layout
   title="FAQ | ALYA, Spanish Immersion Feed"
-  description="Everything about alya: free download, ALYA Plus trial, tap-to-translate, companion, levels, topics. Straight answers, no fluff."
+  description="Everything about ALYA: What is ALYA, free download, ALYA Plus trial, tap-to-translate, companion, levels, topics. Straight answers, no fluff."
   ogTitle="alya FAQ, Frequently Asked Questions"
-  ogDescription="Straight answers about learning Spanish by doomscrolling with alya."
+  ogDescription="What is ALYA? Straight answers about learning Spanish by doomscrolling, Plus trial, tap-to-translate, and companion."
+  twitterTitle="ALYA FAQ: What is ALYA?"
+  twitterDescription="What is ALYA? Plus trial, tap-to-translate, companion, levels. Straight answers, no fluff."
   canonical="/faq"
 >
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <script type="application/ld+json" set:html={JSON.stringify([schema, breadcrumbSchema])} slot="head" />
   <FAQ currentPath="/faq" client:load />
 </Layout>

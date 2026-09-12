@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import BlogPostClient from '../../views/BlogPost';
-import { posts } from '../../blog/posts';
+import { posts, DEFAULT_AUTHOR } from '../../blog/posts';
 import { BASE_URL } from '../../constants';
 
 export function getStaticPaths() {
@@ -12,16 +12,26 @@ export function getStaticPaths() {
 }
 
 const { post } = Astro.props;
+const author = post.author ?? DEFAULT_AUTHOR;
 
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
   headline: post.title,
   description: post.metaDescription,
+  image: [`${BASE_URL}/og/og.png`],
   url: `${BASE_URL}/blog/${post.slug}`,
   datePublished: post.publishedAt,
-  dateModified: post.publishedAt,
-  author: { "@type": "Organization", name: "alya", url: BASE_URL },
+  dateModified: post.updatedAt,
+  inLanguage: "en",
+  author: {
+    "@type": "Person",
+    name: author.name,
+    jobTitle: author.role,
+    description: author.bio,
+    url: author.url,
+  },
+  citation: post.sources.map((s) => s.url),
   publisher: {
     "@type": "Organization",
     name: "alya",
@@ -59,8 +69,12 @@ const schemas = post.faqs && post.faqs.length > 0
   description={post.metaDescription}
   ogTitle={post.metaTitle}
   ogDescription={post.metaDescription}
+  twitterTitle={post.metaTitle}
+  twitterDescription={post.metaDescription}
   ogType="article"
   articlePublishedTime={post.publishedAt}
+  articleModifiedTime={post.updatedAt}
+  author={author.name}
   canonical={`/blog/${post.slug}`}
 >
   {schemas.map((schema) => (

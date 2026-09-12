@@ -5,21 +5,26 @@ import { BASE_URL, APP_STORE_URL } from '../constants';
 
 const softwareAppSchema = {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: "Alya",
+  "@type": "MobileApplication",
+  name: "ALYA — Learn Spanish by Doomscrolling",
   description: "Spanish immersion feed: scroll short real-world videos, tap any word for instant translation, save vocabulary, and grow your companion. Beginner to advanced, free on iOS.",
   url: BASE_URL,
   applicationCategory: "EducationApplication",
+  applicationSubCategory: "Language Learning",
   operatingSystem: "iOS",
-  inLanguage: "en",
+  inLanguage: ["en", "es"],
+  contentRating: "4+",
+  screenshot: `${BASE_URL}/og/og.png`,
+  image: `${BASE_URL}/og/og.png`,
   offers: [
-    { "@type": "Offer", name: "Free download", price: "0", priceCurrency: "USD", description: "Free to download on iOS with a 7-day free trial for eligible new users" },
-    { "@type": "Offer", name: "Alya Plus Monthly", price: "4.99", priceCurrency: "USD", description: "Plus Monthly: $4.99/month. Unlimited Immersion, Instant Explanations, Your Evolving Companion." },
-    { "@type": "Offer", name: "Alya Plus Annual", price: "29.99", priceCurrency: "USD", description: "Plus Annual: $29.99/year ($2.50/month, save 50% vs monthly). Unlimited Immersion, Instant Explanations, Your Evolving Companion." },
+    { "@type": "Offer", name: "Free download", price: "0", priceCurrency: "USD", availability: "https://schema.org/InStock", description: "Free to download on iOS with a 7-day free trial for eligible new users" },
+    { "@type": "Offer", name: "Alya Plus Monthly", price: "4.99", priceCurrency: "USD", availability: "https://schema.org/InStock", description: "Plus Monthly: $4.99/month. Unlimited Immersion, Instant Explanations, Your Evolving Companion." },
+    { "@type": "Offer", name: "Alya Plus Annual", price: "29.99", priceCurrency: "USD", availability: "https://schema.org/InStock", description: "Plus Annual: $29.99/year ($2.50/month, save 50% vs monthly). Unlimited Immersion, Instant Explanations, Your Evolving Companion." },
   ],
   aggregateRating: { "@type": "AggregateRating", ratingValue: "4.8", ratingCount: "500" },
-  author: { "@type": "Organization", name: "Alya" },
+  author: { "@type": "Organization", name: "ALYA", url: BASE_URL },
   downloadUrl: APP_STORE_URL,
+  installUrl: APP_STORE_URL,
 };
 
 const organizationSchema = {
@@ -28,8 +33,8 @@ const organizationSchema = {
   name: "alya",
   url: BASE_URL,
   logo: { "@type": "ImageObject", url: `${BASE_URL}/logo/icon.png`, width: 1024, height: 1024 },
-  sameAs: [APP_STORE_URL],
-  contactPoint: { "@type": "ContactPoint", contactType: "customer support", url: `${BASE_URL}/support` },
+  sameAs: [APP_STORE_URL, "https://twitter.com/alyacompanion"],
+  contactPoint: { "@type": "ContactPoint", contactType: "customer support", email: "amber@alyacompanion.xyz", url: `${BASE_URL}/support` },
 };
 
 const websiteSchema = {

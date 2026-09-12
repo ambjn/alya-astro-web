@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { ComparisonPage } from '../../components/ComparisonPage';
+import { BASE_URL } from '../../constants';
 
 const faqs = [
   { question: "Is alya better than HelloTalk?", answer: "for consistent daily input, yes. hellotalk needs a partner, scheduling, and enough Spanish to hold an exchange. alya is instant, endless native videos at your level, no pressure, no waiting." },
@@ -9,13 +10,55 @@ const faqs = [
   { question: "Can I use alya and HelloTalk together?", answer: "yes. use alya daily for input and vocabulary, hellotalk when you want live human exchange. input first, output second." },
 ];
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+    { "@type": "ListItem", position: 2, name: "Compare", item: BASE_URL + "/features" },
+    { "@type": "ListItem", position: 3, name: "ALYA vs " + "Hellotalk" , item: BASE_URL + "/vs/hellotalk" },
+  ],
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: { "@type": "Answer", text: f.answer },
+  })),
+};
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "alya vs HelloTalk, Immersion vs Exchange | ALYA",
+  description: "alya vs HelloTalk: instant Spanish video immersion vs language exchange that needs a partner. No scheduling, just scroll. Free on iOS.",
+  url: BASE_URL + "/vs/hellotalk",
+  author: { "@type": "Organization", name: "alya", url: BASE_URL },
+  publisher: {
+    "@type": "Organization",
+    name: "alya",
+    url: BASE_URL,
+    logo: { "@type": "ImageObject", url: BASE_URL + "/logo/icon.png", width: 1024, height: 1024 },
+  },
+  mainEntityOfPage: { "@type": "WebPage", "@id": BASE_URL + "/vs/hellotalk" },
+};
+
+
 ---
 
 <Layout
   title="alya vs HelloTalk, Immersion vs Exchange | ALYA"
   description="alya vs HelloTalk: instant Spanish video immersion vs language exchange that needs a partner. No scheduling, just scroll. Free on iOS."
   canonical="/vs/hellotalk"
+  ogTitle="alya vs HelloTalk, Immersion vs Exchange | ALYA"
+  ogDescription="alya vs HelloTalk: instant Spanish video immersion vs language exchange that needs a partner. No scheduling, just scroll. Free on iOS."
+  twitterTitle="alya vs HelloTalk, Immersion vs Exchange | ALYA"
+  twitterDescription="alya vs HelloTalk: instant Spanish video immersion vs language exchange that needs a partner. No scheduling, just scroll. Free on iOS."
 >
+  <script type="application/ld+json" set:html={JSON.stringify([articleSchema, breadcrumbSchema, faqSchema])} slot="head" />
   <ComparisonPage
     competitorName="HelloTalk"
     competitorTagline="human language exchange"

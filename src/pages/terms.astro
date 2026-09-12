@@ -1,12 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import TermsView from '../views/Terms';
+import termsContent from '../../public/docs/terms.md?raw';
 ---
 
 <Layout
   title="Terms of Service | ALYA"
-  description="Read alya's terms of service. Learn about the rules and guidelines for using our AI language learning app."
+  description="Read ALYA's terms of service: rules and guidelines for using the Spanish immersion feed, ALYA Plus billing, and your companion on iOS."
+  ogTitle="Terms of Service | ALYA"
+  ogDescription="Rules and guidelines for using ALYA, ALYA Plus billing, and your Spanish immersion companion. Read the full terms."
+  twitterTitle="Terms of Service | ALYA"
+  twitterDescription="Rules for using ALYA, Plus billing, and your companion. Read the full terms of service."
   canonical="/terms"
 >
-  <TermsView currentPath="/terms" client:only="react" />
+  <TermsView currentPath="/terms" content={termsContent} client:load />
 </Layout>

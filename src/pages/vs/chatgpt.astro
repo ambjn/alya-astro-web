@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { ComparisonPage } from '../../components/ComparisonPage';
+import { BASE_URL } from '../../constants';
 
 const faqs = [
   { question: "Can I use ChatGPT to learn Spanish?", answer: "yes, but you have to prompt it every time, 'act as a tutor, explain this video, quiz me.' alya is ready-made: scroll the feed, tap any word, get glosses and audio instantly. no prompting." },
@@ -8,13 +9,55 @@ const faqs = [
   { question: "How much does alya cost vs ChatGPT?", answer: "alya is free to download, with Plus (Annual / Monthly, 7-day free trial when eligible) built for learners. ChatGPT Plus is $20/month for a general chatbot." },
 ];
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+    { "@type": "ListItem", position: 2, name: "Compare", item: BASE_URL + "/features" },
+    { "@type": "ListItem", position: 3, name: "ALYA vs " + "Chatgpt" , item: BASE_URL + "/vs/chatgpt" },
+  ],
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: { "@type": "Answer", text: f.answer },
+  })),
+};
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "alya vs ChatGPT for Spanish, Feed vs Chatbox | ALYA",
+  description: "alya vs ChatGPT: curated Spanish immersion feed with tap-to-translate vs general chatbot that needs prompting. Free on iOS.",
+  url: BASE_URL + "/vs/chatgpt",
+  author: { "@type": "Organization", name: "alya", url: BASE_URL },
+  publisher: {
+    "@type": "Organization",
+    name: "alya",
+    url: BASE_URL,
+    logo: { "@type": "ImageObject", url: BASE_URL + "/logo/icon.png", width: 1024, height: 1024 },
+  },
+  mainEntityOfPage: { "@type": "WebPage", "@id": BASE_URL + "/vs/chatgpt" },
+};
+
+
 ---
 
 <Layout
   title="alya vs ChatGPT for Spanish, Feed vs Chatbox | ALYA"
   description="alya vs ChatGPT: curated Spanish immersion feed with tap-to-translate vs general chatbot that needs prompting. Free on iOS."
   canonical="/vs/chatgpt"
+  ogTitle="alya vs ChatGPT for Spanish, Feed vs Chatbox | ALYA"
+  ogDescription="alya vs ChatGPT: curated Spanish immersion feed with tap-to-translate vs general chatbot that needs prompting. Free on iOS."
+  twitterTitle="alya vs ChatGPT for Spanish, Feed vs Chatbox | ALYA"
+  twitterDescription="alya vs ChatGPT: curated Spanish immersion feed with tap-to-translate vs general chatbot that needs prompting. Free on iOS."
 >
+  <script type="application/ld+json" set:html={JSON.stringify([articleSchema, breadcrumbSchema, faqSchema])} slot="head" />
   <ComparisonPage
     competitorName="ChatGPT"
     competitorTagline="general chatbot"

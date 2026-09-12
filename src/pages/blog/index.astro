@@ -1,12 +1,50 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Blog from '../../views/Blog';
+import { BASE_URL } from '../../constants';
+import { posts } from '../../blog/posts';
+
+const collectionSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Blog | ALYA: Learn Spanish by Doomscrolling",
+  url: `${BASE_URL}/blog`,
+  description: "Immersion guides, Spanish conversation practice, vocabulary tips, and honest app comparisons from the ALYA team.",
+  inLanguage: "en",
+  isPartOf: { "@type": "WebSite", name: "alya", url: BASE_URL },
+};
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "ALYA Blog Posts",
+  itemListElement: posts.map((post, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    url: `${BASE_URL}/blog/${post.slug}`,
+    name: post.title,
+  })),
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+    { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE_URL}/blog` },
+  ],
+};
 ---
 
 <Layout
   title="Blog | ALYA: Learn Spanish by Doomscrolling"
-  description="Immersion guides, feed explainers, and Spanish learning tips from the alya team."
+  description="Immersion guides, Spanish conversation practice, vocabulary tips, and honest app comparisons from the ALYA team. Learn faster by scrolling."
+  ogTitle="Blog | ALYA: Learn Spanish by Doomscrolling"
+  ogDescription="Immersion guides, conversation practice, vocabulary tips, and app comparisons from the ALYA team."
+  twitterTitle="Blog | ALYA: Learn Spanish by Doomscrolling"
+  twitterDescription="Immersion guides, conversation practice, and app comparisons from the ALYA team."
   canonical="/blog"
 >
+  <script type="application/ld+json" set:html={JSON.stringify([collectionSchema, itemListSchema, breadcrumbSchema])} slot="head" />
   <Blog currentPath="/blog" client:load />
 </Layout>

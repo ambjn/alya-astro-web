@@ -1,12 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PrivacyView from '../views/Privacy';
+import privacyContent from '../../public/docs/privacy.md?raw';
 ---
 
 <Layout
   title="Privacy Policy | ALYA"
-  description="Read alya's privacy policy. How we collect, use, and protect your data in the Spanish immersion feed."
+  description="Read ALYA's privacy policy: how we collect, use, and protect your data in the Spanish immersion feed for iOS. Your learning stays yours."
+  ogTitle="Privacy Policy | ALYA"
+  ogDescription="How ALYA collects, uses, and protects your data in the Spanish immersion feed. Read the full privacy policy."
+  twitterTitle="Privacy Policy | ALYA"
+  twitterDescription="How ALYA collects, uses, and protects your data. Read the full privacy policy."
   canonical="/privacy"
 >
-  <PrivacyView currentPath="/privacy" client:only="react" />
+  <PrivacyView currentPath="/privacy" content={privacyContent} client:load />
 </Layout>
