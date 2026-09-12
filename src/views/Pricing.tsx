@@ -131,15 +131,15 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
               transition={{ duration: 0.5, ease }}
               className="text-center"
             >
-              <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-neutral-500">See how Alya compares</p>
-              <div className="flex flex-wrap justify-center gap-2">
+              <p className="mb-5 text-lg font-semibold text-neutral-500">see how Alya compares</p>
+              <div className="flex flex-wrap justify-center gap-2.5 px-2 max-w-2xl mx-auto">
                 {COMPARE_LINKS.map((item) => (
                   <a
                     key={item.href}
                     href={item.href}
-                    className="flex items-center gap-1.5 rounded-full border border-neutral-900/10 bg-white/70 px-4 py-2 text-xs font-medium text-neutral-600 transition-all duration-200 hover:border-neutral-900/20 hover:bg-white hover:shadow-sm"
+                    className="rounded-full border border-neutral-200 bg-white px-5 py-2.5 text-[13px] font-semibold text-neutral-700 transition-all duration-200 hover:border-lime-400 hover:text-neutral-900 hover:shadow-sm"
                   >
-                    {item.label} <ChevronRight size={12} className="text-neutral-400" />
+                    {item.label}
                   </a>
                 ))}
               </div>

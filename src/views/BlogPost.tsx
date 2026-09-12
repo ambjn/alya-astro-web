@@ -231,20 +231,20 @@ const BlogPostClient = ({ post, currentPath }: BlogPostClientProps) => {
         </section>
 
         <section className="mt-10 text-center">
-          <p className="text-neutral-500 text-xs font-semibold mb-4 uppercase tracking-widest">see how alya compares</p>
-          <div className="flex flex-wrap justify-center gap-2">
+          <p className="text-neutral-500 text-lg font-semibold mb-5 ">see how alya compares</p>
+          <div className="flex flex-wrap justify-center gap-2.5 px-2 max-w-2xl mx-auto">
             {COMPARE_LINKS.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="px-4 py-2 rounded-full border border-neutral-200 bg-white hover:border-neutral-300 text-neutral-600 text-xs font-medium transition-all"
+                className="rounded-full border border-neutral-200 bg-white px-5 py-2.5 text-[13px] font-semibold text-neutral-700 transition-all duration-200 hover:border-lime-400 hover:text-neutral-900 hover:shadow-sm"
               >
                 {item.label}
               </a>
             ))}
             <a
               href="/learn-spanish"
-              className="px-4 py-2 rounded-full bg-neutral-900 text-white text-xs font-semibold hover:bg-neutral-700 transition-all"
+              className="rounded-full bg-neutral-900 px-5 py-2.5 text-[13px] font-semibold text-white transition-all hover:bg-neutral-700"
             >
               learn spanish →
             </a>
