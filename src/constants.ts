@@ -2,7 +2,7 @@ export const APP_STORE_ID = "6758835552";
 
 export const APP_STORE_URL = "https://apps.apple.com/us/app/alya-learn-spanish-with-ai/id6758835552";
 
-export const BASE_URL = "https://www.alyacompanion.xyz";
+export const BASE_URL = "https://alyacompanion.xyz";
 
 export const SUPPORT_EMAIL = "amber@alyacompanion.xyz";
 

@@ -1,11 +1,34 @@
+export interface BlogAuthor {
+    name: string;
+    role: string;
+    bio: string;
+    url: string;
+}
+
+export interface BlogSource {
+    title: string;
+    url: string;
+}
+
+export const DEFAULT_AUTHOR: BlogAuthor = {
+    name: "Team ALYA",
+    role: "Spanish Immersion Editors",
+    bio: "The ALYA team builds the Spanish immersion feed: real native videos with tap-to-translate, saved vocabulary, and a companion that grows as you learn. We write about what actually builds comprehension.",
+    url: "https://alyacompanion.xyz/blog",
+};
+
 export interface BlogPost {
     slug: string;
     title: string;
     metaTitle: string;
     metaDescription: string;
     publishedAt: string;
+    updatedAt: string;
     readingTime: string;
     excerpt: string;
+    tldr: string;
+    sources: BlogSource[];
+    author?: BlogAuthor;
     content: BlogSection[];
     faqs?: { question: string; answer: string }[];
 }
@@ -23,6 +46,7 @@ export const posts: BlogPost[] = [
         metaDescription:
             "Tired of drills you can't use in real conversations? Here are the best Duolingo alternatives in 2026 for understanding and practicing real Spanish.",
         publishedAt: "2026-06-01",
+        updatedAt: "2026-09-12",
         readingTime: "7 min read",
         excerpt:
             "Duolingo is great for streaks. It's not great for understanding natives. Here are the best alternatives if you want real comprehension.",
@@ -130,6 +154,13 @@ export const posts: BlogPost[] = [
                     "Ready to understand real Spanish? Try alya free, scroll the feed today.",
             },
         ],
+        tldr:
+            "Duolingo is excellent at building a daily habit, but months of streaks often end the same way: you can clear a lesson yet freeze when a native speaks at full speed. The reason is structural. Drills train recognition of sentences written for quizzes, while real conversation tests whether your ear can handle speed, slang, mumbling, and unpredictable situations. That skill only comes from comprehensible input, real language you can almost understand, with support that keeps you from getting lost. The best Duolingo alternatives in 2026 therefore share one trait: they put authentic content first and build the learning layer around it. ALYA takes this literally, a vertical feed of short native Spanish videos where every clip ships pre-transcribed and translated, every word is tappable for its exact meaning, pronunciation can be slowed down, and anything worth keeping lands in your vocabulary for spaced review. Keep drills as a warm-up if you enjoy them, but spend your core minutes understanding real Spanish.",
+        sources: [
+            { title: "Comprehensible input (input hypothesis)", url: "https://en.wikipedia.org/wiki/Input_hypothesis" },
+            { title: "Duolingo", url: "https://www.duolingo.com" },
+            { title: "ALYA on the App Store", url: "https://apps.apple.com/us/app/alya-learn-spanish-with-ai/id6758835552" },
+        ],
         faqs: [
             {
                 question: "What is the best alternative to Duolingo?",
@@ -159,8 +190,9 @@ export const posts: BlogPost[] = [
         title: "Best AI Spanish App in 2026",
         metaTitle: "Best AI Spanish App in 2026 | ALYA",
         metaDescription:
-            "Looking for the best AI Spanish app in 2026? Here's why immersion feeds beat chatboxes and drills, and how to pick.",
+            "Looking for the best AI Spanish app in 2026? Why immersion feeds beat chatboxes and drills, plus how to pick for real comprehension.",
         publishedAt: "2026-05-19",
+        updatedAt: "2026-09-12",
         readingTime: "8 min read",
         excerpt:
             "AI changed language learning. But not all AI apps are equal. Here's how to pick one for comprehension, not just quizzes.",
@@ -254,6 +286,13 @@ export const posts: BlogPost[] = [
                     "Try alya free, scroll real Spanish today.",
             },
         ],
+        tldr:
+            "In 2026 almost every language app claims to be powered by AI, but the label hides two completely different products. One kind serves the same generated drills with a chatbot attached, which is fun for a week and useless for understanding natives. The other uses AI to make authentic content understandable at scale: thousands of real native clips, each transcribed, translated, and word-aligned in advance, so you get comprehensible input from day one without prompting anything. When you evaluate an AI Spanish app, ignore the marketing and check five things: real native content rather than generated sentences, instant understanding through transcripts plus translations plus per-word glosses, matching to your level with filters for topics and grammar, vocabulary saved with its original video context, and a loop you will actually open daily. ALYA is built on exactly that checklist, a scrollable immersion feed with tap-to-translate, native audio with slowdown, and a companion that rewards consistency. Pick the app your future self will still open in month three.",
+        sources: [
+            { title: "Comprehensible input (input hypothesis)", url: "https://en.wikipedia.org/wiki/Input_hypothesis" },
+            { title: "Stephen Krashen", url: "https://en.wikipedia.org/wiki/Stephen_Krashen" },
+            { title: "ALYA on the App Store", url: "https://apps.apple.com/us/app/alya-learn-spanish-with-ai/id6758835552" },
+        ],
         faqs: [
             {
                 question: "What is the best AI app for learning Spanish?",
@@ -283,8 +322,9 @@ export const posts: BlogPost[] = [
         title: "How to Learn Spanish Fast: The Immersion Method",
         metaTitle: "How to Learn Spanish Fast in 2026 | ALYA",
         metaDescription:
-            "Learn Spanish fast with immersion. Scroll real videos daily, tap what you miss, save words. Here's a 3-month plan.",
+            "Learn Spanish fast with immersion: scroll real videos daily, tap what you miss, save words, and follow a proven 3-month plan to conversation.",
         publishedAt: "2026-05-05",
+        updatedAt: "2026-09-12",
         readingTime: "7 min read",
         excerpt:
             "The fastest way to learn Spanish isn't drills, it's daily immersion you actually understand. Here's a 3-month plan.",
@@ -373,6 +413,13 @@ export const posts: BlogPost[] = [
                     "Start your immersion today with alya, free to download.",
             },
         ],
+        tldr:
+            "The fastest way to learn Spanish is not more drills per day, it is more understandable Spanish per day. Your brain acquires language from messages slightly above your level that you can still follow, a finding known as the input hypothesis, and everything in a good immersion plan serves that principle. Scroll real native videos daily in sessions as short as ten minutes, tap anything you miss instead of guessing, slow pronunciation down when the speed beats you, and save the words that matter into spaced review so they survive the week. ALYA packages this into a three-month arc: month one is about volume and confidence with beginner clips and full translations, month two adds longer vlogs, saved phrases, and answering contextual prompts in Spanish, and month three pushes into native speed and slang with advanced explanations on demand. Set an honest level, pick topics you genuinely enjoy, keep the streak alive, and let daily contact do the compounding that weekend marathons never deliver.",
+        sources: [
+            { title: "Comprehensible input (input hypothesis)", url: "https://en.wikipedia.org/wiki/Input_hypothesis" },
+            { title: "Spaced repetition", url: "https://en.wikipedia.org/wiki/Spaced_repetition" },
+            { title: "Learn Spanish with ALYA", url: "https://alyacompanion.xyz/learn-spanish" },
+        ],
         faqs: [
             {
                 question: "How long does it take to learn Spanish?",
@@ -403,6 +450,7 @@ export const posts: BlogPost[] = [
         metaTitle: "8 Spanish Situations to Understand Before You Travel | ALYA",
         metaDescription: "Don't freeze on your trip. Learn these 8 real Spanish situations, café, hotel, doctor, market, with key phrases for each.",
         publishedAt: "2026-06-06",
+        updatedAt: "2026-09-12",
         readingTime: "9 min read",
         excerpt: "Ordering food, asking directions, handling an emergency, the worst time to meet these is for the first time. Preview them here.",
         content: [
@@ -459,6 +507,13 @@ export const posts: BlogPost[] = [
             { type: "quote", content: "\"Confidence comes from recognizing the situation. Immersion lets you rehearse dozens before you travel.\"" },
             { type: "cta", content: "Preview all 8 situations in the alya feed, free." },
         ],
+        tldr:
+            "Most learners do not freeze in Spanish because they lack vocabulary, they freeze because they have never heard their vocabulary used at real speed in a real situation. Ordering coffee, checking into a hotel, asking for directions, seeing a doctor, haggling at a market, small talk with a taxi driver, and surviving a phone call each have their own rhythms, fillers, and polite formulas that no word list teaches. The fix is to rehearse the situation before you live it: watch a native clip of that exact scenario with transcript and translation, tap the phrases you miss, listen at reduced speed until the sounds separate, then save the key lines into spaced review so they surface when you need them. ALYA organizes its feed exactly this way, with twenty topics and filters for levels, grammar, and format, so the eight situations in this guide map directly onto videos you can scroll tonight. Practice the scene on screen and the street version stops feeling like an ambush.",
+        sources: [
+            { title: "Spaced repetition", url: "https://en.wikipedia.org/wiki/Spaced_repetition" },
+            { title: "ALYA feed topics", url: "https://alyacompanion.xyz/topics" },
+            { title: "ALYA on the App Store", url: "https://apps.apple.com/us/app/alya-learn-spanish-with-ai/id6758835552" },
+        ],
         faqs: [
             {
                 question: "What Spanish should I learn before traveling?",
@@ -483,8 +538,9 @@ export const posts: BlogPost[] = [
         slug: "learn-spanish-vocabulary-spaced-repetition",
         title: "The Best Way to Learn Spanish Vocabulary (That Actually Sticks)",
         metaTitle: "Best Way to Learn Spanish Vocabulary | ALYA",
-        metaDescription: "Stop cramming lists. Save words from videos you love and review them, here's how video-context vocabulary sticks.",
+        metaDescription: "Stop cramming word lists. Save Spanish words from videos you love and review them with spacing — here is why video-context vocabulary sticks.",
         publishedAt: "2026-06-05",
+        updatedAt: "2026-09-12",
         readingTime: "7 min read",
         excerpt: "Study 50 words, remember 10? It's not effort, it's method. Words from videos stick because they come with a memory.",
         content: [
@@ -512,6 +568,13 @@ export const posts: BlogPost[] = [
             { type: "quote", content: "\"Vocabulary is the flesh of language. Get it from living content, not lists.\"" },
             { type: "cta", content: "Build vocabulary from real videos with alya, free." },
         ],
+        tldr:
+            "Cramming word lists feels productive and evaporates within days, because a word memorized without context has nothing for your memory to hold onto. Words stick when you meet them inside something you understood and cared about, then meet them again right as you are about to forget them. That is the whole method: save vocabulary from videos you genuinely enjoyed, where every word arrives with its sentence, its scene, and its sound, and review on a spaced schedule that stretches the interval each time you recall correctly. ALYA automates both halves. Tapping any unfamiliar word in the feed saves it together with its clip context, translation, and native audio, and review sessions resurface cards at increasing intervals instead of random quizzes. Aim for a small daily harvest of five to ten words from content you loved rather than fifty from a list you endured, and protect the streak, because spacing only works when the repetitions actually happen.",
+        sources: [
+            { title: "Spaced repetition", url: "https://en.wikipedia.org/wiki/Spaced_repetition" },
+            { title: "Comprehensible input (input hypothesis)", url: "https://en.wikipedia.org/wiki/Input_hypothesis" },
+            { title: "ALYA on the App Store", url: "https://apps.apple.com/us/app/alya-learn-spanish-with-ai/id6758835552" },
+        ],
         faqs: [
             {
                 question: "How many Spanish words per day?",
@@ -538,6 +601,7 @@ export const posts: BlogPost[] = [
         metaTitle: "Spanish Grammar Guide: 7 Rules in Real Videos | ALYA",
         metaDescription: "Stop memorizing tables. Here are the 7 Spanish rules that trip up English speakers, learned by hearing them in real clips.",
         publishedAt: "2026-06-04",
+        updatedAt: "2026-09-12",
         readingTime: "8 min read",
         excerpt: "Grammar tables don't survive native speed. Hearing rules in real videos does. Here are the 7 that matter most.",
         content: [
@@ -571,6 +635,13 @@ export const posts: BlogPost[] = [
             { type: "quote", content: "\"Grammar isn't memorized. It's recognized, after enough real examples.\"" },
             { type: "cta", content: "Hear grammar in real clips with alya, free." },
         ],
+        tldr:
+            "English speakers stumble on the same seven Spanish patterns again and again: ser versus estar, por versus para, the two past tenses, the subjunctive, object pronouns and their placement, gustar-style verbs, and commands. Memorizing tables for these feels like progress until a native speaks and none of the rules arrive in time. The patterns only become reflexes when you notice them inside language you already understand, which is why this guide teaches each rule through real video moments rather than conjugation charts. Watch a street interview where someone switches from era to fue, tap the gloss, hear it slowed down, and save the sentence, and the distinction now has a face, a voice, and a situation attached. ALYA's grammar filters let you pull clips by exactly these patterns, so you can spend a week bathing in subjunctive examples instead of rereading the same explanation. Rules describe the language, but only repeated understanding rewires your ear.",
+        sources: [
+            { title: "Comprehensible input (input hypothesis)", url: "https://en.wikipedia.org/wiki/Input_hypothesis" },
+            { title: "Stephen Krashen", url: "https://en.wikipedia.org/wiki/Stephen_Krashen" },
+            { title: "Learn Spanish with ALYA", url: "https://alyacompanion.xyz/learn-spanish" },
+        ],
         faqs: [
             {
                 question: "Hardest Spanish grammar for English speakers?",
@@ -596,8 +667,9 @@ export const posts: BlogPost[] = [
         title: "How Immersion + AI Actually Makes You Fluent",
         metaTitle: "How Immersion + AI Makes You Fluent in 2026 | ALYA",
         metaDescription:
-            "Why AI immersion works: comprehensible input, instant support, infinite patience. Here's the science and how to use it.",
+            "Why AI immersion works for Spanish: comprehensible input, instant support, infinite patience. The science plus how to use it daily.",
         publishedAt: "2026-04-21",
+        updatedAt: "2026-09-12",
         readingTime: "9 min read",
         excerpt:
             "AI immersion isn't hype. Here's the science (Krashen's input hypothesis) and how pre-translated video makes it daily-usable.",
@@ -691,6 +763,13 @@ export const posts: BlogPost[] = [
                     "Start your immersion loop with alya, free.",
             },
         ],
+        tldr:
+            "A year ago AI language learning meant chatbots, and chatbots have a fatal flaw for beginners: a blank box that demands perfect prompts. In 2026 the winning formula is immersion plus AI, where AI works invisibly to make thousands of real native clips understandable instead of asking you to drive. Every video arrives pre-transcribed, translated, and word-aligned with timing, levels, and topics, so comprehension is one tap away and patience is infinite. The science behind it is decades old: the input hypothesis holds that we acquire language from messages slightly above our level that we can still understand, and pre-supported video manufactures exactly that on demand. To use it well, set your level honestly, choose topics you love, tap shamelessly and slow audio to 0.75x without embarrassment, answer the response prompts in Spanish to convert input into production, and trust a ten-minute daily habit over weekly marathons. Fluency is understanding repeated thousands of times, and AI finally made the repetitions fun.",
+        sources: [
+            { title: "Stephen Krashen", url: "https://en.wikipedia.org/wiki/Stephen_Krashen" },
+            { title: "Comprehensible input (input hypothesis)", url: "https://en.wikipedia.org/wiki/Input_hypothesis" },
+            { title: "Deepgram (speech AI)", url: "https://deepgram.com" },
+        ],
         faqs: [
             {
                 question: "Can you really learn with AI immersion?",
@@ -720,8 +799,9 @@ export const posts: BlogPost[] = [
         title: "ALYA Plus Explained: Trial, Billing, and What's Included",
         metaTitle: "ALYA Plus: Trial, Billing, What's Included | ALYA",
         metaDescription:
-            "ALYA Plus in 2 minutes: 7-day free trial when eligible, Annual or Monthly via App Store, and the 3 Plus features.",
+            "ALYA Plus in 2 minutes: 7-day free trial when eligible, Annual $29.99 or Monthly $4.99 via App Store, and the 3 Plus features.",
         publishedAt: "2026-06-10",
+        updatedAt: "2026-09-12",
         readingTime: "3 min read",
         excerpt:
             "Plus in 2 minutes: what's included, how the 7-day trial works, and how billing works.",
@@ -771,6 +851,14 @@ export const posts: BlogPost[] = [
                 content:
                     "Start with the 7-day trial when eligible, download alya.",
             },
+        ],
+        tldr:
+            "ALYA is free to download on iOS, and ALYA Plus is the membership that unlocks the feed itself: unlimited immersion with every clip picked for your level, instant tap-to-translate explanations for any phrase, unlimited vocabulary saving, and your evolving companion. There are two plans, Annual at $29.99 per year, which works out to $2.50 per month and saves fifty percent versus monthly, and Monthly at $4.99 per month. Eligible new users get seven days free, and the paywall only shows the Start Free Trial button when your Apple ID actually qualifies, so what you see is what you get. All billing runs through the App Store on iOS only, subscriptions renew automatically, and you can manage, upgrade, or cancel from Settings, Billing, or your Apple ID subscriptions at any time. If you cancel, Plus stays active until the end of the billing period, and your words, stars, and companion progress stay saved. Already subscribed on a new device: tap Restore in the paywall.",
+        sources: [
+            { title: "RevenueCat (subscription platform)", url: "https://www.revenuecat.com" },
+            { title: "ALYA Plus pricing", url: "https://alyacompanion.xyz/pricing" },
+            { title: "ALYA FAQ", url: "https://alyacompanion.xyz/faq" },
+            { title: "ALYA on the App Store", url: "https://apps.apple.com/us/app/alya-learn-spanish-with-ai/id6758835552" },
         ],
         faqs: [
             {

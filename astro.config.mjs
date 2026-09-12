@@ -4,7 +4,7 @@ import react from '@astrojs/react';
 import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
-  site: 'https://www.alyacompanion.xyz',
+  site: 'https://alyacompanion.xyz',
   integrations: [react()],
   adapter: cloudflare(),
 });
