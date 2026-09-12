@@ -16,7 +16,6 @@ interface Props {
   articleModifiedTime?: string;
   ogType?: string;
   noindex?: boolean;
-  keywords?: string;
   author?: string;
 }
 
@@ -34,7 +33,6 @@ const {
   articleModifiedTime,
   ogType = 'website',
   noindex = false,
-  keywords,
   author,
 } = Astro.props;
 
@@ -75,7 +73,6 @@ const robotsContent = noindex
 
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
-    {keywords && <meta name="keywords" content={keywords} />}
     {author && <meta name="author" content={author} />}
 
     <meta name="robots" content={robotsContent} />

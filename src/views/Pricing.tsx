@@ -2,9 +2,10 @@ import { useState } from "react";
 import { motion, MotionConfig } from "framer-motion";
 import { Check, ChevronRight } from "lucide-react";
 import { AppleIcon } from "../components/DownloadButton";
+import { ComparePills } from "../components/ComparePills";
 import { Footer } from "../components/Footer";
 import { NavBar } from "../components/NavBar";
-import { ANIMATION_EASE as ease, APP_STORE_URL, COMPARE_LINKS } from "../constants";
+import { ANIMATION_EASE as ease, APP_STORE_URL } from "../constants";
 
 type BillingCycle = "monthly" | "annual";
 
@@ -132,17 +133,7 @@ const Pricing = ({ currentPath }: { currentPath?: string }) => {
               className="text-center"
             >
               <p className="mb-5 text-lg font-semibold text-neutral-500">see how Alya compares</p>
-              <div className="flex flex-wrap justify-center gap-2.5 px-2 max-w-2xl mx-auto">
-                {COMPARE_LINKS.map((item) => (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    className="rounded-full border border-neutral-200 bg-white px-5 py-2.5 text-[13px] font-semibold text-neutral-700 transition-all duration-200 hover:border-lime-400 hover:text-neutral-900 hover:shadow-sm"
-                  >
-                    {item.label}
-                  </a>
-                ))}
-              </div>
+              <ComparePills />
             </motion.div>
           </section>
         </main>

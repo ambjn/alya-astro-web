@@ -3,7 +3,8 @@ import { ArrowLeft, Clock, ChevronRight, BookOpen, Link2 } from "lucide-react";
 import { Footer } from "../components/Footer";
 import { FAQAccordion } from "../components/FAQAccordion";
 import { posts, DEFAULT_AUTHOR, type BlogPost, type BlogSection } from "../blog/posts";
-import { ANIMATION_EASE, COMPARE_LINKS } from "../constants";
+import { ANIMATION_EASE } from "../constants";
+import { ComparePills } from "../components/ComparePills";
 import { DownloadButton } from "../components/DownloadButton";
 import { NavBar } from "../components/NavBar";
 
@@ -232,23 +233,7 @@ const BlogPostClient = ({ post, currentPath }: BlogPostClientProps) => {
 
         <section className="mt-10 text-center">
           <p className="text-neutral-500 text-lg font-semibold mb-5 ">see how alya compares</p>
-          <div className="flex flex-wrap justify-center gap-2.5 px-2 max-w-2xl mx-auto">
-            {COMPARE_LINKS.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="rounded-full border border-neutral-200 bg-white px-5 py-2.5 text-[13px] font-semibold text-neutral-700 transition-all duration-200 hover:border-lime-400 hover:text-neutral-900 hover:shadow-sm"
-              >
-                {item.label}
-              </a>
-            ))}
-            <a
-              href="/learn-spanish"
-              className="rounded-full bg-neutral-900 px-5 py-2.5 text-[13px] font-semibold text-white transition-all hover:bg-neutral-700"
-            >
-              learn spanish →
-            </a>
-          </div>
+          <ComparePills showLearnLink />
         </section>
       </main>
 

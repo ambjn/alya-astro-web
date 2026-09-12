@@ -4,7 +4,7 @@ import { Footer } from "../components/Footer";
 import { FAQAccordion } from "../components/FAQAccordion";
 import { ANIMATION_EASE as ease } from "../constants";
 
-const faqs = [
+export const faqs = [
   {
     question: "is alya free to download?",
     answer: "Yes, free to download on iOS. ALYA Plus membership is required to use the feed. Eligible new users get 7 days free, then Plus Monthly ($4.99/month) or Plus Annual ($29.99/year) renews automatically. Cancel anytime.",

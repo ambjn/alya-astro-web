@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { ComparisonPage } from '../../components/ComparisonPage';
-import { BASE_URL } from '../../constants';
+import { comparisonSchemas } from '../../lib/comparison-schema';
 
 const faqs = [
   { question: "Is alya better than Praktika?", answer: "for real-content immersion, yes. praktika uses AI avatars for speaking drills. alya uses real native videos with tap-to-translate, plus a companion that grows with you." },
@@ -9,41 +9,13 @@ const faqs = [
   { question: "Do I need a microphone for alya?", answer: "no. just scroll, tap, listen, and save. use headphones on the bus, no speaking out loud required. prompts invite you to produce Spanish when you want to." },
 ];
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
-    { "@type": "ListItem", position: 2, name: "Compare", item: BASE_URL + "/features" },
-    { "@type": "ListItem", position: 3, name: "ALYA vs " + "Praktika" , item: BASE_URL + "/vs/praktika" },
-  ],
-};
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((f) => ({
-    "@type": "Question",
-    name: f.question,
-    acceptedAnswer: { "@type": "Answer", text: f.answer },
-  })),
-};
-
-const articleSchema = {
-  "@context": "https://schema.org",
-  "@type": "Article",
+const { articleSchema, breadcrumbSchema, faqSchema } = comparisonSchemas({
+  slug: "praktika",
+  competitorName: "Praktika",
   headline: "alya vs Praktika, Real Videos vs AI Avatars | ALYA",
   description: "alya vs Praktika: real native Spanish videos with tap-to-translate vs AI avatar drills. Immersion that feels like scrolling. Free on iOS.",
-  url: BASE_URL + "/vs/praktika",
-  author: { "@type": "Organization", name: "alya", url: BASE_URL },
-  publisher: {
-    "@type": "Organization",
-    name: "alya",
-    url: BASE_URL,
-    logo: { "@type": "ImageObject", url: BASE_URL + "/logo/icon.png", width: 1024, height: 1024 },
-  },
-  mainEntityOfPage: { "@type": "WebPage", "@id": BASE_URL + "/vs/praktika" },
-};
+  faqs,
+});
 
 
 ---
