@@ -1,14 +1,12 @@
-import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import { Loader2, AlertCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { Footer } from "./Footer";
 import { NavBar } from "./NavBar";
 import { ANIMATION_EASE } from "../constants";
 
 interface MarkdownPageProps {
-  file: string;
   currentPath?: string;
+  content: string;
 }
 
 const proseClasses = `
@@ -25,66 +23,17 @@ const proseClasses = `
   prose-hr:border-neutral-200 prose-hr:my-16
 `;
 
-export const MarkdownPage = ({ file, currentPath }: MarkdownPageProps) => {
-  const [content, setContent] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setLoading(true);
-    fetch(`/docs/${file}`)
-      .then((res) => {
-        if (!res.ok) throw new Error(`Failed to load ${file}`);
-        return res.text();
-      })
-      .then((text) => {
-        setContent(text);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-      });
-  }, [file]);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader2 className="w-8 h-8 text-neutral-300 animate-spin" />
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center p-8 text-center font-sans">
-        <div className="bg-red-50 p-4 rounded-full mb-6 border border-red-100">
-          <AlertCircle className="w-8 h-8 text-red-500" />
-        </div>
-        <h2 className="text-2xl font-semibold text-neutral-900 mb-2">
-          Unable to load content
-        </h2>
-        <p className="text-neutral-500 mb-8 max-w-md font-light">{error}</p>
-        <a
-          href="/"
-          className="px-8 py-3 bg-lime-500 text-white rounded-full font-semibold hover:bg-lime-400 transition-colors"
-        >
-          Back to Home
-        </a>
-      </div>
-    );
-  }
-
+export const MarkdownPage = ({ currentPath, content }: MarkdownPageProps) => {
   return (
     <div className="min-h-screen text-neutral-900 flex flex-col font-sans bg-lime-50">
       <NavBar currentPath={currentPath} />
 
-      <main className="w-full max-w-4xl mx-auto px-4 sm:px-6 pb-32 pt-28 flex-grow flex flex-col">
+      <main className="w-full max-w-4xl mx-auto px-4 sm:px-6 pb-32 pt-28 grow flex flex-col">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: ANIMATION_EASE }}
-          className="flex-grow"
+          className="grow"
         >
           <div className="glass-heavy rounded-3xl p-8 md:p-14 shadow-sm relative overflow-hidden">
             <div className="absolute top-0 left-0 right-0 h-1 bg-lime-400" />

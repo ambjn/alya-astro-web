@@ -21,7 +21,7 @@ const Blog = ({ currentPath }: { currentPath?: string }) => {
             transition={{ duration: 0.6, ease }}
             className="text-4xl sm:text-5xl font-semibold text-neutral-900 mb-3 tracking-tight leading-tight"
           >
-            the <span className="text-lime-500">blog.</span>
+            learn spanish by <span className="text-lime-500">doomscrolling.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
@@ -29,7 +29,7 @@ const Blog = ({ currentPath }: { currentPath?: string }) => {
             transition={{ duration: 0.6, delay: 0.1, ease }}
             className="text-neutral-500 text-base leading-relaxed"
           >
-            guides, tips, and insights on learning spanish with ai.
+            guides, tips, and insights on learning spanish through immersion.
           </motion.p>
         </section>
 
@@ -88,8 +88,9 @@ const Blog = ({ currentPath }: { currentPath?: string }) => {
                 >
                   <a
                     href={`/blog/${post.slug}`}
-                    className="group flex flex-col h-full p-6 rounded-2xl border border-neutral-200 bg-white hover:border-neutral-300 hover:shadow-md transition-all duration-300"
+                    className="group flex flex-col h-full rounded-2xl border border-neutral-200 bg-white hover:border-neutral-300 hover:shadow-md transition-all duration-300 overflow-hidden"
                   >
+                    <div className="flex flex-col flex-1 p-6">
                     <div className="flex items-center gap-2.5 mb-4">
                       <span className="inline-flex items-center gap-1 text-xs text-neutral-400">
                         <Clock size={10} />
@@ -106,6 +107,7 @@ const Blog = ({ currentPath }: { currentPath?: string }) => {
                     <p className="text-neutral-500 text-sm leading-relaxed line-clamp-2">
                       {post.excerpt}
                     </p>
+                    </div>
                   </a>
                 </motion.article>
               ))}
@@ -120,7 +122,7 @@ const Blog = ({ currentPath }: { currentPath?: string }) => {
           className="mt-14 p-8 rounded-2xl border border-neutral-100 bg-white text-center"
         >
           <p className="text-neutral-400 text-[11px] font-bold uppercase tracking-widest mb-2">more posts coming soon</p>
-          <p className="text-neutral-500 text-sm">new guides every week on learning spanish with ai.</p>
+          <p className="text-neutral-500 text-sm">new guides on learning spanish through immersion.</p>
         </motion.div>
       </main>
 

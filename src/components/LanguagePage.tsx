@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { MessageCircle, Zap, Globe, Brain } from "lucide-react";
+import { Play, MousePointerClick, PawPrint } from "lucide-react";
 import { Footer } from "./Footer";
 import { NavBar } from "./NavBar";
 import { FAQAccordion } from "./FAQAccordion";
@@ -7,12 +7,7 @@ import type { FAQItem } from "./FAQAccordion";
 import { AppleIcon } from "./DownloadButton";
 import { ANIMATION_EASE, APP_STORE_URL } from "../constants";
 
-export interface ConversationMessage {
-  role: "user" | "alya";
-  text: string;
-}
-
-export interface LanguagePageProps {
+interface LanguagePageProps {
   nativeName: string;
   languageName: string;
   tagline: string;
@@ -20,64 +15,9 @@ export interface LanguagePageProps {
   speakers: string;
   difficulty: string;
   timeToConversation: string;
-  conversation: ConversationMessage[];
   levels: { name: string; description: string; example: string }[];
   faqs: FAQItem[];
   currentPath?: string;
-}
-
-function renderBubbleText(text: string, isAlya: boolean) {
-  const parts = text.split(/(\*[^*]+\*|`[^`]+`|\n\n)/g);
-  return parts.map((part, i) => {
-    if (part.startsWith("*") && part.endsWith("*")) {
-      return (
-        <strong key={i} className={`font-semibold ${isAlya ? "text-lime-400" : "font-semibold"}`}>
-          {part.slice(1, -1)}
-        </strong>
-      );
-    }
-    if (part.startsWith("`") && part.endsWith("`")) {
-      return (
-        <span key={i} className="text-neutral-400 text-[0.82em] font-medium tracking-tight">
-          {part.slice(1, -1)}
-        </span>
-      );
-    }
-    if (part === "\n\n") {
-      return <div key={i} className="h-1.5" />;
-    }
-    return <span key={i}>{part}</span>;
-  });
-}
-
-function ChatBubble({ msg, index }: { msg: ConversationMessage; index: number }) {
-  const isAlya = msg.role === "alya";
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 10, x: isAlya ? -6 : 6 }}
-      whileInView={{ opacity: 1, y: 0, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.12, ease: ANIMATION_EASE }}
-      className={`flex ${isAlya ? "justify-start" : "justify-end"} mb-2.5`}
-    >
-      {isAlya && (
-        <img
-          src="/logo/splash-icon.png"
-          alt="alya"
-          className="w-7 h-7 rounded-full object-cover mr-2 mt-0.5 shrink-0"
-        />
-      )}
-      <div
-        className={`max-w-[84%] px-3.5 py-2.5 rounded-2xl text-xs leading-relaxed ${
-          isAlya
-            ? "bg-neutral-700 text-white rounded-tl-sm"
-            : "bg-lime-400 text-neutral-900 rounded-tr-sm font-medium"
-        }`}
-      >
-        {renderBubbleText(msg.text, isAlya)}
-      </div>
-    </motion.div>
-  );
 }
 
 export const LanguagePage = ({
@@ -88,7 +28,6 @@ export const LanguagePage = ({
   speakers,
   difficulty,
   timeToConversation,
-  conversation,
   levels,
   faqs,
   currentPath,
@@ -105,10 +44,13 @@ export const LanguagePage = ({
             transition={{ duration: 0.8, delay: 0.1, ease: ANIMATION_EASE }}
             className="mb-6 relative"
           >
-            <span className="text-lime-100 text-[80px] sm:text-[120px] md:text-[180px] font-bold select-none absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 pointer-events-none leading-none z-0 whitespace-nowrap overflow-hidden max-w-full">
+            <span
+              aria-hidden="true"
+              className="text-lime-300/50 text-[64px] sm:text-[96px] md:text-[120px] font-bold tracking-tight select-none absolute left-1/2 -translate-x-1/2 top-0 -translate-y-1/4 pointer-events-none leading-none z-0 whitespace-nowrap overflow-hidden max-w-full mask-[radial-gradient(ellipse_75%_85%_at_50%_50%,black_40%,transparent_78%)]"
+            >
               {nativeName}
             </span>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold tracking-tight text-lime-600 relative z-10 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-lime-600 relative z-10 leading-[1.05] text-balance max-w-3xl mx-auto pt-10 sm:pt-14 md:pt-16">
               {tagline}
             </h1>
           </motion.div>
@@ -137,101 +79,61 @@ export const LanguagePage = ({
               <AppleIcon size={14} />
               download free on iOS
             </a>
-            <p className="text-neutral-400 text-xs">5 messages/day · forever free · no credit card needed</p>
+            <p className="text-neutral-400 text-xs">free to download · Plus with 7-day trial when eligible · iOS only</p>
           </motion.div>
         </section>
 
-        <motion.section
-          initial={{ opacity: 0, y: 24 }}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: ANIMATION_EASE }}
-          className="mb-24 grid grid-cols-1 md:grid-cols-3 gap-4"
+          transition={{ duration: 0.6, ease: ANIMATION_EASE }}
+          className="mb-24 max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-3 rounded-3xl border border-neutral-200 bg-white overflow-hidden"
         >
           {[
-            { label: "native speakers", value: speakers, icon: <Globe size={20} /> },
-            { label: "difficulty level", value: difficulty, icon: <Brain size={20} /> },
-            { label: "to basic fluency", value: timeToConversation, icon: <MessageCircle size={20} /> },
+            { value: speakers, label: "native speakers" },
+            { value: difficulty, label: "difficulty" },
+            { value: timeToConversation, label: "to understanding" },
           ].map((stat, i) => (
-            <motion.div
+            <div
               key={i}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1, ease: ANIMATION_EASE }}
-              className="flex flex-col items-center justify-center p-8 rounded-2xl border border-neutral-200 bg-white hover:shadow-sm transition-all"
+              className={`px-6 py-8 text-center ${i > 0 ? "border-t sm:border-t-0 sm:border-l border-neutral-100" : ""}`}
             >
-              <div className="mb-3 p-3 rounded-xl bg-lime-50 text-lime-600 border border-lime-100">
-                {stat.icon}
-              </div>
-              <div className="text-neutral-900 text-2xl font-semibold mb-1">{stat.value}</div>
-              <div className="text-neutral-500 text-xs font-medium uppercase tracking-wider">{stat.label}</div>
-            </motion.div>
+              <p className="text-neutral-900 text-3xl sm:text-4xl font-semibold tracking-tight mb-1.5">{stat.value}</p>
+              <p className="text-neutral-400 text-xs font-semibold uppercase tracking-widest">{stat.label}</p>
+            </div>
           ))}
-        </motion.section>
+        </motion.div>
 
-        <section className="mb-24 grid lg:grid-cols-2 gap-12 items-center">
+        <section className="mb-24 max-w-4xl mx-auto text-center">
           <motion.div
-            initial={{ opacity: 0, x: -24 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: ANIMATION_EASE }}
           >
-            <span className="inline-block mb-3 text-xs font-bold tracking-widest uppercase text-lime-600">
-              how it works
-            </span>
-            <h2 className="text-3xl md:text-4xl font-semibold text-neutral-900 mb-5 leading-tight">
-              real conversation.<br />
-              real learning.
+            <h2 className="text-3xl md:text-4xl font-semibold text-neutral-900 mb-4 leading-tight">
+              real videos. instant understanding.
             </h2>
-            <p className="text-neutral-500 text-lg leading-relaxed mb-8 font-light">
-              forget flashcards and grammar tables. alya teaches you{" "}
-              {languageName.toLowerCase()} the way you learned your first language: by
-              actually using it.
+            <p className="text-neutral-500 text-lg leading-relaxed mb-10 font-light max-w-xl mx-auto">
+              forget drills and grammar tables. alya teaches you{" "}
+              {languageName.toLowerCase()} the way you actually encounter it: real people, real situations, with translation built in.
             </p>
 
-            <div className="space-y-5">
+            <div className="grid sm:grid-cols-3 gap-3 text-left">
               {[
-                { title: "conversation first", desc: "learn by doing in natural chats", icon: <MessageCircle size={18} /> },
-                { title: "contextual corrections", desc: "gentle fixes woven into replies", icon: <Zap size={18} /> },
-                { title: "cultural context", desc: "learn slang and real usage", icon: <Globe size={18} /> },
+                { title: "scroll the feed", desc: "short native clips matched to your level", icon: <Play size={18} /> },
+                { title: "tap to translate", desc: "transcript, glosses, native audio on demand", icon: <MousePointerClick size={18} /> },
+                { title: "grow your companion", desc: "stars, energy, bond, curiosity, streaks", icon: <PawPrint size={18} /> },
               ].map((item, i) => (
-                <div key={i} className="flex gap-4">
-                  <div className="p-2.5 rounded-xl h-fit bg-lime-50 text-lime-600 border border-lime-100 shrink-0">
+                <div key={i} className="p-5 rounded-2xl border border-neutral-200 bg-white">
+                  <div className="p-2.5 rounded-xl w-fit bg-lime-50 text-lime-600 border border-lime-100 shrink-0 mb-3">
                     {item.icon}
                   </div>
-                  <div>
-                    <h3 className="text-neutral-900 font-semibold text-base">{item.title}</h3>
-                    <p className="text-neutral-500 text-sm font-light">{item.desc}</p>
-                  </div>
+                  <h3 className="text-neutral-900 font-semibold text-base">{item.title}</h3>
+                  <p className="text-neutral-500 text-sm font-light">{item.desc}</p>
                 </div>
               ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: ANIMATION_EASE }}
-            className="relative mx-auto w-full max-w-md"
-          >
-            <div className="bg-neutral-800 rounded-3xl overflow-hidden shadow-2xl border border-white/5">
-              <div className="flex items-center gap-2.5 px-4 py-3.5 border-b border-white/10">
-                <div className="relative">
-                  <img src="/logo/splash-icon.png" alt="alya" className="w-8 h-8 rounded-full object-cover" />
-                  <div className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-lime-400 border-2 border-neutral-800" />
-                </div>
-                <div>
-                  <div className="font-semibold text-white text-sm">alya</div>
-                  <div className="text-lime-400 text-xs">● online</div>
-                </div>
-              </div>
-              <div className="p-4 space-y-1">
-                {conversation.map((msg, i) => (
-                  <ChatBubble key={i} msg={msg} index={i} />
-                ))}
-              </div>
             </div>
           </motion.div>
         </section>
@@ -248,7 +150,7 @@ export const LanguagePage = ({
               every level, <span className="text-lime-500">covered.</span>
             </h2>
             <p className="text-neutral-500 text-lg font-light max-w-xl mx-auto">
-              whether you&apos;re starting from zero or polishing your fluency, alya adapts to you.
+              whether you&apos;re starting from zero or polishing fluency, the feed adapts to you.
             </p>
           </motion.div>
 
@@ -269,7 +171,7 @@ export const LanguagePage = ({
                   {level.description}
                 </p>
                 <div className="bg-neutral-50 p-4 rounded-xl border border-neutral-100">
-                  <p className="text-neutral-400 text-xs uppercase tracking-wider mb-1.5 font-semibold">example</p>
+                  <p className="text-neutral-400 text-xs uppercase tracking-wider mb-1.5 font-semibold">you'll hear</p>
                   <p className="text-neutral-700 text-sm italic">&ldquo;{level.example}&rdquo;</p>
                 </div>
               </motion.div>
@@ -277,18 +179,40 @@ export const LanguagePage = ({
           </div>
         </section>
 
-        <section className="max-w-3xl mx-auto mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: ANIMATION_EASE }}
-            className="text-center mb-10"
+        {faqs.length > 0 && (
+          <section className="mb-24 max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-semibold text-neutral-900 mb-8 text-center">
+              frequently asked <span className="text-lime-500">questions.</span>
+            </h2>
+            <FAQAccordion faqs={faqs} />
+          </section>
+        )}
+
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: ANIMATION_EASE }}
+          className="max-w-md mx-auto text-center"
+        >
+          <h2 className="text-3xl sm:text-4xl font-semibold text-neutral-900 tracking-tight leading-tight mb-3">
+            start understanding
+            <br />
+            <span className="text-lime-500">real spanish.</span>
+          </h2>
+          <p className="text-neutral-500 text-base font-light mb-8 max-w-sm mx-auto">
+            free to download. 7-day free trial when eligible, then Plus. iOS only.
+          </p>
+          <a
+            href={APP_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2.5 bg-neutral-900 hover:bg-neutral-800 transition-colors text-white font-semibold px-8 py-4 rounded-full text-base shadow-lg"
           >
-            <h2 className="text-3xl md:text-4xl font-semibold text-neutral-900">questions.</h2>
-          </motion.div>
-          <FAQAccordion faqs={faqs} />
-        </section>
+            <AppleIcon />
+            download free on iOS
+          </a>
+        </motion.section>
 
       </main>
 

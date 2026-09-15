@@ -1,6 +1,12 @@
 {
   "applinks": {
-    "details": []
+    "apps": [],
+    "details": [
+      {
+        "appID": "9KK6U6JMRH.com.ambjn.alya",
+        "paths": ["*"]
+      }
+    ]
   },
   "webcredentials": {
     "apps": [

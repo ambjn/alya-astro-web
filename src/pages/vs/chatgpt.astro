@@ -1,48 +1,54 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { ComparisonPage } from '../../components/ComparisonPage';
+import { comparisonSchemas } from '../../lib/comparison-schema';
 
 const faqs = [
-  { question: "Can I use ChatGPT to learn a language?", answer: "yes, but it requires significant setup. you need to write detailed prompts telling chatgpt to act as a language tutor, correct your mistakes, and adapt to your level. alya does all of this automatically, out of the box." },
-  { question: "Is alya better than ChatGPT for learning Spanish?", answer: "for learning Spanish specifically, yes. alya is purpose-built for it, automatic corrections, proficiency levels, structured conversation. chatgpt is a general tool that can be used for language learning but isn't optimized for it." },
-  { question: "How much does alya cost vs ChatGPT?", answer: "alya is free with 5 messages/day. alya plus is $4.99/month. chatgpt plus is $20/month. for language learning, alya is significantly more cost-effective." },
+  { question: "Can I use ChatGPT to learn Spanish?", answer: "yes, but you have to prompt it every time, 'act as a tutor, explain this video, quiz me.' alya is ready-made: scroll the feed, tap any word, get glosses and audio instantly. no prompting." },
+  { question: "Is alya better than ChatGPT for Spanish?", answer: "for daily learning, yes. alya gives you curated native videos with prepared transcripts, translations, levels, topics, vocabulary, and a companion. chatgpt is a blank chat box." },
+  { question: "How much does alya cost vs ChatGPT?", answer: "alya is free to download, with Plus (Annual / Monthly, 7-day free trial when eligible) built for learners. ChatGPT Plus is $20/month for a general chatbot." },
 ];
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })),
-};
+const { articleSchema, breadcrumbSchema, faqSchema } = comparisonSchemas({
+  slug: "chatgpt",
+  competitorName: "ChatGPT",
+  headline: "alya vs ChatGPT for Spanish, Feed vs Chatbox | ALYA",
+  description: "alya vs ChatGPT: curated Spanish immersion feed with tap-to-translate vs general chatbot that needs prompting. Free on iOS.",
+  faqs,
+});
+
+
 ---
 
 <Layout
-  title="alya vs ChatGPT for Language Learning, Which Is Better? | ALYA"
-  description="alya vs ChatGPT for language learning: purpose-built AI tutor vs general chatbot. alya adapts to your level, corrects mistakes, and teaches through conversation. free on iOS."
+  title="alya vs ChatGPT for Spanish, Feed vs Chatbox | ALYA"
+  description="alya vs ChatGPT: curated Spanish immersion feed with tap-to-translate vs general chatbot that needs prompting. Free on iOS."
   canonical="/vs/chatgpt"
+  ogTitle="alya vs ChatGPT for Spanish, Feed vs Chatbox | ALYA"
+  ogDescription="alya vs ChatGPT: curated Spanish immersion feed with tap-to-translate vs general chatbot that needs prompting. Free on iOS."
+  twitterTitle="alya vs ChatGPT for Spanish, Feed vs Chatbox | ALYA"
+  twitterDescription="alya vs ChatGPT: curated Spanish immersion feed with tap-to-translate vs general chatbot that needs prompting. Free on iOS."
 >
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
+  <script type="application/ld+json" set:html={JSON.stringify([articleSchema, breadcrumbSchema, faqSchema])} slot="head" />
   <ComparisonPage
     competitorName="ChatGPT"
-    competitorTagline="general-purpose AI chatbot"
-    alyaTagline="purpose-built language tutor"
-    heroHeading="alya vs chatgpt"
-    heroSubtitle="chatgpt can speak any language. alya is built to teach you one. the difference is everything."
-    verdict="chatgpt is a tool. alya is a tutor. if you want to learn a language, use the one that's actually designed for it."
+    competitorTagline="general chatbot"
+    alyaTagline="spanish immersion feed"
+    heroSubtitle="chatgpt waits for the perfect prompt. alya hands you the video, the transcript, and the translation, just scroll."
+    verdict="if you love prompting, use chatgpt. if you want to learn, scroll alya."
     rows={[
-      { feature: "purpose", alya: "language learning", competitor: "general AI assistant" },
-      { feature: "adapts to your proficiency level", alya: true, competitor: false },
-      { feature: "automatic corrections in context", alya: true, competitor: "only if prompted" },
-      { feature: "structured learning progression", alya: true, competitor: false },
-      { feature: "free tier", alya: "5 msgs/day", competitor: "limited (GPT-3.5 only)" },
-      { feature: "mobile app (iOS)", alya: true, competitor: true },
-      { feature: "monthly price", alya: "$4.99 (plus)", competitor: "$20 (ChatGPT Plus)" },
-      { feature: "built for language learners", alya: true, competitor: false },
+      { feature: "learning method", alya: "curated video feed", competitor: "blank chat prompt" },
+      { feature: "native videos", alya: true, competitor: false },
+      { feature: "tap-to-translate + glosses", alya: true, competitor: "manual prompting" },
+      { feature: "levels + topics + filters", alya: true, competitor: false },
+      { feature: "vocabulary + companion", alya: true, competitor: false },
+      { feature: "works in 10 seconds", alya: true, competitor: "needs setup" },
+      { feature: "Plus plan", alya: "Annual / Monthly", competitor: "$20/mo Plus" },
     ]}
     sections={[
-      { heading: "chatgpt can speak languages. alya teaches them.", body: "chatgpt is an incredibly powerful general AI. you can ask it to speak Spanish and it will. but it won't automatically correct your mistakes, adapt to your level, or structure the conversation to help you learn. it treats you like a peer, not a student. alya is built specifically to teach, every response is calibrated to your proficiency level and designed to move you forward." },
-      { heading: "alya corrects you without you having to ask", body: "with chatgpt, you have to explicitly say 'please correct my Spanish' every time, or set up a long system prompt. alya does this automatically, naturally, in every message. when you make a grammar mistake, she corrects it in context, not with a lecture, but woven into her reply. this is how real language learning works." },
-      { heading: "alya is 4x cheaper than chatgpt plus", body: "chatgpt plus costs $20/month. alya plus is $4.99/month. alya free gives you 5 messages per day with no credit card. if your goal is language learning specifically, alya gives you more value at a fraction of the price." },
-      { heading: "the verdict", body: "if you need a general AI assistant, use chatgpt. if you want to learn Spanish, use alya. they're built for different things. alya's entire design, the persona, the corrections, the proficiency levels, is optimized for one thing: making you fluent in Spanish." },
+      { heading: "chatgpt is powerful but empty.", body: "chatgpt can explain any Spanish sentence, if you paste it, prompt it right, and ask follow-ups. most learners don't. they open a blank box and close it. alya removes the blank box entirely." },
+      { heading: "alya is pre-built for learning", body: "every clip arrives with transcript, translation, word timing, glosses, audio, level, and topics. tap, listen, save, earn stars. zero setup, all learning." },
+      { heading: "the verdict", body: "use chatgpt for custom explanations. use alya for daily immersion you'll actually stick with." },
     ]}
     faqs={faqs}
     currentPath="/vs/chatgpt"

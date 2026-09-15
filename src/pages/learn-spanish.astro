@@ -1,65 +1,83 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { LanguagePage } from '../components/LanguagePage';
+import { BASE_URL } from '../constants';
 
 const faqs = [
   {
     question: "What is the best app to learn Spanish?",
-    answer: "alya teaches Spanish through real AI conversation. instead of drilling vocabulary in isolation, you learn by actually texting in Spanish. alya corrects your mistakes naturally in context. free to download with 5 messages per day.",
+    answer: "alya is a Spanish immersion feed: short real-world videos with tap-to-translate, word glosses, and native audio. instead of drilling sentences, you learn from content natives actually watch. free to download with a 7-day trial when eligible.",
   },
   {
     question: "How long does it take to learn Spanish?",
-    answer: "Spanish is one of the easiest languages for English speakers. most learners can hold basic conversations within 1–3 months of consistent daily practice. with alya's conversational approach, you'll progress faster because you're using the language from day one.",
+    answer: "Spanish is one of the easiest languages for English speakers. most learners understand everyday clips within weeks of daily scrolling (5–30 min/day). your personalized plan sets clips, words, and sessions per week.",
   },
   {
     question: "Is alya better than Duolingo for Spanish?",
-    answer: "alya and Duolingo have different approaches. Duolingo uses gamified exercises and repetition. alya teaches through real conversation, you text like you're messaging a friend who happens to be a Spanish tutor. if you want to actually speak Spanish, conversation practice is more effective.",
+    answer: "different approaches. Duolingo drills vocabulary with exercises. alya gives you real native videos with instant understanding, transcript, translation, glosses, plus a companion that grows as you learn.",
   },
   {
-    question: "What kind of Spanish does alya teach?",
-    answer: "alya teaches general Spanish, the core vocabulary, grammar, and expressions that work everywhere. the focus is on building real conversational fluency, not locking you into a specific regional style.",
+    question: "What kind of Spanish will I hear?",
+    answer: "real-world Spanish from native videos: street interviews, vlogs, food, travel, music, culture. every clip includes translation so you always understand in context, beginner to advanced.",
   },
   {
     question: "Is alya free?",
-    answer: "alya is free to download with 5 messages per day. plus and pro plans unlock 25 and 75 messages per day respectively.",
+    answer: "alya is free to download on iOS. ALYA Plus membership (Annual / Monthly, 7-day free trial when eligible) unlocks Unlimited Immersion, Instant Explanations, and Your Evolving Companion.",
   },
 ];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+    { "@type": "ListItem", position: 2, name: "Learn Spanish", item: `${BASE_URL}/learn-spanish` },
+  ],
+};
 
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({
+  mainEntity: faqs.map((f) => ({
     "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    name: f.question,
+    acceptedAnswer: { "@type": "Answer", text: f.answer },
   })),
+};
+
+const webPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Learn Spanish by Doomscrolling | ALYA",
+  url: `${BASE_URL}/learn-spanish`,
+  description: "Learn Spanish from real videos. Scroll an immersion feed, tap any word for translation, save vocabulary, grow your companion. Beginner to advanced. Free on iOS.",
+  inLanguage: "en",
+  isPartOf: { "@type": "WebSite", name: "alya", url: BASE_URL },
 };
 ---
 
 <Layout
-  title="Learn Spanish with AI | ALYA"
-  description="Learn Spanish by texting an AI friend. alya teaches you through real conversation, travel, culture, work. beginner to advanced. free on iOS."
+  title="Learn Spanish by Doomscrolling | ALYA"
+  description="Learn Spanish from real videos. Scroll an immersion feed, tap any word for translation, save vocabulary, grow your companion. Beginner to advanced. Free on iOS."
+  ogTitle="Learn Spanish by Doomscrolling | ALYA"
+  ogDescription="Real Spanish videos with tap-to-translate, per-word glosses, saved vocabulary, and a companion that grows. Beginner to advanced."
+  twitterTitle="Learn Spanish by Doomscrolling | ALYA"
+  twitterDescription="Real Spanish videos with tap-to-translate, vocabulary, and companion. Beginner to advanced. Free on iOS."
   canonical="/learn-spanish"
 >
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
+  <script type="application/ld+json" set:html={JSON.stringify([webPageSchema, breadcrumbSchema, faqSchema])} slot="head" />
   <LanguagePage
     nativeName="Español"
     languageName="Spanish"
-    tagline="learn spanish by texting a friend"
-    heroSubtitle="travel, work, culture, connection, alya teaches you real Spanish through conversation, not grammar tables."
+    tagline="learn spanish by doomscrolling"
+    heroSubtitle="travel, food, culture, music, learn from real videos with translation built in, not grammar tables."
     speakers="500M+"
     difficulty="accessible"
-    timeToConversation="1–3 months"
-    conversation={[
-      { role: "user", text: "how do I introduce myself in Spanish?" },
-      { role: "alya", text: "*me llamo* `meh yah-mo`, that's 'my name is.' so you'd say *me llamo [your name]* ✨\n\ntry it! what's your name?" },
-      { role: "user", text: "me llamo Alex!" },
-      { role: "alya", text: "¡perfecto! nailed it 🎉\n\nnow try: *¿de dónde eres?* `deh don-deh eh-res`, 'where are you from?', go ahead and answer in Spanish!" },
-    ]}
+    timeToConversation="weeks"
     levels={[
-      { name: "beginner", description: "learn greetings, numbers, colors, and everyday phrases. alya gets you talking from day one because you're actually using the language.", example: "¡Hola! ¿Cómo estás? (Hi! How are you?)" },
-      { name: "intermediate", description: "master verb tenses and start discussing real topics, travel, food, your life. alya keeps the conversation flowing naturally.", example: "El fin de semana fui al mercado. (I went to the market on the weekend.)" },
-      { name: "advanced", description: "tackle subjunctive mood, idioms, and natural expressions. alya helps you sound fluent and confident, not like a textbook.", example: "Ojalá que puedas venir a la fiesta." },
+      { name: "beginner", description: "short clips with full translations and glosses. tap everything, understanding is instant.", example: "¿Dónde está la estación? (Where is the station?)" },
+      { name: "intermediate", description: "longer vlogs and conversations. save phrases, answer prompts, build real comprehension.", example: "Quiero aprovechar el viaje. (I want to make the most of the trip.)" },
+      { name: "advanced", description: "native speed, slang, and nuance, with advanced explanations when you want them.", example: "Ojalá que puedas venir a la fiesta." },
     ]}
     faqs={faqs}
     currentPath="/learn-spanish"

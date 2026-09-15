@@ -5,18 +5,17 @@ import { NavBar } from "./NavBar";
 import { FAQAccordion } from "./FAQAccordion";
 import { ANIMATION_EASE as ease } from "../constants";
 
-export interface ComparisonRow {
+interface ComparisonRow {
   feature: string;
   alya: string | boolean;
   competitor: string | boolean;
 }
 
-export interface ComparisonPageProps {
+interface ComparisonPageProps {
   competitorName: string;
   competitorTagline: string;
   alyaTagline: string;
   verdict: string;
-  heroHeading: string;
   heroSubtitle: string;
   rows: ComparisonRow[];
   sections: { heading: string; body: string }[];
@@ -38,9 +37,9 @@ function CellValue({
       </div>
     );
   if (value === false)
-    return <X size={18} className="text-neutral-200 mx-auto" strokeWidth={2.5} />;
+    return <X size={18} className="text-neutral-300 mx-auto" strokeWidth={2.5} />;
   return (
-    <span className={`text-xs md:text-sm ${isAlya ? "text-neutral-900 font-medium" : "text-neutral-400 font-light"}`}>
+    <span className={`text-sm ${isAlya ? "text-neutral-900 font-semibold" : "text-neutral-400 font-light"}`}>
       {value}
     </span>
   );
@@ -51,7 +50,6 @@ export const ComparisonPage = ({
   competitorTagline,
   alyaTagline,
   verdict,
-  heroHeading,
   heroSubtitle,
   rows,
   sections,
@@ -104,22 +102,22 @@ export const ComparisonPage = ({
           transition={{ duration: 0.8, ease }}
           className="mb-16 md:mb-20"
         >
-          <div className="relative rounded-3xl overflow-hidden border border-neutral-200 bg-white shadow-sm">
+          <div className="relative rounded-3xl overflow-hidden border border-neutral-200 bg-white shadow-sm max-w-full">
             <div className="overflow-x-auto">
-              <div className="min-w-[480px]">
-                <div className="grid grid-cols-10 border-b border-neutral-200 bg-neutral-50 sticky top-[64px] z-20">
-                  <div className="col-span-4 px-4 sm:px-8 py-4 sm:py-5 text-neutral-400 text-xs font-bold uppercase tracking-widest flex items-center">
+              <div className="min-w-[620px]">
+                <div className="grid grid-cols-10 border-b-2 border-neutral-200 bg-neutral-50">
+                  <div className="col-span-4 px-5 sm:px-8 py-3 text-neutral-600 text-sm font-bold uppercase tracking-wider flex items-center gap-2 sticky left-0 z-10 bg-neutral-50 shadow-[4px_0_8px_-4px_rgba(0,0,0,0.1)]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-lime-500 shrink-0" />
                     Feature
                   </div>
-                  <div className="col-span-3 px-4 sm:px-8 py-4 sm:py-5 text-center border-l border-neutral-200 bg-lime-50 relative">
-                    <div className="absolute top-0 left-0 right-0 h-1 bg-lime-400" />
-                    <span className="text-neutral-900 font-bold text-sm sm:text-lg block">alya</span>
-                    <span className="text-lime-600 text-[10px] sm:text-xs mt-1 block font-medium tracking-wide uppercase">
+                  <div className="col-span-3 px-5 sm:px-8 py-3 text-center border-l-2 border-lime-400 bg-lime-100">
+                    <span className="text-neutral-900 font-bold text-sm sm:text-base block">alya</span>
+                    <span className="text-lime-700 text-[10px] sm:text-[11px] mt-0.5 block font-semibold tracking-wide uppercase">
                       {alyaTagline}
                     </span>
                   </div>
-                  <div className="col-span-3 px-4 sm:px-8 py-4 sm:py-5 text-center border-l border-neutral-200">
-                    <span className="text-neutral-500 font-medium text-sm sm:text-lg block">
+                  <div className="col-span-3 px-5 sm:px-8 py-3 text-center border-l border-neutral-200">
+                    <span className="text-neutral-500 font-semibold text-sm sm:text-base block">
                       {competitorName}
                     </span>
                     <span className="text-neutral-400 text-[10px] sm:text-xs mt-1 block tracking-wide uppercase">
@@ -134,13 +132,13 @@ export const ComparisonPage = ({
                       key={i}
                       className="grid grid-cols-10 group hover:bg-neutral-50 transition-colors"
                     >
-                      <div className="col-span-4 px-4 sm:px-8 py-3 sm:py-4 text-neutral-700 text-xs sm:text-sm font-light flex items-center">
+                      <div className="col-span-4 px-5 sm:px-8 py-4 text-neutral-700 text-sm font-normal flex items-center sticky left-0 z-[1] bg-white group-hover:bg-neutral-50 shadow-[4px_0_8px_-4px_rgba(0,0,0,0.1)]">
                         {row.feature}
                       </div>
-                      <div className="col-span-3 px-3 sm:px-8 py-3 sm:py-4 flex items-center justify-center border-l border-neutral-100 bg-lime-50/50 group-hover:bg-lime-50 transition-colors">
+                      <div className="col-span-3 px-4 sm:px-8 py-4 flex items-center justify-center border-l-2 border-lime-400/60 bg-lime-50 group-hover:bg-lime-100/70 transition-colors">
                         <CellValue value={row.alya} isAlya />
                       </div>
-                      <div className="col-span-3 px-3 sm:px-8 py-3 sm:py-4 flex items-center justify-center border-l border-neutral-100">
+                      <div className="col-span-3 px-4 sm:px-8 py-4 flex items-center justify-center border-l border-neutral-100">
                         <CellValue value={row.competitor} />
                       </div>
                     </div>
@@ -170,18 +168,15 @@ export const ComparisonPage = ({
           ))}
         </div>
 
-        <section className="max-w-3xl mx-auto pb-20 md:pb-28">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease }}
-            className="text-2xl md:text-3xl font-semibold text-neutral-900 mb-8 text-center tracking-tight"
-          >
-            Questions &amp; Answers
-          </motion.h2>
-          <FAQAccordion faqs={faqs} />
-        </section>
+        {faqs.length > 0 && (
+          <section className="max-w-3xl mx-auto mb-16 md:mb-20">
+            <h2 className="text-xl md:text-2xl font-semibold text-neutral-900 mb-6 tracking-tight text-center">
+              frequently asked questions
+            </h2>
+            <FAQAccordion faqs={faqs} />
+          </section>
+        )}
+
       </main>
 
       <Footer />

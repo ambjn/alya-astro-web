@@ -5,76 +5,26 @@ import { BASE_URL, APP_STORE_URL } from '../constants';
 
 const softwareAppSchema = {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: "Alya",
-  description: "AI-powered Spanish tutor that teaches through natural conversation. Features voice input/output, spaced repetition vocabulary, grammar cards, and 8 real-life practice scenarios. Works in any native language.",
+  "@type": "MobileApplication",
+  name: "ALYA — Learn Spanish by Doomscrolling",
+  description: "Spanish immersion feed: scroll short real-world videos, tap any word for instant translation, save vocabulary, and grow your companion. Beginner to advanced, free on iOS.",
   url: BASE_URL,
   applicationCategory: "EducationApplication",
-  operatingSystem: "iOS, Android",
-  inLanguage: "en",
+  applicationSubCategory: "Language Learning",
+  operatingSystem: "iOS",
+  inLanguage: ["en", "es"],
+  contentRating: "4+",
+  screenshot: `${BASE_URL}/og/og.png`,
+  image: `${BASE_URL}/og/og.png`,
   offers: [
-    { "@type": "Offer", name: "Free", price: "0", priceCurrency: "USD", description: "5 conversations per day, forever free" },
-    { "@type": "Offer", name: "Alya Plus", price: "4.99", priceCurrency: "USD", description: "25 conversations per day, deeper conversation memory" },
-    { "@type": "Offer", name: "Alya Pro", price: "14.99", priceCurrency: "USD", description: "75 conversations per day, maximum memory, fastest model" },
+    { "@type": "Offer", name: "Free download", price: "0", priceCurrency: "USD", availability: "https://schema.org/InStock", description: "Free to download on iOS with a 7-day free trial for eligible new users" },
+    { "@type": "Offer", name: "Alya Plus Monthly", price: "4.99", priceCurrency: "USD", availability: "https://schema.org/InStock", description: "Plus Monthly: $4.99/month. Unlimited Immersion, Instant Explanations, Your Evolving Companion." },
+    { "@type": "Offer", name: "Alya Plus Annual", price: "29.99", priceCurrency: "USD", availability: "https://schema.org/InStock", description: "Plus Annual: $29.99/year ($2.50/month, save 50% vs monthly). Unlimited Immersion, Instant Explanations, Your Evolving Companion." },
   ],
   aggregateRating: { "@type": "AggregateRating", ratingValue: "4.8", ratingCount: "500" },
-  author: { "@type": "Organization", name: "Alya" },
+  author: { "@type": "Organization", name: "ALYA", url: BASE_URL },
   downloadUrl: APP_STORE_URL,
-};
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "Is Alya free to use?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes. Alya is free to download and includes 5 conversations per day. Plus ($4.99/mo) and Pro ($14.99/mo) plans offer more daily messages and deeper conversation memory.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What language do I need to speak to use Alya?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Any language. Alya detects the language you text in, English, Hindi, French, Portuguese, Japanese, and more, and responds in that same language while teaching Spanish. You don't need to know English to use Alya.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What kind of Spanish does Alya teach?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Alya teaches Latin American Spanish, the variety spoken in Mexico, Colombia, Argentina, and across the continent. It's modern, natural, and understood everywhere. Alya deliberately avoids Spain-specific slang.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How is Alya different from Duolingo or Babbel?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Duolingo and Babbel use structured lessons, gamification, and multiple-choice exercises. Alya is a conversation, you chat with an AI that responds like a bilingual friend, teaches through context, and adapts to your level in real time. There are no levels to unlock, no hearts to lose, and no preset curriculum.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Can I practice speaking Spanish with Alya?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes. You can send voice messages to Alya, which she transcribes and responds to. You can also tap any of Alya's messages to hear native-accent pronunciation of the Spanish words she's teaching.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Does Alya use AI?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes. Alya is powered by a large language model with real-time streaming responses. The voice features use ElevenLabs for speech-to-text and text-to-speech.",
-      },
-    },
-  ],
+  installUrl: APP_STORE_URL,
 };
 
 const organizationSchema = {
@@ -82,9 +32,9 @@ const organizationSchema = {
   "@type": "Organization",
   name: "alya",
   url: BASE_URL,
-  logo: { "@type": "ImageObject", url: `${BASE_URL}/logo/icon.png`, width: 512, height: 512 },
-  sameAs: ["https://twitter.com/alyacompanion", "https://instagram.com/helloalya", APP_STORE_URL],
-  contactPoint: { "@type": "ContactPoint", contactType: "customer support", url: `${BASE_URL}/support` },
+  logo: { "@type": "ImageObject", url: `${BASE_URL}/logo/icon.png`, width: 1024, height: 1024 },
+  sameAs: [APP_STORE_URL, "https://twitter.com/alyacompanion"],
+  contactPoint: { "@type": "ContactPoint", contactType: "customer support", email: "amber@alyacompanion.xyz", url: `${BASE_URL}/support` },
 };
 
 const websiteSchema = {
@@ -92,7 +42,7 @@ const websiteSchema = {
   "@type": "WebSite",
   name: "alya",
   url: BASE_URL,
-  description: "Learn Spanish by chatting with an AI friend. Beginner to advanced, free on iOS.",
+  description: "Learn Spanish by doomscrolling. Scroll real videos, tap to translate, grow your companion. Free on iOS.",
   potentialAction: {
     "@type": "SearchAction",
     target: { "@type": "EntryPoint", urlTemplate: `${BASE_URL}/blog?q={search_term_string}` },
@@ -102,18 +52,18 @@ const websiteSchema = {
 ---
 
 <style is:global>
-  html { scroll-snap-type: y mandatory; }
+  html { scroll-snap-type: y proximity; }
 </style>
 
 <Layout
-  title="ALYA: Learn Spanish with AI | Chat, Speak & Get Fluent"
-  description="Meet ALYA, your AI Spanish tutor. Chat like texting a friend, hear native pronunciation, save vocabulary, and actually get fluent. Free to start."
-  ogTitle="ALYA: The AI Spanish Tutor That Actually Talks Back"
-  ogDescription="Meet ALYA, your AI Spanish tutor. Chat like texting a friend, hear native pronunciation, save vocabulary, and actually get fluent. Free to start."
-  twitterTitle="ALYA: Learn Spanish with AI | Chat, Speak & Get Fluent"
-  twitterDescription="Learn Spanish by texting an AI friend. Voice, grammar, vocab & spaced repetition. Free to start."
+  title="ALYA: Learn Spanish by Doomscrolling | Immersion Feed"
+  description="Meet ALYA, a Spanish immersion feed. Scroll real short videos, tap any word for instant translation, save vocabulary, and grow your companion. Free to start."
+  ogTitle="ALYA: Learn Spanish by Doomscrolling"
+  ogDescription="Scroll real Spanish videos. Tap what you don't know. Save words, earn stars, grow ALYA. Free to start."
+  twitterTitle="ALYA: Learn Spanish by Doomscrolling"
+  twitterDescription="Real Spanish videos with tap-to-translate, vocabulary + companion. Free to start."
   canonical="/"
 >
-  <script type="application/ld+json" set:html={JSON.stringify([softwareAppSchema, organizationSchema, websiteSchema, faqSchema])} slot="head" />
+  <script type="application/ld+json" set:html={JSON.stringify([softwareAppSchema, organizationSchema, websiteSchema])} slot="head" />
   <Home client:load />
 </Layout>

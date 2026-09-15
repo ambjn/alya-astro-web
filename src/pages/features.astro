@@ -1,16 +1,53 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Features from '../views/Features';
+import { BASE_URL } from '../constants';
+
+const webPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Features | ALYA: Spanish Immersion Feed",
+  url: `${BASE_URL}/features`,
+  description: "How ALYA teaches Spanish: immersion feed, tap-to-translate, word glosses, native audio, saved vocabulary, companion, levels, topics. Free on iOS.",
+  inLanguage: "en",
+  isPartOf: { "@type": "WebSite", name: "alya", url: BASE_URL },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+    { "@type": "ListItem", position: 2, name: "Features", item: `${BASE_URL}/features` },
+  ],
+};
+
+const featureFaqs = [
+  { question: "What is ALYA?", answer: "ALYA is a Spanish immersion feed for iOS. Scroll short real-world videos, tap any unfamiliar word for instant translation, save vocabulary, and grow your companion as you learn." },
+  { question: "How does tap-to-translate work?", answer: "Every clip ships with synchronized Spanish transcript, English translation, and word timing. Tap any phrase for instant explanation in context, hear native pronunciation, and save it for review." },
+  { question: "Is ALYA free?", answer: "ALYA is free to download on iOS. ALYA Plus membership unlocks Unlimited Immersion, Instant Explanations, and Your Evolving Companion, with a 7-day free trial when eligible." },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: featureFaqs.map((f) => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: { "@type": "Answer", text: f.answer },
+  })),
+};
 ---
 
 <Layout
-  title="Features | ALYA: Learn Spanish with AI"
-  description="Learn how alya teaches languages through real AI conversation. Spanish, 3 proficiency levels, instant corrections, no streaks. free on iOS."
-  ogTitle="Features, How alya Teaches Languages Through AI Conversation"
-  ogDescription="Spanish, beginner to advanced, instant corrections in context, no streaks. see how alya turns texting into language learning."
-  twitterTitle="Features, How alya Teaches Languages"
-  twitterDescription="Spanish, AI conversation, instant corrections. free on iOS."
+  title="Features | ALYA: Spanish Immersion Feed"
+  description="How ALYA teaches Spanish: immersion feed, tap-to-translate, word glosses, native audio, saved vocabulary, companion, levels, topics. Free on iOS."
+  ogTitle="Features, Spanish Immersion That Feels Like Scrolling"
+  ogDescription="Real videos, tap-to-translate, vocabulary, companion, levels, topics. See how ALYA turns scrolling into Spanish."
+  twitterTitle="Features, How ALYA Teaches Spanish"
+  twitterDescription="Immersion feed, tap-to-translate, vocabulary, companion. Free on iOS."
   canonical="/features"
 >
+  <script type="application/ld+json" set:html={JSON.stringify([webPageSchema, breadcrumbSchema, faqSchema])} slot="head" />
   <Features currentPath="/features" client:load />
 </Layout>

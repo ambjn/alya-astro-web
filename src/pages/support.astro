@@ -1,12 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SupportView from '../views/Support';
+import supportContent from '../../public/docs/support.md?raw';
+import { SUPPORT_EMAIL } from '../constants';
 ---
 
 <Layout
-  title="Support | ALYA"
-  description="Get help with alya, our AI language learning app. Contact us at amber@alyacompanion.xyz."
+  title="Support | ALYA: Spanish Immersion Help"
+  description={`Get help with ALYA, the Spanish immersion feed for iOS. Billing, Plus trial, tap-to-translate and vocabulary help. Contact us at ${SUPPORT_EMAIL}.`}
+  ogTitle="Support | ALYA: Spanish Immersion Help"
+  ogDescription="Help with ALYA billing, Plus trial, tap-to-translate, vocabulary and companion. Contact the ALYA team anytime."
+  twitterTitle="Support | ALYA: Spanish Immersion Help"
+  twitterDescription="Help with ALYA billing, Plus trial, tap-to-translate and vocabulary. Contact us anytime."
   canonical="/support"
 >
-  <SupportView currentPath="/support" client:only="react" />
+  <SupportView currentPath="/support" content={supportContent} client:load />
 </Layout>

@@ -1,0 +1,139 @@
+# ALYA — Full Content Reference (llms-full.txt)
+
+> Companion to https://alyacompanion.xyz/llms.txt. Complete citable reference for AI systems: product facts, full FAQ, pricing, topics, comparisons, and blog summaries. Last updated: 2026-09-12.
+
+## What is ALYA?
+
+ALYA is a Spanish immersion feed for iOS. Scroll short real-world videos, tap any unfamiliar word for instant translation, save vocabulary for review, respond to contextual prompts, and grow your companion as you learn. Free to download with ALYA Plus for unlimited immersion.
+
+- Tagline: learn spanish. by doomscrolling.
+- Product loop: scroll → tap to understand → save words → earn stars → grow ALYA.
+- Platform: iOS only. App Store ID 6758835552. https://apps.apple.com/us/app/alya-learn-spanish-with-ai/id6758835552
+- Subscription: ALYA Plus Monthly $4.99/month, Annual $29.99/year ($2.50/month, save 50% vs monthly). 7 days free for eligible new users. Billing via App Store.
+- Contact: amber@alyacompanion.xyz. Support: https://alyacompanion.xyz/support. X: https://twitter.com/alyacompanion.
+
+## Key Features (full)
+
+- Vertical immersion feed: short Spanish videos, 20 on open, refill before you run out.
+- Tap-to-translate with synchronized Spanish transcript + English meaning.
+- Per-word glosses: tap any unfamiliar word for exact meaning.
+- Tap-to-hear pronunciation (Deepgram Aura-2 selena-es), 0.75–1.5x playback speeds.
+- Save vocabulary and review phrases, unlimited with Plus.
+- Contextual response prompts that make you produce Spanish, not just recognize it.
+- Companion: earn stars, grow energy / bond / curiosity, unlock rooms, outfits, rewards.
+- Levels: beginner, intermediate, advanced — feed adapts to you.
+- Explore filters: levels, grammar (Questions, Present/Past tense, Commands, Polite phrases, Conversation), sources (Anime → Lesson), Shorts (≤90s) vs Videos, plus search.
+- Personalized onboarding plan: goals, level, challenges, 5–30 min/day, reminders (Morning 8:00, Afternoon 14:00, Evening 19:00, Night 21:30).
+- Streaks, achievements, activity history, progress dashboard.
+- ALYA Plus: Unlimited Immersion, Advanced Explanations, Unlimited Vocabulary, Customization.
+
+## Full FAQ
+
+**What is ALYA?**
+ALYA is a Spanish immersion feed for iOS. Scroll short real-world videos, tap any unfamiliar word for instant translation, save vocabulary for review, respond to contextual prompts, and grow your companion as you learn. Free to download with ALYA Plus for unlimited immersion.
+
+**Is ALYA free to download?**
+Yes, free to download on iOS. ALYA Plus membership is required to use the feed. New users get a 7-day free trial when eligible, then Annual or Monthly renews automatically. Cancel anytime.
+
+**How is ALYA different from Duolingo?**
+Duolingo drills vocabulary with exercises. ALYA is immersion: short native videos where you tap to understand, save words to My Words, and grow a companion. Drills teach recognition. Immersion builds understanding.
+
+**Do I need to know Spanish already?**
+No. Beginner clips come with full translations and per-word glosses. The feed adapts from Beginner to Intermediate to Advanced as you improve.
+
+**How much time per day?**
+5–30 minutes. Onboarding builds a personalized plan (minutes/day, streak goal, level, focus) and you can set reminders.
+
+**How does tap-to-translate work?**
+Every clip ships pre-transcribed with a synchronized Spanish transcript, English translation, and word timing. Tap any phrase for its instant explanation in context, hear native pronunciation, and save it for spaced review.
+
+**What is the ALYA companion?**
+Completing clips and saving words earns stars. Stars grow ALYA's energy, bond, and curiosity, with streaks, milestones, and achievements to keep you consistent.
+
+**What does ALYA Plus include?**
+Unlimited Immersion (every clip, picked for your level), Instant Explanations (tap any phrase to understand it in context), and Your Evolving Companion (complete clips and save words to grow ALYA).
+
+**Is there a free trial?**
+Eligible new users get 7 days free. The paywall shows Start Free Trial only when your Apple ID is eligible. Billing is via the App Store, iOS only. Already subscribed? Tap Restore.
+
+**Can I filter what I watch?**
+Yes. Explore lets you filter by level, grammar, source, and format (Shorts vs Videos), plus 20 topics and search.
+
+**What Spanish will I hear?**
+Real-world Spanish from native videos: street interviews, vlogs, food, travel, music, culture. Always pre-transcribed and translated so you understand in context.
+
+**How do I manage billing or delete my data?**
+Manage, upgrade, or cancel from Settings → Billing or your Apple ID subscriptions. You can delete progress, vocabulary, preferences, and your account from Settings.
+
+## Pricing (full)
+
+- Free: download free on iOS.
+- ALYA Plus Annual: $29.99/year ($2.50/month, save 50% vs monthly).
+- ALYA Plus Monthly: $4.99/month.
+- Trial: 7 days free when eligible (paywall shows Start Free Trial only then).
+- Billing: App Store, iOS only. Renews automatically, cancel anytime. Plus stays active until end of billing period. Words, stars, and companion progress stay saved.
+- Page: https://alyacompanion.xyz/pricing
+
+## All 20 Topics
+
+Animals, Beauty, Business, Comedy, Cooking, Exercise, Food, Travel, Family, Fashion, Gaming, Health, Spanish Culture, Morning Routine, Music, Relationships, Shopping, Sports, Work, Technology.
+Page: https://alyacompanion.xyz/topics
+
+## Comparisons
+
+- vs Duolingo (gamified drills): immersion builds understanding, drills build recognition. https://alyacompanion.xyz/vs/duolingo
+- vs ChatGPT (general chatbot): ready-made feed, no prompting needed. https://alyacompanion.xyz/vs/chatgpt
+- vs Babbel (structured curriculum): real videos matched to your level vs lesson paths. https://alyacompanion.xyz/vs/babbel
+- vs HelloTalk (needs a human partner): available instantly, endless content, no pressure. https://alyacompanion.xyz/vs/hellotalk
+- vs Praktika (AI avatars for drills): real native videos + a companion that grows. https://alyacompanion.xyz/vs/praktika
+- vs italki (live tutors by the hour): daily input first makes tutors 10x more valuable. https://alyacompanion.xyz/vs/italki
+- vs Pimsleur (audio listen-and-repeat): video immersion trains comprehension. https://alyacompanion.xyz/vs/pimsleur
+
+## Blog — full summaries
+
+### The Best Duolingo Alternative for Real Conversation Practice in 2026
+URL: https://alyacompanion.xyz/blog/duolingo-alternative-for-conversation-practice
+
+Duolingo is excellent at building a daily habit, but months of streaks often end the same way: you can clear a lesson yet freeze when a native speaks at full speed. The reason is structural. Drills train recognition of sentences written for quizzes, while real conversation tests whether your ear can handle speed, slang, mumbling, and unpredictable situations. That skill only comes from comprehensible input, real language you can almost understand, with support that keeps you from getting lost. The best Duolingo alternatives in 2026 therefore share one trait: they put authentic content first and build the learning layer around it. ALYA takes this literally, a vertical feed of short native Spanish videos where every clip ships pre-transcribed and translated, every word is tappable for its exact meaning, pronunciation can be slowed down, and anything worth keeping lands in your vocabulary for spaced review. Keep drills as a warm-up if you enjoy them, but spend your core minutes understanding real Spanish.
+
+### Best AI Spanish App in 2026
+URL: https://alyacompanion.xyz/blog/best-ai-language-learning-app-2026
+
+In 2026 almost every language app claims to be powered by AI, but the label hides two completely different products. One kind serves the same generated drills with a chatbot attached, which is fun for a week and useless for understanding natives. The other uses AI to make authentic content understandable at scale: thousands of real native clips, each transcribed, translated, and word-aligned in advance, so you get comprehensible input from day one without prompting anything. When you evaluate an AI Spanish app, ignore the marketing and check five things: real native content rather than generated sentences, instant understanding through transcripts plus translations plus per-word glosses, matching to your level with filters for topics and grammar, vocabulary saved with its original video context, and a loop you will actually open daily. ALYA is built on exactly that checklist, a scrollable immersion feed with tap-to-translate, native audio with slowdown, and a companion that rewards consistency. Pick the app your future self will still open in month three.
+
+### How to Learn Spanish Fast: The Immersion Method
+URL: https://alyacompanion.xyz/blog/how-to-learn-spanish-fast
+
+The fastest way to learn Spanish is not more drills per day, it is more understandable Spanish per day. Your brain acquires language from messages slightly above your level that you can still follow, a finding known as the input hypothesis, and everything in a good immersion plan serves that principle. Scroll real native videos daily in sessions as short as ten minutes, tap anything you miss instead of guessing, slow pronunciation down when the speed beats you, and save the words that matter into spaced review so they survive the week. ALYA packages this into a three-month arc: month one is about volume and confidence with beginner clips and full translations, month two adds longer vlogs, saved phrases, and answering contextual prompts in Spanish, and month three pushes into native speed and slang with advanced explanations on demand. Set an honest level, pick topics you genuinely enjoy, keep the streak alive, and let daily contact do the compounding that weekend marathons never deliver.
+
+### 8 Real-Life Spanish Situations You'll Meet in Videos
+URL: https://alyacompanion.xyz/blog/spanish-conversation-practice-scenarios
+
+Most learners do not freeze in Spanish because they lack vocabulary, they freeze because they have never heard their vocabulary used at real speed in a real situation. Ordering coffee, checking into a hotel, asking for directions, seeing a doctor, haggling at a market, small talk with a taxi driver, and surviving a phone call each have their own rhythms, fillers, and polite formulas that no word list teaches. The fix is to rehearse the situation before you live it: watch a native clip of that exact scenario with transcript and translation, tap the phrases you miss, listen at reduced speed until the sounds separate, then save the key lines into spaced review so they surface when you need them. ALYA organizes its feed exactly this way, with twenty topics and filters for levels, grammar, and format, so the eight situations in this guide map directly onto videos you can scroll tonight. Practice the scene on screen and the street version stops feeling like an ambush.
+
+### The Best Way to Learn Spanish Vocabulary (That Actually Sticks)
+URL: https://alyacompanion.xyz/blog/learn-spanish-vocabulary-spaced-repetition
+
+Cramming word lists feels productive and evaporates within days, because a word memorized without context has nothing for your memory to hold onto. Words stick when you meet them inside something you understood and cared about, then meet them again right as you are about to forget them. That is the whole method: save vocabulary from videos you genuinely enjoyed, where every word arrives with its sentence, its scene, and its sound, and review on a spaced schedule that stretches the interval each time you recall correctly. ALYA automates both halves. Tapping any unfamiliar word in the feed saves it together with its clip context, translation, and native audio, and review sessions resurface cards at increasing intervals instead of random quizzes. Aim for a small daily harvest of five to ten words from content you loved rather than fifty from a list you endured, and protect the streak, because spacing only works when the repetitions actually happen.
+
+### Spanish Grammar Guide: 7 Rules You'll Hear in Real Videos
+URL: https://alyacompanion.xyz/blog/spanish-grammar-cards-guide
+
+English speakers stumble on the same seven Spanish patterns again and again: ser versus estar, por versus para, the two past tenses, the subjunctive, object pronouns and their placement, gustar-style verbs, and commands. Memorizing tables for these feels like progress until a native speaks and none of the rules arrive in time. The patterns only become reflexes when you notice them inside language you already understand, which is why this guide teaches each rule through real video moments rather than conjugation charts. Watch a street interview where someone switches from era to fue, tap the gloss, hear it slowed down, and save the sentence, and the distinction now has a face, a voice, and a situation attached. ALYA's grammar filters let you pull clips by exactly these patterns, so you can spend a week bathing in subjunctive examples instead of rereading the same explanation. Rules describe the language, but only repeated understanding rewires your ear.
+
+### How Immersion + AI Actually Makes You Fluent
+URL: https://alyacompanion.xyz/blog/how-to-learn-a-language-with-ai
+
+A year ago AI language learning meant chatbots, and chatbots have a fatal flaw for beginners: a blank box that demands perfect prompts. In 2026 the winning formula is immersion plus AI, where AI works invisibly to make thousands of real native clips understandable instead of asking you to drive. Every video arrives pre-transcribed, translated, and word-aligned with timing, levels, and topics, so comprehension is one tap away and patience is infinite. The science behind it is decades old: the input hypothesis holds that we acquire language from messages slightly above our level that we can still understand, and pre-supported video manufactures exactly that on demand. To use it well, set your level honestly, choose topics you love, tap shamelessly and slow audio to 0.75x without embarrassment, answer the response prompts in Spanish to convert input into production, and trust a ten-minute daily habit over weekly marathons. Fluency is understanding repeated thousands of times, and AI finally made the repetitions fun.
+
+### ALYA Plus Explained: Trial, Billing, and What's Included
+URL: https://alyacompanion.xyz/blog/alya-plus-trial-billing-explained
+
+ALYA is free to download on iOS, and ALYA Plus is the membership that unlocks the feed itself: unlimited immersion with every clip picked for your level, instant tap-to-translate explanations for any phrase, unlimited vocabulary saving, and your evolving companion. There are two plans, Annual at $29.99 per year, which works out to $2.50 per month and saves fifty percent versus monthly, and Monthly at $4.99 per month. Eligible new users get seven days free, and the paywall only shows the Start Free Trial button when your Apple ID actually qualifies, so what you see is what you get. All billing runs through the App Store on iOS only, subscriptions renew automatically, and you can manage, upgrade, or cancel from Settings, Billing, or your Apple ID subscriptions at any time. If you cancel, Plus stays active until the end of the billing period, and your words, stars, and companion progress stay saved. Already subscribed on a new device: tap Restore in the paywall.
+
+## Contact & Social
+
+- Support: https://alyacompanion.xyz/support
+- Email: amber@alyacompanion.xyz
+- X/Twitter: https://twitter.com/alyacompanion
+- App Store: https://apps.apple.com/us/app/alya-learn-spanish-with-ai/id6758835552

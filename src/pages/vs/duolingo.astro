@@ -1,48 +1,56 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { ComparisonPage } from '../../components/ComparisonPage';
+import { comparisonSchemas } from '../../lib/comparison-schema';
 
 const faqs = [
-  { question: "Is alya better than Duolingo?", answer: "it depends on your goal. duolingo is better for building a daily habit and learning vocabulary through gamification. alya is better for developing real conversational fluency through AI practice. most serious learners use both." },
-  { question: "Does Duolingo use AI conversation?", answer: "duolingo has added some AI features, but the core experience is still gamified drills and translation exercises. alya is built from the ground up as an AI conversation partner, every interaction is a real back-and-forth exchange." },
-  { question: "Is alya free like Duolingo?", answer: "yes. alya is free to download with 5 messages per day, no credit card required. duolingo is also free but shows ads and has a hearts system that limits mistakes. alya plus is $4.99/month vs duolingo plus at $6.99/month." },
-  { question: "Can I use alya and Duolingo together?", answer: "absolutely. many learners use duolingo for vocabulary and grammar structure, then practice speaking and writing with alya. the two approaches complement each other well." },
+  { question: "Is alya better than Duolingo?", answer: "it depends on your goal. duolingo is better for gamified drills and habit streaks. alya is better for understanding real Spanish, native videos with tap-to-translate, glosses, and a companion that grows with you." },
+  { question: "Does Duolingo have real videos?", answer: "no. duolingo's core is translation exercises and drills. alya is a vertical feed of real native clips, street interviews, vlogs, food, travel, each with transcript, translation, and word timing." },
+  { question: "Is alya free like Duolingo?", answer: "alya is free to download. ALYA Plus membership (Annual / Monthly, 7-day free trial when eligible) unlocks Unlimited Immersion, Instant Explanations, and Your Evolving Companion." },
+  { question: "Can I use alya and Duolingo together?", answer: "absolutely. many learners drill with duolingo, then build real comprehension by scrolling alya. drills for recognition, immersion for understanding." },
 ];
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })),
-};
+const { articleSchema, breadcrumbSchema, faqSchema } = comparisonSchemas({
+  slug: "duolingo",
+  competitorName: "Duolingo",
+  headline: "alya vs Duolingo, Immersion vs Drills | ALYA",
+  description: "alya vs Duolingo: real Spanish video feed with tap-to-translate vs gamified drills. See which builds real understanding. Try alya free on iOS.",
+  faqs,
+});
+
+
 ---
 
 <Layout
-  title="alya vs Duolingo, Which Is Better for Learning a Language? | ALYA"
-  description="alya vs Duolingo: AI conversation practice vs gamified drills. See which language learning app is better for real fluency. Try alya free on iOS."
+  title="alya vs Duolingo, Immersion vs Drills | ALYA"
+  description="alya vs Duolingo: real Spanish video feed with tap-to-translate vs gamified drills. See which builds real understanding. Try alya free on iOS."
   canonical="/vs/duolingo"
+  ogTitle="alya vs Duolingo, Immersion vs Drills | ALYA"
+  ogDescription="alya vs Duolingo: real Spanish video feed with tap-to-translate vs gamified drills. See which builds real understanding. Try alya free on iOS."
+  twitterTitle="alya vs Duolingo, Immersion vs Drills | ALYA"
+  twitterDescription="alya vs Duolingo: real Spanish video feed with tap-to-translate vs gamified drills. See which builds real understanding. Try alya free on iOS."
 >
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
+  <script type="application/ld+json" set:html={JSON.stringify([articleSchema, breadcrumbSchema, faqSchema])} slot="head" />
   <ComparisonPage
     competitorName="Duolingo"
     competitorTagline="gamified vocabulary drills"
-    alyaTagline="AI conversation partner"
-    heroHeading="alya vs duolingo"
-    heroSubtitle="duolingo teaches you to translate sentences. alya teaches you to have real conversations. both are free, but only one makes you fluent."
-    verdict="if you want streaks and badges, use duolingo. if you want to actually speak the language, use alya."
+    alyaTagline="spanish immersion feed"
+    heroSubtitle="duolingo drills sentences written for a quiz. alya shows you real videos natives actually watch, with understanding built in."
+    verdict="if you want streaks and badges, use duolingo. if you want to understand real spanish, scroll alya."
     rows={[
-      { feature: "learning method", alya: "real AI conversation", competitor: "gamified drills & translation" },
-      { feature: "free tier", alya: "5 msgs/day, forever", competitor: "limited hearts system" },
-      { feature: "AI conversation practice", alya: true, competitor: false },
-      { feature: "instant corrections in context", alya: true, competitor: false },
-      { feature: "adapts to your level", alya: true, competitor: "partially" },
-      { feature: "no ads", alya: true, competitor: "paid only" },
-      { feature: "no streak pressure", alya: true, competitor: false },
-      { feature: "monthly price", alya: "$4.99 (plus)", competitor: "$6.99" },
+      { feature: "learning method", alya: "real video immersion", competitor: "gamified drills & translation" },
+      { feature: "content", alya: "native clips + transcripts", competitor: "quiz sentences" },
+      { feature: "tap-to-translate + glosses", alya: true, competitor: false },
+      { feature: "native audio + slowdown", alya: "0.75x–1.5x", competitor: "limited" },
+      { feature: "companion that grows", alya: true, competitor: false },
+      { feature: "20 topics + explore filters", alya: true, competitor: false },
+      { feature: "no ads on feed", alya: true, competitor: "paid only" },
+      { feature: "Plus plan", alya: "Annual / Monthly", competitor: "Super / Max" },
     ]}
     sections={[
-      { heading: "duolingo is great for building a habit. alya is great for building fluency.", body: "duolingo's gamification is genuinely effective at keeping you consistent, streaks, XP, leaderboards. if you've never studied a language before, it's a great starting point. but after a few months, you'll hit a wall. you can translate 'the bear drinks the milk' but you can't hold a 5-minute conversation. that's where alya comes in." },
-      { heading: "alya teaches through conversation, not translation", body: "every message you send to alya is a real exchange. she responds naturally, introduces new vocabulary in context, and corrects your mistakes the way a patient friend would, not with a red X, but woven into the reply. you're not drilling sentences. you're having a conversation. that's how humans actually learn language." },
-      { heading: "the verdict", body: "use both if you want. duolingo for the daily habit and vocabulary. alya for the actual conversation practice that builds real fluency. but if you have to pick one, pick the one that teaches you to speak." },
+      { heading: "duolingo is great for habits. alya is great for understanding.", body: "duolingo keeps you consistent with streaks and XP. but translating 'the bear drinks milk' won't help you understand a street interview in Mexico City. alya shows you that interview, with transcript, translation, and every word tappable." },
+      { heading: "immersion with training wheels", body: "every alya clip has synchronized Spanish, English meaning, per-word glosses, and native audio. slow it down, tap what you miss, save words. you're watching real content from day one, not waiting until you're 'ready'." },
+      { heading: "the verdict", body: "use both if you want. duolingo for drills, alya for real comprehension. but if you only have 10 minutes, spend them understanding real spanish." },
     ]}
     faqs={faqs}
     currentPath="/vs/duolingo"

@@ -1,0 +1,41 @@
+{
+  "name": "ALYA — Learn Spanish by Doomscrolling",
+  "short_name": "ALYA",
+  "description": "Spanish immersion feed: scroll short real-world videos, tap any word for instant translation, save vocabulary, and grow your companion. Free on iOS.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#10120e",
+  "theme_color": "#10120e",
+  "lang": "en",
+  "categories": ["education"],
+  "icons": [
+    {
+      "src": "/logo/icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo/favicon.png",
+      "sizes": "48x48",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "itunes",
+      "url": "https://apps.apple.com/us/app/alya-learn-spanish-with-ai/id6758835552",
+      "id": "6758835552"
+    }
+  ],
+  "prefer_related_applications": true
+}

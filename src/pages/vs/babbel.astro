@@ -1,47 +1,54 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { ComparisonPage } from '../../components/ComparisonPage';
+import { comparisonSchemas } from '../../lib/comparison-schema';
 
 const faqs = [
-  { question: "Is alya better than Babbel?", answer: "for conversation practice, yes. for structured grammar lessons and curriculum, babbel has more depth. most serious learners benefit from both approaches, structure from babbel, conversation practice from alya." },
-  { question: "Is alya cheaper than Babbel?", answer: "yes. alya plus is $4.99/month vs babbel's $8.99/month. annually, alya plus is $29.99 vs babbel's $69.99. alya also has a free tier with 5 messages per day, babbel requires a paid subscription after the trial." },
-  { question: "Does alya have structured lessons like Babbel?", answer: "alya doesn't follow a fixed curriculum, it teaches through natural conversation. you set your proficiency level and alya adapts. this is less structured than babbel but more effective for developing real conversational ability." },
+  { question: "Is alya better than Babbel?", answer: "for real-world understanding, yes. babbel teaches a structured curriculum with lessons. alya teaches through immersion, native videos matched to your level with instant translation." },
+  { question: "Is alya cheaper than Babbel?", answer: "alya is free to download. ALYA Plus (Annual / Monthly, 7-day free trial when eligible) unlocks everything. babbel requires a paid subscription for most content." },
+  { question: "Does alya have grammar like Babbel?", answer: "alya teaches grammar in context, you hear it in real videos with translations and glosses, and filter Explore by grammar (Questions, Present/Past tense, Commands, Polite phrases, Conversation). less textbook, more real usage." },
 ];
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })),
-};
+const { articleSchema, breadcrumbSchema, faqSchema } = comparisonSchemas({
+  slug: "babbel",
+  competitorName: "Babbel",
+  headline: "alya vs Babbel, Immersion vs Curriculum | ALYA",
+  description: "alya vs Babbel: Spanish video immersion with tap-to-translate vs structured lessons. Real content vs curriculum. Free on iOS.",
+  faqs,
+});
+
+
 ---
 
 <Layout
-  title="alya vs Babbel, Which Language App Is Worth It? | ALYA"
-  description="alya vs Babbel: AI conversation practice vs structured curriculum. alya is cheaper, more flexible, and teaches through real conversation. free on iOS."
+  title="alya vs Babbel, Immersion vs Curriculum | ALYA"
+  description="alya vs Babbel: Spanish video immersion with tap-to-translate vs structured lessons. Real content vs curriculum. Free on iOS."
   canonical="/vs/babbel"
+  ogTitle="alya vs Babbel, Immersion vs Curriculum | ALYA"
+  ogDescription="alya vs Babbel: Spanish video immersion with tap-to-translate vs structured lessons. Real content vs curriculum. Free on iOS."
+  twitterTitle="alya vs Babbel, Immersion vs Curriculum | ALYA"
+  twitterDescription="alya vs Babbel: Spanish video immersion with tap-to-translate vs structured lessons. Real content vs curriculum. Free on iOS."
 >
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
+  <script type="application/ld+json" set:html={JSON.stringify([articleSchema, breadcrumbSchema, faqSchema])} slot="head" />
   <ComparisonPage
     competitorName="Babbel"
-    competitorTagline="structured curriculum & lessons"
-    alyaTagline="AI conversation partner"
-    heroHeading="alya vs babbel"
-    heroSubtitle="babbel gives you a curriculum. alya gives you a conversation partner. one teaches you about a language. the other teaches you to speak it."
-    verdict="babbel is structured and thorough. alya is conversational and flexible. alya is also half the price."
+    competitorTagline="structured curriculum"
+    alyaTagline="spanish immersion feed"
+    heroSubtitle="babbel walks you through lessons. alya drops you into real videos, with translation so you never get lost."
+    verdict="if you want a syllabus, use babbel. if you want to understand natives, scroll alya."
     rows={[
-      { feature: "learning method", alya: "AI conversation", competitor: "structured lessons & curriculum" },
-      { feature: "free tier", alya: "5 msgs/day, forever", competitor: "trial only" },
-      { feature: "AI conversation practice", alya: true, competitor: false },
-      { feature: "adapts to your level", alya: true, competitor: "partially" },
-      { feature: "no subscription required to start", alya: true, competitor: false },
-      { feature: "monthly price", alya: "$4.99 (plus)", competitor: "$8.99" },
-      { feature: "annual price", alya: "$29.99 (plus)", competitor: "$69.99" },
-      { feature: "instant corrections", alya: true, competitor: "lesson-based only" },
+      { feature: "learning method", alya: "real video immersion", competitor: "structured lessons" },
+      { feature: "native videos", alya: true, competitor: false },
+      { feature: "tap-to-translate + glosses", alya: true, competitor: "limited" },
+      { feature: "grammar in context + filters", alya: true, competitor: "lesson-based" },
+      { feature: "companion + streaks", alya: true, competitor: "partially" },
+      { feature: "free tier", alya: "free download + trial", competitor: "trial only" },
+      { feature: "Plus plan", alya: "Annual / Monthly", competitor: "paid plans" },
     ]}
     sections={[
-      { heading: "babbel is a classroom. alya is a conversation.", body: "babbel's curriculum is well-designed, it covers grammar, vocabulary, and pronunciation in a structured way. if you like following a syllabus, it works. but language learning research consistently shows that conversation practice is the fastest path to fluency. alya skips the classroom and puts you straight into conversation from day one." },
-      { heading: "alya is significantly cheaper", body: "babbel costs $8.99/month or $69.99/year. alya plus is $4.99/month or $29.99/year, less than half the annual price. alya also has a genuine free tier with 5 messages per day. babbel's free trial is limited and requires a subscription to continue." },
-      { heading: "the verdict", body: "if you want a structured curriculum with grammar explanations and lesson plans, babbel is solid. if you want to practice actually speaking and writing the language through real conversation, alya is the better choice, and it's cheaper." },
+      { heading: "curriculum is tidy. real life isn't.", body: "babbel's lessons are well-structured, but natives don't speak in lesson order. alya trains you on the real thing: street Spanish, vlogs, markets, music, with every line translated." },
+      { heading: "grammar you hear, not memorize", body: "filter Explore by the grammar you need, then hear it used by real people. tap the words, save them, get the pattern without the table." },
+      { heading: "the verdict", body: "use babbel for syllabus structure. use alya to actually understand what natives say." },
     ]}
     faqs={faqs}
     currentPath="/vs/babbel"

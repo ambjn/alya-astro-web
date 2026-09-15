@@ -4,50 +4,50 @@ import { Footer } from "../components/Footer";
 import { FAQAccordion } from "../components/FAQAccordion";
 import { ANIMATION_EASE as ease } from "../constants";
 
-const faqs = [
+export const faqs = [
   {
-    question: "is alya actually free?",
-    answer: "Yes. Download alya and get 5 messages per day, forever, no credit card, no trial period. Upgrade to Plus ($4.99/mo) or Pro ($14.99/mo) anytime for more daily messages and deeper conversation memory.",
+    question: "is alya free to download?",
+    answer: "Yes, free to download on iOS. ALYA Plus membership is required to use the feed. Eligible new users get 7 days free, then Plus Monthly ($4.99/month) or Plus Annual ($29.99/year) renews automatically. Cancel anytime.",
   },
   {
     question: "how is alya different from Duolingo?",
-    answer: "Duolingo teaches you to study Spanish: vocabulary lists, hearts, streaks. Alya teaches you to speak it. Every session is a real conversation where alya corrects you in context, adapts to your level, and responds like a bilingual friend. No preset curriculum, no lives to lose.",
+    answer: "Duolingo drills vocabulary with exercises. Alya is immersion: short native videos where you tap to understand, save words to My Words, and grow a companion. Drills teach recognition. Immersion builds understanding.",
   },
   {
-    question: "do I need to speak English to use alya?",
-    answer: "Not at all. Alya detects the language you text in (Hindi, Japanese, French, Portuguese, and more) and responds in that same language while teaching you Spanish. Alya was built for learners worldwide, not just English speakers.",
+    question: "do I need to know Spanish already?",
+    answer: "No. Beginner clips come with full translations and per-word glosses. The feed adapts from Beginner to Intermediate to Advanced as you improve, onboarding maps brand-new and elementary starters to Beginner.",
   },
   {
-    question: "how long before I can hold a real conversation?",
-    answer: "Most learners can handle basic everyday conversations within 4 to 8 weeks of daily practice. The key is consistency over intensity: 10 to 15 minutes every day beats a 2-hour weekend session every time.",
+    question: "how much time per day?",
+    answer: "5–30 minutes. Onboarding builds a personalized plan (minutes/day, streak goal, level, focus) from your goals and challenges, and you can set reminders for Morning (8:00), Afternoon (14:00), Evening (19:00), or Night (21:30).",
   },
   {
-    question: "can I practice speaking, not just typing?",
-    answer: "Yes. Send voice messages to alya and she'll transcribe, respond, and teach. Tap any Spanish word in alya's replies to hear native-accent pronunciation. Voice in, voice out.",
+    question: "how does tap-to-translate work?",
+    answer: "Every clip ships pre-transcribed with a synchronized Spanish transcript, English translation, and word timing. Tap any phrase for its instant explanation in context, hear native pronunciation (Aura-2 Selena), slow to 0.75x, and save it to My Words for spaced review.",
   },
   {
-    question: "what Spanish does alya teach?",
-    answer: "Latin American Spanish, the variety spoken in Mexico, Colombia, Argentina, and across the continent. Modern, natural, and understood everywhere. Alya deliberately avoids Spain-specific slang.",
+    question: "what is the ALYA companion?",
+    answer: "Completing clips and saving words earns stars. Stars grow ALYA's energy, bond, and curiosity, with streaks (7 / 14 / 30 / 60-day goals, milestones at 7, 14, every 30) and achievements to keep you consistent.",
   },
   {
-    question: "what counts as a message?",
-    answer: "Each message you send to alya counts as one. Alya's replies don't count. The limit resets every 24 hours.",
+    question: "what does ALYA Plus include?",
+    answer: "Unlimited Immersion (every clip, picked for your level), Instant Explanations (tap any phrase to understand it in context), and Your Evolving Companion (complete clips and save words to grow ALYA).",
   },
   {
-    question: "what happens when I hit my daily limit?",
-    answer: "Alya lets you know you've reached your limit for the day and shows you upgrade options. Your conversation history is saved and ready when the limit resets.",
+    question: "is there a free trial?",
+    answer: "Eligible new users get 7 days free. The paywall shows Start Free Trial only when your Apple ID is eligible. Then $4.99/month or $29.99/year renews automatically. Billing is via the App Store, iOS only. Already subscribed? Tap Restore.",
   },
   {
-    question: "can I switch plans?",
-    answer: "Yes, anytime. Upgrade or downgrade from the settings screen in the app. Changes take effect at the next billing cycle.",
+    question: "can I filter what I watch?",
+    answer: "Yes. Explore filters by level (Beginner / Intermediate / Advanced), grammar (Questions, Present/Past tense, Commands, Polite phrases, Conversation), source (Anime, Cartoon, Drama, Movie, Music, News, Vlog, Podcast, Interview, Lesson), and format (Shorts ≤90s vs Videos), plus 20 topics and search.",
   },
   {
-    question: "what payment methods are accepted?",
-    answer: "Subscriptions are processed through the App Store using your Apple ID. All major cards, Apple Pay, and carrier billing are supported.",
+    question: "what Spanish will I hear?",
+    answer: "Real-world Spanish from native videos, street interviews, vlogs, food, travel, music, Spanish Culture. Always pre-transcribed and translated so you understand in context, with 0.75x–1.5x playback and 10s skip.",
   },
   {
-    question: "is there a student discount?",
-    answer: "Not yet, but the free plan is genuinely useful for casual learners. Plus at $4.99/month is less than a single coffee.",
+    question: "how do I manage billing or delete my data?",
+    answer: "Manage, upgrade, or cancel from Settings → Billing or your Apple ID subscriptions. You can delete progress, vocabulary, preferences, and your account from Settings, it signs you out and clears local data.",
   },
 ];
 
@@ -87,5 +87,3 @@ export const FAQ = ({ currentPath }: { currentPath?: string }) => {
     </div>
   );
 };
-
-export default FAQ;

@@ -1,12 +1,12 @@
-# alya — AI Language Learning App
+# alya — learn spanish. by doomscrolling.
 
-Website for [alyacompanion.xyz](https://www.alyacompanion.xyz) — learn a language by texting an AI friend.
+Website for [alyacompanion.xyz](https://www.alyacompanion.xyz) — a Spanish immersion feed. Scroll short real-world videos, tap what you don't know, grow your companion.
 
 ## Stack
 
-- **Astro 5** (fully static, SSG)
+- **Astro 6** + Cloudflare adapter
 - **React 19** + TypeScript
-- **TailwindCSS 3.4** + Framer Motion
+- **TailwindCSS 4** + Framer Motion
 
 ## Getting Started
 
@@ -23,18 +23,20 @@ Open [http://localhost:4321](http://localhost:4321).
 |---------|-------------|
 | `bun dev` | Start dev server |
 | `bun build` | Production build |
-| `bun preview` | Preview production build |
+| `bun preview` | Preview production build (`build && wrangler dev`) |
+| `bun run deploy` | Deploy (`build && wrangler deploy`) |
 
 ## Project Structure
 
 ```
 src/
 ├── layouts/
-│   └── Layout.astro          # Root layout
+│   └── Layout.astro          # Root layout + SEO
 ├── pages/                    # File-based routing
-│   ├── index.astro           # Homepage
+│   ├── index.astro           # Homepage (immersion feed)
 │   ├── features.astro        # Features page
-│   ├── pricing.astro         # Pricing page
+│   ├── pricing.astro         # Pricing (Free / ALYA Plus)
+│   ├── faq.astro             # FAQ
 │   ├── privacy.astro         # Privacy policy
 │   ├── terms.astro           # Terms of service
 │   ├── support.astro         # Support page
@@ -42,26 +44,37 @@ src/
 │   ├── sitemap.xml.ts        # Auto-generated /sitemap.xml
 │   ├── blog/                 # Blog index + [slug] dynamic route
 │   ├── learn-spanish.astro   # Spanish landing page
-│   └── vs/                   # Competitor comparison pages (5 pages)
+│   ├── topics.astro          # 20 feed topics hub
+│   └── vs/                   # Competitor comparison pages (7 pages)
 ├── components/               # Shared UI components (React)
 ├── views/                    # React page views (used by pages/)
 ├── blog/
 │   └── posts.ts              # Blog post registry
+├── data/
+│   └── languages.ts          # FEED_TOPICS (20 feed topics)
 ├── styles/
 │   └── globals.css
 └── constants.ts              # APP_STORE_URL, BASE_URL, NAV_LINKS, etc.
 public/
 ├── og/                       # Open Graph images
-├── logo/                     # App icon
-├── videos/                   # Video assets
+├── logo/                     # App icon + favicons
+├── videos/                   # alya-background.mp4 + poster
 ├── docs/                     # Markdown content (privacy, terms, support)
+├── .well-known/              # Apple app-site-association (Universal Links)
 ├── llms.txt
 └── robots.txt
 ```
 
-## Adding Content
+## Product (feat/video-processing)
 
-**New language page:** create `src/pages/learn-[language].astro` using the existing `learn-spanish.astro` as a template.
+- **Feed:** vertical Spanish immersion feed (TikTok-style). 20 clips on open, refill at ~10 remaining. YouTube playback + pre-processed learning layer (transcript, translation, word glosses).
+- **Learning:** tap-to-translate, per-word glosses, tap-to-hear (Deepgram Aura-2 `selena-es`), 0.75–1.5x playback, save vocabulary, contextual prompts.
+- **Companion:** stars + energy / bond / curiosity meters, rooms, outfits, streaks, achievements.
+- **Levels:** beginner / intermediate / advanced. **Topics:** 20 feed topics. **Explore filters:** levels, grammar, sources, shorts vs videos.
+- **Onboarding:** goals, level, challenges, minutes (5–30), reminders, personalized plan.
+- **Subscription:** Free + ALYA Plus (Annual / Monthly via RevenueCat, 7-day free trial when eligible). Plus = Unlimited Immersion, Advanced Explanations, Unlimited Vocabulary, Customization. iOS-only subscriptions.
+
+## Adding Content
 
 **New comparison page:** create `src/pages/vs/[competitor].astro` using an existing vs page as a template.
 
@@ -69,4 +82,4 @@ public/
 
 ## Deployment
 
-Deployed on Cloudflare Pages via GitHub. Push to `main` → auto-deploy.
+Deployed on Cloudflare via GitHub. Push to `main` → auto-deploy.

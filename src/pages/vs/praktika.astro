@@ -1,47 +1,54 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { ComparisonPage } from '../../components/ComparisonPage';
+import { comparisonSchemas } from '../../lib/comparison-schema';
 
 const faqs = [
-  { question: "Is alya better than Praktika?", answer: "for text-based conversation practice and price, alya is better. for AI avatar speaking practice and pronunciation, praktika has a more specialized feature set. it depends on your learning style." },
-  { question: "How much does Praktika cost vs alya?", answer: "praktika's paid plans start at around $19.99/month. alya plus is $4.99/month, and alya has a free tier with 5 messages per day. alya is significantly more affordable." },
-  { question: "Do I need a microphone to use alya?", answer: "no. alya is entirely text-based, you type your messages and alya responds. no microphone, no camera, no speaking out loud required. this makes it more accessible and less intimidating for beginners." },
+  { question: "Is alya better than Praktika?", answer: "for real-content immersion, yes. praktika uses AI avatars for speaking drills. alya uses real native videos with tap-to-translate, plus a companion that grows with you." },
+  { question: "How much does Praktika cost vs alya?", answer: "praktika's paid plans are premium-priced. alya is free to download, with Plus (Annual / Monthly, 7-day free trial when eligible) for unlimited immersion." },
+  { question: "Do I need a microphone for alya?", answer: "no. just scroll, tap, listen, and save. use headphones on the bus, no speaking out loud required. prompts invite you to produce Spanish when you want to." },
 ];
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })),
-};
+const { articleSchema, breadcrumbSchema, faqSchema } = comparisonSchemas({
+  slug: "praktika",
+  competitorName: "Praktika",
+  headline: "alya vs Praktika, Real Videos vs AI Avatars | ALYA",
+  description: "alya vs Praktika: real native Spanish videos with tap-to-translate vs AI avatar drills. Immersion that feels like scrolling. Free on iOS.",
+  faqs,
+});
+
+
 ---
 
 <Layout
-  title="alya vs Praktika, Which AI Language App Is Better? | ALYA"
-  description="alya vs Praktika: compare two AI language learning apps. alya teaches Spanish through natural text conversation, costs less, and requires no mic. free on iOS."
+  title="alya vs Praktika, Real Videos vs AI Avatars | ALYA"
+  description="alya vs Praktika: real native Spanish videos with tap-to-translate vs AI avatar drills. Immersion that feels like scrolling. Free on iOS."
   canonical="/vs/praktika"
+  ogTitle="alya vs Praktika, Real Videos vs AI Avatars | ALYA"
+  ogDescription="alya vs Praktika: real native Spanish videos with tap-to-translate vs AI avatar drills. Immersion that feels like scrolling. Free on iOS."
+  twitterTitle="alya vs Praktika, Real Videos vs AI Avatars | ALYA"
+  twitterDescription="alya vs Praktika: real native Spanish videos with tap-to-translate vs AI avatar drills. Immersion that feels like scrolling. Free on iOS."
 >
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
+  <script type="application/ld+json" set:html={JSON.stringify([articleSchema, breadcrumbSchema, faqSchema])} slot="head" />
   <ComparisonPage
     competitorName="Praktika"
-    competitorTagline="AI avatar conversation practice"
-    alyaTagline="AI text conversation partner"
-    heroHeading="alya vs praktika"
-    heroSubtitle="praktika uses AI avatars for speaking practice. alya teaches through natural text conversation, more accessible, more languages, lower price."
-    verdict="praktika is great for speaking practice with avatars. alya is better for everyday text-based conversation learning at a lower price point."
+    competitorTagline="AI avatar tutors"
+    alyaTagline="spanish immersion feed"
+    heroSubtitle="praktika gives you an avatar that drills you. alya gives you real people speaking real spanish, with help built in."
+    verdict="if you want avatar drills, use praktika. if you want real spanish, scroll alya."
     rows={[
-      { feature: "learning method", alya: "natural text conversation", competitor: "AI avatar speaking practice" },
-      { feature: "text-based (no mic required)", alya: true, competitor: false },
-      { feature: "automatic corrections", alya: true, competitor: true },
-      { feature: "adapts to proficiency level", alya: true, competitor: true },
-      { feature: "free tier", alya: "5 msgs/day", competitor: "limited" },
-      { feature: "monthly price", alya: "$4.99 (plus)", competitor: "$19.99+" },
-      { feature: "no avatar / no camera needed", alya: true, competitor: false },
-      { feature: "available on iOS", alya: true, competitor: true },
+      { feature: "learning method", alya: "real video immersion", competitor: "AI avatar drills" },
+      { feature: "real native content", alya: true, competitor: "synthetic avatars" },
+      { feature: "tap-to-translate + glosses", alya: true, competitor: "limited" },
+      { feature: "no mic needed", alya: true, competitor: "speaking-focused" },
+      { feature: "companion that grows", alya: true, competitor: "avatar only" },
+      { feature: "20 topics + explore", alya: true, competitor: false },
+      { feature: "free tier", alya: "free download + trial", competitor: "limited" },
     ]}
     sections={[
-      { heading: "praktika is for speaking. alya is for conversation.", body: "praktika's AI avatars are impressive technology, you speak to a virtual character and practice pronunciation and speaking fluency. it's genuinely useful for people who need to practice speaking out loud. alya takes a different approach: natural text conversation, the way you'd text a friend. no mic, no camera, no performance anxiety." },
-      { heading: "alya is 4x cheaper than praktika", body: "praktika's paid plans start at $19.99/month. alya plus is $4.99/month, a quarter of the price. both offer AI conversation practice, but alya's text-based approach costs significantly less to run, and those savings are passed on to you." },
-      { heading: "the verdict", body: "if you specifically need speaking and pronunciation practice with an avatar, praktika is worth trying. if you want affordable, accessible, text-based AI conversation practice in Spanish, alya is the better choice." },
+      { heading: "avatars drill. natives immerse.", body: "praktika's avatars are consistent and patient, but they're still simulations. alya shows you how people actually talk: speed, slang, interruptions, humor, with translation so you keep up." },
+      { heading: "learn anywhere, silently", body: "alya is scroll-first. no mic, no camera, no talking to your phone on the train. tap, listen with headphones, save words. produce Spanish via prompts when you're ready." },
+      { heading: "the verdict", body: "avatars for drills, alya for the real thing you'll hear on the street." },
     ]}
     faqs={faqs}
     currentPath="/vs/praktika"

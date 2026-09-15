@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
-import { ArrowLeft, Clock } from "lucide-react";
+import { ArrowLeft, Clock, ChevronRight, BookOpen, Link2 } from "lucide-react";
 import { Footer } from "../components/Footer";
 import { FAQAccordion } from "../components/FAQAccordion";
-import { type BlogPost, type BlogSection } from "../blog/posts";
+import { posts, DEFAULT_AUTHOR, type BlogPost, type BlogSection } from "../blog/posts";
 import { ANIMATION_EASE } from "../constants";
+import { ComparePills } from "../components/ComparePills";
 import { DownloadButton } from "../components/DownloadButton";
 import { NavBar } from "../components/NavBar";
 
@@ -76,12 +77,19 @@ function renderSection(section: BlogSection, index: number) {
   }
 }
 
-export interface BlogPostClientProps {
+interface BlogPostClientProps {
   post: BlogPost;
   currentPath?: string;
 }
 
 const BlogPostClient = ({ post, currentPath }: BlogPostClientProps) => {
+  const related = posts.filter((p) => p.slug !== post.slug).slice(0, 3);
+  const author = post.author ?? DEFAULT_AUTHOR;
+  const initials = author.name
+    .split(" ")
+    .map((w) => w[0])
+    .slice(0, 2)
+    .join("");
   return (
     <div className="min-h-screen font-sans bg-lime-50">
       <NavBar currentPath={currentPath} />
@@ -116,10 +124,35 @@ const BlogPostClient = ({ post, currentPath }: BlogPostClientProps) => {
           <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 leading-[1.1] mb-6 tracking-tight text-balance">
             {post.title}
           </h1>
-          <p className="text-neutral-500 text-xl font-light leading-relaxed border-l-2 border-lime-400 pl-5">
+          <p className="text-neutral-500 text-xl font-light leading-relaxed border-l-2 border-lime-400 pl-5 mb-8">
             {post.excerpt}
           </p>
+          <div className="flex items-center gap-3">
+            <div className="w-11 h-11 rounded-full bg-lime-500 text-white flex items-center justify-center text-sm font-bold shrink-0">
+              {initials}
+            </div>
+            <div>
+              <p className="text-neutral-900 text-sm font-semibold leading-tight">{author.name}</p>
+              <p className="text-neutral-400 text-xs leading-tight mt-0.5">
+                {author.role} · Updated{" "}
+                {new Date(post.updatedAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+              </p>
+            </div>
+          </div>
         </motion.header>
+
+        <motion.aside
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.12, ease: ANIMATION_EASE }}
+          className="mb-12 p-7 md:p-8 rounded-3xl border border-lime-200 bg-white"
+        >
+          <p className="flex items-center gap-2 text-lime-700 font-bold text-xs uppercase tracking-widest mb-3">
+            <BookOpen size={14} />
+            the short version
+          </p>
+          <p className="text-neutral-600 text-base leading-relaxed">{post.tldr}</p>
+        </motion.aside>
 
         <motion.article
           initial={{ opacity: 0, y: 16 }}
@@ -130,18 +163,31 @@ const BlogPostClient = ({ post, currentPath }: BlogPostClientProps) => {
         </motion.article>
 
         {post.faqs && post.faqs.length > 0 && (
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: ANIMATION_EASE }}
-            className="mt-20 pt-12 border-t border-neutral-100"
-          >
-            <h2 className="text-2xl font-semibold text-neutral-900 mb-8">
-              Frequently Asked Questions
-            </h2>
+          <section className="mt-16">
+            <h2 className="text-2xl font-semibold text-neutral-900 mb-6 tracking-tight">frequently asked questions</h2>
             <FAQAccordion faqs={post.faqs} />
-          </motion.section>
+          </section>
+        )}
+
+        {post.sources && post.sources.length > 0 && (
+          <section className="mt-16">
+            <h2 className="text-2xl font-semibold text-neutral-900 mb-6 tracking-tight">sources & further reading</h2>
+            <ul className="space-y-2.5">
+              {post.sources.map((s) => (
+                <li key={s.url}>
+                  <a
+                    href={s.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-3 p-4 rounded-2xl border border-neutral-200 bg-white hover:border-lime-300 transition-all text-sm"
+                  >
+                    <Link2 size={14} className="text-lime-600 shrink-0" />
+                    <span className="text-neutral-600 group-hover:text-neutral-900 transition-colors">{s.title}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
         )}
 
         <motion.div
@@ -157,14 +203,38 @@ const BlogPostClient = ({ post, currentPath }: BlogPostClientProps) => {
               put it into practice
             </p>
             <h3 className="text-3xl font-semibold text-neutral-900 mb-4">
-              chat with alya.
+              scroll with alya.
             </h3>
             <p className="text-neutral-500 text-base mb-8 max-w-sm mx-auto">
-              try what you just read in a real conversation. 5 free messages a day, no sign-up friction.
+              try what you just read in the feed. 7-day free trial when eligible.
             </p>
             <DownloadButton className="inline-flex items-center gap-2.5 px-8 py-3.5 text-sm rounded-full bg-lime-500 text-white font-semibold hover:bg-lime-400 transition-all duration-300 shadow-md shadow-lime-200" />
           </div>
         </motion.div>
+
+        <section className="mt-16">
+          <h2 className="text-2xl font-semibold text-neutral-900 mb-6 tracking-tight">keep reading</h2>
+          <div className="grid gap-3">
+            {related.map((r) => (
+              <a
+                key={r.slug}
+                href={`/blog/${r.slug}`}
+                className="group flex items-center justify-between gap-4 p-5 rounded-2xl border border-neutral-200 bg-white hover:border-lime-300 hover:shadow-sm transition-all"
+              >
+                <div>
+                  <p className="text-neutral-900 font-semibold leading-snug group-hover:text-lime-700 transition-colors">{r.title}</p>
+                  <p className="text-neutral-400 text-sm mt-1">{r.readingTime}</p>
+                </div>
+                <ChevronRight size={16} className="text-neutral-300 group-hover:text-lime-500 group-hover:translate-x-0.5 transition-all shrink-0" />
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-10 text-center">
+          <p className="text-neutral-500 text-lg font-semibold mb-5 ">see how alya compares</p>
+          <ComparePills showLearnLink />
+        </section>
       </main>
 
       <Footer />

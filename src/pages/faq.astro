@@ -1,25 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { FAQ } from '../views/FAQ';
-
-const allFaqs = [
-  { question: "is alya actually free?", answer: "Yes. Download alya and get 5 messages per day, forever, no credit card, no trial period. Upgrade to Plus ($4.99/mo) or Pro ($14.99/mo) anytime for more daily messages and deeper conversation memory." },
-  { question: "how is alya different from Duolingo?", answer: "Duolingo teaches you to study Spanish: vocabulary lists, hearts, streaks. Alya teaches you to speak it. Every session is a real conversation where alya corrects you in context, adapts to your level, and responds like a bilingual friend. No preset curriculum, no lives to lose." },
-  { question: "do I need to speak English to use alya?", answer: "Not at all. Alya detects the language you text in (Hindi, Japanese, French, Portuguese, and more) and responds in that same language while teaching you Spanish. Alya was built for learners worldwide, not just English speakers." },
-  { question: "how long before I can hold a real conversation?", answer: "Most learners can handle basic everyday conversations within 4 to 8 weeks of daily practice. The key is consistency over intensity: 10 to 15 minutes every day beats a 2-hour weekend session every time." },
-  { question: "can I practice speaking, not just typing?", answer: "Yes. Send voice messages to alya and she'll transcribe, respond, and teach. Tap any Spanish word in alya's replies to hear native-accent pronunciation. Voice in, voice out." },
-  { question: "what Spanish does alya teach?", answer: "Latin American Spanish, the variety spoken in Mexico, Colombia, Argentina, and across the continent. Modern, natural, and understood everywhere. Alya deliberately avoids Spain-specific slang." },
-  { question: "what counts as a message?", answer: "Each message you send to alya counts as one. Alya's replies don't count. The limit resets every 24 hours." },
-  { question: "what happens when I hit my daily limit?", answer: "Alya lets you know you've reached your limit for the day and shows you upgrade options. Your conversation history is saved and ready when the limit resets." },
-  { question: "can I switch plans?", answer: "Yes, anytime. Upgrade or downgrade from the settings screen in the app. Changes take effect at the next billing cycle." },
-  { question: "what payment methods are accepted?", answer: "Subscriptions are processed through the App Store using your Apple ID. All major cards, Apple Pay, and carrier billing are supported." },
-  { question: "is there a student discount?", answer: "Not yet, but the free plan is genuinely useful for casual learners. Plus at $4.99/month is less than a single coffee." },
-];
+import { FAQ, faqs } from '../views/FAQ';
+import { BASE_URL } from '../constants';
 
 const schema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": allFaqs.map(f => ({
+  "mainEntity": faqs.map(f => ({
     "@type": "Question",
     "name": f.question,
     "acceptedAnswer": {
@@ -28,15 +15,26 @@ const schema = {
     },
   })),
 };
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+    { "@type": "ListItem", position: 2, name: "FAQ", item: `${BASE_URL}/faq` },
+  ],
+};
 ---
 
 <Layout
-  title="FAQ | ALYA — Learn Spanish with AI"
-  description="Everything you need to know about alya. Is it free? How is it different from Duolingo? How long until I can hold a conversation? Straight answers, no fluff."
-  ogTitle="alya FAQ — Frequently Asked Questions"
-  ogDescription="Straight answers to the most common questions about learning Spanish with alya."
+  title="FAQ | ALYA, Spanish Immersion Feed"
+  description="Everything about ALYA: What is ALYA, free download, ALYA Plus trial, tap-to-translate, companion, levels, topics. Straight answers, no fluff."
+  ogTitle="alya FAQ, Frequently Asked Questions"
+  ogDescription="What is ALYA? Straight answers about learning Spanish by doomscrolling, Plus trial, tap-to-translate, and companion."
+  twitterTitle="ALYA FAQ: What is ALYA?"
+  twitterDescription="What is ALYA? Plus trial, tap-to-translate, companion, levels. Straight answers, no fluff."
   canonical="/faq"
 >
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <script type="application/ld+json" set:html={JSON.stringify([schema, breadcrumbSchema])} slot="head" />
   <FAQ currentPath="/faq" client:load />
 </Layout>
