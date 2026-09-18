@@ -1,0 +1,13 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Slideshow } from '../views/Slideshow';
+---
+
+<Layout
+  title="ALYA slideshow maker — TikTok & Instagram promo kit"
+  description="Create TikTok and Instagram slideshow promos for ALYA. Edit swipe-slides, preview 9:16 / 4:5 / 1:1, export full-res PNGs."
+  canonical="/slideshow"
+  noindex={true}
+>
+  <Slideshow client:load />
+</Layout>
