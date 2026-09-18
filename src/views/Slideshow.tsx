@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowLeft,
@@ -16,12 +16,12 @@ import {
   Sparkles,
   Trash2,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { NavBar } from "../components/NavBar";
 import { Footer } from "../components/Footer";
 import { APP_STORE_URL } from "../constants";
 
-type FormatId = "1:1";
-type ThemeId = "dark" | "cream" | "avocado";
+type ThemeId = "dark" | "cream" | "avocado" | "fiesta";
 type Variant = "cover" | "statement" | "word" | "cta";
 type Pane = "slides" | "preview" | "edit";
 
@@ -38,6 +38,10 @@ interface Slide {
 }
 
 const MASCOT_SRC = "/mascot/alya-pet.png";
+
+/* Full-bleed illustrated Spain doodle used as the "fiesta" theme background. */
+const DOODLE_BG_SRC = "/slideshow/spain-doodle-bg.png";
+const DOODLE_BG_TINT = "rgba(247,241,227,0.87)";
 
 /* Fixed, deterministic doodle scatter (percent-of-frame positions) so every
    export of the same slide looks identical — no uniform grid, no per-render
@@ -64,9 +68,8 @@ interface Theme {
   accent: string;
 }
 
-const FORMATS: { id: FormatId; label: string; sub: string; w: number; h: number; css: string; glyph: string }[] = [
-  { id: "1:1", label: "IG square", sub: "1080 × 1080", w: 1080, h: 1080, css: "aspect-square", glyph: "h-9 w-9" },
-];
+/* Single export format: 1:1 square (1080 × 1080). */
+const FORMAT = { label: "IG square", sub: "1080 × 1080", w: 1080, h: 1080, css: "aspect-square" };
 
 const THEMES: Record<ThemeId, { label: string; hint: string; theme: Theme }> = {
   dark: {
@@ -109,6 +112,20 @@ const THEMES: Record<ThemeId, { label: string; hint: string; theme: Theme }> = {
       text: "#18200D",
       muted: "rgba(24,32,13,0.66)",
       accent: "#10120E",
+    },
+  },
+  fiesta: {
+    label: "Fiesta doodle",
+    hint: "spain art bg",
+    theme: {
+      bg: "#F7F1E3",
+      surface: "rgba(251,248,241,0.94)",
+      border: "rgba(32,35,29,0.16)",
+      primary: "#B3372C",
+      onPrimary: "#FFF9F0",
+      text: "#20231D",
+      muted: "rgba(32,35,29,0.68)",
+      accent: "#1D7A8C",
     },
   },
 };
@@ -165,7 +182,9 @@ const VARIANTS: { id: Variant; label: string; hint: string }[] = [
   { id: "cta", label: "CTA", hint: "last slide" },
 ];
 
-const LIMITS: Record<string, number> = { kicker: 26, title: 60, body: 110, word: 22, translation: 90, footer: 44 };
+type SlideTextField = "kicker" | "title" | "body" | "word" | "translation" | "footer";
+
+const LIMITS: Record<SlideTextField, number> = { kicker: 26, title: 60, body: 110, word: 22, translation: 90, footer: 44 };
 
 /* ---------- canvas export (unchanged logic, tightened type) ---------- */
 
@@ -261,8 +280,8 @@ function drawImageCover(ctx: CanvasRenderingContext2D, img: HTMLImageElement, x:
   ctx.restore();
 }
 
-async function renderSlideToCanvas(slide: Slide, index: number, total: number, format: FormatId, themeId: ThemeId) {
-  const fmt = FORMATS.find((f) => f.id === format)!;
+async function renderSlideToCanvas(slide: Slide, index: number, total: number, themeId: ThemeId) {
+  const fmt = FORMAT;
   const t = THEMES[themeId].theme;
   const canvas = document.createElement("canvas");
   canvas.width = fmt.w;
@@ -273,10 +292,23 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, f
   ctx.fillStyle = t.bg;
   ctx.fillRect(0, 0, fmt.w, fmt.h);
 
+  // "fiesta" theme: full-bleed illustrated background with a cream tint on top
+  // so text stays readable. Missing asset falls back to the solid bg.
+  if (themeId === "fiesta") {
+    try {
+      const bg = await loadImage(DOODLE_BG_SRC);
+      const scale = Math.max(fmt.w / bg.width, fmt.h / bg.height);
+      const iw = bg.width * scale, ih = bg.height * scale;
+      ctx.drawImage(bg, (fmt.w - iw) / 2, (fmt.h - ih) / 2, iw, ih);
+      ctx.fillStyle = DOODLE_BG_TINT;
+      ctx.fillRect(0, 0, fmt.w, fmt.h);
+    } catch { /* asset not saved yet — keep the solid cream bg */ }
+  }
+
   let mascot: HTMLImageElement | null = null;
   try { mascot = await loadImage(MASCOT_SRC); } catch { /* mascot is a nice-to-have, never block export on it */ }
 
-  drawDoodles(ctx, fmt.w, fmt.h, t.primary, t.accent);
+  if (themeId !== "fiesta") drawDoodles(ctx, fmt.w, fmt.h, t.primary, t.accent);
 
   // Sticker mascot peeking in from the bottom-right corner on every slide except
   // the CTA (which already gets a large centered mascot/screenshot treatment).
@@ -414,12 +446,12 @@ function DoodleLayer({ primary, accent }: { primary: string; accent: string }) {
   );
 }
 
-function PeekingMascot({ className = "" }: { className?: string }) {
+function PeekingMascot() {
   return (
     <img
       src={MASCOT_SRC}
       alt=""
-      className={`pointer-events-none absolute -bottom-[8%] -right-[7%] w-[42%] rotate-[-9deg] drop-shadow-lg ${className}`}
+      className="pointer-events-none absolute bottom-[-8%] right-[-7%] w-[42%] rotate-[-9deg] drop-shadow-lg"
     />
   );
 }
@@ -429,7 +461,7 @@ function Thumb({ slide, index, active, theme, onClick }: { slide: Slide; index: 
     <button
       onClick={onClick}
       aria-pressed={active}
-      className={`group flex w-full items-stretch gap-3 rounded-2xl border p-2.5 text-left transition-all ${active ? "border-neutral-900 bg-neutral-900 text-white shadow-lg" : "border-neutral-200 bg-white hover:border-neutral-900/40 hover:shadow-md"}`}
+      className={`flex w-full items-stretch gap-3 rounded-2xl border p-2.5 text-left transition-all ${active ? "border-neutral-900 bg-neutral-900 text-white shadow-lg" : "border-neutral-200 bg-white hover:border-neutral-900/40 hover:shadow-md"}`}
     >
       <span
         className="relative aspect-square w-11 shrink-0 overflow-hidden rounded-lg border p-1.5"
@@ -458,7 +490,6 @@ export const Slideshow = () => {
   const [presetId, setPresetId] = useState(PRESETS[0].id);
   const [slides, setSlides] = useState<Slide[]>(() => PRESETS[0].slides.map((s) => ({ ...s })));
   const [selected, setSelected] = useState(0);
-  const format: FormatId = "1:1";
   const [themeId, setThemeId] = useState<ThemeId>("dark");
   const [caption, setCaption] = useState(PRESETS[0].caption);
   const [handle, setHandle] = useState("@alyacompanion");
@@ -468,12 +499,16 @@ export const Slideshow = () => {
   const [toast, setToast] = useState("");
   const [copied, setCopied] = useState(false);
   const [dir, setDir] = useState(0);
+  const toastTimer = useRef<number>(0);
 
   const theme = THEMES[themeId].theme;
-  const fmt = FORMATS.find((f) => f.id === format)!;
   const current = slides[selected] ?? slides[0];
 
-  const flash = (msg: string) => { setToast(msg); window.clearTimeout((flash as unknown as { t?: number }).t); (flash as unknown as { t?: number }).t = window.setTimeout(() => setToast(""), 2200); };
+  const flash = (msg: string) => {
+    setToast(msg);
+    window.clearTimeout(toastTimer.current);
+    toastTimer.current = window.setTimeout(() => setToast(""), 2200);
+  };
 
   const go = useCallback((next: number) => {
     setDir(next > selected ? 1 : -1);
@@ -517,7 +552,7 @@ export const Slideshow = () => {
   };
   const duplicate = () => {
     if (!current) return;
-    const copy = { ...current, id: uid(), title: `${current.title}` };
+    const copy = { ...current, id: uid() };
     setSlides((p) => [...p.slice(0, selected + 1), copy, ...p.slice(selected + 1)]);
     setDir(1); setSelected(selected + 1);
   };
@@ -541,9 +576,9 @@ export const Slideshow = () => {
     if (!current) return;
     setExporting(true); setProgress(`rendering slide ${selected + 1}…`);
     try {
-      const c = await renderSlideToCanvas(current, selected, slides.length, format, themeId);
-      download(c, `alya-slide-${selected + 1}-${format.replace(":", "x")}.png`);
-      flash(`slide ${selected + 1} exported • ${fmt.sub}`);
+      const c = await renderSlideToCanvas(current, selected, slides.length, themeId);
+      download(c, `alya-slide-${selected + 1}-1x1.png`);
+      flash(`slide ${selected + 1} exported • ${FORMAT.sub}`);
     } finally { setExporting(false); setProgress(""); }
   };
   const exportAll = async () => {
@@ -551,11 +586,11 @@ export const Slideshow = () => {
     try {
       for (let i = 0; i < slides.length; i++) {
         setProgress(`rendering ${i + 1} / ${slides.length}…`);
-        const c = await renderSlideToCanvas(slides[i], i, slides.length, format, themeId);
+        const c = await renderSlideToCanvas(slides[i], i, slides.length, themeId);
         download(c, `alya-slide-${i + 1}-of-${slides.length}.png`);
         await new Promise((r) => setTimeout(r, 350));
       }
-      flash(`exported ${slides.length} PNGs • ${fmt.sub}`);
+      flash(`exported ${slides.length} PNGs • ${FORMAT.sub}`);
     } finally { setExporting(false); setProgress(""); }
   };
   const copyCaption = async () => {
@@ -616,10 +651,10 @@ export const Slideshow = () => {
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
               <Label>format</Label>
               <div className="flex items-center gap-2.5 rounded-2xl border border-neutral-900 bg-neutral-900 px-3 py-2 text-left text-white">
-                <span className="h-9 w-9 rounded-[4px] border-2 border-lime-300 bg-lime-300/20" />
+                <span className="h-9 w-9 rounded-sm border-2 border-lime-300 bg-lime-300/20" />
                 <span>
-                  <span className="block text-xs font-bold leading-none">IG square</span>
-                  <span className="mt-1 block text-[11px] leading-none text-white/60">1080 × 1080</span>
+                  <span className="block text-xs font-bold leading-none">{FORMAT.label}</span>
+                  <span className="mt-1 block text-[11px] leading-none text-white/60">{FORMAT.sub}</span>
                 </span>
               </div>
             </div>
@@ -648,7 +683,7 @@ export const Slideshow = () => {
 
         {/* mobile pane switch */}
         <div className="mt-4 grid grid-cols-3 gap-1 rounded-full border border-neutral-900/10 bg-white/80 p-1 lg:hidden" role="tablist">
-          {([["slides", "Slides", Images], ["preview", "Preview", Eye], ["edit", "Edit", SlidersHorizontal]] as [Pane, string, typeof Eye][]).map(([id, label, Icon]) => (
+          {([["slides", "Slides", Images], ["preview", "Preview", Eye], ["edit", "Edit", SlidersHorizontal]] as [Pane, string, LucideIcon][]).map(([id, label, Icon]) => (
             <button key={id} role="tab" aria-selected={pane === id} onClick={() => setPane(id)}
               className={`flex items-center justify-center gap-1.5 rounded-full py-2 text-sm font-bold transition ${pane === id ? "bg-neutral-900 text-white" : "text-neutral-500"}`}>
               <Icon size={15} /> {label}
@@ -679,14 +714,14 @@ export const Slideshow = () => {
           </section>
 
           {/* preview */}
-          <section aria-label="preview" className={`${pane === "preview" ? "flex" : "hidden"} lg:flex flex-col items-center rounded-3xl border border-neutral-900/10 bg-gradient-to-b from-white/60 to-white/25 p-4 sm:p-6 lg:sticky lg:top-24`}>
-            <div className="flex w-full max-w-[420px] items-center justify-between">
+          <section aria-label="preview" className={`${pane === "preview" ? "flex" : "hidden"} lg:flex flex-col items-center rounded-3xl border border-neutral-900/10 bg-linear-to-b from-white/60 to-white/25 p-4 sm:p-6 lg:sticky lg:top-24`}>
+            <div className="flex w-full max-w-105 items-center justify-between">
               <button onClick={() => go(selected - 1)} disabled={selected === 0} aria-label="previous slide"
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-900/15 bg-white transition hover:border-neutral-900 disabled:opacity-30">
                 <ArrowLeft size={17} />
               </button>
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-neutral-500 tabular-nums">
-                {selected + 1} / {slides.length} • {fmt.sub}
+                {selected + 1} / {slides.length} • {FORMAT.sub}
               </p>
               <button onClick={() => go(selected + 1)} disabled={selected === slides.length - 1} aria-label="next slide"
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-900/15 bg-white transition hover:border-neutral-900 disabled:opacity-30">
@@ -694,7 +729,7 @@ export const Slideshow = () => {
               </button>
             </div>
 
-            <div className="relative mt-3 w-full max-w-[420px]">
+            <div className="relative mt-3 w-full max-w-105">
               <AnimatePresence mode="popLayout" custom={dir}>
                 <motion.div
                   key={current?.id ?? "empty"}
@@ -703,12 +738,21 @@ export const Slideshow = () => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -34 * (dir >= 0 ? 1 : -1) }}
                   transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-                  style={{ backgroundColor: theme.bg, borderColor: theme.border }}
-                  className={`${fmt.css} relative flex w-full flex-col justify-between overflow-hidden rounded-[26px] border-2 p-5 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.4)] sm:p-6`}
+                  style={{
+                    backgroundColor: theme.bg,
+                    borderColor: theme.border,
+                    ...(themeId === "fiesta"
+                      ? { backgroundImage: `url(${DOODLE_BG_SRC})`, backgroundSize: "cover", backgroundPosition: "center" }
+                      : {}),
+                  }}
+                  className={`${FORMAT.css} relative flex w-full flex-col justify-between overflow-hidden rounded-[26px] border-2 p-5 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.4)] sm:p-6`}
                 >
-                  <DoodleLayer primary={theme.primary} accent={theme.accent} />
+                  {themeId !== "fiesta" && <DoodleLayer primary={theme.primary} accent={theme.accent} />}
+                  {themeId === "fiesta" && (
+                    <div className="pointer-events-none absolute inset-0" style={{ backgroundColor: DOODLE_BG_TINT }} aria-hidden />
+                  )}
                   {current?.variant !== "cta" && <PeekingMascot />}
-                  <div>
+                  <div className="relative">
                     <div className="flex items-center justify-between text-[11px] font-bold tracking-wide" style={{ color: theme.muted }}>
                       <span className="flex items-center gap-1.5">
                         <img src={MASCOT_SRC} alt="" className="h-6 w-6 shrink-0 object-contain" />
@@ -731,7 +775,7 @@ export const Slideshow = () => {
                     {current?.variant === "word" && (
                       <div className="mt-4 rounded-2xl border p-4" style={{ backgroundColor: themeId === "dark" ? "#1B1E17" : theme.surface, borderColor: theme.border }}>
                         <p className="text-[10px] font-semibold uppercase tracking-[0.2em]" style={{ color: theme.accent }}>tap → translate</p>
-                        <p className="mt-1 break-words text-[28px] font-bold leading-none tracking-tight" style={{ color: theme.text }}>{current.word || "tu palabra"}</p>
+                        <p className="mt-1 wrap-break-word text-[28px] font-bold leading-none tracking-tight" style={{ color: theme.text }}>{current.word || "tu palabra"}</p>
                         <p className="mt-1.5 text-xs italic leading-snug" style={{ color: theme.muted }}>{current.translation || "translation goes here…"}</p>
                       </div>
                     )}
@@ -747,7 +791,7 @@ export const Slideshow = () => {
                       </div>
                     )}
                   </div>
-                  <div>
+                  <div className="relative">
                     {current?.variant === "cta" ? (
                       <div className="rounded-full px-4 py-3 text-center text-[12px] font-bold leading-tight" style={{ backgroundColor: theme.primary, color: theme.onPrimary }}>
                         download ALYA — free on iOS
@@ -762,7 +806,6 @@ export const Slideshow = () => {
                       ))}
                     </div>
                   </div>
-
                 </motion.div>
               </AnimatePresence>
             </div>
@@ -771,7 +814,7 @@ export const Slideshow = () => {
               <span className="text-neutral-400">← → keys work • dots jump</span>
             </div>
 
-            <div className="mt-3 grid w-full max-w-[420px] gap-2 sm:grid-cols-2">
+            <div className="mt-3 grid w-full max-w-105 gap-2 sm:grid-cols-2">
               <button onClick={exportOne} disabled={exporting}
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-neutral-900 px-5 py-3.5 text-sm font-bold text-white shadow-lg transition hover:bg-lime-700 disabled:opacity-50">
                 {exporting ? <Loader2 size={16} className="animate-spin" /> : <Download size={16} />}
@@ -896,7 +939,7 @@ export const Slideshow = () => {
             <a href={APP_STORE_URL} target="_blank" rel="noreferrer" className="mt-4 block rounded-2xl bg-neutral-900 p-4 text-white">
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-lime-300">posting checklist</p>
               <ol className="mt-1.5 space-y-1 text-[13px] leading-snug text-white/85">
-                <li>1. export PNGs at {fmt.sub}</li>
+                <li>1. export PNGs at {FORMAT.sub}</li>
                 <li>2. trending sound, hook in first 1s</li>
                 <li>3. CTA on last slide + link in bio</li>
               </ol>
