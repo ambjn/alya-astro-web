@@ -27,7 +27,6 @@ type Pane = "slides" | "preview" | "edit";
 
 interface Slide {
   id: string;
-  kicker: string;
   title: string;
   body: string;
   word: string;
@@ -76,8 +75,8 @@ const THEMES: Record<ThemeId, { label: string; hint: string; theme: Theme }> = {
     label: "Alya dark",
     hint: "app true",
     theme: {
-      bg: "#10120E",
-      surface: "#1B1E17",
+      bg: "#1C2117",
+      surface: "#262B21",
       border: "rgba(226,239,194,0.22)",
       primary: "#B7D96B",
       onPrimary: "#18200D",
@@ -107,11 +106,11 @@ const THEMES: Record<ThemeId, { label: string; hint: string; theme: Theme }> = {
       bg: "#B7D96B",
       surface: "#C6E282",
       border: "rgba(24,32,13,0.2)",
-      primary: "#10120E",
+      primary: "#242A20",
       onPrimary: "#FFF9F0",
       text: "#18200D",
       muted: "rgba(24,32,13,0.66)",
-      accent: "#10120E",
+      accent: "#242A20",
     },
   },
   fiesta: {
@@ -140,11 +139,11 @@ const PRESETS: { id: string; label: string; hook: string; caption: string; slide
     caption:
       "learn spanish by doomscrolling 👀\nscroll real videos. tap what you don't know. grow your companion.\n\nfree on iOS — link in bio\n\n#learnspanish #spanishtiktok #doomscrolling #languagelearning #alyaapp",
     slides: [
-      { id: uid(), kicker: "alya • spanish", title: "learn spanish by doomscrolling.", body: "swipe → how it works", word: "", translation: "", footer: "@alyacompanion", variant: "cover" },
-      { id: uid(), kicker: "01 / real videos", title: "scroll real Spanish videos.", body: "street food, memes, travel — not textbook dialogues.", word: "", translation: "", footer: "immersion feed", variant: "statement" },
-      { id: uid(), kicker: "02 / tap anything", title: "tap what you don't know.", body: "instant translation + explanation, right on the video.", word: "sobremesa", translation: "n. lingering table talk after a meal", footer: "tap-to-translate", variant: "word" },
-      { id: uid(), kicker: "03 / keep it", title: "save words. grow your streak.", body: "vocab + companion that evolves as you learn.", word: "qué padre", translation: "how cool! (Mexico 🇲🇽)", footer: "daily habit", variant: "word" },
-      { id: uid(), kicker: "free on iOS", title: "stop studying. start scrolling.", body: "download ALYA free — link in bio.", word: "", translation: "", footer: "alya • learn spanish", variant: "cta" },
+      { id: uid(), title: "learn spanish by doomscrolling.", body: "swipe → how it works", word: "", translation: "", footer: "@helloalya", variant: "cover" },
+      { id: uid(), title: "scroll real Spanish videos.", body: "street food, memes, travel — not textbook dialogues.", word: "", translation: "", footer: "immersion feed", variant: "statement" },
+      { id: uid(), title: "tap what you don't know.", body: "instant translation + explanation, right on the video.", word: "sobremesa", translation: "n. lingering table talk after a meal", footer: "tap-to-translate", variant: "word" },
+      { id: uid(), title: "save words. grow your streak.", body: "vocab + companion that evolves as you learn.", word: "qué padre", translation: "how cool! (Mexico 🇲🇽)", footer: "daily habit", variant: "word" },
+      { id: uid(), title: "stop studying. start scrolling.", body: "download ALYA free — link in bio.", word: "", translation: "", footer: "alya • learn spanish", variant: "cta" },
     ],
   },
   {
@@ -154,10 +153,10 @@ const PRESETS: { id: string; label: string; hook: string; caption: string; slide
     caption:
       "3 Spanish words natives actually use 🇪🇸🇲🇽\nwhich one is new for you?\n\nlearn them by doomscrolling — ALYA, free on iOS\n\n#spanishwords #spanishvocab #mexicanspanish #learnspanish",
     slides: [
-      { id: uid(), kicker: "save this →", title: "3 Spanish words natives actually use.", body: "swipe for instant upgrades", word: "", translation: "", footer: "@alyacompanion", variant: "cover" },
-      { id: uid(), kicker: "01", title: "", body: "", word: "sobremesa", translation: "the chat that happens after eating — no English equivalent", footer: "tap in ALYA for examples", variant: "word" },
-      { id: uid(), kicker: "02", title: "", body: "", word: "qué padre", translation: "how cool! — you'll hear this 10x a day in Mexico", footer: "tap in ALYA for examples", variant: "word" },
-      { id: uid(), kicker: "free on iOS", title: "learn them scrolling, not studying.", body: "ALYA — link in bio.", word: "", translation: "", footer: "download free", variant: "cta" },
+      { id: uid(), title: "3 Spanish words natives actually use.", body: "swipe for instant upgrades", word: "", translation: "", footer: "@helloalya", variant: "cover" },
+      { id: uid(), title: "", body: "", word: "sobremesa", translation: "the chat that happens after eating — no English equivalent", footer: "tap in ALYA for examples", variant: "word" },
+      { id: uid(), title: "", body: "", word: "qué padre", translation: "how cool! — you'll hear this 10x a day in Mexico", footer: "tap in ALYA for examples", variant: "word" },
+      { id: uid(), title: "learn them scrolling, not studying.", body: "ALYA — link in bio.", word: "", translation: "", footer: "download free", variant: "cta" },
     ],
   },
   {
@@ -167,10 +166,10 @@ const PRESETS: { id: string; label: string; hook: string; caption: string; slide
     caption:
       "stop saying it like a textbook 🛑\nsay it like a native.\n\nALYA teaches you real Spanish from real videos.\n\n#spanishmistakes #spanishlearning #gringo #latina",
     slides: [
-      { id: uid(), kicker: "pov: textbook spanish", title: "stop saying it like a textbook.", body: "say it like a native →", word: "", translation: "", footer: "@alyacompanion", variant: "cover" },
-      { id: uid(), kicker: "❌ textbook", title: "¿Cómo estás, amigo?", body: "technically right. socially… robotic.", word: "", translation: "", footer: "", variant: "statement" },
-      { id: uid(), kicker: "✅ native", title: "¿Qué onda? ¿Cómo andas?", body: "real. casual. human.", word: "qué onda", translation: "what's up? (Mexico 🇲🇽)", footer: "heard daily in ALYA feed", variant: "word" },
-      { id: uid(), kicker: "free on iOS", title: "real Spanish, real videos.", body: "ALYA — link in bio.", word: "", translation: "", footer: "download free", variant: "cta" },
+      { id: uid(), title: "stop saying it like a textbook.", body: "say it like a native →", word: "", translation: "", footer: "@helloalya", variant: "cover" },
+      { id: uid(), title: "¿Cómo estás, amigo?", body: "technically right. socially… robotic.", word: "", translation: "", footer: "", variant: "statement" },
+      { id: uid(), title: "¿Qué onda? ¿Cómo andas?", body: "real. casual. human.", word: "qué onda", translation: "what's up? (Mexico 🇲🇽)", footer: "heard daily in ALYA feed", variant: "word" },
+      { id: uid(), title: "real Spanish, real videos.", body: "ALYA — link in bio.", word: "", translation: "", footer: "download free", variant: "cta" },
     ],
   },
 ];
@@ -182,9 +181,9 @@ const VARIANTS: { id: Variant; label: string; hint: string }[] = [
   { id: "cta", label: "CTA", hint: "last slide" },
 ];
 
-type SlideTextField = "kicker" | "title" | "body" | "word" | "translation" | "footer";
+type SlideTextField = "title" | "body" | "word" | "translation" | "footer";
 
-const LIMITS: Record<SlideTextField, number> = { kicker: 26, title: 60, body: 110, word: 22, translation: 90, footer: 44 };
+const LIMITS: Record<SlideTextField, number> = { title: 60, body: 110, word: 22, translation: 90, footer: 44 };
 
 /* ---------- canvas export (unchanged logic, tightened type) ---------- */
 
@@ -310,13 +309,16 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
 
   if (themeId !== "fiesta") drawDoodles(ctx, fmt.w, fmt.h, t.primary, t.accent);
 
-  // Sticker mascot peeking in from the bottom-right corner on every slide except
+  const ctaH = 150, ctaY = fmt.h - ctaH - 120;
+
+  // Sticker mascot in the lower-right of the content area on every slide except
   // the CTA (which already gets a large centered mascot/screenshot treatment).
+  // Sized and lifted so it never covers the footer or page dots.
   if (mascot && slide.variant !== "cta") {
-    const ph = Math.min(fmt.w, fmt.h) * 0.46;
+    const ph = 340;
     const pw = ph * (mascot.width / mascot.height);
     ctx.save();
-    ctx.translate(fmt.w - pw * 0.2, fmt.h - ph * 0.18);
+    ctx.translate(fmt.w - pw * 0.28, ctaY - 24 - ph / 2);
     ctx.rotate(-0.15);
     ctx.drawImage(mascot, -pw / 2, -ph / 2, pw, ph);
     ctx.restore();
@@ -325,59 +327,110 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
   const pad = 96;
   const W = fmt.w - pad * 2;
 
-  if (mascot) ctx.drawImage(mascot, pad, 94, 72, 72);
-  const wordmarkX = mascot ? pad + 86 : pad;
-  ctx.fillStyle = t.muted;
-  ctx.font = "600 34px Outfit, system-ui, sans-serif";
-  ctx.fillText("alya.", wordmarkX, 150);
+  /* Counter pill, top-right. */
+  ctx.font = "700 30px Outfit, system-ui, sans-serif";
+  const countLabel = `${String(index + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
+  const countW = ctx.measureText(countLabel).width;
+  const pillPadX = 30, pillH = 64, pillW = countW + pillPadX * 2;
+  const pillX = fmt.w - pad - pillW, pillY = 150 - pillH / 2 - 6;
+  ctx.fillStyle = t.surface;
+  roundRect(ctx, pillX, pillY, pillW, pillH, pillH / 2); ctx.fill();
+  ctx.strokeStyle = t.border; ctx.lineWidth = 2;
+  roundRect(ctx, pillX, pillY, pillW, pillH, pillH / 2); ctx.stroke();
+  ctx.fillStyle = t.text;
   ctx.textAlign = "right";
-  ctx.fillText(`${String(index + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`, fmt.w - pad, 150);
+  ctx.fillText(countLabel, fmt.w - pad - pillPadX, 150);
   ctx.textAlign = "left";
 
-  let y = 250;
-  if (slide.kicker) {
-    ctx.font = "700 30px Outfit, system-ui, sans-serif";
-    const kw = Math.min(ctx.measureText(slide.kicker.toUpperCase()).width + 56, W);
-    ctx.fillStyle = themeId === "dark" ? "rgba(183,217,107,0.14)" : "rgba(0,0,0,0.07)";
-    roundRect(ctx, pad, y, kw, 64, 32); ctx.fill();
-    ctx.fillStyle = themeId === "dark" ? t.primary : t.text;
-    ctx.fillText(slide.kicker.toUpperCase().slice(0, 34), pad + 28, y + 43);
-    y += 120;
+  /* Two-pass layout: measure the text block first so short content can sit
+     vertically centered instead of leaving a big blank middle. CTA slides
+     stay top-aligned so the screenshot gets maximum room. */
+  const bigTitle = slide.variant === "cover";
+  const titleFont = `700 ${bigTitle ? 148 : 118}px Outfit, system-ui, sans-serif`;
+  const titleBase = bigTitle ? 138 : 110, titleAdv = bigTitle ? 160 : 128;
+  ctx.font = titleFont;
+  const titleLines = slide.title ? wrapText(ctx, slide.title, W).slice(0, 5) : [];
+  ctx.font = "500 54px Outfit, system-ui, sans-serif";
+  const bodyLines = slide.body ? wrapText(ctx, slide.body, W).slice(0, 4) : [];
+  const hasWordCard = slide.variant === "word" && slide.word;
+
+  /* Word-card geometry, measured up front: two columns (word | translation)
+     so the card stays short. */
+  const wordFont = "700 84px Outfit, system-ui, sans-serif";
+  const wordTransFont = "italic 500 40px Outfit, system-ui, sans-serif";
+  let wordLines: string[] = [], wordTransLines: string[] = [];
+  let wordCardH = 0, wordDivX = 0, wordRightX = 0, wordBodyH = 0, wordLeftH = 0, wordRightH = 0;
+  if (hasWordCard) {
+    ctx.font = wordFont;
+    const leftWrapW = (W - 112) * 0.55;
+    wordLines = wrapText(ctx, slide.word, leftWrapW).slice(0, 3);
+    let leftColW = 0;
+    for (const ln of wordLines) leftColW = Math.max(leftColW, ctx.measureText(ln).width);
+    leftColW = Math.min(leftColW, leftWrapW);
+    wordDivX = pad + 56 + leftColW + 30;
+    wordRightX = wordDivX + 30;
+    const rightW = pad + W - 56 - wordRightX;
+    ctx.font = wordTransFont;
+    wordTransLines = wrapText(ctx, slide.translation, rightW).slice(0, 4);
+    wordLeftH = 78 + 88 * (wordLines.length - 1) + 26;
+    wordRightH = wordTransLines.length ? 42 + 56 * (wordTransLines.length - 1) + 20 : 0;
+    wordBodyH = Math.max(wordLeftH, wordRightH);
+    wordCardH = 118 + wordBodyH + 44;
   }
-  if (slide.title) {
+
+  let contentH = 0;
+  if (titleLines.length) contentH += titleBase + titleAdv * (titleLines.length - 1) + 24;
+  if (bodyLines.length) contentH += 63 + 76 * (bodyLines.length - 1) + 40;
+  if (hasWordCard) contentH += 20 + wordCardH + 40;
+
+  const topY = 170;
+  let y = slide.variant === "cta" || contentH >= ctaY - topY ? topY : topY + (ctaY - topY - contentH) / 2;
+
+  if (titleLines.length) {
     ctx.fillStyle = t.text;
-    const big = slide.variant === "cover";
-    ctx.font = `700 ${big ? 118 : 92}px Outfit, system-ui, sans-serif`;
-    for (const line of wrapText(ctx, slide.title, W).slice(0, 5)) {
-      ctx.fillText(line, pad, y + (big ? 110 : 88));
-      y += big ? 128 : 104;
+    ctx.font = titleFont;
+    for (const line of titleLines) {
+      ctx.fillText(line, pad, y + titleBase);
+      y += titleAdv;
     }
     y += 24;
   }
-  if (slide.body) {
+  if (bodyLines.length) {
     ctx.fillStyle = t.muted;
-    ctx.font = "500 44px Outfit, system-ui, sans-serif";
-    for (const line of wrapText(ctx, slide.body, W).slice(0, 4)) { ctx.fillText(line, pad, y + 52); y += 64; }
+    ctx.font = "500 54px Outfit, system-ui, sans-serif";
+    for (const line of bodyLines) { ctx.fillText(line, pad, y + 63); y += 76; }
     y += 40;
   }
-  if (slide.variant === "word" && slide.word) {
-    const cardY = y + 20, cardH = 420;
-    ctx.fillStyle = themeId === "dark" ? "#1B1E17" : t.surface;
+  if (hasWordCard) {
+    const cardY = y + 20, cardH = wordCardH;
+    ctx.fillStyle = themeId === "dark" ? "#262B21" : t.surface;
     roundRect(ctx, pad, cardY, W, cardH, 48); ctx.fill();
     ctx.strokeStyle = t.border; ctx.lineWidth = 3;
     roundRect(ctx, pad, cardY, W, cardH, 48); ctx.stroke();
-    ctx.fillStyle = t.accent === t.text ? t.primary : t.accent;
+    const labelColor = t.accent === t.text ? t.primary : t.accent;
     ctx.font = "600 38px Outfit, system-ui, sans-serif";
-    ctx.fillText("TAP → TRANSLATE", pad + 56, cardY + 90);
-    ctx.fillStyle = t.text; ctx.font = "700 110px Outfit, system-ui, sans-serif";
-    ctx.fillText(slide.word.slice(0, 24), pad + 56, cardY + 230);
-    ctx.fillStyle = t.muted; ctx.font = "italic 500 42px Outfit, system-ui, sans-serif";
-    let ty = cardY + 300;
-    for (const line of wrapText(ctx, slide.translation, W - 112).slice(0, 2)) { ctx.fillText(line, pad + 56, ty); ty += 58; }
+    const labelText = "TAP → TRANSLATE";
+    const labelW = ctx.measureText(labelText).width;
+    ctx.save();
+    ctx.globalAlpha = 0.14;
+    ctx.fillStyle = labelColor;
+    roundRect(ctx, pad + 56, cardY + 52, labelW + 48, 56, 12); ctx.fill();
+    ctx.restore();
+    ctx.fillStyle = labelColor;
+    ctx.fillText(labelText, pad + 56 + 24, cardY + 90);
+    /* Vertical divider between the two columns. */
+    ctx.strokeStyle = t.border; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(wordDivX, cardY + 118); ctx.lineTo(wordDivX, cardY + 118 + wordBodyH); ctx.stroke();
+    /* Left column: the word. Right column: the translation. */
+    ctx.fillStyle = t.text; ctx.font = wordFont;
+    let wy = cardY + 118 + (wordBodyH - wordLeftH) / 2 + 78;
+    for (const line of wordLines) { ctx.fillText(line, pad + 56, wy); wy += 88; }
+    ctx.fillStyle = t.muted; ctx.font = wordTransFont;
+    let ty = cardY + 118 + (wordBodyH - wordRightH) / 2 + 42;
+    for (const line of wordTransLines) { ctx.fillText(line, wordRightX, ty); ty += 56; }
     y = cardY + cardH + 40;
   }
 
-  const ctaH = 150, ctaY = fmt.h - ctaH - 120;
   const bottomReserved = ctaH + 180;
   const shotTop = y + 16, shotBottom = fmt.h - bottomReserved;
   if (slide.variant === "cta" && shotBottom - shotTop > 160) {
@@ -401,10 +454,6 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
     ctx.fillStyle = t.onPrimary; ctx.font = "700 46px Outfit, system-ui, sans-serif";
     const cta = "download ALYA — free on iOS";
     ctx.fillText(wrapText(ctx, cta, W - 100)[0] ?? cta, pad + 50, ctaY + 92);
-  } else if (slide.footer) {
-    ctx.fillStyle = t.muted;
-    ctx.font = "600 32px Outfit, system-ui, sans-serif";
-    ctx.fillText(wrapText(ctx, slide.footer, W)[0] ?? slide.footer, pad, ctaY + 92);
   }
 
   for (let i = 0; i < total; i++) {
@@ -419,7 +468,7 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
 /* ---------- small UI atoms ---------- */
 
 const Label = ({ children }: { children: React.ReactNode }) => (
-  <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-neutral-500">{children}</p>
+  <p className="text-sm font-bold tracking-tight text-neutral-900">{children}</p>
 );
 
 const Count = ({ value, max }: { value: string; max: number }) => (
@@ -451,7 +500,7 @@ function PeekingMascot() {
     <img
       src={MASCOT_SRC}
       alt=""
-      className="pointer-events-none absolute bottom-[-8%] right-[-7%] w-[42%] rotate-[-9deg] drop-shadow-lg"
+      className="pointer-events-none absolute bottom-[-8%] right-[-7%] w-[32%] rotate-[-9deg] drop-shadow-lg"
     />
   );
 }
@@ -461,7 +510,7 @@ function Thumb({ slide, index, active, theme, onClick }: { slide: Slide; index: 
     <button
       onClick={onClick}
       aria-pressed={active}
-      className={`flex w-full items-stretch gap-3 rounded-2xl border p-2.5 text-left transition-all ${active ? "border-neutral-900 bg-neutral-900 text-white shadow-lg" : "border-neutral-200 bg-white hover:border-neutral-900/40 hover:shadow-md"}`}
+      className={`flex w-full items-stretch gap-3 rounded-2xl border p-2.5 text-left transition-all ${active ? "border-[#2B3128] bg-[#2B3128] text-white shadow-lg" : "border-neutral-200 bg-white hover:border-[#2B3128]/40 hover:shadow-md"}`}
     >
       <span
         className="relative aspect-square w-11 shrink-0 overflow-hidden rounded-lg border p-1.5"
@@ -474,8 +523,8 @@ function Thumb({ slide, index, active, theme, onClick }: { slide: Slide; index: 
         <span className="absolute bottom-1 right-1 text-[8px] font-bold" style={{ color: theme.muted }}>{index + 1}</span>
       </span>
       <span className="min-w-0 flex-1 py-0.5">
-        <span className={`block truncate text-[10px] font-bold uppercase tracking-[0.14em] ${active ? "text-lime-300" : "text-lime-700"}`}>
-          {index + 1} • {slide.variant}{slide.kicker ? ` • ${slide.kicker}` : ""}
+        <span className={`block truncate text-xs font-bold ${active ? "text-lime-300" : "text-lime-700"}`}>
+          {index + 1} • {slide.variant}
         </span>
         <span className="mt-0.5 block truncate text-sm font-semibold">{slide.title || slide.word || "(untitled)"}</span>
         <span className={`mt-0.5 block truncate text-xs ${active ? "text-white/60" : "text-neutral-500"}`}>{slide.body || slide.translation || "—"}</span>
@@ -486,13 +535,49 @@ function Thumb({ slide, index, active, theme, onClick }: { slide: Slide; index: 
 
 /* ---------- main ---------- */
 
+const Eyebrow = ({ children }: { children: React.ReactNode }) => (
+  <p className="px-1 pb-2 text-sm font-bold tracking-tight text-neutral-900">{children}</p>
+);
+
+function ColDivider({ label, onDrag, onReset, onNudge }: {
+  label: string;
+  onDrag: (e: React.MouseEvent) => void;
+  onReset: () => void;
+  onNudge: (delta: number) => void;
+}) {
+  return (
+    <div
+      role="separator"
+      aria-orientation="vertical"
+      aria-label={label}
+      title="drag to resize • arrow keys nudge • double-click to reset"
+      tabIndex={0}
+      onMouseDown={onDrag}
+      onDoubleClick={onReset}
+      onKeyDown={(e) => {
+        if (e.key === "ArrowRight") onNudge(12);
+        else if (e.key === "ArrowLeft") onNudge(-12);
+        else return;
+        e.preventDefault();
+      }}
+      className="hidden w-4 shrink-0 cursor-col-resize touch-none items-center justify-center self-stretch rounded-full outline-none transition hover:bg-[#2B3128]/10 focus-visible:bg-[#2B3128]/10 lg:flex"
+    >
+      <span className="flex flex-col gap-1" aria-hidden>
+        {[0, 1, 2].map((i) => (
+          <span key={i} className="h-1 w-1 rounded-full bg-neutral-400" />
+        ))}
+      </span>
+    </div>
+  );
+}
+
 export const Slideshow = () => {
   const [presetId, setPresetId] = useState(PRESETS[0].id);
   const [slides, setSlides] = useState<Slide[]>(() => PRESETS[0].slides.map((s) => ({ ...s })));
   const [selected, setSelected] = useState(0);
-  const [themeId, setThemeId] = useState<ThemeId>("dark");
+  const [themeId, setThemeId] = useState<ThemeId>("fiesta");
   const [caption, setCaption] = useState(PRESETS[0].caption);
-  const [handle, setHandle] = useState("@alyacompanion");
+  const [handle, setHandle] = useState("@helloalya");
   const [pane, setPane] = useState<Pane>("preview");
   const [exporting, setExporting] = useState(false);
   const [progress, setProgress] = useState("");
@@ -500,6 +585,54 @@ export const Slideshow = () => {
   const [copied, setCopied] = useState(false);
   const [dir, setDir] = useState(0);
   const toastTimer = useRef<number>(0);
+
+  /* Resizable workspace columns (desktop). Widths persist per browser. */
+  const DEFAULT_DECK_W = 290;
+  const DEFAULT_EDIT_W = 350;
+  const [deckW, setDeckW] = useState(DEFAULT_DECK_W);
+  const [editW, setEditW] = useState(DEFAULT_EDIT_W);
+  const dragRef = useRef<{ side: "deck" | "edit"; startX: number; startDeck: number; startEdit: number } | null>(null);
+
+  useEffect(() => {
+    try {
+      const raw = window.localStorage.getItem("slideshow-cols");
+      if (raw) {
+        const p = JSON.parse(raw) as { deckW?: number; editW?: number };
+        if (typeof p.deckW === "number") setDeckW(Math.min(440, Math.max(220, p.deckW)));
+        if (typeof p.editW === "number") setEditW(Math.min(520, Math.max(280, p.editW)));
+      }
+    } catch { /* private mode etc — defaults are fine */ }
+  }, []);
+
+  useEffect(() => {
+    try { window.localStorage.setItem("slideshow-cols", JSON.stringify({ deckW, editW })); } catch { /* noop */ }
+  }, [deckW, editW]);
+
+  const resetWidths = () => { setDeckW(DEFAULT_DECK_W); setEditW(DEFAULT_EDIT_W); };
+
+  const startDrag = (side: "deck" | "edit") => (e: React.MouseEvent) => {
+    e.preventDefault();
+    dragRef.current = { side, startX: e.clientX, startDeck: deckW, startEdit: editW };
+    const onMove = (ev: MouseEvent) => {
+      const d = dragRef.current;
+      if (!d) return;
+      const dx = ev.clientX - d.startX;
+      if (d.side === "deck") setDeckW(Math.min(440, Math.max(220, Math.round(d.startDeck + dx))));
+      else setEditW(Math.min(520, Math.max(280, Math.round(d.startEdit - dx))));
+    };
+    const onUp = () => {
+      dragRef.current = null;
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseup", onUp);
+    };
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", onUp);
+  };
+
+  const nudge = (side: "deck" | "edit", delta: number) => {
+    if (side === "deck") setDeckW((w) => Math.min(440, Math.max(220, w + delta)));
+    else setEditW((w) => Math.min(520, Math.max(280, w + delta)));
+  };
 
   const theme = THEMES[themeId].theme;
   const current = slides[selected] ?? slides[0];
@@ -546,7 +679,7 @@ export const Slideshow = () => {
   };
 
   const addSlide = () => {
-    const s: Slide = { id: uid(), kicker: "new", title: "your hook here", body: "", word: "", translation: "", footer: handle, variant: "statement" };
+    const s: Slide = { id: uid(), title: "your hook here", body: "", word: "", translation: "", footer: handle, variant: "statement" };
     setSlides((p) => [...p, s]); setDir(1); setSelected(slides.length);
     if (window.innerWidth < 1024) setPane("edit");
   };
@@ -564,7 +697,7 @@ export const Slideshow = () => {
   const move = (d: -1 | 1) => {
     const j = selected + d;
     if (j < 0 || j >= slides.length) return;
-    setSlides((p) => { const n = [...p]; [n[selected], n[j]] = [n[j], n[selected]]; return n; });
+    setSlides((p) => { const n = [...p];[n[selected], n[j]] = [n[j], n[selected]]; return n; });
     setDir(d); setSelected(j);
   };
 
@@ -610,9 +743,7 @@ export const Slideshow = () => {
         {/* header */}
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div className="max-w-2xl">
-            <p className="inline-flex items-center gap-1.5 rounded-full border border-lime-700/20 bg-lime-200/50 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-lime-800">
-              <Sparkles size={12} /> promo kit • internal
-            </p>
+
             <h1 className="mt-3 text-4xl font-semibold tracking-tighter sm:text-5xl">slideshow maker.</h1>
             <p className="mt-2 text-[15px] leading-relaxed text-neutral-600">
               Hook → value → CTA. Pick a preset, edit the words, export full-res PNGs, post with sound.
@@ -621,7 +752,7 @@ export const Slideshow = () => {
           <ol className="hidden items-center gap-1 text-xs font-bold md:flex" aria-label="workflow">
             {["preset", "design", "words", "export"].map((s, i) => (
               <li key={s} className="flex items-center gap-1">
-                <span className={`flex h-6 w-6 items-center justify-center rounded-full ${i <= 2 ? "bg-neutral-900 text-white" : "bg-white text-neutral-500 border border-neutral-200"}`}>{i + 1}</span>
+                <span className={`flex h-6 w-6 items-center justify-center rounded-full ${i <= 2 ? "bg-[#2B3128] text-white" : "bg-white text-neutral-500 border border-neutral-200"}`}>{i + 1}</span>
                 <span className="mr-1 text-neutral-600">{s}</span>
                 {i < 3 && <span className="mr-1 text-neutral-300">→</span>}
               </li>
@@ -636,9 +767,9 @@ export const Slideshow = () => {
               key={p.id}
               onClick={() => loadPreset(p.id)}
               aria-pressed={presetId === p.id}
-              className={`rounded-2xl border p-4 text-left transition-all ${presetId === p.id ? "border-neutral-900 bg-neutral-900 text-white shadow-xl" : "border-neutral-900/10 bg-white/80 hover:border-neutral-900/40 hover:shadow-md"}`}
+              className={`rounded-2xl border p-4 text-left transition-all ${presetId === p.id ? "border-[#2B3128] bg-[#2B3128] text-white shadow-xl" : "border-[#2B3128]/10 bg-white/80 hover:border-[#2B3128]/40 hover:shadow-md"}`}
             >
-              <span className={`text-[11px] font-bold uppercase tracking-[0.16em] ${presetId === p.id ? "text-lime-300" : "text-lime-700"}`}>{p.hook}</span>
+              <span className={`block text-sm font-bold tracking-tight ${presetId === p.id ? "text-white" : "text-neutral-900"}`}>{p.hook}</span>
               <span className="mt-1 block text-base font-bold tracking-tight">{p.label}</span>
               <span className={`mt-0.5 block text-xs ${presetId === p.id ? "text-white/60" : "text-neutral-500"}`}>{p.slides.length} slides • caption included</span>
             </button>
@@ -646,11 +777,11 @@ export const Slideshow = () => {
         </div>
 
         {/* design toolbar */}
-        <div className="mt-4 rounded-3xl border border-neutral-900/10 bg-white/75 p-3 shadow-sm backdrop-blur sm:p-4">
+        <div className="mt-4 rounded-3xl border border-[#2B3128]/10 bg-white/75 p-3 shadow-sm backdrop-blur sm:p-4">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
               <Label>format</Label>
-              <div className="flex items-center gap-2.5 rounded-2xl border border-neutral-900 bg-neutral-900 px-3 py-2 text-left text-white">
+              <div className="flex items-center gap-2.5 rounded-2xl border border-[#2B3128] bg-[#2B3128] px-3 py-2 text-left text-white">
                 <span className="h-9 w-9 rounded-sm border-2 border-lime-300 bg-lime-300/20" />
                 <span>
                   <span className="block text-xs font-bold leading-none">{FORMAT.label}</span>
@@ -664,7 +795,7 @@ export const Slideshow = () => {
                 {(Object.keys(THEMES) as ThemeId[]).map((id) => (
                   <button
                     key={id} role="radio" aria-checked={themeId === id} onClick={() => setThemeId(id)}
-                    className={`flex items-center gap-2 rounded-full border py-1.5 pl-1.5 pr-3.5 transition ${themeId === id ? "border-neutral-900 bg-neutral-900 text-white" : "border-neutral-200 bg-white hover:border-neutral-400"}`}
+                    className={`flex items-center gap-2 rounded-full border py-1.5 pl-1.5 pr-3.5 transition ${themeId === id ? "border-[#2B3128] bg-[#2B3128] text-white" : "border-neutral-200 bg-white hover:border-neutral-400"}`}
                   >
                     <span className="flex -space-x-1.5">
                       <span className="h-6 w-6 rounded-full border border-black/10" style={{ backgroundColor: THEMES[id].theme.bg }} />
@@ -682,21 +813,24 @@ export const Slideshow = () => {
         </div>
 
         {/* mobile pane switch */}
-        <div className="mt-4 grid grid-cols-3 gap-1 rounded-full border border-neutral-900/10 bg-white/80 p-1 lg:hidden" role="tablist">
+        <div className="mt-4 grid grid-cols-3 gap-1 rounded-full border border-[#2B3128]/10 bg-white/80 p-1 lg:hidden" role="tablist">
           {([["slides", "Slides", Images], ["preview", "Preview", Eye], ["edit", "Edit", SlidersHorizontal]] as [Pane, string, LucideIcon][]).map(([id, label, Icon]) => (
             <button key={id} role="tab" aria-selected={pane === id} onClick={() => setPane(id)}
-              className={`flex items-center justify-center gap-1.5 rounded-full py-2 text-sm font-bold transition ${pane === id ? "bg-neutral-900 text-white" : "text-neutral-500"}`}>
+              className={`flex items-center justify-center gap-1.5 rounded-full py-2 text-sm font-bold transition ${pane === id ? "bg-[#2B3128] text-white" : "text-neutral-500"}`}>
               <Icon size={15} /> {label}
             </button>
           ))}
         </div>
 
-        <div className="mt-4 grid items-start gap-4 lg:grid-cols-[290px_minmax(0,1fr)_350px]">
+        <div
+          className="mt-4 flex flex-col items-start gap-4 lg:flex-row"
+          style={{ "--deck-w": `${deckW}px`, "--edit-w": `${editW}px` } as React.CSSProperties}
+        >
           {/* deck */}
-          <section aria-label="slides" className={`${pane === "slides" ? "block" : "hidden"} lg:block rounded-3xl border border-neutral-900/10 bg-white/75 p-3 backdrop-blur lg:sticky lg:top-24`}>
+          <section aria-label="deck" className={`${pane === "slides" ? "block" : "hidden"} w-full rounded-3xl border border-[#2B3128]/10 bg-white/75 p-3 backdrop-blur lg:sticky lg:top-24 lg:block lg:w-(--deck-w) lg:shrink-0`}>
             <div className="flex items-center justify-between px-1 pb-2">
-              <h2 className="text-sm font-bold">deck <span className="ml-1 rounded-full bg-neutral-900 px-2 py-0.5 text-[11px] text-white">{slides.length}</span></h2>
-              <button onClick={addSlide} className="inline-flex items-center gap-1 rounded-full bg-neutral-900 px-3 py-1.5 text-xs font-bold text-white transition hover:bg-lime-700">
+              <h2 className="text-sm font-bold">deck <span className="ml-1 rounded-full bg-[#2B3128] px-2 py-0.5 text-[11px] text-white">{slides.length}</span></h2>
+              <button onClick={addSlide} className="inline-flex items-center gap-1 rounded-full bg-[#2B3128] px-3 py-1.5 text-xs font-bold text-white transition hover:bg-lime-700">
                 <Plus size={13} /> add
               </button>
             </div>
@@ -705,26 +839,31 @@ export const Slideshow = () => {
                 <Thumb key={s.id} slide={s} index={i} active={i === selected} theme={theme} onClick={() => { setDir(i > selected ? 1 : -1); setSelected(i); if (window.innerWidth < 1024) setPane("preview"); }} />
               ))}
             </div>
-            <div className="mt-2 grid grid-cols-4 gap-1.5 border-t border-neutral-900/10 pt-2.5">
-              <button onClick={() => move(-1)} aria-label="move up" className="rounded-xl border border-neutral-200 bg-white py-2 text-sm font-bold hover:border-neutral-900"><ArrowLeft size={14} className="mx-auto rotate-90" /></button>
-              <button onClick={() => move(1)} aria-label="move down" className="rounded-xl border border-neutral-200 bg-white py-2 text-sm font-bold hover:border-neutral-900"><ArrowRight size={14} className="mx-auto rotate-90" /></button>
-              <button onClick={duplicate} aria-label="duplicate" className="rounded-xl border border-neutral-200 bg-white py-2 hover:border-neutral-900"><CopyPlus size={14} className="mx-auto" /></button>
+            <div className="mt-2 grid grid-cols-4 gap-1.5 border-t border-[#2B3128]/10 pt-2.5">
+              <button onClick={() => move(-1)} aria-label="move up" className="rounded-xl border border-neutral-200 bg-white py-2 text-sm font-bold hover:border-[#2B3128]"><ArrowLeft size={14} className="mx-auto rotate-90" /></button>
+              <button onClick={() => move(1)} aria-label="move down" className="rounded-xl border border-neutral-200 bg-white py-2 text-sm font-bold hover:border-[#2B3128]"><ArrowRight size={14} className="mx-auto rotate-90" /></button>
+              <button onClick={duplicate} aria-label="duplicate" className="rounded-xl border border-neutral-200 bg-white py-2 hover:border-[#2B3128]"><CopyPlus size={14} className="mx-auto" /></button>
               <button onClick={remove} aria-label="delete" className="rounded-xl border border-red-200 bg-red-50 py-2 text-red-600 hover:bg-red-100"><Trash2 size={14} className="mx-auto" /></button>
             </div>
           </section>
 
+          <ColDivider
+            label="resize deck column"
+            onDrag={startDrag("deck")}
+            onReset={resetWidths}
+            onNudge={(d) => nudge("deck", d)}
+          />
+
           {/* preview */}
-          <section aria-label="preview" className={`${pane === "preview" ? "flex" : "hidden"} lg:flex flex-col items-center rounded-3xl border border-neutral-900/10 bg-linear-to-b from-white/60 to-white/25 p-4 sm:p-6 lg:sticky lg:top-24`}>
+          <section aria-label="preview" className={`${pane === "preview" ? "flex" : "hidden"} flex-col items-center rounded-3xl border border-[#2B3128]/10 bg-linear-to-b from-white/60 to-white/25 p-4 sm:p-6 lg:sticky lg:top-24 lg:flex lg:min-w-0 lg:flex-1`}>
             <div className="flex w-full max-w-105 items-center justify-between">
               <button onClick={() => go(selected - 1)} disabled={selected === 0} aria-label="previous slide"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-900/15 bg-white transition hover:border-neutral-900 disabled:opacity-30">
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-[#2B3128]/15 bg-white transition hover:border-[#2B3128] disabled:opacity-30">
                 <ArrowLeft size={17} />
               </button>
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-neutral-500 tabular-nums">
-                {selected + 1} / {slides.length} • {FORMAT.sub}
-              </p>
+              <h2 className="text-sm font-bold">canvas <span className="ml-1 rounded-full bg-[#2B3128] px-2 py-0.5 text-[11px] text-white">{selected + 1} / {slides.length}</span></h2>
               <button onClick={() => go(selected + 1)} disabled={selected === slides.length - 1} aria-label="next slide"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-900/15 bg-white transition hover:border-neutral-900 disabled:opacity-30">
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-[#2B3128]/15 bg-white transition hover:border-[#2B3128] disabled:opacity-30">
                 <ArrowRight size={17} />
               </button>
             </div>
@@ -753,30 +892,34 @@ export const Slideshow = () => {
                   )}
                   {current?.variant !== "cta" && <PeekingMascot />}
                   <div className="relative">
-                    <div className="flex items-center justify-between text-[11px] font-bold tracking-wide" style={{ color: theme.muted }}>
-                      <span className="flex items-center gap-1.5">
-                        <img src={MASCOT_SRC} alt="" className="h-6 w-6 shrink-0 object-contain" />
-                        alya.
+                    <div className="flex items-center justify-end text-[11px] font-bold tracking-wide">
+                      <span
+                        className="rounded-full border px-2.5 py-1 tabular-nums"
+                        style={{ color: theme.text, backgroundColor: theme.surface, borderColor: theme.border }}
+                      >
+                        {String(selected + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
                       </span>
-                      <span className="tabular-nums">{String(selected + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}</span>
                     </div>
-                    {current?.kicker && (
-                      <span className="mt-3.5 inline-block max-w-full truncate rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em]"
-                        style={{ backgroundColor: themeId === "dark" ? "rgba(183,217,107,0.16)" : "rgba(0,0,0,0.07)", color: themeId === "dark" ? theme.primary : theme.text }}>
-                        {current.kicker}
-                      </span>
-                    )}
+                  </div>
+                  <div className="relative flex w-full flex-1 flex-col justify-center py-3">
                     {current?.title ? (
-                      <p className="mt-2.5 font-bold leading-[1.02] tracking-tight" style={{ color: theme.text, fontSize: current.variant === "cover" ? 37 : 29 }}>
+                      <p className="text-balance font-bold leading-none tracking-tight" style={{ color: theme.text, fontSize: current.variant === "cover" ? 52 : 40 }}>
                         {current.title}
                       </p>
-                    ) : showWordFields ? null : <p className="mt-2.5 text-sm italic" style={{ color: theme.muted }}>add a title…</p>}
-                    {current?.body && <p className="mt-2 text-[13px] leading-snug" style={{ color: theme.muted }}>{current.body}</p>}
+                    ) : showWordFields ? null : <p className="text-sm italic" style={{ color: theme.muted }}>add a title…</p>}
+                    {current?.body && <p className="mt-3 text-[17px] leading-snug" style={{ color: theme.muted }}>{current.body}</p>}
                     {current?.variant === "word" && (
-                      <div className="mt-4 rounded-2xl border p-4" style={{ backgroundColor: themeId === "dark" ? "#1B1E17" : theme.surface, borderColor: theme.border }}>
-                        <p className="text-[10px] font-semibold uppercase tracking-[0.2em]" style={{ color: theme.accent }}>tap → translate</p>
-                        <p className="mt-1 wrap-break-word text-[28px] font-bold leading-none tracking-tight" style={{ color: theme.text }}>{current.word || "tu palabra"}</p>
-                        <p className="mt-1.5 text-xs italic leading-snug" style={{ color: theme.muted }}>{current.translation || "translation goes here…"}</p>
+                      <div className="mt-4 rounded-3xl border p-4 shadow-[0_12px_32px_-12px_rgba(0,0,0,0.25)]" style={{ backgroundColor: themeId === "dark" ? "#1B1E17" : theme.surface, borderColor: theme.border }}>
+                        <p className="text-[10px] font-bold uppercase tracking-[0.2em]">
+                          <span className="rounded-md px-2 py-1" style={{ color: theme.accent, backgroundColor: `${theme.accent}24` }}>
+                            tap → translate
+                          </span>
+                        </p>
+                        <div className="mt-2.5 grid grid-cols-[auto_1px_1fr] items-center gap-3">
+                          <p className="min-w-0 wrap-break-word text-[30px] font-bold leading-[0.95] tracking-tight" style={{ color: theme.text }}>{current.word || "tu palabra"}</p>
+                          <div className="self-stretch" style={{ backgroundColor: theme.border }} aria-hidden />
+                          <p className="min-w-0 text-[13px] italic leading-snug" style={{ color: theme.muted }}>{current.translation || "translation goes here…"}</p>
+                        </div>
                       </div>
                     )}
                     {current?.variant === "cta" && (
@@ -796,9 +939,7 @@ export const Slideshow = () => {
                       <div className="rounded-full px-4 py-3 text-center text-[12px] font-bold leading-tight" style={{ backgroundColor: theme.primary, color: theme.onPrimary }}>
                         download ALYA — free on iOS
                       </div>
-                    ) : (
-                      current?.footer ? <p className="px-1 text-[12px] font-semibold" style={{ color: theme.muted }}>{current.footer}</p> : null
-                    )}
+                    ) : null}
                     <div className="mt-3 flex justify-center gap-1.5">
                       {slides.map((_, i) => (
                         <button key={i} onClick={() => go(i)} aria-label={`go to slide ${i + 1}`}
@@ -816,29 +957,34 @@ export const Slideshow = () => {
 
             <div className="mt-3 grid w-full max-w-105 gap-2 sm:grid-cols-2">
               <button onClick={exportOne} disabled={exporting}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-neutral-900 px-5 py-3.5 text-sm font-bold text-white shadow-lg transition hover:bg-lime-700 disabled:opacity-50">
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#2B3128] px-5 py-3.5 text-sm font-bold text-white shadow-lg transition hover:bg-lime-700 disabled:opacity-50">
                 {exporting ? <Loader2 size={16} className="animate-spin" /> : <Download size={16} />}
                 {progress || `export slide ${selected + 1}`}
               </button>
               <button onClick={exportAll} disabled={exporting}
-                className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-neutral-900 bg-white px-5 py-3 text-sm font-bold transition hover:bg-neutral-900 hover:text-white disabled:opacity-50">
+                className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-[#2B3128] bg-white px-5 py-3 text-sm font-bold transition hover:bg-[#2B3128] hover:text-white disabled:opacity-50">
                 <LayoutGrid size={16} /> all {slides.length} PNGs
               </button>
             </div>
           </section>
 
           {/* editor */}
-          <section aria-label="editor" className={`${pane === "edit" ? "block" : "hidden"} lg:block rounded-3xl border border-neutral-900/10 bg-white/75 p-4 backdrop-blur sm:p-5 lg:sticky lg:top-24 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto`}>
+          <ColDivider
+            label="resize editor column"
+            onDrag={startDrag("edit")}
+            onReset={resetWidths}
+            onNudge={(d) => nudge("edit", -d)}
+          />
+          <section aria-label="editor" className={`${pane === "edit" ? "block" : "hidden"} w-full rounded-3xl border border-[#2B3128]/10 bg-white/75 p-4 backdrop-blur sm:p-5 lg:sticky lg:top-24 lg:block lg:max-h-[calc(100vh-7rem)] lg:w-(--edit-w) lg:shrink-0 lg:overflow-y-auto`}>
             <div className="flex items-center justify-between">
-              <h2 className="text-sm font-bold">slide {selected + 1} <span className="font-medium text-neutral-500">of {slides.length}</span></h2>
-              <span className="rounded-full bg-lime-200/70 px-2.5 py-1 text-[11px] font-bold text-lime-900">{current?.variant}</span>
+              <h2 className="text-sm font-bold">slide {selected + 1} <span className="ml-1 rounded-full bg-[#2B3128] px-2 py-0.5 text-[11px] text-white">{current?.variant}</span></h2>
             </div>
 
             <Label>layout</Label>
             <div className="mt-1.5 grid grid-cols-2 gap-1.5" role="radiogroup" aria-label="layout">
               {VARIANTS.map((v) => (
                 <button key={v.id} role="radio" aria-checked={current?.variant === v.id} onClick={() => update({ variant: v.id })}
-                  className={`rounded-2xl border p-2.5 text-left transition ${current?.variant === v.id ? "border-neutral-900 bg-neutral-900 text-white" : "border-neutral-200 bg-white hover:border-neutral-900/40"}`}>
+                  className={`rounded-2xl border p-2.5 text-left transition ${current?.variant === v.id ? "border-[#2B3128] bg-[#2B3128] text-white" : "border-neutral-200 bg-white hover:border-[#2B3128]/40"}`}>
                   <span className="block text-xs font-bold">{v.label}</span>
                   <span className={`block text-[11px] ${current?.variant === v.id ? "text-white/60" : "text-neutral-500"}`}>{v.hint}</span>
                 </button>
@@ -847,7 +993,6 @@ export const Slideshow = () => {
 
             <div className="mt-4 space-y-3">
               {([
-                ["kicker", "kicker — small pill", false],
                 ["title", "title — the hook", false],
                 ["body", "body — one line payoff", true],
               ] as const).map(([key, label, area]) => (
@@ -856,11 +1001,11 @@ export const Slideshow = () => {
                   {area ? (
                     <textarea value={current?.[key] ?? ""} onChange={(e) => update({ [key]: e.target.value } as Partial<Slide>)} rows={2}
                       placeholder={key === "body" ? "e.g. real videos, instant translations" : ""}
-                      className="mt-1 w-full resize-none rounded-2xl border border-neutral-200 bg-white p-3 text-sm outline-none transition focus:border-neutral-900 focus:ring-2 focus:ring-lime-300" />
+                      className="mt-1 w-full resize-none rounded-2xl border border-neutral-200 bg-white p-3 text-sm outline-none transition focus:border-[#2B3128] focus:ring-2 focus:ring-lime-300" />
                   ) : (
                     <input value={current?.[key] ?? ""} onChange={(e) => update({ [key]: e.target.value } as Partial<Slide>)}
-                      placeholder={key === "title" ? "e.g. stop saying it like a textbook" : key === "kicker" ? "e.g. 01 / real videos" : ""}
-                      className="mt-1 w-full rounded-2xl border border-neutral-200 bg-white p-3 text-sm outline-none transition focus:border-neutral-900 focus:ring-2 focus:ring-lime-300" />
+                      placeholder={key === "title" ? "e.g. stop saying it like a textbook" : ""}
+                      className="mt-1 w-full rounded-2xl border border-neutral-200 bg-white p-3 text-sm outline-none transition focus:border-[#2B3128] focus:ring-2 focus:ring-lime-300" />
                   )}
                 </div>
               ))}
@@ -876,12 +1021,12 @@ export const Slideshow = () => {
                   <div>
                     <div className="flex items-center justify-between"><Label>spanish word</Label><Count value={current?.word ?? ""} max={LIMITS.word} /></div>
                     <input value={current?.word ?? ""} onChange={(e) => update({ word: e.target.value })} placeholder="e.g. sobremesa"
-                      className="mt-1 w-full rounded-2xl border border-neutral-200 bg-white p-3 text-sm outline-none focus:border-neutral-900" />
+                      className="mt-1 w-full rounded-2xl border border-neutral-200 bg-white p-3 text-sm outline-none focus:border-[#2B3128]" />
                   </div>
                   <div>
                     <div className="flex items-center justify-between"><Label>translation</Label><Count value={current?.translation ?? ""} max={LIMITS.translation} /></div>
                     <textarea value={current?.translation ?? ""} onChange={(e) => update({ translation: e.target.value })} rows={2} placeholder="e.g. lingering table talk after a meal"
-                      className="mt-1 w-full resize-none rounded-2xl border border-neutral-200 bg-white p-3 text-sm outline-none focus:border-neutral-900" />
+                      className="mt-1 w-full resize-none rounded-2xl border border-neutral-200 bg-white p-3 text-sm outline-none focus:border-[#2B3128]" />
                   </div>
                 </div>
               </div>
@@ -897,7 +1042,7 @@ export const Slideshow = () => {
                   {current?.imageUrl ? (
                     <img src={current.imageUrl} alt="" className="mt-2 h-28 w-full rounded-xl object-cover" />
                   ) : (
-                    <label className="mt-2 flex h-28 w-full cursor-pointer items-center justify-center rounded-xl border border-dashed border-neutral-300 bg-white text-xs font-semibold text-neutral-500 hover:border-neutral-900">
+                    <label className="mt-2 flex h-28 w-full cursor-pointer items-center justify-center rounded-xl border border-dashed border-neutral-300 bg-white text-xs font-semibold text-neutral-500 hover:border-[#2B3128]">
                       upload a real screenshot
                       <input type="file" accept="image/*" className="hidden" onChange={(e) => onPickImage(e.target.files?.[0])} />
                     </label>
@@ -906,29 +1051,17 @@ export const Slideshow = () => {
                 </div>
               )}
 
-              <div>
-                <div className="flex items-center justify-between"><Label>bottom bar</Label><Count value={current?.footer ?? ""} max={LIMITS.footer} /></div>
-                <input value={current?.footer ?? ""} onChange={(e) => update({ footer: e.target.value })} placeholder={handle}
-                  className="mt-1 w-full rounded-2xl border border-neutral-200 bg-white p-3 text-sm outline-none focus:border-neutral-900" />
-                <div className="mt-1.5 flex flex-wrap gap-1.5">
-                  {[handle, "tap-to-translate", "link in bio ↑"].map((chip) => (
-                    <button key={chip} onClick={() => update({ footer: chip })} className="rounded-full border border-neutral-200 bg-white px-2.5 py-1 text-[11px] font-bold text-neutral-600 hover:border-neutral-900 hover:text-neutral-900">
-                      {chip || "empty"}
-                    </button>
-                  ))}
-                </div>
-              </div>
             </div>
 
-            <div className="mt-5 border-t border-neutral-900/10 pt-4">
+            <div className="mt-5 border-t border-[#2B3128]/10 pt-4">
               <div className="flex items-center justify-between">
                 <Label>caption + hashtags</Label>
-                <button onClick={copyCaption} className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-bold transition ${copied ? "bg-lime-400 text-neutral-950" : "bg-neutral-900 text-white hover:bg-lime-700"}`}>
+                <button onClick={copyCaption} className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-bold transition ${copied ? "bg-lime-400 text-neutral-950" : "bg-[#2B3128] text-white hover:bg-lime-700"}`}>
                   {copied ? <Check size={13} /> : <Copy size={13} />} {copied ? "copied" : "copy"}
                 </button>
               </div>
               <textarea value={caption} onChange={(e) => setCaption(e.target.value)} rows={6}
-                className="mt-2 w-full resize-y rounded-2xl border border-neutral-200 bg-white p-3 text-sm leading-relaxed outline-none focus:border-neutral-900" />
+                className="mt-2 w-full resize-y rounded-2xl border border-neutral-200 bg-white p-3 text-sm leading-relaxed outline-none focus:border-[#2B3128]" />
               <p className="mt-1 text-[11px] font-semibold text-neutral-500 tabular-nums">{caption.length} chars • {hashtags} hashtags • {slides.length} slides</p>
               <div className="mt-2">
                 <Label>handle</Label>
@@ -936,7 +1069,7 @@ export const Slideshow = () => {
               </div>
             </div>
 
-            <a href={APP_STORE_URL} target="_blank" rel="noreferrer" className="mt-4 block rounded-2xl bg-neutral-900 p-4 text-white">
+            <a href={APP_STORE_URL} target="_blank" rel="noreferrer" className="mt-4 block rounded-2xl bg-[#2B3128] p-4 text-white">
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-lime-300">posting checklist</p>
               <ol className="mt-1.5 space-y-1 text-[13px] leading-snug text-white/85">
                 <li>1. export PNGs at {FORMAT.sub}</li>
@@ -951,7 +1084,7 @@ export const Slideshow = () => {
       <AnimatePresence>
         {toast && (
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 12 }}
-            className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-full bg-neutral-900 px-5 py-3 text-sm font-semibold text-white shadow-2xl">
+            className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-full bg-[#2B3128] px-5 py-3 text-sm font-semibold text-white shadow-2xl">
             {toast}
           </motion.div>
         )}
