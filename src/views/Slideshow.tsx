@@ -40,6 +40,7 @@ const MASCOT_SRC = "/mascot/alya-pet.png";
 /* Bundled CTA media — pickable presets on the last slide. */
 const CTA_IMAGE_OPTIONS = [
   { src: "/slideshow/alya-app-demo.gif", label: "Demo" },
+  { src: "/slideshow/alya-app-parrot.gif", label: "Parrot" },
 ];
 
 /* Full-bleed illustrated Spain doodle used as the "fiesta" theme background. */
