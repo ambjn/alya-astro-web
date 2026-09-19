@@ -167,6 +167,60 @@ const PLANNER_ROWS = instagramCampaign.planner as unknown as PlannerRow[];
 type SlideTextField = "title" | "body" | "word" | "translation" | "footer";
 
 const LIMITS: Record<SlideTextField, number> = { title: 60, body: 110, word: 22, translation: 90, footer: 44 };
+const WORKSPACE_STORAGE_KEY = "slideshow-workspace-v1";
+
+type CampaignPillar = "quiz" | "correction" | "practical";
+type SeptemberLesson = (typeof instagramCampaign.lessons)[number];
+
+const campaignSlide = (slide: Omit<Slide, "id">): Slide => ({ ...slide, id: uid() });
+const ctaSlide = (): Slide => campaignSlide({
+  title: instagramCampaign.campaign.cta.title,
+  body: instagramCampaign.campaign.cta.body,
+  word: "", translation: "", footer: "ALYA • real Spanish videos", variant: "cta",
+  imageUrl: instagramCampaign.campaign.cta.imageUrl,
+});
+
+function buildCampaignDeck(date: string, pillar: CampaignPillar, hook: string) {
+  const lesson = instagramCampaign.lessons.find((item) => item.date === date) as SeptemberLesson | undefined;
+  if (!lesson) return null;
+  if (pillar === "quiz") {
+    const q = lesson.quiz;
+    return {
+      caption: `${hook}\n\nComment your answer before checking slide 4.\n\nLearn Spanish from real videos with ALYA.\n\n#learnspanish #spanishquiz #spanishtips #español #alyaapp`,
+      slides: [
+        campaignSlide({ title: hook, body: "swipe to test yourself →", word: "", translation: "", footer: "@helloalya", variant: "cover" }),
+        campaignSlide({ title: "What does this mean?", body: "", word: q.phrase, translation: "Don't translate it literally", footer: "choose before you swipe", variant: "word" }),
+        campaignSlide({ title: "Choose your answer", body: q.options.map((option, index) => `${String.fromCharCode(65 + index)}) ${option}`).join("  •  "), word: "", translation: "", footer: "lock in your answer", variant: "statement" }),
+        campaignSlide({ title: `${q.answer} — ${q.meaning}`, body: q.example, word: "", translation: "", footer: "did you get it right?", variant: "statement" }),
+        ctaSlide(),
+      ],
+    };
+  }
+  if (pillar === "correction") {
+    const c = lesson.correction;
+    return {
+      caption: `${hook} ❌\n\nSend this to someone learning Spanish before they make this mistake.\n\nLearn the Spanish people actually speak with ALYA.\n\n#learnspanish #spanishmistakes #spanishtips #español #alyaapp`,
+      slides: [
+        campaignSlide({ title: hook, body: "you sound like a textbook", word: "", translation: "", footer: "@helloalya", variant: "cover" }),
+        campaignSlide({ title: "The mistake", body: c.mistake, word: "", translation: "", footer: "here's the natural fix", variant: "statement" }),
+        campaignSlide({ title: "Say this instead", body: c.correction, word: "", translation: "", footer: "natural Spanish", variant: "statement" }),
+        campaignSlide({ title: "A real example", body: c.example, word: "", translation: "", footer: "learn it in context", variant: "statement" }),
+        campaignSlide({ title: "Quick tip", body: c.tip, word: "", translation: "", footer: "save this distinction", variant: "statement" }),
+        ctaSlide(),
+      ],
+    };
+  }
+  const p = lesson.practical;
+  return {
+    caption: `${hook} 🔖\n\nSave this before your next Spanish conversation.\n\nLearn Spanish from real videos with ALYA.\n\n#learnspanish #spanishphrases #spanishvocab #traveltips #alyaapp`,
+    slides: [
+      campaignSlide({ title: hook, body: "save these for later →", word: "", translation: "", footer: "@helloalya", variant: "cover" }),
+      ...p.items.map(([word, translation], index) => campaignSlide({ title: "", body: "", word, translation, footer: `phrase ${index + 1} of 3`, variant: "word" as const })),
+      campaignSlide({ title: "save this for later ↗", body: "Your future Spanish-speaking self will thank you.", word: "", translation: "", footer: "send it to your travel partner", variant: "statement" }),
+      ctaSlide(),
+    ],
+  };
+}
 
 /* ---------- canvas export (unchanged logic, tightened type) ---------- */
 
@@ -567,7 +621,40 @@ export const Slideshow = () => {
   const [toast, setToast] = useState("");
   const [copied, setCopied] = useState(false);
   const [dir, setDir] = useState(0);
+  const [workspaceHydrated, setWorkspaceHydrated] = useState(false);
   const toastTimer = useRef<number>(0);
+
+  useEffect(() => {
+    try {
+      const raw = window.localStorage.getItem(WORKSPACE_STORAGE_KEY);
+      if (raw) {
+        const saved = JSON.parse(raw) as Partial<{
+          slides: Slide[];
+          caption: string;
+          presetId: string;
+          themeId: ThemeId;
+          handle: string;
+        }>;
+        if (Array.isArray(saved.slides) && saved.slides.length)
+          setSlides(saved.slides.map((slide) => ({ ...slide, id: slide.id || uid() })));
+        if (typeof saved.caption === "string") setCaption(saved.caption);
+        if (typeof saved.presetId === "string") setPresetId(saved.presetId);
+        if (saved.themeId && saved.themeId in THEMES) setThemeId(saved.themeId);
+        if (typeof saved.handle === "string") setHandle(saved.handle);
+      }
+    } catch { /* corrupt or unavailable storage falls back to campaign JSON */ }
+    setWorkspaceHydrated(true);
+  }, []);
+
+  useEffect(() => {
+    if (!workspaceHydrated) return;
+    try {
+      window.localStorage.setItem(
+        WORKSPACE_STORAGE_KEY,
+        JSON.stringify({ slides, caption, presetId, themeId, handle }),
+      );
+    } catch { /* storage may be full or disabled */ }
+  }, [caption, handle, presetId, slides, themeId, workspaceHydrated]);
 
   /* Content planner checkboxes — persisted per browser. Key: `${date}|${slot}` */
   const [plannerChecked, setPlannerChecked] = useState<Record<string, boolean>>(() => {
@@ -692,24 +779,18 @@ export const Slideshow = () => {
   };
 
   const loadCampaignTopic = (row: PlannerRow, slotIndex: number) => {
-    const mapping: Record<number, { presetId: string; topicIndex: number }> = {
-      0: { presetId: "quiz", topicIndex: 0 },
-      2: { presetId: "correction", topicIndex: 1 },
-      4: { presetId: "practical", topicIndex: 2 },
-    };
-    const target = mapping[slotIndex];
-    if (!target) return;
-    const preset = PRESETS.find((item) => item.id === target.presetId);
+    const slot = instagramCampaign.campaign.slots[slotIndex];
+    if (!("topicIndex" in slot) || typeof slot.topicIndex !== "number") return;
+    if (!(["quiz", "correction", "practical"] as string[]).includes(slot.pillar)) return;
+    const pillar = slot.pillar as CampaignPillar;
+    const preset = PRESETS.find((item) => item.id === pillar);
     if (!preset) return;
-    const topic = row.carouselTopics[target.topicIndex];
-    const nextSlides = preset.slides.map((slide, index) => ({
-      ...slide,
-      id: uid(),
-      ...(index === 0 ? { title: topic } : {}),
-    }));
+    const topic = row.carouselTopics[slot.topicIndex];
+    const deck = buildCampaignDeck(row.date, pillar, topic);
+    if (!deck) return;
     setPresetId(preset.id);
-    setSlides(nextSlides);
-    setCaption(preset.caption);
+    setSlides(deck.slides);
+    setCaption(deck.caption);
     setSelected(0);
     setDir(0);
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -1058,13 +1139,8 @@ export const Slideshow = () => {
                 </div>
               ))}
 
-              <div className={`rounded-2xl border p-3 transition ${showWordFields ? "border-lime-600/30 bg-lime-100/40" : "border-dashed border-neutral-300 bg-neutral-50"}`}>
-                <div className="flex items-center justify-between">
-                  <Label>word card {showWordFields ? "• active" : "• needs word layout"}</Label>
-                  {!showWordFields && (
-                    <button onClick={() => update({ variant: "word" })} className="text-[11px] font-bold text-lime-800 underline">switch to word</button>
-                  )}
-                </div>
+              {showWordFields && <div className="rounded-2xl border border-lime-600/30 bg-lime-100/40 p-3">
+                <Label>word card</Label>
                 <div className="mt-2 space-y-3 opacity-100">
                   <div>
                     <div className="flex items-center justify-between"><Label>spanish word</Label><Count value={current?.word ?? ""} max={LIMITS.word} /></div>
@@ -1077,7 +1153,7 @@ export const Slideshow = () => {
                       className="mt-1 w-full resize-none rounded-2xl border border-neutral-200 bg-white p-3 text-sm outline-none focus:border-[#2B3128]" />
                   </div>
                 </div>
-              </div>
+              </div>}
 
               {current?.variant === "cta" && (
                 <div className="rounded-2xl border border-lime-600/30 bg-lime-100/40 p-3">
@@ -1189,8 +1265,10 @@ export const Slideshow = () => {
                       {PLANNER_SLOTS.map((slot, si) => {
                         const on = isSlotChecked(row.date, si);
                         const isHot = !!hot[si];
-                        const topicIndex = si === 0 ? 0 : si === 2 ? 1 : si === 4 ? 2 : -1;
-                        const topic = topicIndex >= 0 ? row.carouselTopics[topicIndex] : null;
+                        const slotConfig = instagramCampaign.campaign.slots[si];
+                        const topic = "topicIndex" in slotConfig && typeof slotConfig.topicIndex === "number"
+                          ? row.carouselTopics[slotConfig.topicIndex]
+                          : null;
                         return (
                           <td key={slot} className="min-w-44 px-2 py-2 text-center align-top">
                             <button
