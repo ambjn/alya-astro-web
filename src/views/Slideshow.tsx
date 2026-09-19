@@ -39,8 +39,14 @@ const MASCOT_SRC = "/mascot/alya-pet.png";
 
 /* Bundled CTA media — pickable presets on the last slide. */
 const CTA_IMAGE_OPTIONS = [
-  { src: "/slideshow/alya-app-demo.gif", label: "Demo" },
-  { src: "/slideshow/alya-app-parrot.gif", label: "Parrot" },
+  { src: "/slideshow/01_cafe_parrot.png", label: "1" },
+  { src: "/slideshow/02_swipe_transition.png", label: "2" },
+  { src: "/slideshow/03_new_video_with_finger.png", label: "3" },
+  { src: "/slideshow/04_new_video_final.png", label: "4" },
+  { src: "/slideshow/01_start_swipe.png", label: "5" },
+  { src: "/slideshow/02_mid_swipe_transition.png", label: "6" },
+  { src: "/slideshow/03_new_video_with_swipe.png", label: "7" },
+  { src: "/slideshow/04_final_new_video.png", label: "8" },
 ];
 
 /* Full-bleed illustrated Spain doodle used as the "fiesta" theme background. */
@@ -388,14 +394,19 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
 
   /* Two-pass layout: measure the text block first so short content can sit
      vertically centered instead of leaving a big blank middle. CTA slides
-     stay top-aligned so the screenshot gets maximum room. */
+     stay top-aligned so the screenshot gets maximum room. CTA type is set
+     smaller so a long hook can't squeeze the shot rect below the minimum
+     and drop the GIF from the export. */
   const bigTitle = slide.variant === "cover";
-  const titleFont = `700 ${bigTitle ? 148 : 118}px Outfit, system-ui, sans-serif`;
-  const titleBase = bigTitle ? 138 : 110, titleAdv = bigTitle ? 160 : 128;
+  const compactCta = slide.variant === "cta";
+  const titleSize = bigTitle ? 148 : compactCta ? 88 : 118;
+  const titleFont = `700 ${titleSize}px Outfit, system-ui, sans-serif`;
+  const titleBase = bigTitle ? 138 : compactCta ? 80 : 110, titleAdv = bigTitle ? 160 : compactCta ? 94 : 128;
   ctx.font = titleFont;
-  const titleLines = slide.title ? wrapText(ctx, slide.title, W).slice(0, 5) : [];
-  ctx.font = "500 54px Outfit, system-ui, sans-serif";
-  const bodyLines = slide.body ? wrapText(ctx, slide.body, W).slice(0, 4) : [];
+  const titleLines = slide.title ? wrapText(ctx, slide.title, W).slice(0, compactCta ? 2 : 5) : [];
+  const bodySize = compactCta ? 46 : 54;
+  ctx.font = `500 ${bodySize}px Outfit, system-ui, sans-serif`;
+  const bodyLines = slide.body ? wrapText(ctx, slide.body, W).slice(0, compactCta ? 2 : 4) : [];
   const hasWordCard = slide.variant === "word" && slide.word;
 
   /* Word-card geometry, measured up front: two columns (word | translation)
@@ -424,7 +435,9 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
 
   let contentH = 0;
   if (titleLines.length) contentH += titleBase + titleAdv * (titleLines.length - 1) + 24;
-  if (bodyLines.length) contentH += 63 + 76 * (bodyLines.length - 1) + 40;
+  if (bodyLines.length) contentH += compactCta
+    ? 54 + 64 * (bodyLines.length - 1) + 40
+    : 63 + 76 * (bodyLines.length - 1) + 40;
   if (hasWordCard) contentH += 20 + wordCardH + 40;
 
   const topY = 170;
@@ -441,8 +454,9 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
   }
   if (bodyLines.length) {
     ctx.fillStyle = t.muted;
-    ctx.font = "500 54px Outfit, system-ui, sans-serif";
-    for (const line of bodyLines) { ctx.fillText(line, pad, y + 63); y += 76; }
+    ctx.font = `500 ${bodySize}px Outfit, system-ui, sans-serif`;
+    const bodyBase = compactCta ? 54 : 63, bodyAdv = compactCta ? 64 : 76;
+    for (const line of bodyLines) { ctx.fillText(line, pad, y + bodyBase); y += bodyAdv; }
     y += 40;
   }
   if (hasWordCard) {
@@ -476,7 +490,8 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
   }
 
   const bottomReserved = ctaH + 180;
-  const shotTop = y + 16, shotBottom = fmt.h - bottomReserved;
+  // No button row on CTA — media runs to just above the page dots, like the preview.
+  const shotTop = y + 16, shotBottom = compactCta ? fmt.h - 90 : fmt.h - bottomReserved;
   if (slide.variant === "cta" && shotBottom - shotTop > 160) {
     if (slide.imageUrl) {
       try {
@@ -492,14 +507,6 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
       const mh = mw * (mascot.height / mascot.width);
       ctx.drawImage(mascot, pad + (W - mw) / 2, shotTop + Math.max(0, (shotBottom - shotTop - mh) / 2), mw, mh);
     }
-  }
-
-  if (slide.variant === "cta") {
-    ctx.fillStyle = t.primary;
-    roundRect(ctx, pad, ctaY, W, ctaH, 75); ctx.fill();
-    ctx.fillStyle = t.onPrimary; ctx.font = "700 46px Outfit, system-ui, sans-serif";
-    const cta = "Get ALYA on the App Store →";
-    ctx.fillText(wrapText(ctx, cta, W - 100)[0] ?? cta, pad + 50, ctaY + 92);
   }
 
   for (let i = 0; i < total; i++) {
@@ -651,12 +658,23 @@ export const Slideshow = () => {
             return {
               ...rest,
               id: (rest as Slide).id || uid(),
-              // one-time migration: old/removed defaults → current GIF default
+              // one-time migration: old/removed defaults → current image default
               imageUrl: (rest as Slide).imageUrl === "/slideshow/alya-app-screen.jpg" ||
                 (rest as Slide).imageUrl === "/slideshow/ezgif-37c40560f187cc78.gif" ||
                 (rest as Slide).imageUrl === "/slideshow/alya-app-lesson.gif" ||
-                (rest as Slide).imageUrl === "/slideshow/alya-app-parrot.gif"
-                ? "/slideshow/alya-app-demo.gif"
+                (rest as Slide).imageUrl === "/slideshow/alya-app-cafe.gif" ||
+                (rest as Slide).imageUrl === "/slideshow/alya-app-demo.gif" ||
+                (rest as Slide).imageUrl === "/slideshow/alya-app-parrot.gif" ||
+                (rest as Slide).imageUrl === "/slideshow/05_scroll_swipe_demo.gif" ||
+                (rest as Slide).imageUrl === "/slideshow/1.png" ||
+                (rest as Slide).imageUrl === "/slideshow/2.png" ||
+                (rest as Slide).imageUrl === "/slideshow/3.png" ||
+                (rest as Slide).imageUrl === "/slideshow/4.png" ||
+                (rest as Slide).imageUrl === "/slideshow/5.png" ||
+                (rest as Slide).imageUrl === "/slideshow/6.png" ||
+                (rest as Slide).imageUrl === "/slideshow/7.png" ||
+                (rest as Slide).imageUrl === "/slideshow/8.png"
+                ? "/slideshow/01_cafe_parrot.png"
                 : (rest as Slide).imageUrl,
             };
           }));
@@ -1086,11 +1104,11 @@ export const Slideshow = () => {
                       </div>
                     )}
                     {current?.variant === "cta" && (
-                      <div className="relative mt-4 aspect-square w-full overflow-hidden rounded-2xl border" style={{ borderColor: theme.border, backgroundColor: themeId === "dark" ? "#1B1E17" : theme.surface }}>
+                      <div className="relative mt-3 min-h-44 w-full flex-1 overflow-hidden rounded-2xl border" style={{ borderColor: theme.border, backgroundColor: themeId === "dark" ? "#1B1E17" : theme.surface }}>
                         {current.imageUrl ? (
-                          <img src={current.imageUrl} alt="" className="h-full w-full object-cover" />
+                          <img src={current.imageUrl} alt="" className="absolute inset-0 h-full w-full object-cover" />
                         ) : (
-                          <div className="flex h-full w-full items-center justify-center p-6">
+                          <div className="flex h-full min-h-44 w-full items-center justify-center p-6">
                             <img src={MASCOT_SRC} alt="" className="max-h-full max-w-[62%] object-contain opacity-90" />
                           </div>
                         )}
@@ -1103,11 +1121,6 @@ export const Slideshow = () => {
                     )}
                   </div>
                   <div className="relative">
-                    {current?.variant === "cta" ? (
-                      <div className="rounded-full px-4 py-3 text-center text-[12px] font-bold leading-tight" style={{ backgroundColor: theme.primary, color: theme.onPrimary }}>
-                        Get ALYA on the App Store →
-                      </div>
-                    ) : null}
                     <div className="mt-3 flex justify-center gap-1.5">
                       {slides.map((_, i) => (
                         <button key={i} onClick={() => go(i)} aria-label={`go to slide ${i + 1}`}
@@ -1211,7 +1224,7 @@ export const Slideshow = () => {
                           className={`relative overflow-hidden rounded-xl border-2 transition ${active ? "border-[#2B3128] shadow-md" : "border-transparent opacity-75 hover:opacity-100"}`}>
                           <img src={opt.src} alt={opt.label} className="h-24 w-full object-cover" />
                           <span className="absolute left-1.5 top-1.5 rounded-full bg-black/70 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
-                            {opt.label} • GIF
+                            {opt.label}
                           </span>
                         </button>
                       );

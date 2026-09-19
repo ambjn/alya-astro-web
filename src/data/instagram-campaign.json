@@ -3,7 +3,7 @@
     "cta": {
       "title": "Learn Spanish by doomscrolling.",
       "body": "Get ALYA on the App Store →",
-      "imageUrl": "/slideshow/alya-app-demo.gif"
+      "imageUrl": "/slideshow/01_cafe_parrot.png"
     },
     "slots": [
       {
@@ -82,7 +82,7 @@
           "word": "",
           "translation": "",
           "variant": "cta",
-          "imageUrl": "/slideshow/alya-app-demo.gif"
+          "imageUrl": "/slideshow/01_cafe_parrot.png"
         }
       ]
     },
@@ -133,7 +133,7 @@
           "word": "",
           "translation": "",
           "variant": "cta",
-          "imageUrl": "/slideshow/alya-app-demo.gif"
+          "imageUrl": "/slideshow/01_cafe_parrot.png"
         }
       ]
     },
@@ -184,7 +184,7 @@
           "word": "",
           "translation": "",
           "variant": "cta",
-          "imageUrl": "/slideshow/alya-app-demo.gif"
+          "imageUrl": "/slideshow/01_cafe_parrot.png"
         }
       ]
     }
