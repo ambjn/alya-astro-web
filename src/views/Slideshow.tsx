@@ -345,12 +345,49 @@ function drawDoodles(ctx: CanvasRenderingContext2D, w: number, h: number, primar
   ctx.restore();
 }
 
+function isCrossOriginUrl(src: string): boolean {
+  if (src.startsWith("data:") || src.startsWith("blob:")) return false;
+  try {
+    return new URL(src, window.location.href).origin !== window.location.origin;
+  } catch {
+    return false;
+  }
+}
+
+/* Preloaded asset cache — filled on mount so exports never depend on a
+   cold network fetch. renderSlideToCanvas prefers these. */
+const assetCache = new Map<string, HTMLImageElement>();
+
+function preloadAssets() {
+  for (const src of [MASCOT_SRC, DOODLE_BG_SRC, ...CTA_IMAGE_OPTIONS.map((o) => o.src)]) {
+    if (assetCache.has(src)) continue;
+    loadImage(src).then(
+      (img) => assetCache.set(src, img),
+      () => { /* export falls back gracefully; preview <img> still works */ },
+    );
+  }
+}
+
+function cachedOrLoad(src: string): Promise<HTMLImageElement> {
+  const hit = assetCache.get(src);
+  if (hit) return Promise.resolve(hit);
+  return loadImage(src).then((img) => {
+    assetCache.set(src, img);
+    return img;
+  });
+}
+
 function loadImage(src: string): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
     const img = new Image();
-    img.crossOrigin = "anonymous";
+    /* Same-origin (and data:/blob:) images never taint the canvas, so no
+       crossOrigin needed. Setting it anyway makes Safari fail the load in
+       some cache states — which silently dropped the bg + mascot from
+       exports while the HTML preview (plain <img>) looked fine. */
+    if (isCrossOriginUrl(src)) img.crossOrigin = "anonymous";
     img.onload = () => resolve(img);
-    img.onerror = reject;
+    img.onerror = () =>
+      reject(new Error(`slideshow asset failed to load: ${src}`));
     img.src = src;
   });
 }
@@ -367,6 +404,7 @@ function drawImageCover(ctx: CanvasRenderingContext2D, img: HTMLImageElement, x:
 }
 
 async function renderSlideToCanvas(slide: Slide, index: number, total: number, themeId: ThemeId) {
+  const missingAssets: string[] = [];
   const fmt = FORMAT;
   const t = THEMES[themeId].theme;
   const canvas = document.createElement("canvas");
@@ -379,22 +417,33 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
   ctx.fillRect(0, 0, fmt.w, fmt.h);
 
   // "fiesta" theme: full-bleed illustrated background with a cream tint on top
-  // so text stays readable. Missing asset falls back to the solid bg.
+  // so text stays readable. Missing asset falls back to vector doodles.
+  let bgFailed = false;
   if (themeId === "fiesta") {
     try {
-      const bg = await loadImage(DOODLE_BG_SRC);
+      const bg = await cachedOrLoad(DOODLE_BG_SRC);
       const scale = Math.max(fmt.w / bg.width, fmt.h / bg.height);
       const iw = bg.width * scale, ih = bg.height * scale;
       ctx.drawImage(bg, (fmt.w - iw) / 2, (fmt.h - ih) / 2, iw, ih);
       ctx.fillStyle = DOODLE_BG_TINT;
       ctx.fillRect(0, 0, fmt.w, fmt.h);
-    } catch { /* asset not saved yet — keep the solid cream bg */ }
+    } catch (err) {
+      bgFailed = true;
+      missingAssets.push(DOODLE_BG_SRC);
+      try { console.warn(err); } catch { /* noop */ }
+    }
   }
 
   let mascot: HTMLImageElement | null = null;
-  try { mascot = await loadImage(MASCOT_SRC); } catch { /* mascot is a nice-to-have, never block export on it */ }
+  try {
+    mascot = await cachedOrLoad(MASCOT_SRC);
+  } catch (err) {
+    missingAssets.push(MASCOT_SRC);
+    try { console.warn(err); } catch { /* noop */ }
+    /* mascot stays null — export continues, missing-mascot toast below */
+  }
 
-  if (themeId !== "fiesta") drawDoodles(ctx, fmt.w, fmt.h, t.primary, t.accent);
+  if (themeId !== "fiesta" || bgFailed) drawDoodles(ctx, fmt.w, fmt.h, t.primary, t.accent);
 
   const ctaH = 150, ctaY = fmt.h - ctaH - 120;
 
@@ -439,12 +488,29 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
      and drop the screenshot from the export. */
   const bigTitle = slide.variant === "cover";
   const compactCta = slide.variant === "cta";
-  const titleSize = bigTitle ? 148 : compactCta ? 88 : 118;
-  const titleFont = `700 ${titleSize}px Outfit, system-ui, sans-serif`;
-  const titleBase = bigTitle ? 138 : compactCta ? 80 : 110, titleAdv = bigTitle ? 172 : compactCta ? 94 : 128;
+  /* Match the web preview scale: preview is ~380px content width at
+     52px cover / 40px statement, so at 888px export width that's ~122 / ~94.
+     The old 148/118px export ran ~22% hot and overflowed long hooks
+     ("Can you understand this Spanish phrase?") into the mascot/dots. */
+  let titleSize = bigTitle ? 122 : compactCta ? 84 : 96;
+  let titleFont = `700 ${titleSize}px Outfit, system-ui, sans-serif`;
+  let titleBase = bigTitle ? 114 : compactCta ? 78 : 88,
+    titleAdv = bigTitle ? 132 : compactCta ? 90 : 104;
   ctx.font = titleFont;
-  const titleLines = slide.title ? wrapText(ctx, slide.title, W).slice(0, compactCta ? 2 : 5) : [];
-  const bodySize = compactCta ? 46 : 54;
+  let titleLines = slide.title ? wrapText(ctx, slide.title, W).slice(0, compactCta ? 2 : 5) : [];
+  /* Auto-shrink long hooks so 4-5 line titles still fit above the mascot
+     instead of blowing out the export. */
+  while (titleLines.length > 3 && titleSize > 84) {
+    titleSize -= 8;
+    titleFont = `700 ${titleSize}px Outfit, system-ui, sans-serif`;
+    titleBase = Math.round(titleSize * 0.93);
+    titleAdv = Math.round(titleSize * 1.08);
+    ctx.font = titleFont;
+    titleLines = slide.title ? wrapText(ctx, slide.title, W).slice(0, compactCta ? 2 : 5) : [];
+    if (titleLines.length <= 3) break;
+    if (titleSize <= 84) break;
+  }
+  const bodySize = compactCta ? 40 : 42;
   const bodyFont = `500 ${bodySize}px Outfit, system-ui, sans-serif`;
   const bodyBoldFont = `700 ${bodySize}px Outfit, system-ui, sans-serif`;
   /* Paragraph-aware body: legacy "•" / inline options / inline labels
@@ -454,11 +520,11 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
     : slide.body ? [slide.body.trim()] : [];
   /* Quiz options stay plain text — one option per line, no cards. */
   const isOptionsSlide = slide.variant === "statement" && isQuizOptions(bodyParas);
-  // options read bigger than regular body copy
-  const optSize = 64;
+  // options read bigger than regular body copy (preview 21px -> ~50px export)
+  const optSize = 50;
   const drawBodyFont = isOptionsSlide ? `600 ${optSize}px Outfit, system-ui, sans-serif` : bodyFont;
-  const drawBodyAdv = isOptionsSlide ? 112 : compactCta ? 64 : 76;
-  const drawBodyBase = isOptionsSlide ? 78 : compactCta ? 54 : 63;
+  const drawBodyAdv = isOptionsSlide ? 72 : compactCta ? 56 : 60;
+  const drawBodyBase = isOptionsSlide ? 60 : compactCta ? 48 : 50;
   /* Normal wrapped blocks with paragraph gaps. */
   const bodyBlocks: string[][] = [];
   {
@@ -501,9 +567,7 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
   if (titleLines.length) contentH += titleBase + titleAdv * (titleLines.length - 1) + 24;
   if (bodyBlocks.length) {
     const flat = bodyBlocks.reduce((n, b) => n + b.length, 0);
-    contentH += compactCta
-      ? 54 + 64 * (flat - 1) + 40
-      : drawBodyBase + drawBodyAdv * (flat - 1) + 36 * (bodyBlocks.length - 1) + 40;
+    contentH += drawBodyBase + drawBodyAdv * (flat - 1) + 36 * (bodyBlocks.length - 1) + 40;
   }
   if (hasWordCard) contentH += 20 + wordCardH + 40;
 
@@ -605,11 +669,15 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
     if (slide.imageUrl) {
       try {
         // Static PNG export — an uploaded image draws as-is.
-        const shot = await loadImage(slide.imageUrl);
+        const shot = await cachedOrLoad(slide.imageUrl);
         drawImageCover(ctx, shot, pad, shotTop, W, shotBottom - shotTop, 40);
         ctx.strokeStyle = t.border; ctx.lineWidth = 3;
         roundRect(ctx, pad, shotTop, W, shotBottom - shotTop, 40); ctx.stroke();
-      } catch { /* screenshot failed to load — leave the space empty rather than block export */ }
+      } catch (err) {
+        missingAssets.push(slide.imageUrl);
+        try { console.warn(err); } catch { /* noop */ }
+        /* leave the space empty rather than block export */
+      }
     } else if (mascot) {
       const mw = Math.min(W * 0.62, (shotBottom - shotTop) * (mascot.width / mascot.height));
       const mh = mw * (mascot.height / mascot.width);
@@ -626,7 +694,7 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
     ctx.fillStyle = i === index ? t.text : t.muted;
     ctx.globalAlpha = i === index ? 1 : 0.4; ctx.fill(); ctx.globalAlpha = 1;
   }
-  return canvas;
+  return { canvas, missingAssets };
 }
 
 /* ---------- small UI atoms ---------- */
