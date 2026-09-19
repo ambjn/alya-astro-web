@@ -888,6 +888,9 @@ export const Slideshow = () => {
   const [workspaceHydrated, setWorkspaceHydrated] = useState(false);
   const toastTimer = useRef<number>(0);
 
+  /* Warm the export image cache so first export already has bg + mascot. */
+  useEffect(() => { preloadAssets(); }, []);
+
   useEffect(() => {
     try {
       if (!window.localStorage.getItem("slideshow-workspace-cleared-v3")) {
@@ -1147,21 +1150,27 @@ export const Slideshow = () => {
     if (!current) return;
     setExporting(true); setProgress(`rendering slide ${selected + 1}…`);
     try {
-      const c = await renderSlideToCanvas(current, selected, slides.length, themeId);
-      download(c, `alya-slide-${selected + 1}-1x1.png`);
-      flash(`slide ${selected + 1} exported • ${FORMAT.sub}`);
+      const { canvas, missingAssets } = await renderSlideToCanvas(current, selected, slides.length, themeId);
+      download(canvas, `alya-slide-${selected + 1}-1x1.png`);
+      flash(missingAssets.length
+        ? `slide ${selected + 1} exported without images — check connection and retry`
+        : `slide ${selected + 1} exported • ${FORMAT.sub}`);
     } finally { setExporting(false); setProgress(""); }
   };
   const exportAll = async () => {
     setExporting(true);
+    let missing = 0;
     try {
       for (let i = 0; i < slides.length; i++) {
         setProgress(`rendering ${i + 1} / ${slides.length}…`);
-        const c = await renderSlideToCanvas(slides[i], i, slides.length, themeId);
-        download(c, `alya-slide-${i + 1}-of-${slides.length}.png`);
+        const { canvas, missingAssets } = await renderSlideToCanvas(slides[i], i, slides.length, themeId);
+        missing += missingAssets.length;
+        download(canvas, `alya-slide-${i + 1}-of-${slides.length}.png`);
         await new Promise((r) => setTimeout(r, 350));
       }
-      flash(`exported ${slides.length} PNGs • ${FORMAT.sub}`);
+      flash(missing
+        ? `exported ${slides.length} PNGs, ${missing} image(s) missing — retry on good connection`
+        : `exported ${slides.length} PNGs • ${FORMAT.sub}`);
     } finally { setExporting(false); setProgress(""); }
   };
   const copyCaption = async () => {
