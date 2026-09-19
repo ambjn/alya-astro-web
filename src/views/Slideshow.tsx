@@ -20,6 +20,7 @@ import type { LucideIcon } from "lucide-react";
 import { NavBar } from "../components/NavBar";
 import { Footer } from "../components/Footer";
 import { APP_STORE_URL } from "../constants";
+import instagramCampaign from "../data/instagram-campaign.json";
 
 type ThemeId = "dark" | "cream" | "avocado" | "fiesta";
 type Variant = "cover" | "statement" | "word" | "cta";
@@ -131,48 +132,11 @@ const THEMES: Record<ThemeId, { label: string; hint: string; theme: Theme }> = {
 
 const uid = () => `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 7)}`;
 
-const PRESETS: { id: string; label: string; hook: string; caption: string; slides: Slide[] }[] = [
-  {
-    id: "doomscroll",
-    label: "Doomscroll hook",
-    hook: "5 slides • app explainer",
-    caption:
-      "learn spanish by doomscrolling 👀\nscroll real videos. tap what you don't know. grow your companion.\n\nfree on iOS — link in bio\n\n#learnspanish #spanishtiktok #doomscrolling #languagelearning #alyaapp",
-    slides: [
-      { id: uid(), title: "learn spanish by doomscrolling.", body: "swipe → how it works", word: "", translation: "", footer: "@helloalya", variant: "cover" },
-      { id: uid(), title: "scroll real Spanish videos.", body: "street food, memes, travel — not textbook dialogues.", word: "", translation: "", footer: "immersion feed", variant: "statement" },
-      { id: uid(), title: "tap what you don't know.", body: "instant translation + explanation, right on the video.", word: "sobremesa", translation: "n. lingering table talk after a meal", footer: "tap-to-translate", variant: "word" },
-      { id: uid(), title: "save words. grow your streak.", body: "vocab + companion that evolves as you learn.", word: "qué padre", translation: "how cool! (Mexico 🇲🇽)", footer: "daily habit", variant: "word" },
-      { id: uid(), title: "stop studying. start scrolling.", body: "download ALYA free — link in bio.", word: "", translation: "", footer: "alya • learn spanish", variant: "cta" },
-    ],
-  },
-  {
-    id: "words",
-    label: "3 words you need",
-    hook: "4 slides • save-bait",
-    caption:
-      "3 Spanish words natives actually use 🇪🇸🇲🇽\nwhich one is new for you?\n\nlearn them by doomscrolling — ALYA, free on iOS\n\n#spanishwords #spanishvocab #mexicanspanish #learnspanish",
-    slides: [
-      { id: uid(), title: "3 Spanish words natives actually use.", body: "swipe for instant upgrades", word: "", translation: "", footer: "@helloalya", variant: "cover" },
-      { id: uid(), title: "", body: "", word: "sobremesa", translation: "the chat that happens after eating — no English equivalent", footer: "tap in ALYA for examples", variant: "word" },
-      { id: uid(), title: "", body: "", word: "qué padre", translation: "how cool! — you'll hear this 10x a day in Mexico", footer: "tap in ALYA for examples", variant: "word" },
-      { id: uid(), title: "learn them scrolling, not studying.", body: "ALYA — link in bio.", word: "", translation: "", footer: "download free", variant: "cta" },
-    ],
-  },
-  {
-    id: "mistakes",
-    label: "Stop saying it wrong",
-    hook: "4 slides • POV hook",
-    caption:
-      "stop saying it like a textbook 🛑\nsay it like a native.\n\nALYA teaches you real Spanish from real videos.\n\n#spanishmistakes #spanishlearning #gringo #latina",
-    slides: [
-      { id: uid(), title: "stop saying it like a textbook.", body: "say it like a native →", word: "", translation: "", footer: "@helloalya", variant: "cover" },
-      { id: uid(), title: "¿Cómo estás, amigo?", body: "technically right. socially… robotic.", word: "", translation: "", footer: "", variant: "statement" },
-      { id: uid(), title: "¿Qué onda? ¿Cómo andas?", body: "real. casual. human.", word: "qué onda", translation: "what's up? (Mexico 🇲🇽)", footer: "heard daily in ALYA feed", variant: "word" },
-      { id: uid(), title: "real Spanish, real videos.", body: "ALYA — link in bio.", word: "", translation: "", footer: "download free", variant: "cta" },
-    ],
-  },
-];
+type Preset = Omit<(typeof instagramCampaign.templates)[number], "slides"> & {
+  slides: Omit<Slide, "id">[];
+};
+
+const PRESETS = instagramCampaign.templates as unknown as Preset[];
 
 const VARIANTS: { id: Variant; label: string; hint: string }[] = [
   { id: "cover", label: "Cover", hint: "hook slide 1" },
@@ -180,6 +144,25 @@ const VARIANTS: { id: Variant; label: string; hint: string }[] = [
   { id: "word", label: "Word card", hint: "vocab pop" },
   { id: "cta", label: "CTA", hint: "last slide" },
 ];
+
+/* ---------- content calendar / planner ---------- */
+
+const PLANNER_SLOTS = instagramCampaign.campaign.slots.map((slot) => slot.label);
+const PLANNER_DEFAULT_TIMES = instagramCampaign.campaign.slots.map((slot) => slot.time);
+
+interface PlannerRow {
+  date: string;
+  day: string;
+  tag?: string;
+  peak?: boolean;
+  focus: "experiment" | "presentation test" | "strongest concepts";
+  carouselTopics: [string, string, string];
+  times?: string[];
+  /** per-slot highlight — bold in the source table = best-performing slot */
+  hot?: boolean[];
+}
+
+const PLANNER_ROWS = instagramCampaign.planner as unknown as PlannerRow[];
 
 type SlideTextField = "title" | "body" | "word" | "translation" | "footer";
 
@@ -452,7 +435,7 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
     ctx.fillStyle = t.primary;
     roundRect(ctx, pad, ctaY, W, ctaH, 75); ctx.fill();
     ctx.fillStyle = t.onPrimary; ctx.font = "700 46px Outfit, system-ui, sans-serif";
-    const cta = "download ALYA — free on iOS";
+    const cta = "Get ALYA on the App Store →";
     ctx.fillText(wrapText(ctx, cta, W - 100)[0] ?? cta, pad + 50, ctaY + 92);
   }
 
@@ -573,7 +556,7 @@ function ColDivider({ label, onDrag, onReset, onNudge }: {
 
 export const Slideshow = () => {
   const [presetId, setPresetId] = useState(PRESETS[0].id);
-  const [slides, setSlides] = useState<Slide[]>(() => PRESETS[0].slides.map((s) => ({ ...s })));
+  const [slides, setSlides] = useState<Slide[]>(() => PRESETS[0].slides.map((s) => ({ ...s, id: uid() })));
   const [selected, setSelected] = useState(0);
   const [themeId, setThemeId] = useState<ThemeId>("fiesta");
   const [caption, setCaption] = useState(PRESETS[0].caption);
@@ -585,6 +568,46 @@ export const Slideshow = () => {
   const [copied, setCopied] = useState(false);
   const [dir, setDir] = useState(0);
   const toastTimer = useRef<number>(0);
+
+  /* Content planner checkboxes — persisted per browser. Key: `${date}|${slot}` */
+  const [plannerChecked, setPlannerChecked] = useState<Record<string, boolean>>(() => {
+    try {
+      const raw = window.localStorage.getItem("slideshow-planner");
+      return raw ? (JSON.parse(raw) as Record<string, boolean>) : {};
+    } catch {
+      return {};
+    }
+  });
+  useEffect(() => {
+    try {
+      window.localStorage.setItem("slideshow-planner", JSON.stringify(plannerChecked));
+    } catch { /* noop */ }
+  }, [plannerChecked]);
+
+  const toggleSlot = (date: string, slotIndex: number) => {
+    const key = `${date}|${slotIndex}`;
+    setPlannerChecked((p) => ({ ...p, [key]: !p[key] }));
+  };
+  const isSlotChecked = (date: string, slotIndex: number) => {
+    if (plannerChecked[`${date}|${slotIndex}`]) return true;
+    // back-compat: keys saved before the emoji-header update used the slot name
+    const legacy = ["Carousel 1", "Reel 1", "Carousel 2", "Reel 2", "Carousel 3", "Reel 3"];
+    const oldKey = `${date}|${legacy[slotIndex]}`;
+    return !!plannerChecked[oldKey];
+  };
+  const plannerStats = useMemo(() => {
+    const total = PLANNER_ROWS.length * PLANNER_SLOTS.length;
+    let done = 0;
+    for (const r of PLANNER_ROWS)
+      for (let si = 0; si < PLANNER_SLOTS.length; si++)
+        if (plannerChecked[`${r.date}|${si}`]) done++;
+    // include legacy name-based keys saved before the update
+    const legacy = ["Carousel 1", "Reel 1", "Carousel 2", "Reel 2", "Carousel 3", "Reel 3"];
+    for (const r of PLANNER_ROWS)
+      for (let si = 0; si < legacy.length; si++)
+        if (!plannerChecked[`${r.date}|${si}`] && plannerChecked[`${r.date}|${legacy[si]}`]) done++;
+    return { done, total };
+  }, [plannerChecked]);
 
   /* Resizable workspace columns (desktop). Widths persist per browser. */
   const DEFAULT_DECK_W = 290;
@@ -666,6 +689,31 @@ export const Slideshow = () => {
     setCaption(p.caption);
     setSelected(0); setDir(0);
     flash(`loaded “${p.label}”`);
+  };
+
+  const loadCampaignTopic = (row: PlannerRow, slotIndex: number) => {
+    const mapping: Record<number, { presetId: string; topicIndex: number }> = {
+      0: { presetId: "quiz", topicIndex: 0 },
+      2: { presetId: "correction", topicIndex: 1 },
+      4: { presetId: "practical", topicIndex: 2 },
+    };
+    const target = mapping[slotIndex];
+    if (!target) return;
+    const preset = PRESETS.find((item) => item.id === target.presetId);
+    if (!preset) return;
+    const topic = row.carouselTopics[target.topicIndex];
+    const nextSlides = preset.slides.map((slide, index) => ({
+      ...slide,
+      id: uid(),
+      ...(index === 0 ? { title: topic } : {}),
+    }));
+    setPresetId(preset.id);
+    setSlides(nextSlides);
+    setCaption(preset.caption);
+    setSelected(0);
+    setDir(0);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    flash(`loaded ${row.date} ${preset.label}`);
   };
 
   const update = (patch: Partial<Slide>) =>
@@ -937,7 +985,7 @@ export const Slideshow = () => {
                   <div className="relative">
                     {current?.variant === "cta" ? (
                       <div className="rounded-full px-4 py-3 text-center text-[12px] font-bold leading-tight" style={{ backgroundColor: theme.primary, color: theme.onPrimary }}>
-                        download ALYA — free on iOS
+                        Get ALYA on the App Store →
                       </div>
                     ) : null}
                     <div className="mt-3 flex justify-center gap-1.5">
@@ -1079,6 +1127,115 @@ export const Slideshow = () => {
             </a>
           </section>
         </div>
+
+        {/* content calendar / planner */}
+        <section aria-label="content calendar" className="mt-6 rounded-3xl border border-[#2B3128]/10 bg-white/75 p-4 backdrop-blur sm:p-6">
+          <div className="flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-lime-700">content calendar</p>
+              <h2 className="mt-1 text-2xl font-semibold tracking-tighter sm:text-3xl">Sep 19 → Sep 30 planner.</h2>
+              <p className="mt-1 text-sm text-neutral-600">
+                3 carousels + 3 reels / day • click a carousel topic to load its 5/6/6-slide template. Progress saves in this browser.
+                <span className="ml-2 whitespace-nowrap font-bold text-neutral-900">bold = best slot</span>
+                <span className="ml-2 whitespace-nowrap">🔥 peak day</span>
+                <span className="ml-2 whitespace-nowrap">🔥🔥 super peak</span>
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="rounded-full bg-[#2B3128] px-3 py-1.5 text-xs font-bold text-white tabular-nums">
+                {plannerStats.done} / {plannerStats.total} posted
+              </span>
+              <button
+                onClick={() => { setPlannerChecked({}); flash("planner reset"); }}
+                className="rounded-full border border-neutral-200 bg-white px-3 py-1.5 text-xs font-bold text-neutral-600 transition hover:border-[#2B3128]"
+              >
+                reset
+              </button>
+            </div>
+          </div>
+
+          <div className="mt-3 h-2 overflow-hidden rounded-full bg-neutral-200/70" role="progressbar"
+            aria-valuenow={plannerStats.done} aria-valuemin={0} aria-valuemax={plannerStats.total} aria-label="planner progress">
+            <div className="h-full rounded-full bg-[#2B3128] transition-all"
+              style={{ width: `${plannerStats.total ? (plannerStats.done / plannerStats.total) * 100 : 0}%` }} />
+          </div>
+
+          <div className="mt-4 overflow-x-auto rounded-2xl border border-[#2B3128]/10">
+            <table className="w-full min-w-300 border-collapse bg-white text-sm">
+              <thead>
+                <tr className="bg-[#2B3128] text-white">
+                  <th className="sticky left-0 z-10 bg-[#2B3128] px-3 py-3 text-left text-xs font-bold uppercase tracking-wide">Date</th>
+                  <th className="px-3 py-3 text-left text-xs font-bold uppercase tracking-wide">Day</th>
+                  {PLANNER_SLOTS.map((s) => (
+                    <th key={s} className="px-2 py-3 text-center text-xs font-bold uppercase tracking-wide">{s}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {PLANNER_ROWS.map((row, ri) => {
+                  const times = row.times ?? PLANNER_DEFAULT_TIMES;
+                  const hot = row.hot ?? [];
+                  let rowDone = 0;
+                  for (let si = 0; si < PLANNER_SLOTS.length; si++) if (isSlotChecked(row.date, si)) rowDone++;
+                  const rowComplete = rowDone === PLANNER_SLOTS.length;
+                  return (
+                    <tr key={row.date} className={`border-t border-neutral-200/70 transition ${row.peak ? "bg-amber-50/70" : ri % 2 ? "bg-neutral-50/60" : "bg-white"} ${rowComplete ? "bg-lime-100/50" : ""}`}>
+                      <td className={`sticky left-0 z-10 px-3 py-2.5 tabular-nums ${row.peak ? "font-extrabold" : "font-bold"} ${rowComplete ? "bg-lime-100" : row.peak ? "bg-amber-50" : ri % 2 ? "bg-[#f8f7f2]" : "bg-white"}`}>
+                        {row.date}
+                      </td>
+                      <td className={`whitespace-nowrap px-3 py-2.5 ${row.peak ? "font-extrabold text-neutral-900" : "text-neutral-600"}`}>
+                        {row.day} {row.tag && <span className="ml-1">{row.tag}</span>}
+                      </td>
+                      {PLANNER_SLOTS.map((slot, si) => {
+                        const on = isSlotChecked(row.date, si);
+                        const isHot = !!hot[si];
+                        const topicIndex = si === 0 ? 0 : si === 2 ? 1 : si === 4 ? 2 : -1;
+                        const topic = topicIndex >= 0 ? row.carouselTopics[topicIndex] : null;
+                        return (
+                          <td key={slot} className="min-w-44 px-2 py-2 text-center align-top">
+                            <button
+                              role="checkbox"
+                              aria-checked={on}
+                              aria-label={`${row.date} ${slot} at ${times[si]} — ${on ? "posted" : "not posted"}`}
+                              title={`${times[si]}${isHot ? " • best slot" : ""}`}
+                              onClick={() => toggleSlot(row.date, si)}
+                              className={`group inline-flex flex-col items-center gap-1 rounded-xl border px-2.5 py-1.5 transition ${
+                                on ? "border-[#2B3128] bg-[#2B3128] text-white shadow-md" : isHot ? "border-amber-400/70 bg-amber-50 hover:border-[#2B3128]/50 hover:shadow-sm" : "border-neutral-200 bg-white hover:border-[#2B3128]/50 hover:shadow-sm"
+                              }`}
+                            >
+                              <span className={`flex h-5 w-5 items-center justify-center rounded-md border transition ${on ? "border-lime-300 bg-lime-300 text-[#2B3128]" : "border-neutral-300 bg-neutral-100 text-transparent group-hover:border-[#2B3128]"}`}>
+                                <Check size={13} strokeWidth={3.5} />
+                              </span>
+                              <span className={`text-[11px] tabular-nums ${on ? "font-semibold text-lime-200 line-through" : isHot ? "font-extrabold text-neutral-900" : "font-semibold text-neutral-600"}`}>
+                                {times[si]}
+                              </span>
+                            </button>
+                            {topic && (
+                              <button
+                                type="button"
+                                onClick={() => loadCampaignTopic(row, si)}
+                                title={`Load ${topic} into the carousel editor`}
+                                className="mx-auto mt-2 block max-w-48 rounded-lg px-1.5 py-1 text-left text-[11px] font-bold leading-snug text-neutral-700 transition hover:bg-lime-100 hover:text-neutral-950"
+                              >
+                                {topic}
+                                <span className="mt-1 block text-[10px] font-semibold uppercase tracking-wide text-lime-700">
+                                  load deck →
+                                </span>
+                              </button>
+                            )}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-2 text-[11px] font-semibold text-neutral-500">
+            Strategy: Tue–Thu = strongest concepts • Fri–Sat = experiments • Mon–Sun = presentation tests. Late-night times belong to the next calendar day. Sep 24 runs 1h early.
+          </p>
+        </section>
       </main>
 
       <AnimatePresence>

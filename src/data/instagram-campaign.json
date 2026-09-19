@@ -1,0 +1,76 @@
+{
+  "campaign": {
+    "name": "ALYA September Instagram campaign",
+    "timezone": "Asia/Kolkata",
+    "cta": {
+      "title": "Learn Spanish by doomscrolling.",
+      "body": "Get ALYA on the App Store →",
+      "imageUrl": "/slideshow/alya-app-screen.jpg"
+    },
+    "slots": [
+      { "label": "🧠 Quiz", "time": "9:30 PM", "pillar": "quiz", "slides": 5 },
+      { "label": "🎬 Reel #1", "time": "11:30 PM", "pillar": "reel" },
+      { "label": "❌ Stop saying it wrong", "time": "1:30 AM", "pillar": "correction", "slides": 6 },
+      { "label": "🎬 Reel #2", "time": "3:30 AM", "pillar": "reel" },
+      { "label": "🔖 Save this", "time": "5:30 AM", "pillar": "practical", "slides": 6 },
+      { "label": "🎬 Reel #3", "time": "7:30 AM", "pillar": "reel" }
+    ]
+  },
+  "templates": [
+    {
+      "id": "quiz",
+      "label": "Quiz / Curiosity",
+      "hook": "5 slides • comments + swipes",
+      "caption": "Would you have gotten this right? 👀\nComment your answer before checking slide 4.\n\nLearn Spanish from real videos with ALYA.\n\n#learnspanish #spanishquiz #spanishtips #español #alyaapp",
+      "slides": [
+        { "title": "Can you understand this Spanish phrase?", "body": "swipe to test yourself →", "word": "", "translation": "", "footer": "@helloalya", "variant": "cover" },
+        { "title": "What does this mean?", "body": "", "word": "me da igual", "translation": "What would you say?", "footer": "don't translate it literally", "variant": "word" },
+        { "title": "Choose your answer", "body": "A) Give me the same\nB) I don't care\nC) I'm equal", "word": "", "translation": "", "footer": "answer before you swipe", "variant": "statement" },
+        { "title": "B — I don't care.", "body": "It can also mean “either is fine.” Example: ¿Pizza o tacos? Me da igual.", "word": "", "translation": "", "footer": "did you get it right?", "variant": "statement" },
+        { "title": "Learn Spanish by doomscrolling.", "body": "Get ALYA on the App Store →", "word": "", "translation": "", "footer": "ALYA • real Spanish videos", "variant": "cta", "imageUrl": "/slideshow/alya-app-screen.jpg" }
+      ]
+    },
+    {
+      "id": "correction",
+      "label": "Stop Saying It Wrong",
+      "hook": "6 slides • reach + shares",
+      "caption": "Stop saying this in Spanish ❌\nSend this to someone learning Spanish before they make this mistake.\n\nALYA teaches the Spanish people actually speak.\n\n#learnspanish #spanishmistakes #spanishtips #español #alyaapp",
+      "slides": [
+        { "title": "stop saying this in Spanish ❌", "body": "you sound like a textbook", "word": "", "translation": "", "footer": "@helloalya", "variant": "cover" },
+        { "title": "The mistake", "body": "Using “muy bueno” for everything.", "word": "muy bueno", "translation": "correct—but repetitive", "footer": "there are better choices", "variant": "word" },
+        { "title": "Say this instead", "body": "Use genial, buenísimo, or qué rico depending on the situation.", "word": "genial", "translation": "great / awesome", "footer": "match the phrase to the context", "variant": "word" },
+        { "title": "A real example", "body": "¿Te gustó la película? — Sí, estuvo genial.", "word": "", "translation": "", "footer": "Did you like the movie? It was great.", "variant": "statement" },
+        { "title": "Quick tip", "body": "Food: está riquísimo. A plan: suena genial. A person: es muy buena persona.", "word": "", "translation": "", "footer": "save this distinction", "variant": "statement" },
+        { "title": "Learn Spanish by doomscrolling.", "body": "Get ALYA on the App Store →", "word": "", "translation": "", "footer": "ALYA • real Spanish videos", "variant": "cta", "imageUrl": "/slideshow/alya-app-screen.jpg" }
+      ]
+    },
+    {
+      "id": "practical",
+      "label": "Save This / Practical",
+      "hook": "6 slides • saves + shares",
+      "caption": "Save this before your next Spanish conversation 🔖\nFuture-you will need it.\n\nLearn Spanish from real videos with ALYA.\n\n#learnspanish #spanishphrases #spanishvocab #traveltips #alyaapp",
+      "slides": [
+        { "title": "3 Spanish phrases you'll actually need", "body": "save these before your trip →", "word": "", "translation": "", "footer": "@helloalya", "variant": "cover" },
+        { "title": "", "body": "", "word": "¿Cuánto cuesta?", "translation": "How much is it?", "footer": "shopping essential", "variant": "word" },
+        { "title": "", "body": "", "word": "¿Me trae…?", "translation": "Could you bring me…?", "footer": "natural at a restaurant", "variant": "word" },
+        { "title": "", "body": "", "word": "La cuenta, por favor", "translation": "The bill, please", "footer": "use this when you're ready to leave", "variant": "word" },
+        { "title": "save this for later ↗", "body": "Your future Spanish-speaking self will thank you.", "word": "", "translation": "", "footer": "send it to your travel partner", "variant": "statement" },
+        { "title": "Learn Spanish by doomscrolling.", "body": "Get ALYA on the App Store →", "word": "", "translation": "", "footer": "ALYA • real Spanish videos", "variant": "cta", "imageUrl": "/slideshow/alya-app-screen.jpg" }
+      ]
+    }
+  ],
+  "planner": [
+    { "date": "Sep 19", "day": "Sat", "focus": "experiment", "carouselTopics": ["Can you pass the Spanish voice-note test?", "You're pronouncing these 3 place names wrong", "5 phrases for a fast Spanish conversation"], "hot": [false, false, false, false, false, true] },
+    { "date": "Sep 20", "day": "Sun", "focus": "presentation test", "carouselTopics": ["What does “qué pena” mean here?", "Stop using “triste” for every sad situation", "4 natural ways to comfort someone"], "hot": [false, false, false, false, false, true] },
+    { "date": "Sep 21", "day": "Mon", "focus": "presentation test", "carouselTopics": ["Which phrase means “it depends”?", "“Actualmente” does not mean “actually”", "5 fillers that buy you thinking time"], "hot": [false, false, true, true, false, true] },
+    { "date": "Sep 22", "day": "Tue", "tag": "🔥", "peak": true, "focus": "strongest concepts", "carouselTopics": ["What does “me cae bien” mean?", "Stop mixing up ser and estar for personality", "5 phrases for talking about people naturally"], "hot": [false, false, true, true, true, true] },
+    { "date": "Sep 23", "day": "Wed", "tag": "🔥🔥", "peak": true, "focus": "strongest concepts", "carouselTopics": ["Which phrase means “I'm just looking”?", "Stop saying “no necesito ayuda” in every shop", "Spanish you need while shopping"], "hot": [false, false, true, true, true, true] },
+    { "date": "Sep 24", "day": "Thu", "tag": "🔥", "peak": true, "focus": "strongest concepts", "carouselTopics": ["What does “tengo ganas de…” mean?", "Stop translating “I feel like…” literally", "5 phrases for weekend plans"], "times": ["8:30 PM", "10:30 PM", "12:30 AM", "2:30 AM", "5:30 AM", "7:30 AM"], "hot": [true, false, true, false, false, true] },
+    { "date": "Sep 25", "day": "Fri", "focus": "experiment", "carouselTopics": ["Your friend says “estoy de bajón”—what happened?", "Stop saying “estoy cansado” for every bad mood", "5 mood phrases with main-character energy"], "hot": [false, false, false, false, false, true] },
+    { "date": "Sep 26", "day": "Sat", "focus": "experiment", "carouselTopics": ["Which one gets you roasted by native speakers?", "3 Spanish phrases that sound accidentally rude", "5 phrases for socially awkward moments"], "hot": [false, false, false, false, false, true] },
+    { "date": "Sep 27", "day": "Sun", "focus": "presentation test", "carouselTopics": ["Can you understand this hotel check-in?", "Stop saying “reservación” everywhere", "Spanish you need at a hotel"], "hot": [false, false, false, false, false, true] },
+    { "date": "Sep 28", "day": "Mon", "focus": "presentation test", "carouselTopics": ["What does “por si acaso” mean?", "Stop translating “just in case” literally", "5 tiny phrases that make you sound natural"], "hot": [false, false, true, true, false, true] },
+    { "date": "Sep 29", "day": "Tue", "tag": "🔥", "peak": true, "focus": "strongest concepts", "carouselTopics": ["Which phrase means “that works for me”?", "Stop replying with “sí” to everything", "5 ways to accept or reject a plan"], "hot": [false, false, true, true, true, true] },
+    { "date": "Sep 30", "day": "Wed", "tag": "🔥🔥", "peak": true, "focus": "strongest concepts", "carouselTopics": ["Fluent or fooled: know these false friends?", "3 English-looking words you're using wrong", "5 phrases for when you don't understand"], "hot": [false, false, true, true, true, true] }
+  ]
+}
