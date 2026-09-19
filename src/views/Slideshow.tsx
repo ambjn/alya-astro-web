@@ -329,8 +329,50 @@ function isExamplePara(line: string): boolean {
   return /^example\s*:/i.test(line.trim());
 }
 
-function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
-  ctx.beginPath();
+/* Overflow-safe text: a single unbreakable word (e.g. a long vocab term)
+   wider than maxWidth would otherwise clip past the margin — the preview
+   soft-wraps it instead. Squeeze just that line to fit; normal lines are
+   unaffected. */
+function fillTextFit(ctx: CanvasRenderingContext2D, text: string, x: number, y: number, maxWidth: number) {
+  const w = ctx.measureText(text).width;
+  if (w <= maxWidth || w <= 0) {
+    ctx.fillText(text, x, y);
+    return;
+  }
+  ctx.save();
+  ctx.translate(x, 0);
+  ctx.scale(maxWidth / w, 1);
+  ctx.fillText(text, 0, y);
+  ctx.restore();
+}
+
+/* Two-tone variant of fillTextFit for "Label: rest" lines — bold label in
+   text color + muted remainder, squeezed together only on overflow. */
+function fillTextPairFit(
+  ctx: CanvasRenderingContext2D,
+  a: string, fontA: string, fillA: string,
+  b: string, fontB: string, fillB: string,
+  x: number, y: number, maxWidth: number,
+) {
+  ctx.font = fontA;
+  const wa = ctx.measureText(a).width;
+  ctx.font = fontB;
+  const wb = ctx.measureText(b).width;
+  if (wa + wb <= maxWidth || wa + wb <= 0) {
+    ctx.font = fontA; ctx.fillStyle = fillA; ctx.fillText(a, x, y);
+    ctx.font = fontB; ctx.fillStyle = fillB; ctx.fillText(b, x + wa, y);
+    return;
+  }
+  const s = maxWidth / (wa + wb);
+  ctx.save();
+  ctx.translate(x, 0);
+  ctx.scale(s, 1);
+  ctx.font = fontA; ctx.fillStyle = fillA; ctx.fillText(a, 0, y);
+  ctx.font = fontB; ctx.fillStyle = fillB; ctx.fillText(b, wa, y);
+  ctx.restore();
+}
+
+function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {  ctx.beginPath();
   ctx.moveTo(x + r, y);
   ctx.arcTo(x + w, y, x + w, y + h, r);
   ctx.arcTo(x + w, y + h, x, y + h, r);
@@ -557,10 +599,11 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
   const bodyFont = `500 ${bodySize}px Outfit, system-ui, sans-serif`;
   const bodyBoldFont = `700 ${bodySize}px Outfit, system-ui, sans-serif`;
   /* Paragraph-aware body: legacy "•" / inline options / inline labels
-     are normalized so every option / Example / "Food:" gets its own line. */
+     are normalized so every option / Example / "Food:" gets its own line.
+     CTA slides never show body copy in the preview — keep the export same. */
   const bodyParas = slide.body && slide.variant !== "cta"
     ? splitBodyParagraphs(slide.body)
-    : slide.body ? [slide.body.trim()] : [];
+    : [];
   /* Quiz options stay plain text — one option per line, no cards. */
   const isOptionsSlide = slide.variant === "statement" && isQuizOptions(bodyParas);
   // options read bigger than regular body copy (preview 21px -> ~50px export)
@@ -628,61 +671,68 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
     ctx.fillStyle = t.text;
     ctx.font = titleFont;
     for (const line of titleLines) {
-      ctx.fillText(line, pad, y + titleBase);
+      fillTextFit(ctx, line, pad, y + titleBase, W);
       y += titleAdv;
     }
     y += 24;
   }
   if (bodyBlocks.length) {
     const bodyBase = drawBodyBase, bodyAdv = drawBodyAdv;
+    /* Preview parity: labeled rows render as surface cards only when there
+       are 2+ paragraphs — a lone "Label: …" stays plain text. */
+    const useLabelCards = bodyParas.length > 1;
     bodyParas.slice(0, bodyBlocks.length).forEach((para, pi) => {
       const lines = bodyBlocks[pi];
       const example = isExamplePara(para);
       const label = !example ? splitLabelLine(para) : null;
-      if (example) {
-        // soft card behind the whole Example block
+      const carded = example || (label && useLabelCards);
+      if (carded) {
+        // soft card behind the whole block (accent bar for Example only)
         const blockH = lines.length * bodyAdv + 36;
         ctx.fillStyle = themeId === "dark" ? "#262B21" : t.surface;
         roundRect(ctx, pad, y + 8, W, blockH, 28); ctx.fill();
         ctx.strokeStyle = t.border; ctx.lineWidth = 2;
         roundRect(ctx, pad, y + 8, W, blockH, 28); ctx.stroke();
-        ctx.fillStyle = t.accent;
-        roundRect(ctx, pad + 24, y + 28, 8, blockH - 40, 4); ctx.fill();
+        if (example) {
+          ctx.fillStyle = t.accent;
+          roundRect(ctx, pad + 24, y + 28, 8, blockH - 40, 4); ctx.fill();
+        }
       }
+      const indent = example ? 56 : 0;
+      const avail = W - indent;
       lines.forEach((line, li) => {
-        const baseline = y + bodyBase + (example ? 18 : 0);
+        const baseline = y + bodyBase + (carded ? 18 : 0);
         if (li === 0 && label) {
           // bold "Food:" in text color, rest in muted
-          ctx.font = bodyBoldFont;
           const labelTxt = `${label[0]}: `;
-          const lw = ctx.measureText(labelTxt).width;
-          ctx.fillStyle = t.text;
-          ctx.fillText(labelTxt, pad + (example ? 56 : 0), baseline);
-          ctx.font = bodyFont;
-          ctx.fillStyle = t.muted;
-          ctx.fillText(line.slice(labelTxt.length), pad + (example ? 56 : 0) + lw, baseline);
+          fillTextPairFit(
+            ctx,
+            labelTxt, bodyBoldFont, t.text,
+            line.slice(labelTxt.length), bodyFont, t.muted,
+            pad + indent, baseline, avail,
+          );
         } else if (li === 0 && example) {
-          ctx.font = bodyBoldFont;
-          ctx.fillStyle = t.text;
           const m = line.match(/^(Example:\s*)/i);
           if (m) {
-            ctx.fillText(m[1], pad + 56, baseline);
-            ctx.font = bodyFont;
-            ctx.fillStyle = t.muted;
-            ctx.fillText(line.slice(m[1].length), pad + 56 + ctx.measureText(m[1]).width, baseline);
+            fillTextPairFit(
+              ctx,
+              m[1], bodyBoldFont, t.text,
+              line.slice(m[1].length), bodyFont, t.muted,
+              pad + 56, baseline, W - 56,
+            );
         } else {
           ctx.font = drawBodyFont;
           ctx.fillStyle = t.muted;
-          ctx.fillText(line, pad + 56, baseline);
+          fillTextFit(ctx, line, pad + 56, baseline, W - 56);
         }
         } else {
           ctx.font = drawBodyFont;
           ctx.fillStyle = t.muted;
-          ctx.fillText(line, pad + (example ? 56 : 0), baseline);
+          fillTextFit(ctx, line, pad + indent, baseline, avail);
         }
         y += bodyAdv;
       });
-      y += example ? 44 : 36;
+      y += carded ? 44 : 36;
     });
     y += 12;
   }
@@ -695,13 +745,13 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
     /* Stacked: word on top full-width, horizontal divider, translation below. */
     ctx.fillStyle = t.text; ctx.font = wordFont;
     let wy = cardY + 56 + 82;
-    for (const line of wordFullLines) { ctx.fillText(line, pad + 56, wy); wy += 92; }
+    for (const line of wordFullLines) { fillTextFit(ctx, line, pad + 56, wy, W - 112); wy += 92; }
     const divY = cardY + 56 + wordLeftH + 14;
     ctx.strokeStyle = t.border; ctx.lineWidth = 2;
     ctx.beginPath(); ctx.moveTo(pad + 56, divY); ctx.lineTo(pad + W - 56, divY); ctx.stroke();
     ctx.fillStyle = t.muted; ctx.font = wordTransFont;
     let ty = divY + 28 + 44;
-    for (const line of wordTransLines) { ctx.fillText(line, pad + 56, ty); ty += 58; }
+    for (const line of wordTransLines) { fillTextFit(ctx, line, pad + 56, ty, W - 112); ty += 58; }
     y = cardY + cardH + 40;
   }
 
