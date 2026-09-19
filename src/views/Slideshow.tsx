@@ -232,8 +232,8 @@ function buildCampaignDeck(date: string, pillar: CampaignPillar, hook: string) {
 /* ---------- canvas export (unchanged logic, tightened type) ---------- */
 
 function wrapText(ctx: CanvasRenderingContext2D, text: string, maxWidth: number): string[] {
-  // NBSP (\u00A0) is a non-breaking space — split only on normal
-  // spaces/tabs/newlines so "Spanish\u00A0❌" never orphans the emoji.
+  // NBSP ( ) is a non-breaking space — split only on normal
+  // spaces/tabs/newlines so "Spanish ❌" never orphans the emoji.
   const words = text.split(/[ \t\r\n]+/).filter(Boolean);
   const lines: string[] = [];
   let line = "";
@@ -245,6 +245,46 @@ function wrapText(ctx: CanvasRenderingContext2D, text: string, maxWidth: number)
     } else line = test;
   }
   if (line) lines.push(line);
+  return lines;
+}
+
+/* Balanced wrap for titles — mirrors the preview's `text-balance` class.
+   Greedy fill produces ragged breaks ("Can you pass the / Spanish / …")
+   while the preview balances ("Can you pass / the Spanish / …").
+   DP over word breaks minimizing squared slack (+ a per-line penalty so it
+   still prefers fewer lines). Body copy keeps greedy `wrapText` like the
+   preview's normal wrapping. */
+function wrapTextBalanced(ctx: CanvasRenderingContext2D, text: string, maxWidth: number, maxLines: number): string[] {
+  const words = text.split(/[ \t\r\n]+/).filter(Boolean);
+  const n = words.length;
+  if (n === 0) return [];
+  if (n === 1) return [words[0]];
+  const widths = words.map((w) => ctx.measureText(w).width);
+  const space = ctx.measureText(" ").width;
+  const LINE_PENALTY = maxWidth * 12;
+  const best: number[] = new Array(n + 1).fill(Infinity);
+  const next: number[] = new Array(n + 1).fill(-1);
+  best[n] = 0;
+  for (let i = n - 1; i >= 0; i--) {
+    let w = 0;
+    for (let j = i; j < n; j++) {
+      w += (j === i ? widths[j] : space + widths[j]);
+      if (w > maxWidth && j > i) break;
+      const slack = Math.max(0, maxWidth - w);
+      const cost = slack * slack + LINE_PENALTY + best[j + 1];
+      if (cost < best[i]) { best[i] = cost; next[i] = j + 1; }
+      if (w > maxWidth) break;
+    }
+    if (next[i] < 0) { next[i] = i + 1; best[i] = LINE_PENALTY + best[i + 1]; }
+  }
+  const lines: string[] = [];
+  let i = 0, guard = 0;
+  while (i < n && guard++ <= n) {
+    const j = next[i] <= i ? i + 1 : next[i];
+    lines.push(words.slice(i, j).join(" "));
+    i = j;
+    if (lines.length >= maxLines) break;
+  }
   return lines;
 }
 
@@ -447,17 +487,19 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
 
   const ctaH = 150, ctaY = fmt.h - ctaH - 120;
 
-  // Sticker mascot in the lower-right of the content area on every slide except
+  // Sticker mascot peeking from the bottom-right corner on every slide except
   // the CTA (which already gets a large centered mascot/screenshot treatment).
-  // Sized and lifted so it never covers the footer or page dots.
+  // Bottom-anchored like the web preview (bottom -8%, right -7%, ~30% width)
+  // so it never sits mid-card covering line endings. Dots are drawn later,
+  // so they stay on top like the preview's z-20 dots row.
   // NOTE: drawn AFTER the text/word-card (see below) so the opaque card
   // never covers the pet — the pet stickers over the card corner instead.
   const drawPeekingMascot = () => {
     if (!mascot || slide.variant === "cta") return;
-    const ph = 340;
-    const pw = ph * (mascot.width / mascot.height);
+    const pw = fmt.w * 0.30;
+    const ph = pw / (mascot.width / mascot.height);
     ctx.save();
-    ctx.translate(fmt.w - pw * 0.28, ctaY - 24 - ph / 2);
+    ctx.translate(fmt.w - pw / 2 + pw * 0.07, fmt.h - 40 - ph / 2 + ph * 0.08);
     ctx.rotate(-0.15);
     ctx.drawImage(mascot, -pw / 2, -ph / 2, pw, ph);
     ctx.restore();
@@ -497,7 +539,8 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
   let titleBase = bigTitle ? 114 : compactCta ? 78 : 88,
     titleAdv = bigTitle ? 132 : compactCta ? 90 : 104;
   ctx.font = titleFont;
-  let titleLines = slide.title ? wrapText(ctx, slide.title, W).slice(0, compactCta ? 2 : 5) : [];
+  const titleMaxLines = compactCta ? 2 : 5;
+  let titleLines = slide.title ? wrapTextBalanced(ctx, slide.title, W, titleMaxLines) : [];
   /* Auto-shrink long hooks so 4-5 line titles still fit above the mascot
      instead of blowing out the export. */
   while (titleLines.length > 3 && titleSize > 84) {
@@ -506,7 +549,7 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
     titleBase = Math.round(titleSize * 0.93);
     titleAdv = Math.round(titleSize * 1.08);
     ctx.font = titleFont;
-    titleLines = slide.title ? wrapText(ctx, slide.title, W).slice(0, compactCta ? 2 : 5) : [];
+    titleLines = slide.title ? wrapTextBalanced(ctx, slide.title, W, titleMaxLines) : [];
     if (titleLines.length <= 3) break;
     if (titleSize <= 84) break;
   }
