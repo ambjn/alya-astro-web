@@ -2,7 +2,7 @@
   "campaign": {
     "cta": {
       "title": "Learn Spanish by doomscrolling.",
-      "body": "Get ALYA on the App Store →",
+      "body": "Try ALYA free — link in bio",
       "imageUrl": "/slideshow/03_new_video_with_finger.png"
     },
     "slots": [
@@ -78,7 +78,7 @@
         },
         {
           "title": "Learn Spanish by doomscrolling.",
-          "body": "Get ALYA on the App Store →",
+          "body": "Try ALYA free — link in bio",
           "word": "",
           "translation": "",
           "variant": "cta",
@@ -129,7 +129,7 @@
         },
         {
           "title": "Learn Spanish by doomscrolling.",
-          "body": "Get ALYA on the App Store →",
+          "body": "Try ALYA free — link in bio",
           "word": "",
           "translation": "",
           "variant": "cta",
@@ -180,7 +180,7 @@
         },
         {
           "title": "Learn Spanish by doomscrolling.",
-          "body": "Get ALYA on the App Store →",
+          "body": "Try ALYA free — link in bio",
           "word": "",
           "translation": "",
           "variant": "cta",

@@ -176,6 +176,33 @@ const COLS_STORAGE_KEY = "slideshow-cols";
 /** Slot names used before the emoji-header update — kept for back-compat reads. */
 const LEGACY_SLOT_NAMES = ["Carousel 1", "Reel 1", "Carousel 2", "Reel 2", "Carousel 3", "Reel 3"];
 
+/** CTA image paths from older workspace saves — remapped to the current
+ *  default on load (several no longer ship, e.g. the deleted GIFs). */
+const LEGACY_CTA_IMAGES = new Set([
+  "/slideshow/alya-app-screen.jpg",
+  "/slideshow/ezgif-37c40560f187cc78.gif",
+  "/slideshow/alya-app-lesson.gif",
+  "/slideshow/alya-app-cafe.gif",
+  "/slideshow/alya-app-demo.gif",
+  "/slideshow/alya-app-parrot.gif",
+  "/slideshow/05_scroll_swipe_demo.gif",
+  "/slideshow/01_cafe_parrot.png",
+  "/slideshow/02_swipe_transition.png",
+  "/slideshow/04_new_video_final.png",
+  "/slideshow/02_mid_swipe_transition.png",
+  "/slideshow/03_new_video_with_swipe.png",
+  "/slideshow/04_final_new_video.png",
+  "/slideshow/1.png",
+  "/slideshow/2.png",
+  "/slideshow/3.png",
+  "/slideshow/4.png",
+  "/slideshow/5.png",
+  "/slideshow/6.png",
+  "/slideshow/7.png",
+  "/slideshow/8.png",
+]);
+const DEFAULT_CTA_IMAGE = "/slideshow/03_new_video_with_finger.png";
+
 type CampaignPillar = "quiz" | "correction" | "practical";
 type SeptemberLesson = (typeof instagramCampaign.lessons)[number];
 
@@ -229,7 +256,7 @@ function buildCampaignDeck(date: string, pillar: CampaignPillar, hook: string) {
   };
 }
 
-/* ---------- canvas export (unchanged logic, tightened type) ---------- */
+/* ---------- canvas export (mirrors the web preview) ---------- */
 
 function wrapText(ctx: CanvasRenderingContext2D, text: string, maxWidth: number): string[] {
   // NBSP ( ) is a non-breaking space — split only on normal
@@ -427,6 +454,12 @@ function drawDoodles(ctx: CanvasRenderingContext2D, w: number, h: number, primar
   ctx.restore();
 }
 
+/* console.warn can itself throw in locked-down embedded webviews —
+   never let logging break an export. */
+function warn(err: unknown) {
+  try { console.warn(err); } catch { /* noop */ }
+}
+
 function isCrossOriginUrl(src: string): boolean {
   if (src.startsWith("data:") || src.startsWith("blob:")) return false;
   try {
@@ -512,7 +545,7 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
     } catch (err) {
       bgFailed = true;
       missingAssets.push(DOODLE_BG_SRC);
-      try { console.warn(err); } catch { /* noop */ }
+      warn(err);
     }
   }
 
@@ -521,7 +554,7 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
     mascot = await cachedOrLoad(MASCOT_SRC);
   } catch (err) {
     missingAssets.push(MASCOT_SRC);
-    try { console.warn(err); } catch { /* noop */ }
+    warn(err);
     /* mascot stays null — export continues, missing-mascot toast below */
   }
 
@@ -595,13 +628,13 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
     if (titleLines.length <= 3) break;
     if (titleSize <= 84) break;
   }
-  const bodySize = compactCta ? 40 : 42;
+  const bodySize = 42;
   const bodyFont = `500 ${bodySize}px Outfit, system-ui, sans-serif`;
   const bodyBoldFont = `700 ${bodySize}px Outfit, system-ui, sans-serif`;
   /* Paragraph-aware body: legacy "•" / inline options / inline labels
      are normalized so every option / Example / "Food:" gets its own line.
-     CTA slides never show body copy in the preview — keep the export same. */
-  const bodyParas = slide.body && slide.variant !== "cta"
+     CTA body holds the "link in bio" line — render it like the preview. */
+  const bodyParas = slide.body
     ? splitBodyParagraphs(slide.body)
     : [];
   /* Quiz options stay plain text — one option per line, no cards. */
@@ -609,8 +642,8 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
   // options read bigger than regular body copy (preview 21px -> ~50px export)
   const optSize = 50;
   const drawBodyFont = isOptionsSlide ? `600 ${optSize}px Outfit, system-ui, sans-serif` : bodyFont;
-  const drawBodyAdv = isOptionsSlide ? 72 : compactCta ? 56 : 60;
-  const drawBodyBase = isOptionsSlide ? 60 : compactCta ? 48 : 50;
+  const drawBodyAdv = isOptionsSlide ? 72 : 60;
+  const drawBodyBase = isOptionsSlide ? 60 : 50;
   /* Normal wrapped blocks with paragraph gaps. */
   const bodyBlocks: string[][] = [];
   {
@@ -768,7 +801,7 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
         roundRect(ctx, pad, shotTop, W, shotBottom - shotTop, 40); ctx.stroke();
       } catch (err) {
         missingAssets.push(slide.imageUrl);
-        try { console.warn(err); } catch { /* noop */ }
+        warn(err);
         /* leave the space empty rather than block export */
       }
     } else if (mascot) {
@@ -1004,33 +1037,18 @@ export const Slideshow = () => {
         if (Array.isArray(saved.slides) && saved.slides.length)
           setSlides(saved.slides.map((slide) => {
             const { footer: _dropped, ...rest } = slide as Slide & { footer?: unknown };
+            const imageUrl = (rest as Slide).imageUrl;
+            const body = (rest as Slide).body;
             return {
               ...rest,
               id: (rest as Slide).id || uid(),
               // one-time migration: old/removed defaults → current image default
-              imageUrl: (rest as Slide).imageUrl === "/slideshow/alya-app-screen.jpg" ||
-                (rest as Slide).imageUrl === "/slideshow/ezgif-37c40560f187cc78.gif" ||
-                (rest as Slide).imageUrl === "/slideshow/alya-app-lesson.gif" ||
-                (rest as Slide).imageUrl === "/slideshow/alya-app-cafe.gif" ||
-                (rest as Slide).imageUrl === "/slideshow/alya-app-demo.gif" ||
-                (rest as Slide).imageUrl === "/slideshow/alya-app-parrot.gif" ||
-                (rest as Slide).imageUrl === "/slideshow/05_scroll_swipe_demo.gif" ||
-                (rest as Slide).imageUrl === "/slideshow/01_cafe_parrot.png" ||
-                (rest as Slide).imageUrl === "/slideshow/02_swipe_transition.png" ||
-                (rest as Slide).imageUrl === "/slideshow/04_new_video_final.png" ||
-                (rest as Slide).imageUrl === "/slideshow/02_mid_swipe_transition.png" ||
-                (rest as Slide).imageUrl === "/slideshow/03_new_video_with_swipe.png" ||
-                (rest as Slide).imageUrl === "/slideshow/04_final_new_video.png" ||
-                (rest as Slide).imageUrl === "/slideshow/1.png" ||
-                (rest as Slide).imageUrl === "/slideshow/2.png" ||
-                (rest as Slide).imageUrl === "/slideshow/3.png" ||
-                (rest as Slide).imageUrl === "/slideshow/4.png" ||
-                (rest as Slide).imageUrl === "/slideshow/5.png" ||
-                (rest as Slide).imageUrl === "/slideshow/6.png" ||
-                (rest as Slide).imageUrl === "/slideshow/7.png" ||
-                (rest as Slide).imageUrl === "/slideshow/8.png"
-                ? "/slideshow/03_new_video_with_finger.png"
-                : (rest as Slide).imageUrl,
+              imageUrl: imageUrl && LEGACY_CTA_IMAGES.has(imageUrl) ? DEFAULT_CTA_IMAGE : imageUrl,
+              // one-time migration: CTA lost its "link in bio" line while body
+              // was hidden — restore it on old saves.
+              body: ["Get ALYA on the App Store →", "Get ALYA — link in bio →", "Try ALYA free — link in bio →"].includes(body as string)
+                ? "Try ALYA free — link in bio"
+                : body,
             };
           }));
         if (typeof saved.caption === "string") setCaption(saved.caption);
@@ -1453,7 +1471,7 @@ export const Slideshow = () => {
                         {current.title}
                       </p>
                     ) : showWordFields ? null : <p className="text-sm italic" style={{ color: theme.muted }}>add a title…</p>}
-                    {current?.body && current.variant !== "cta" && (
+                    {current?.body && (
                       <StatementBody body={current.body} theme={theme} isCover={current.variant === "cover"} />
                     )}
                     {current?.variant === "word" && (
