@@ -39,14 +39,8 @@ const MASCOT_SRC = "/mascot/alya-pet.png";
 
 /* Bundled CTA media — pickable presets on the last slide. */
 const CTA_IMAGE_OPTIONS = [
-  { src: "/slideshow/01_cafe_parrot.png", label: "1" },
-  { src: "/slideshow/02_swipe_transition.png", label: "2" },
-  { src: "/slideshow/03_new_video_with_finger.png", label: "3" },
-  { src: "/slideshow/04_new_video_final.png", label: "4" },
-  { src: "/slideshow/01_start_swipe.png", label: "5" },
-  { src: "/slideshow/02_mid_swipe_transition.png", label: "6" },
-  { src: "/slideshow/03_new_video_with_swipe.png", label: "7" },
-  { src: "/slideshow/04_final_new_video.png", label: "8" },
+  { src: "/slideshow/03_new_video_with_finger.png", label: "1" },
+  { src: "/slideshow/01_start_swipe.png", label: "2" },
 ];
 
 /* Full-bleed illustrated Spain doodle used as the "fiesta" theme background. */
@@ -203,7 +197,7 @@ function buildCampaignDeck(date: string, pillar: CampaignPillar, hook: string) {
       slides: [
         campaignSlide({ title: hook, body: "swipe to test yourself →", word: "", translation: "", variant: "cover" }),
         campaignSlide({ title: "What does this mean?", body: "", word: q.phrase, translation: "Don't translate it literally", variant: "word" }),
-        campaignSlide({ title: "Choose your answer", body: q.options.map((option, index) => `${String.fromCharCode(65 + index)}) ${option}`).join("  •  "), word: "", translation: "", variant: "statement" }),
+        campaignSlide({ title: "Choose your answer", body: q.options.map((option, index) => `${String.fromCharCode(65 + index)}) ${option}`).join("\n"), word: "", translation: "", variant: "statement" }),
         campaignSlide({ title: `${q.answer} → ${q.meaning}`, body: q.example.replaceAll(" — ", " → "), word: "", translation: "", variant: "statement" }),
         ctaSlide(),
       ],
@@ -238,7 +232,9 @@ function buildCampaignDeck(date: string, pillar: CampaignPillar, hook: string) {
 /* ---------- canvas export (unchanged logic, tightened type) ---------- */
 
 function wrapText(ctx: CanvasRenderingContext2D, text: string, maxWidth: number): string[] {
-  const words = text.split(/\s+/).filter(Boolean);
+  // NBSP (\u00A0) is a non-breaking space — split only on normal
+  // spaces/tabs/newlines so "Spanish\u00A0❌" never orphans the emoji.
+  const words = text.split(/[ \t\r\n]+/).filter(Boolean);
   const lines: string[] = [];
   let line = "";
   for (const w of words) {
@@ -250,6 +246,47 @@ function wrapText(ctx: CanvasRenderingContext2D, text: string, maxWidth: number)
   }
   if (line) lines.push(line);
   return lines;
+}
+
+/* ---------- statement body structure ---------- */
+
+/** Split a body into paragraphs. Handles legacy saves + single-line
+ *  inputs: "•" joins, "A) … B) … C) …" runs, and "Label: …" runs
+ *  (Food: / A plan: / Example:) each get their own line. */
+function splitBodyParagraphs(body: string): string[] {
+  let s = body.replaceAll("  •  ", "\n").replaceAll(" • ", "\n");
+  // "A) … B) … C) …" on one line → one per line
+  s = s.replace(/\s+([B-D])\)\s+/g, "\n$1) ");
+  // "…fine. Example: …" → Example on its own line
+  s = s.replace(/([.!?]["”']?\s+)(Example:\s*)/g, "$1\n$2");
+  // "Food: … A plan: … A person: …" on one line → one per line
+  s = s.replace(/(\.\s+)([A-Z][^:\n]{0,24}:\s*)/g, "$1\n$2");
+  return s.split("\n").map((x) => x.trim()).filter(Boolean);
+}
+
+function isOptionLine(line: string): boolean {
+  return /^[A-D][).:]\s*\S/.test(line.trim());
+}
+
+function isQuizOptions(paras: string[]): boolean {
+  return paras.length >= 2 && paras.every(isOptionLine);
+}
+
+/** "Quick tip" style: 2+ labeled rows like "Food: …" / "A plan: …" */
+function isLabelCards(paras: string[]): boolean {
+  if (paras.length < 2) return false;
+  const labeled = paras.filter((p) => !isExamplePara(p) && splitLabelLine(p));
+  return labeled.length >= 2;
+}
+
+/** "Food: está riquísimo" → ["Food", "está riquísimo"] */
+function splitLabelLine(line: string): [string, string] | null {
+  const m = line.match(/^([^:\n]{1,24}):\s*(\S[\s\S]*)$/);
+  return m ? [m[1].trim(), m[2].trim()] : null;
+}
+
+function isExamplePara(line: string): boolean {
+  return /^example\s*:/i.test(line.trim());
 }
 
 function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
@@ -364,7 +401,10 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
   // Sticker mascot in the lower-right of the content area on every slide except
   // the CTA (which already gets a large centered mascot/screenshot treatment).
   // Sized and lifted so it never covers the footer or page dots.
-  if (mascot && slide.variant !== "cta") {
+  // NOTE: drawn AFTER the text/word-card (see below) so the opaque card
+  // never covers the pet — the pet stickers over the card corner instead.
+  const drawPeekingMascot = () => {
+    if (!mascot || slide.variant === "cta") return;
     const ph = 340;
     const pw = ph * (mascot.width / mascot.height);
     ctx.save();
@@ -372,7 +412,7 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
     ctx.rotate(-0.15);
     ctx.drawImage(mascot, -pw / 2, -ph / 2, pw, ph);
     ctx.restore();
-  }
+  };
 
   const pad = 96;
   const W = fmt.w - pad * 2;
@@ -396,52 +436,86 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
      vertically centered instead of leaving a big blank middle. CTA slides
      stay top-aligned so the screenshot gets maximum room. CTA type is set
      smaller so a long hook can't squeeze the shot rect below the minimum
-     and drop the GIF from the export. */
+     and drop the screenshot from the export. */
   const bigTitle = slide.variant === "cover";
   const compactCta = slide.variant === "cta";
   const titleSize = bigTitle ? 148 : compactCta ? 88 : 118;
   const titleFont = `700 ${titleSize}px Outfit, system-ui, sans-serif`;
-  const titleBase = bigTitle ? 138 : compactCta ? 80 : 110, titleAdv = bigTitle ? 160 : compactCta ? 94 : 128;
+  const titleBase = bigTitle ? 138 : compactCta ? 80 : 110, titleAdv = bigTitle ? 172 : compactCta ? 94 : 128;
   ctx.font = titleFont;
   const titleLines = slide.title ? wrapText(ctx, slide.title, W).slice(0, compactCta ? 2 : 5) : [];
   const bodySize = compactCta ? 46 : 54;
-  ctx.font = `500 ${bodySize}px Outfit, system-ui, sans-serif`;
-  const bodyLines = slide.body ? wrapText(ctx, slide.body, W).slice(0, compactCta ? 2 : 4) : [];
+  const bodyFont = `500 ${bodySize}px Outfit, system-ui, sans-serif`;
+  const bodyBoldFont = `700 ${bodySize}px Outfit, system-ui, sans-serif`;
+  /* Paragraph-aware body: legacy "•" / inline options / inline labels
+     are normalized so every option / Example / "Food:" gets its own line. */
+  const bodyParas = slide.body && slide.variant !== "cta"
+    ? splitBodyParagraphs(slide.body)
+    : slide.body ? [slide.body.trim()] : [];
+  /* Quiz options stay plain text — one option per line, no cards. */
+  const isOptionsSlide = slide.variant === "statement" && isQuizOptions(bodyParas);
+  // options read bigger than regular body copy
+  const optSize = 64;
+  const drawBodyFont = isOptionsSlide ? `600 ${optSize}px Outfit, system-ui, sans-serif` : bodyFont;
+  const drawBodyAdv = isOptionsSlide ? 112 : compactCta ? 64 : 76;
+  const drawBodyBase = isOptionsSlide ? 78 : compactCta ? 54 : 63;
+  /* Normal wrapped blocks with paragraph gaps. */
+  const bodyBlocks: string[][] = [];
+  {
+    ctx.font = drawBodyFont;
+    let total = 0;
+    for (const para of bodyParas) {
+      if (total >= 6) break;
+      const lines = wrapText(ctx, para, W).slice(0, Math.min(3, 6 - total));
+      if (lines.length) { bodyBlocks.push(lines); total += lines.length; }
+    }
+  }
   const hasWordCard = slide.variant === "word" && slide.word;
 
-  /* Word-card geometry, measured up front: two columns (word | translation)
-     so the card stays short. */
-  const wordFont = "700 84px Outfit, system-ui, sans-serif";
-  const wordTransFont = "italic 500 40px Outfit, system-ui, sans-serif";
-  let wordLines: string[] = [], wordTransLines: string[] = [];
-  let wordCardH = 0, wordDivX = 0, wordRightX = 0, wordBodyH = 0, wordLeftH = 0, wordRightH = 0;
+  /* Word-card geometry — always stacked: label, word full-width,
+     horizontal divider, translation full-width below. Side-by-side
+     squeezed translations of longer phrases ("¿Cuánto cuesta?" →
+     "How / much / is it?"), so no two-column layout. */
+  let wordFont = "800 88px Outfit, system-ui, sans-serif";
+  const wordTransFont = "italic 600 42px Outfit, system-ui, sans-serif";
+  let wordFullLines: string[] = [], wordTransLines: string[] = [];
+  let wordCardH = 0, wordBodyH = 0, wordLeftH = 0, wordRightH = 0;
   if (hasWordCard) {
-    ctx.font = wordFont;
-    const leftWrapW = (W - 112) * 0.55;
-    wordLines = wrapText(ctx, slide.word, leftWrapW).slice(0, 3);
-    let leftColW = 0;
-    for (const ln of wordLines) leftColW = Math.max(leftColW, ctx.measureText(ln).width);
-    leftColW = Math.min(leftColW, leftWrapW);
-    wordDivX = pad + 56 + leftColW + 30;
-    wordRightX = wordDivX + 30;
-    const rightW = pad + W - 56 - wordRightX;
+    const fullW = W - 112;
+    // auto-shrink the word until it fits in ≤2 full-width lines
+    for (const size of [88, 76, 64]) {
+      wordFont = `800 ${size}px Outfit, system-ui, sans-serif`;
+      ctx.font = wordFont;
+      wordFullLines = wrapText(ctx, slide.word, fullW).slice(0, 3);
+      if (wordFullLines.length <= 2) break;
+    }
     ctx.font = wordTransFont;
-    wordTransLines = wrapText(ctx, slide.translation, rightW).slice(0, 4);
-    wordLeftH = 78 + 88 * (wordLines.length - 1) + 26;
-    wordRightH = wordTransLines.length ? 42 + 56 * (wordTransLines.length - 1) + 20 : 0;
-    wordBodyH = Math.max(wordLeftH, wordRightH);
-    wordCardH = 118 + wordBodyH + 44;
+    wordTransLines = wrapText(ctx, slide.translation, fullW).slice(0, 3);
+    wordLeftH = 82 + 92 * (wordFullLines.length - 1) + 28;
+    wordRightH = wordTransLines.length ? 44 + 58 * (wordTransLines.length - 1) + 20 : 0;
+    wordBodyH = wordLeftH + 28 + wordRightH;
+    wordCardH = 56 + wordBodyH + 44;
   }
 
   let contentH = 0;
   if (titleLines.length) contentH += titleBase + titleAdv * (titleLines.length - 1) + 24;
-  if (bodyLines.length) contentH += compactCta
-    ? 54 + 64 * (bodyLines.length - 1) + 40
-    : 63 + 76 * (bodyLines.length - 1) + 40;
+  if (bodyBlocks.length) {
+    const flat = bodyBlocks.reduce((n, b) => n + b.length, 0);
+    contentH += compactCta
+      ? 54 + 64 * (flat - 1) + 40
+      : drawBodyBase + drawBodyAdv * (flat - 1) + 36 * (bodyBlocks.length - 1) + 40;
+  }
   if (hasWordCard) contentH += 20 + wordCardH + 40;
 
   const topY = 170;
   let y = slide.variant === "cta" || contentH >= ctaY - topY ? topY : topY + (ctaY - topY - contentH) / 2;
+  // quiz options slide: center-left — vertically centered but lifted
+  // slightly above true center so the title keeps hierarchy.
+  if (isOptionsSlide) y = topY + Math.max(80, (ctaY - topY - contentH) / 2 - 30);
+  // labeled-card slides ("Quick tip"): anchor a bit toward the top.
+  else if (slide.variant === "statement" && isLabelCards(bodyParas)) {
+    y = topY + Math.max(20, (ctaY - topY - contentH) / 2 - 55);
+  }
 
   if (titleLines.length) {
     ctx.fillStyle = t.text;
@@ -452,12 +526,58 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
     }
     y += 24;
   }
-  if (bodyLines.length) {
-    ctx.fillStyle = t.muted;
-    ctx.font = `500 ${bodySize}px Outfit, system-ui, sans-serif`;
-    const bodyBase = compactCta ? 54 : 63, bodyAdv = compactCta ? 64 : 76;
-    for (const line of bodyLines) { ctx.fillText(line, pad, y + bodyBase); y += bodyAdv; }
-    y += 40;
+  if (bodyBlocks.length) {
+    const bodyBase = drawBodyBase, bodyAdv = drawBodyAdv;
+    bodyParas.slice(0, bodyBlocks.length).forEach((para, pi) => {
+      const lines = bodyBlocks[pi];
+      const example = isExamplePara(para);
+      const label = !example ? splitLabelLine(para) : null;
+      if (example) {
+        // soft card behind the whole Example block
+        const blockH = lines.length * bodyAdv + 36;
+        ctx.fillStyle = themeId === "dark" ? "#262B21" : t.surface;
+        roundRect(ctx, pad, y + 8, W, blockH, 28); ctx.fill();
+        ctx.strokeStyle = t.border; ctx.lineWidth = 2;
+        roundRect(ctx, pad, y + 8, W, blockH, 28); ctx.stroke();
+        ctx.fillStyle = t.accent;
+        roundRect(ctx, pad + 24, y + 28, 8, blockH - 40, 4); ctx.fill();
+      }
+      lines.forEach((line, li) => {
+        const baseline = y + bodyBase + (example ? 18 : 0);
+        if (li === 0 && label) {
+          // bold "Food:" in text color, rest in muted
+          ctx.font = bodyBoldFont;
+          const labelTxt = `${label[0]}: `;
+          const lw = ctx.measureText(labelTxt).width;
+          ctx.fillStyle = t.text;
+          ctx.fillText(labelTxt, pad + (example ? 56 : 0), baseline);
+          ctx.font = bodyFont;
+          ctx.fillStyle = t.muted;
+          ctx.fillText(line.slice(labelTxt.length), pad + (example ? 56 : 0) + lw, baseline);
+        } else if (li === 0 && example) {
+          ctx.font = bodyBoldFont;
+          ctx.fillStyle = t.text;
+          const m = line.match(/^(Example:\s*)/i);
+          if (m) {
+            ctx.fillText(m[1], pad + 56, baseline);
+            ctx.font = bodyFont;
+            ctx.fillStyle = t.muted;
+            ctx.fillText(line.slice(m[1].length), pad + 56 + ctx.measureText(m[1]).width, baseline);
+        } else {
+          ctx.font = drawBodyFont;
+          ctx.fillStyle = t.muted;
+          ctx.fillText(line, pad + 56, baseline);
+        }
+        } else {
+          ctx.font = drawBodyFont;
+          ctx.fillStyle = t.muted;
+          ctx.fillText(line, pad + (example ? 56 : 0), baseline);
+        }
+        y += bodyAdv;
+      });
+      y += example ? 44 : 36;
+    });
+    y += 12;
   }
   if (hasWordCard) {
     const cardY = y + 20, cardH = wordCardH;
@@ -465,27 +585,16 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
     roundRect(ctx, pad, cardY, W, cardH, 48); ctx.fill();
     ctx.strokeStyle = t.border; ctx.lineWidth = 3;
     roundRect(ctx, pad, cardY, W, cardH, 48); ctx.stroke();
-    const labelColor = t.accent === t.text ? t.primary : t.accent;
-    ctx.font = "600 38px Outfit, system-ui, sans-serif";
-    const labelText = "ALYA EXPLAINS";
-    const labelW = ctx.measureText(labelText).width;
-    ctx.save();
-    ctx.globalAlpha = 0.14;
-    ctx.fillStyle = labelColor;
-    roundRect(ctx, pad + 56, cardY + 52, labelW + 48, 56, 12); ctx.fill();
-    ctx.restore();
-    ctx.fillStyle = labelColor;
-    ctx.fillText(labelText, pad + 56 + 24, cardY + 90);
-    /* Vertical divider between the two columns. */
-    ctx.strokeStyle = t.border; ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.moveTo(wordDivX, cardY + 118); ctx.lineTo(wordDivX, cardY + 118 + wordBodyH); ctx.stroke();
-    /* Left column: the word. Right column: the translation. */
+    /* Stacked: word on top full-width, horizontal divider, translation below. */
     ctx.fillStyle = t.text; ctx.font = wordFont;
-    let wy = cardY + 118 + (wordBodyH - wordLeftH) / 2 + 78;
-    for (const line of wordLines) { ctx.fillText(line, pad + 56, wy); wy += 88; }
+    let wy = cardY + 56 + 82;
+    for (const line of wordFullLines) { ctx.fillText(line, pad + 56, wy); wy += 92; }
+    const divY = cardY + 56 + wordLeftH + 14;
+    ctx.strokeStyle = t.border; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(pad + 56, divY); ctx.lineTo(pad + W - 56, divY); ctx.stroke();
     ctx.fillStyle = t.muted; ctx.font = wordTransFont;
-    let ty = cardY + 118 + (wordBodyH - wordRightH) / 2 + 42;
-    for (const line of wordTransLines) { ctx.fillText(line, wordRightX, ty); ty += 56; }
+    let ty = divY + 28 + 44;
+    for (const line of wordTransLines) { ctx.fillText(line, pad + 56, ty); ty += 58; }
     y = cardY + cardH + 40;
   }
 
@@ -495,8 +604,7 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
   if (slide.variant === "cta" && shotBottom - shotTop > 160) {
     if (slide.imageUrl) {
       try {
-        // GIFs draw as their first frame — canvas PNG export is static,
-        // the animation only lives in the on-screen <img> preview.
+        // Static PNG export — an uploaded image draws as-is.
         const shot = await loadImage(slide.imageUrl);
         drawImageCover(ctx, shot, pad, shotTop, W, shotBottom - shotTop, 40);
         ctx.strokeStyle = t.border; ctx.lineWidth = 3;
@@ -508,6 +616,9 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
       ctx.drawImage(mascot, pad + (W - mw) / 2, shotTop + Math.max(0, (shotBottom - shotTop - mh) / 2), mw, mh);
     }
   }
+
+  // Mascot on top of the card — never behind it.
+  drawPeekingMascot();
 
   for (let i = 0; i < total; i++) {
     ctx.beginPath();
@@ -529,6 +640,80 @@ const Count = ({ value, max }: { value: string; max: number }) => (
     {value.length}/{max}
   </span>
 );
+
+/* Statement body: title stays on top; options / labeled lines /
+   Example each get their own row below. Mirrors the canvas export. */
+function StatementBody({ body, theme, isCover }: {
+  body: string;
+  theme: Theme;
+  isCover?: boolean;
+}) {
+  const paras = splitBodyParagraphs(body);
+  if (!paras.length) return null;
+  if (isQuizOptions(paras)) {
+    // plain stacked lines — same style as before, one option per line
+    return (
+      <div className="mt-5 space-y-4">
+        {paras.slice(0, 4).map((p, i) => (
+          <p key={i} className="text-[21px] font-medium leading-snug" style={{ color: theme.muted }}>
+            {p}
+          </p>
+        ))}
+      </div>
+    );
+  }
+  return (
+    <div className="mt-4 space-y-3">
+      {paras.map((para, i) => {
+        if (isExamplePara(para)) {
+          const m = para.match(/^(Example:\s*)([\s\S]*)$/i);
+          return (
+            <div
+              key={i}
+              className="relative overflow-hidden rounded-2xl border px-4 py-3 pl-5"
+              style={{ backgroundColor: theme.surface, borderColor: theme.border }}
+            >
+              <span
+                className="absolute bottom-2.5 left-2.5 top-2.5 w-1 rounded-full"
+                style={{ backgroundColor: theme.accent }}
+                aria-hidden
+              />
+              <p className="text-[15px] leading-snug" style={{ color: theme.muted }}>
+                {m
+                  ? <><span className="font-bold" style={{ color: theme.text }}>{m[1]}</span>{m[2]}</>
+                  : para}
+              </p>
+            </div>
+          );
+        }
+        const label = splitLabelLine(para);
+        if (label && paras.length > 1) {
+          return (
+            <div
+              key={i}
+              className="rounded-2xl border px-4 py-3"
+              style={{ backgroundColor: theme.surface, borderColor: theme.border }}
+            >
+              <p className="text-[15px] leading-snug" style={{ color: theme.muted }}>
+                <span className="font-bold" style={{ color: theme.text }}>{label[0]}: </span>
+                {label[1]}
+              </p>
+            </div>
+          );
+        }
+        return (
+          <p
+            key={i}
+            className="text-[17px] leading-snug"
+            style={{ color: theme.muted }}
+          >
+            {para}
+          </p>
+        );
+      })}
+    </div>
+  );
+}
 
 function DoodleLayer({ primary, accent }: { primary: string; accent: string }) {
   return (
@@ -553,7 +738,7 @@ function PeekingMascot() {
     <img
       src={MASCOT_SRC}
       alt=""
-      className="pointer-events-none absolute bottom-[-8%] right-[-7%] w-[32%] rotate-[-9deg] drop-shadow-lg"
+      className="pointer-events-none absolute bottom-[-8%] right-[-7%] z-10 w-[32%] rotate-[-9deg] drop-shadow-lg"
     />
   );
 }
@@ -666,6 +851,12 @@ export const Slideshow = () => {
                 (rest as Slide).imageUrl === "/slideshow/alya-app-demo.gif" ||
                 (rest as Slide).imageUrl === "/slideshow/alya-app-parrot.gif" ||
                 (rest as Slide).imageUrl === "/slideshow/05_scroll_swipe_demo.gif" ||
+                (rest as Slide).imageUrl === "/slideshow/01_cafe_parrot.png" ||
+                (rest as Slide).imageUrl === "/slideshow/02_swipe_transition.png" ||
+                (rest as Slide).imageUrl === "/slideshow/04_new_video_final.png" ||
+                (rest as Slide).imageUrl === "/slideshow/02_mid_swipe_transition.png" ||
+                (rest as Slide).imageUrl === "/slideshow/03_new_video_with_swipe.png" ||
+                (rest as Slide).imageUrl === "/slideshow/04_final_new_video.png" ||
                 (rest as Slide).imageUrl === "/slideshow/1.png" ||
                 (rest as Slide).imageUrl === "/slideshow/2.png" ||
                 (rest as Slide).imageUrl === "/slideshow/3.png" ||
@@ -674,7 +865,7 @@ export const Slideshow = () => {
                 (rest as Slide).imageUrl === "/slideshow/6.png" ||
                 (rest as Slide).imageUrl === "/slideshow/7.png" ||
                 (rest as Slide).imageUrl === "/slideshow/8.png"
-                ? "/slideshow/01_cafe_parrot.png"
+                ? "/slideshow/03_new_video_with_finger.png"
                 : (rest as Slide).imageUrl,
             };
           }));
@@ -689,9 +880,9 @@ export const Slideshow = () => {
   useEffect(() => {
     if (!workspaceHydrated) return;
     try {
-      // GIF data-URLs can be several MB — strip large inline images so the
+      // Inline data-URL images can be several MB — strip large ones so the
       // workspace save never blows the ~5MB localStorage quota. The live
-      // slide keeps the GIF; only the persisted copy drops it.
+      // slide keeps the image; only the persisted copy drops it.
       const persistSlides = slides.map((s) =>
         s.imageUrl?.startsWith("data:") && s.imageUrl.length > 800_000
           ? { ...s, imageUrl: undefined }
@@ -846,18 +1037,16 @@ export const Slideshow = () => {
 
   const onPickImage = (file: File | undefined) => {
     if (!file) return;
-    if (!file.type.startsWith("image/")) { flash("that file isn't an image — use PNG, JPG or GIF"); return; }
-    if (file.size > 8 * 1024 * 1024) { flash("that GIF is over 8MB — try a smaller one"); return; }
+    if (!file.type.startsWith("image/")) { flash("that file isn't an image — use PNG or JPG"); return; }
+    if (file.type === "image/gif") { flash("GIFs aren't supported — use a PNG or JPG still"); return; }
+    if (file.size > 8 * 1024 * 1024) { flash("that file is over 8MB — try a smaller one"); return; }
     const reader = new FileReader();
     reader.onload = () => {
       update({ imageUrl: String(reader.result) });
-      flash(file.type === "image/gif" ? "GIF added • animates in preview, PNG export uses first frame" : "screenshot added");
+      flash("screenshot added");
     };
     reader.readAsDataURL(file);
   };
-
-  const isGifUrl = (url?: string) =>
-    !!url && (url.startsWith("data:image/gif") || url.toLowerCase().split("?")[0].endsWith(".gif"));
 
   const addSlide = () => {
     const s: Slide = { id: uid(), title: "your hook here", body: "", word: "", translation: "", variant: "statement" };
@@ -1072,7 +1261,7 @@ export const Slideshow = () => {
                     <div className="pointer-events-none absolute inset-0" style={{ backgroundColor: DOODLE_BG_TINT }} aria-hidden />
                   )}
                   {current?.variant !== "cta" && <PeekingMascot />}
-                  <div className="relative">
+                  <div className="relative z-20">
                     <div className="flex items-center justify-end text-[11px] font-bold tracking-wide">
                       <span
                         className="rounded-full border px-2.5 py-1 tabular-nums"
@@ -1082,25 +1271,26 @@ export const Slideshow = () => {
                       </span>
                     </div>
                   </div>
-                  <div className="relative flex w-full flex-1 flex-col justify-center py-3">
+                  <div className={`relative z-0 flex w-full flex-1 flex-col py-3 ${(() => {
+                    if (current?.variant !== "statement" || !current?.body) return "justify-center";
+                    const paras = splitBodyParagraphs(current.body);
+                    if (isQuizOptions(paras)) return "justify-center pb-8";
+                    if (isLabelCards(paras)) return "justify-start pt-4";
+                    return "justify-center";
+                  })()}`}>
                     {current?.title ? (
-                      <p className="text-balance font-bold leading-none tracking-tight" style={{ color: theme.text, fontSize: current.variant === "cover" ? 52 : 40 }}>
+                      <p className="text-balance font-bold tracking-tight" style={{ color: theme.text, fontSize: current.variant === "cover" ? 52 : 40, lineHeight: current.variant === "cover" ? 1.06 : 1 }}>
                         {current.title}
                       </p>
                     ) : showWordFields ? null : <p className="text-sm italic" style={{ color: theme.muted }}>add a title…</p>}
-                    {current?.body && <p className="mt-3 text-[17px] leading-snug" style={{ color: theme.muted }}>{current.body}</p>}
+                    {current?.body && current.variant !== "cta" && (
+                      <StatementBody body={current.body} theme={theme} isCover={current.variant === "cover"} />
+                    )}
                     {current?.variant === "word" && (
-                      <div className="mt-4 rounded-3xl border p-4 shadow-[0_12px_32px_-12px_rgba(0,0,0,0.25)]" style={{ backgroundColor: themeId === "dark" ? "#1B1E17" : theme.surface, borderColor: theme.border }}>
-                        <p className="text-[10px] font-bold uppercase tracking-[0.2em]">
-                          <span className="rounded-md px-2 py-1" style={{ color: theme.accent, backgroundColor: `${theme.accent}24` }}>
-                            ALYA explains
-                          </span>
-                        </p>
-                        <div className="mt-2.5 grid grid-cols-[auto_1px_1fr] items-center gap-3">
-                          <p className="min-w-0 wrap-break-word text-[30px] font-bold leading-[0.95] tracking-tight" style={{ color: theme.text }}>{current.word || "tu palabra"}</p>
-                          <div className="self-stretch" style={{ backgroundColor: theme.border }} aria-hidden />
-                          <p className="min-w-0 text-[13px] italic leading-snug" style={{ color: theme.muted }}>{current.translation || "translation goes here…"}</p>
-                        </div>
+                      <div className="mt-4 rounded-3xl border p-6 shadow-[0_12px_32px_-12px_rgba(0,0,0,0.25)]" style={{ backgroundColor: themeId === "dark" ? "#1B1E17" : theme.surface, borderColor: theme.border }}>
+                        <p className="min-w-0 wrap-break-word text-[34px] font-extrabold leading-[0.95] tracking-[-0.02em]" style={{ color: theme.text }}>{current.word || "tu palabra"}</p>
+                        <div className="my-3 h-px w-full" style={{ backgroundColor: theme.border }} aria-hidden />
+                        <p className="min-w-0 text-[16px] font-medium italic leading-[1.4]" style={{ color: theme.muted }}>{current.translation || "translation goes here…"}</p>
                       </div>
                     )}
                     {current?.variant === "cta" && (
@@ -1112,15 +1302,10 @@ export const Slideshow = () => {
                             <img src={MASCOT_SRC} alt="" className="max-h-full max-w-[62%] object-contain opacity-90" />
                           </div>
                         )}
-                        {isGifUrl(current.imageUrl) && (
-                          <span className="absolute left-2 top-2 rounded-full bg-black/70 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
-                            GIF
-                          </span>
-                        )}
                       </div>
                     )}
                   </div>
-                  <div className="relative">
+                  <div className="relative z-20">
                     <div className="mt-3 flex justify-center gap-1.5">
                       {slides.map((_, i) => (
                         <button key={i} onClick={() => go(i)} aria-label={`go to slide ${i + 1}`}
@@ -1210,7 +1395,7 @@ export const Slideshow = () => {
               {current?.variant === "cta" && (
                 <div className="rounded-2xl border border-lime-600/30 bg-lime-100/40 p-3">
                   <div className="flex items-center justify-between">
-                    <Label>app screenshot / GIF • cta</Label>
+                    <Label>app screenshot • cta</Label>
                     {current?.imageUrl && (
                       <button onClick={() => update({ imageUrl: undefined })} className="text-[11px] font-bold text-red-600 underline">remove</button>
                     )}
@@ -1234,15 +1419,15 @@ export const Slideshow = () => {
                     <div className="relative mt-2">
                       <img src={current.imageUrl} alt="" className="h-28 w-full rounded-xl border-2 border-[#2B3128] object-cover" />
                       <span className="absolute left-2 top-2 rounded-full bg-black/70 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
-                        custom{isGifUrl(current.imageUrl) ? " • GIF" : ""}
+                        custom
                       </span>
                     </div>
                   )}
                   <label className="mt-2 flex h-12 w-full cursor-pointer items-center justify-center rounded-xl border border-dashed border-neutral-300 bg-white text-xs font-semibold text-neutral-500 hover:border-[#2B3128]">
-                    upload your own screenshot or GIF
-                    <input type="file" accept="image/png,image/jpeg,image/gif,image/webp" className="hidden" onChange={(e) => onPickImage(e.target.files?.[0])} />
+                    upload your own screenshot
+                    <input type="file" accept="image/png,image/jpeg,image/webp" className="hidden" onChange={(e) => onPickImage(e.target.files?.[0])} />
                   </label>
-                  <p className="mt-1.5 text-[11px] text-neutral-500">GIF animates in preview • PNG export uses its first frame • no file yet → falls back to the mascot</p>
+                  <p className="mt-1.5 text-[11px] text-neutral-500">static PNG export • no file yet → falls back to the mascot</p>
                 </div>
               )}
 
