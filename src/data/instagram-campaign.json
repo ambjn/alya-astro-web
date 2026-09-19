@@ -1,18 +1,15 @@
 {
   "campaign": {
-    "name": "ALYA September Instagram campaign",
-    "timezone": "Asia/Kolkata",
     "cta": {
       "title": "Learn Spanish by doomscrolling.",
       "body": "Get ALYA on the App Store →",
-      "imageUrl": "/slideshow/alya-app-screen.jpg"
+      "imageUrl": "/slideshow/alya-app-demo.gif"
     },
     "slots": [
       {
         "label": "🧠 Quiz",
         "time": "9:30 PM",
         "pillar": "quiz",
-        "slides": 5,
         "topicIndex": 0
       },
       {
@@ -24,7 +21,6 @@
         "label": "❌ Stop saying it wrong",
         "time": "1:30 AM",
         "pillar": "correction",
-        "slides": 6,
         "topicIndex": 1
       },
       {
@@ -36,7 +32,6 @@
         "label": "🔖 Save this",
         "time": "5:30 AM",
         "pillar": "practical",
-        "slides": 6,
         "topicIndex": 2
       },
       {
@@ -58,7 +53,6 @@
           "body": "swipe to test yourself →",
           "word": "",
           "translation": "",
-          "footer": "@helloalya",
           "variant": "cover"
         },
         {
@@ -66,7 +60,6 @@
           "body": "",
           "word": "me da igual",
           "translation": "What would you say?",
-          "footer": "don't translate it literally",
           "variant": "word"
         },
         {
@@ -74,7 +67,6 @@
           "body": "A) Give me the same\nB) I don't care\nC) I'm equal",
           "word": "",
           "translation": "",
-          "footer": "answer before you swipe",
           "variant": "statement"
         },
         {
@@ -82,7 +74,6 @@
           "body": "It can also mean “either is fine.” Example: ¿Pizza o tacos? Me da igual.",
           "word": "",
           "translation": "",
-          "footer": "did you get it right?",
           "variant": "statement"
         },
         {
@@ -90,9 +81,8 @@
           "body": "Get ALYA on the App Store →",
           "word": "",
           "translation": "",
-          "footer": "ALYA • real Spanish videos",
           "variant": "cta",
-          "imageUrl": "/slideshow/alya-app-screen.jpg"
+          "imageUrl": "/slideshow/alya-app-demo.gif"
         }
       ]
     },
@@ -107,7 +97,6 @@
           "body": "you sound like a textbook",
           "word": "",
           "translation": "",
-          "footer": "@helloalya",
           "variant": "cover"
         },
         {
@@ -115,7 +104,6 @@
           "body": "Using “muy bueno” for everything.",
           "word": "muy bueno",
           "translation": "correct—but repetitive",
-          "footer": "there are better choices",
           "variant": "word"
         },
         {
@@ -123,7 +111,6 @@
           "body": "Use genial, buenísimo, or qué rico depending on the situation.",
           "word": "genial",
           "translation": "great / awesome",
-          "footer": "match the phrase to the context",
           "variant": "word"
         },
         {
@@ -131,7 +118,6 @@
           "body": "¿Te gustó la película? — Sí, estuvo genial.",
           "word": "",
           "translation": "",
-          "footer": "Did you like the movie? It was great.",
           "variant": "statement"
         },
         {
@@ -139,7 +125,6 @@
           "body": "Food: está riquísimo. A plan: suena genial. A person: es muy buena persona.",
           "word": "",
           "translation": "",
-          "footer": "save this distinction",
           "variant": "statement"
         },
         {
@@ -147,9 +132,8 @@
           "body": "Get ALYA on the App Store →",
           "word": "",
           "translation": "",
-          "footer": "ALYA • real Spanish videos",
           "variant": "cta",
-          "imageUrl": "/slideshow/alya-app-screen.jpg"
+          "imageUrl": "/slideshow/alya-app-demo.gif"
         }
       ]
     },
@@ -164,7 +148,6 @@
           "body": "save these before your trip →",
           "word": "",
           "translation": "",
-          "footer": "@helloalya",
           "variant": "cover"
         },
         {
@@ -172,7 +155,6 @@
           "body": "",
           "word": "¿Cuánto cuesta?",
           "translation": "How much is it?",
-          "footer": "shopping essential",
           "variant": "word"
         },
         {
@@ -180,7 +162,6 @@
           "body": "",
           "word": "¿Me trae…?",
           "translation": "Could you bring me…?",
-          "footer": "natural at a restaurant",
           "variant": "word"
         },
         {
@@ -188,7 +169,6 @@
           "body": "",
           "word": "La cuenta, por favor",
           "translation": "The bill, please",
-          "footer": "use this when you're ready to leave",
           "variant": "word"
         },
         {
@@ -196,7 +176,6 @@
           "body": "Your future Spanish-speaking self will thank you.",
           "word": "",
           "translation": "",
-          "footer": "send it to your travel partner",
           "variant": "statement"
         },
         {
@@ -204,9 +183,8 @@
           "body": "Get ALYA on the App Store →",
           "word": "",
           "translation": "",
-          "footer": "ALYA • real Spanish videos",
           "variant": "cta",
-          "imageUrl": "/slideshow/alya-app-screen.jpg"
+          "imageUrl": "/slideshow/alya-app-demo.gif"
         }
       ]
     }
@@ -215,7 +193,6 @@
     {
       "date": "Sep 19",
       "day": "Sat",
-      "focus": "experiment",
       "carouselTopics": [
         "Can you pass the Spanish voice-note test?",
         "You're pronouncing these 3 place names wrong",
@@ -233,7 +210,6 @@
     {
       "date": "Sep 20",
       "day": "Sun",
-      "focus": "presentation test",
       "carouselTopics": [
         "What does “qué pena” mean here?",
         "Stop using “triste” for every sad situation",
@@ -251,7 +227,6 @@
     {
       "date": "Sep 21",
       "day": "Mon",
-      "focus": "presentation test",
       "carouselTopics": [
         "Which phrase means “it depends”?",
         "“Actualmente” does not mean “actually”",
@@ -271,7 +246,6 @@
       "day": "Tue",
       "tag": "🔥",
       "peak": true,
-      "focus": "strongest concepts",
       "carouselTopics": [
         "What does “me cae bien” mean?",
         "Stop mixing up ser and estar for personality",
@@ -291,7 +265,6 @@
       "day": "Wed",
       "tag": "🔥🔥",
       "peak": true,
-      "focus": "strongest concepts",
       "carouselTopics": [
         "Which phrase means “I'm just looking”?",
         "Stop saying “no necesito ayuda” in every shop",
@@ -311,7 +284,6 @@
       "day": "Thu",
       "tag": "🔥",
       "peak": true,
-      "focus": "strongest concepts",
       "carouselTopics": [
         "What does “tengo ganas de…” mean?",
         "Stop translating “I feel like…” literally",
@@ -337,7 +309,6 @@
     {
       "date": "Sep 25",
       "day": "Fri",
-      "focus": "experiment",
       "carouselTopics": [
         "Your friend says “estoy de bajón”—what happened?",
         "Stop saying “estoy cansado” for every bad mood",
@@ -355,7 +326,6 @@
     {
       "date": "Sep 26",
       "day": "Sat",
-      "focus": "experiment",
       "carouselTopics": [
         "Which one gets you roasted by native speakers?",
         "3 Spanish phrases that sound accidentally rude",
@@ -373,7 +343,6 @@
     {
       "date": "Sep 27",
       "day": "Sun",
-      "focus": "presentation test",
       "carouselTopics": [
         "Can you understand this hotel check-in?",
         "Stop saying “reservación” everywhere",
@@ -391,7 +360,6 @@
     {
       "date": "Sep 28",
       "day": "Mon",
-      "focus": "presentation test",
       "carouselTopics": [
         "What does “por si acaso” mean?",
         "Stop translating “just in case” literally",
@@ -411,7 +379,6 @@
       "day": "Tue",
       "tag": "🔥",
       "peak": true,
-      "focus": "strongest concepts",
       "carouselTopics": [
         "Which phrase means “that works for me”?",
         "Stop replying with “sí” to everything",
@@ -431,7 +398,6 @@
       "day": "Wed",
       "tag": "🔥🔥",
       "peak": true,
-      "focus": "strongest concepts",
       "carouselTopics": [
         "Fluent or fooled: know these false friends?",
         "3 English-looking words you're using wrong",

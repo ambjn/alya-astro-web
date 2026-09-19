@@ -13,7 +13,6 @@ import {
   Loader2,
   Plus,
   SlidersHorizontal,
-  Sparkles,
   Trash2,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -32,12 +31,16 @@ interface Slide {
   body: string;
   word: string;
   translation: string;
-  footer: string;
   variant: Variant;
   imageUrl?: string;
 }
 
 const MASCOT_SRC = "/mascot/alya-pet.png";
+
+/* Bundled CTA media — pickable presets on the last slide. */
+const CTA_IMAGE_OPTIONS = [
+  { src: "/slideshow/alya-app-demo.gif", label: "Demo" },
+];
 
 /* Full-bleed illustrated Spain doodle used as the "fiesta" theme background. */
 const DOODLE_BG_SRC = "/slideshow/spain-doodle-bg.png";
@@ -155,7 +158,6 @@ interface PlannerRow {
   day: string;
   tag?: string;
   peak?: boolean;
-  focus: "experiment" | "presentation test" | "strongest concepts";
   carouselTopics: [string, string, string];
   times?: string[];
   /** per-slot highlight — bold in the source table = best-performing slot */
@@ -164,10 +166,14 @@ interface PlannerRow {
 
 const PLANNER_ROWS = instagramCampaign.planner as unknown as PlannerRow[];
 
-type SlideTextField = "title" | "body" | "word" | "translation" | "footer";
+type SlideTextField = "title" | "body" | "word" | "translation";
 
-const LIMITS: Record<SlideTextField, number> = { title: 60, body: 110, word: 22, translation: 90, footer: 44 };
+const LIMITS: Record<SlideTextField, number> = { title: 60, body: 110, word: 22, translation: 90 };
 const WORKSPACE_STORAGE_KEY = "slideshow-workspace-v3";
+const PLANNER_STORAGE_KEY = "slideshow-planner";
+const COLS_STORAGE_KEY = "slideshow-cols";
+/** Slot names used before the emoji-header update — kept for back-compat reads. */
+const LEGACY_SLOT_NAMES = ["Carousel 1", "Reel 1", "Carousel 2", "Reel 2", "Carousel 3", "Reel 3"];
 
 type CampaignPillar = "quiz" | "correction" | "practical";
 type SeptemberLesson = (typeof instagramCampaign.lessons)[number];
@@ -176,7 +182,7 @@ const campaignSlide = (slide: Omit<Slide, "id">): Slide => ({ ...slide, id: uid(
 const ctaSlide = (): Slide => campaignSlide({
   title: instagramCampaign.campaign.cta.title,
   body: instagramCampaign.campaign.cta.body,
-  word: "", translation: "", footer: "ALYA • real Spanish videos", variant: "cta",
+  word: "", translation: "", variant: "cta",
   imageUrl: instagramCampaign.campaign.cta.imageUrl,
 });
 
@@ -188,10 +194,10 @@ function buildCampaignDeck(date: string, pillar: CampaignPillar, hook: string) {
     return {
       caption: `${hook}\n\nComment your answer before checking slide 4.\n\nLearn Spanish from real videos with ALYA.\n\n#learnspanish #spanishquiz #spanishtips #español #alyaapp`,
       slides: [
-        campaignSlide({ title: hook, body: "swipe to test yourself →", word: "", translation: "", footer: "@helloalya", variant: "cover" }),
-        campaignSlide({ title: "What does this mean?", body: "", word: q.phrase, translation: "Don't translate it literally", footer: "choose before you swipe", variant: "word" }),
-        campaignSlide({ title: "Choose your answer", body: q.options.map((option, index) => `${String.fromCharCode(65 + index)}) ${option}`).join("  •  "), word: "", translation: "", footer: "lock in your answer", variant: "statement" }),
-        campaignSlide({ title: `${q.answer} → ${q.meaning}`, body: q.example.replaceAll(" — ", " → "), word: "", translation: "", footer: "did you get it right?", variant: "statement" }),
+        campaignSlide({ title: hook, body: "swipe to test yourself →", word: "", translation: "", variant: "cover" }),
+        campaignSlide({ title: "What does this mean?", body: "", word: q.phrase, translation: "Don't translate it literally", variant: "word" }),
+        campaignSlide({ title: "Choose your answer", body: q.options.map((option, index) => `${String.fromCharCode(65 + index)}) ${option}`).join("  •  "), word: "", translation: "", variant: "statement" }),
+        campaignSlide({ title: `${q.answer} → ${q.meaning}`, body: q.example.replaceAll(" — ", " → "), word: "", translation: "", variant: "statement" }),
         ctaSlide(),
       ],
     };
@@ -201,11 +207,11 @@ function buildCampaignDeck(date: string, pillar: CampaignPillar, hook: string) {
     return {
       caption: `${hook} ❌\n\nSend this to someone learning Spanish before they make this mistake.\n\nLearn the Spanish people actually speak with ALYA.\n\n#learnspanish #spanishmistakes #spanishtips #español #alyaapp`,
       slides: [
-        campaignSlide({ title: hook, body: "you sound like a textbook", word: "", translation: "", footer: "@helloalya", variant: "cover" }),
-        campaignSlide({ title: "The mistake", body: c.mistake, word: "", translation: "", footer: "here's the natural fix", variant: "statement" }),
-        campaignSlide({ title: "Say this instead", body: c.correction, word: "", translation: "", footer: "natural Spanish", variant: "statement" }),
-        campaignSlide({ title: "A real example", body: c.example, word: "", translation: "", footer: "learn it in context", variant: "statement" }),
-        campaignSlide({ title: "Quick tip", body: c.tip, word: "", translation: "", footer: "save this distinction", variant: "statement" }),
+        campaignSlide({ title: hook, body: "you sound like a textbook", word: "", translation: "", variant: "cover" }),
+        campaignSlide({ title: "The mistake", body: c.mistake, word: "", translation: "", variant: "statement" }),
+        campaignSlide({ title: "Say this instead", body: c.correction, word: "", translation: "", variant: "statement" }),
+        campaignSlide({ title: "A real example", body: c.example, word: "", translation: "", variant: "statement" }),
+        campaignSlide({ title: "Quick tip", body: c.tip, word: "", translation: "", variant: "statement" }),
         ctaSlide(),
       ],
     };
@@ -214,9 +220,9 @@ function buildCampaignDeck(date: string, pillar: CampaignPillar, hook: string) {
   return {
     caption: `${hook} 🔖\n\nSave this before your next Spanish conversation.\n\nLearn Spanish from real videos with ALYA.\n\n#learnspanish #spanishphrases #spanishvocab #traveltips #alyaapp`,
     slides: [
-      campaignSlide({ title: hook, body: "save these for later →", word: "", translation: "", footer: "@helloalya", variant: "cover" }),
-      ...p.items.map(([word, translation], index) => campaignSlide({ title: "", body: "", word, translation, footer: `phrase ${index + 1} of 3`, variant: "word" as const })),
-      campaignSlide({ title: "save this for later ↗", body: "Your future Spanish-speaking self will thank you.", word: "", translation: "", footer: "send it to your travel partner", variant: "statement" }),
+      campaignSlide({ title: hook, body: "save these for later →", word: "", translation: "", variant: "cover" }),
+      ...p.items.map(([word, translation]) => campaignSlide({ title: "", body: "", word, translation, variant: "word" as const })),
+      campaignSlide({ title: "save this for later ↗", body: "Your future Spanish-speaking self will thank you.", word: "", translation: "", variant: "statement" }),
       ctaSlide(),
     ],
   };
@@ -473,6 +479,8 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
   if (slide.variant === "cta" && shotBottom - shotTop > 160) {
     if (slide.imageUrl) {
       try {
+        // GIFs draw as their first frame — canvas PNG export is static,
+        // the animation only lives in the on-screen <img> preview.
         const shot = await loadImage(slide.imageUrl);
         drawImageCover(ctx, shot, pad, shotTop, W, shotBottom - shotTop, 40);
         ctx.strokeStyle = t.border; ctx.lineWidth = 3;
@@ -572,10 +580,6 @@ function Thumb({ slide, index, active, theme, onClick }: { slide: Slide; index: 
 
 /* ---------- main ---------- */
 
-const Eyebrow = ({ children }: { children: React.ReactNode }) => (
-  <p className="px-1 pb-2 text-sm font-bold tracking-tight text-neutral-900">{children}</p>
-);
-
 function ColDivider({ label, onDrag, onReset, onNudge }: {
   label: string;
   onDrag: (e: React.MouseEvent) => void;
@@ -614,7 +618,6 @@ export const Slideshow = () => {
   const [selected, setSelected] = useState(0);
   const [themeId, setThemeId] = useState<ThemeId>("fiesta");
   const [caption, setCaption] = useState(PRESETS[0].caption);
-  const [handle, setHandle] = useState("@helloalya");
   const [pane, setPane] = useState<Pane>("preview");
   const [exporting, setExporting] = useState(false);
   const [progress, setProgress] = useState("");
@@ -640,14 +643,25 @@ export const Slideshow = () => {
           caption: string;
           presetId: string;
           themeId: ThemeId;
-          handle: string;
         }>;
         if (Array.isArray(saved.slides) && saved.slides.length)
-          setSlides(saved.slides.map((slide) => ({ ...slide, id: slide.id || uid() })));
+          setSlides(saved.slides.map((slide) => {
+            const { footer: _dropped, ...rest } = slide as Slide & { footer?: unknown };
+            return {
+              ...rest,
+              id: (rest as Slide).id || uid(),
+              // one-time migration: old/removed defaults → current GIF default
+              imageUrl: (rest as Slide).imageUrl === "/slideshow/alya-app-screen.jpg" ||
+                (rest as Slide).imageUrl === "/slideshow/ezgif-37c40560f187cc78.gif" ||
+                (rest as Slide).imageUrl === "/slideshow/alya-app-lesson.gif" ||
+                (rest as Slide).imageUrl === "/slideshow/alya-app-parrot.gif"
+                ? "/slideshow/alya-app-demo.gif"
+                : (rest as Slide).imageUrl,
+            };
+          }));
         if (typeof saved.caption === "string") setCaption(saved.caption);
         if (typeof saved.presetId === "string") setPresetId(saved.presetId);
         if (saved.themeId && saved.themeId in THEMES) setThemeId(saved.themeId);
-        if (typeof saved.handle === "string") setHandle(saved.handle);
       }
     } catch { /* corrupt or unavailable storage falls back to campaign JSON */ }
     setWorkspaceHydrated(true);
@@ -656,17 +670,25 @@ export const Slideshow = () => {
   useEffect(() => {
     if (!workspaceHydrated) return;
     try {
+      // GIF data-URLs can be several MB — strip large inline images so the
+      // workspace save never blows the ~5MB localStorage quota. The live
+      // slide keeps the GIF; only the persisted copy drops it.
+      const persistSlides = slides.map((s) =>
+        s.imageUrl?.startsWith("data:") && s.imageUrl.length > 800_000
+          ? { ...s, imageUrl: undefined }
+          : s,
+      );
       window.localStorage.setItem(
         WORKSPACE_STORAGE_KEY,
-        JSON.stringify({ slides, caption, presetId, themeId, handle }),
+        JSON.stringify({ slides: persistSlides, caption, presetId, themeId }),
       );
     } catch { /* storage may be full or disabled */ }
-  }, [caption, handle, presetId, slides, themeId, workspaceHydrated]);
+  }, [caption, presetId, slides, themeId, workspaceHydrated]);
 
   /* Content planner checkboxes — persisted per browser. Key: `${date}|${slot}` */
   const [plannerChecked, setPlannerChecked] = useState<Record<string, boolean>>(() => {
     try {
-      const raw = window.localStorage.getItem("slideshow-planner");
+      const raw = window.localStorage.getItem(PLANNER_STORAGE_KEY);
       return raw ? (JSON.parse(raw) as Record<string, boolean>) : {};
     } catch {
       return {};
@@ -674,7 +696,7 @@ export const Slideshow = () => {
   });
   useEffect(() => {
     try {
-      window.localStorage.setItem("slideshow-planner", JSON.stringify(plannerChecked));
+      window.localStorage.setItem(PLANNER_STORAGE_KEY, JSON.stringify(plannerChecked));
     } catch { /* noop */ }
   }, [plannerChecked]);
 
@@ -685,21 +707,17 @@ export const Slideshow = () => {
   const isSlotChecked = (date: string, slotIndex: number) => {
     if (plannerChecked[`${date}|${slotIndex}`]) return true;
     // back-compat: keys saved before the emoji-header update used the slot name
-    const legacy = ["Carousel 1", "Reel 1", "Carousel 2", "Reel 2", "Carousel 3", "Reel 3"];
-    const oldKey = `${date}|${legacy[slotIndex]}`;
-    return !!plannerChecked[oldKey];
+    return !!plannerChecked[`${date}|${LEGACY_SLOT_NAMES[slotIndex]}`];
   };
   const plannerStats = useMemo(() => {
     const total = PLANNER_ROWS.length * PLANNER_SLOTS.length;
     let done = 0;
     for (const r of PLANNER_ROWS)
-      for (let si = 0; si < PLANNER_SLOTS.length; si++)
+      for (let si = 0; si < PLANNER_SLOTS.length; si++) {
         if (plannerChecked[`${r.date}|${si}`]) done++;
-    // include legacy name-based keys saved before the update
-    const legacy = ["Carousel 1", "Reel 1", "Carousel 2", "Reel 2", "Carousel 3", "Reel 3"];
-    for (const r of PLANNER_ROWS)
-      for (let si = 0; si < legacy.length; si++)
-        if (!plannerChecked[`${r.date}|${si}`] && plannerChecked[`${r.date}|${legacy[si]}`]) done++;
+        // include legacy name-based keys saved before the update
+        else if (plannerChecked[`${r.date}|${LEGACY_SLOT_NAMES[si]}`]) done++;
+      }
     return { done, total };
   }, [plannerChecked]);
 
@@ -712,7 +730,7 @@ export const Slideshow = () => {
 
   useEffect(() => {
     try {
-      const raw = window.localStorage.getItem("slideshow-cols");
+      const raw = window.localStorage.getItem(COLS_STORAGE_KEY);
       if (raw) {
         const p = JSON.parse(raw) as { deckW?: number; editW?: number };
         if (typeof p.deckW === "number") setDeckW(Math.min(440, Math.max(220, p.deckW)));
@@ -722,7 +740,7 @@ export const Slideshow = () => {
   }, []);
 
   useEffect(() => {
-    try { window.localStorage.setItem("slideshow-cols", JSON.stringify({ deckW, editW })); } catch { /* noop */ }
+    try { window.localStorage.setItem(COLS_STORAGE_KEY, JSON.stringify({ deckW, editW })); } catch { /* noop */ }
   }, [deckW, editW]);
 
   const resetWidths = () => { setDeckW(DEFAULT_DECK_W); setEditW(DEFAULT_EDIT_W); };
@@ -809,13 +827,21 @@ export const Slideshow = () => {
 
   const onPickImage = (file: File | undefined) => {
     if (!file) return;
+    if (!file.type.startsWith("image/")) { flash("that file isn't an image — use PNG, JPG or GIF"); return; }
+    if (file.size > 8 * 1024 * 1024) { flash("that GIF is over 8MB — try a smaller one"); return; }
     const reader = new FileReader();
-    reader.onload = () => update({ imageUrl: String(reader.result) });
+    reader.onload = () => {
+      update({ imageUrl: String(reader.result) });
+      flash(file.type === "image/gif" ? "GIF added • animates in preview, PNG export uses first frame" : "screenshot added");
+    };
     reader.readAsDataURL(file);
   };
 
+  const isGifUrl = (url?: string) =>
+    !!url && (url.startsWith("data:image/gif") || url.toLowerCase().split("?")[0].endsWith(".gif"));
+
   const addSlide = () => {
-    const s: Slide = { id: uid(), title: "your hook here", body: "", word: "", translation: "", footer: handle, variant: "statement" };
+    const s: Slide = { id: uid(), title: "your hook here", body: "", word: "", translation: "", variant: "statement" };
     setSlides((p) => [...p, s]); setDir(1); setSelected(slides.length);
     if (window.innerWidth < 1024) setPane("edit");
   };
@@ -1059,13 +1085,18 @@ export const Slideshow = () => {
                       </div>
                     )}
                     {current?.variant === "cta" && (
-                      <div className="mt-4 aspect-square w-full overflow-hidden rounded-2xl border" style={{ borderColor: theme.border, backgroundColor: themeId === "dark" ? "#1B1E17" : theme.surface }}>
+                      <div className="relative mt-4 aspect-square w-full overflow-hidden rounded-2xl border" style={{ borderColor: theme.border, backgroundColor: themeId === "dark" ? "#1B1E17" : theme.surface }}>
                         {current.imageUrl ? (
                           <img src={current.imageUrl} alt="" className="h-full w-full object-cover" />
                         ) : (
                           <div className="flex h-full w-full items-center justify-center p-6">
                             <img src={MASCOT_SRC} alt="" className="max-h-full max-w-[62%] object-contain opacity-90" />
                           </div>
+                        )}
+                        {isGifUrl(current.imageUrl) && (
+                          <span className="absolute left-2 top-2 rounded-full bg-black/70 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
+                            GIF
+                          </span>
                         )}
                       </div>
                     )}
@@ -1165,20 +1196,39 @@ export const Slideshow = () => {
               {current?.variant === "cta" && (
                 <div className="rounded-2xl border border-lime-600/30 bg-lime-100/40 p-3">
                   <div className="flex items-center justify-between">
-                    <Label>app screenshot • cta</Label>
+                    <Label>app screenshot / GIF • cta</Label>
                     {current?.imageUrl && (
                       <button onClick={() => update({ imageUrl: undefined })} className="text-[11px] font-bold text-red-600 underline">remove</button>
                     )}
                   </div>
-                  {current?.imageUrl ? (
-                    <img src={current.imageUrl} alt="" className="mt-2 h-28 w-full rounded-xl object-cover" />
-                  ) : (
-                    <label className="mt-2 flex h-28 w-full cursor-pointer items-center justify-center rounded-xl border border-dashed border-neutral-300 bg-white text-xs font-semibold text-neutral-500 hover:border-[#2B3128]">
-                      upload a real screenshot
-                      <input type="file" accept="image/*" className="hidden" onChange={(e) => onPickImage(e.target.files?.[0])} />
-                    </label>
+                  <div className="mt-2 grid grid-cols-3 gap-2">
+                    {CTA_IMAGE_OPTIONS.map((opt) => {
+                      const active = current?.imageUrl === opt.src;
+                      return (
+                        <button key={opt.src} onClick={() => update({ imageUrl: opt.src })}
+                          aria-pressed={active}
+                          className={`relative overflow-hidden rounded-xl border-2 transition ${active ? "border-[#2B3128] shadow-md" : "border-transparent opacity-75 hover:opacity-100"}`}>
+                          <img src={opt.src} alt={opt.label} className="h-24 w-full object-cover" />
+                          <span className="absolute left-1.5 top-1.5 rounded-full bg-black/70 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
+                            {opt.label} • GIF
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {current?.imageUrl && !CTA_IMAGE_OPTIONS.some((o) => o.src === current.imageUrl) && (
+                    <div className="relative mt-2">
+                      <img src={current.imageUrl} alt="" className="h-28 w-full rounded-xl border-2 border-[#2B3128] object-cover" />
+                      <span className="absolute left-2 top-2 rounded-full bg-black/70 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
+                        custom{isGifUrl(current.imageUrl) ? " • GIF" : ""}
+                      </span>
+                    </div>
                   )}
-                  <p className="mt-1.5 text-[11px] text-neutral-500">no screenshot yet → falls back to the mascot</p>
+                  <label className="mt-2 flex h-12 w-full cursor-pointer items-center justify-center rounded-xl border border-dashed border-neutral-300 bg-white text-xs font-semibold text-neutral-500 hover:border-[#2B3128]">
+                    upload your own screenshot or GIF
+                    <input type="file" accept="image/png,image/jpeg,image/gif,image/webp" className="hidden" onChange={(e) => onPickImage(e.target.files?.[0])} />
+                  </label>
+                  <p className="mt-1.5 text-[11px] text-neutral-500">GIF animates in preview • PNG export uses its first frame • no file yet → falls back to the mascot</p>
                 </div>
               )}
 
@@ -1194,10 +1244,6 @@ export const Slideshow = () => {
               <textarea value={caption} onChange={(e) => setCaption(e.target.value)} rows={6}
                 className="mt-2 w-full resize-y rounded-2xl border border-neutral-200 bg-white p-3 text-sm leading-relaxed outline-none focus:border-[#2B3128]" />
               <p className="mt-1 text-[11px] font-semibold text-neutral-500 tabular-nums">{caption.length} chars • {hashtags} hashtags • {slides.length} slides</p>
-              <div className="mt-2">
-                <Label>handle</Label>
-                <input value={handle} onChange={(e) => setHandle(e.target.value)} className="mt-1 w-full rounded-2xl border border-neutral-200 bg-white p-2.5 text-sm" />
-              </div>
             </div>
 
             <a href={APP_STORE_URL} target="_blank" rel="noreferrer" className="mt-4 block rounded-2xl bg-[#2B3128] p-4 text-white">
