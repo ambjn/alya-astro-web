@@ -446,7 +446,7 @@ async function renderSlideToCanvas(slide: Slide, index: number, total: number, t
     roundRect(ctx, pad, cardY, W, cardH, 48); ctx.stroke();
     const labelColor = t.accent === t.text ? t.primary : t.accent;
     ctx.font = "600 38px Outfit, system-ui, sans-serif";
-    const labelText = "TAP → TRANSLATE";
+    const labelText = "ALYA EXPLAINS";
     const labelW = ctx.measureText(labelText).width;
     ctx.save();
     ctx.globalAlpha = 0.14;
@@ -1041,7 +1041,7 @@ export const Slideshow = () => {
                       <div className="mt-4 rounded-3xl border p-4 shadow-[0_12px_32px_-12px_rgba(0,0,0,0.25)]" style={{ backgroundColor: themeId === "dark" ? "#1B1E17" : theme.surface, borderColor: theme.border }}>
                         <p className="text-[10px] font-bold uppercase tracking-[0.2em]">
                           <span className="rounded-md px-2 py-1" style={{ color: theme.accent, backgroundColor: `${theme.accent}24` }}>
-                            tap → translate
+                            ALYA explains
                           </span>
                         </p>
                         <div className="mt-2.5 grid grid-cols-[auto_1px_1fr] items-center gap-3">
