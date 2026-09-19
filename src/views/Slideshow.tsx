@@ -167,7 +167,7 @@ const PLANNER_ROWS = instagramCampaign.planner as unknown as PlannerRow[];
 type SlideTextField = "title" | "body" | "word" | "translation" | "footer";
 
 const LIMITS: Record<SlideTextField, number> = { title: 60, body: 110, word: 22, translation: 90, footer: 44 };
-const WORKSPACE_STORAGE_KEY = "slideshow-workspace-v1";
+const WORKSPACE_STORAGE_KEY = "slideshow-workspace-v3";
 
 type CampaignPillar = "quiz" | "correction" | "practical";
 type SeptemberLesson = (typeof instagramCampaign.lessons)[number];
@@ -191,7 +191,7 @@ function buildCampaignDeck(date: string, pillar: CampaignPillar, hook: string) {
         campaignSlide({ title: hook, body: "swipe to test yourself →", word: "", translation: "", footer: "@helloalya", variant: "cover" }),
         campaignSlide({ title: "What does this mean?", body: "", word: q.phrase, translation: "Don't translate it literally", footer: "choose before you swipe", variant: "word" }),
         campaignSlide({ title: "Choose your answer", body: q.options.map((option, index) => `${String.fromCharCode(65 + index)}) ${option}`).join("  •  "), word: "", translation: "", footer: "lock in your answer", variant: "statement" }),
-        campaignSlide({ title: `${q.answer} — ${q.meaning}`, body: q.example, word: "", translation: "", footer: "did you get it right?", variant: "statement" }),
+        campaignSlide({ title: `${q.answer} → ${q.meaning}`, body: q.example.replaceAll(" — ", " → "), word: "", translation: "", footer: "did you get it right?", variant: "statement" }),
         ctaSlide(),
       ],
     };
@@ -626,6 +626,13 @@ export const Slideshow = () => {
 
   useEffect(() => {
     try {
+      if (!window.localStorage.getItem("slideshow-workspace-cleared-v3")) {
+        for (let index = window.localStorage.length - 1; index >= 0; index -= 1) {
+          const key = window.localStorage.key(index);
+          if (key?.startsWith("slideshow-workspace-")) window.localStorage.removeItem(key);
+        }
+        window.localStorage.setItem("slideshow-workspace-cleared-v3", "1");
+      }
       const raw = window.localStorage.getItem(WORKSPACE_STORAGE_KEY);
       if (raw) {
         const saved = JSON.parse(raw) as Partial<{
