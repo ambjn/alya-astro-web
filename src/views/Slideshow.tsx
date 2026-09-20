@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { toBlob } from "html-to-image";
 import {
   ArrowLeft,
   ArrowRight,
@@ -1013,6 +1014,7 @@ export const Slideshow = () => {
   const [dir, setDir] = useState(0);
   const [workspaceHydrated, setWorkspaceHydrated] = useState(false);
   const toastTimer = useRef<number>(0);
+  const previewCanvasRef = useRef<HTMLDivElement>(null);
 
   /* Warm the export image cache so first export already has bg + mascot. */
   useEffect(() => { preloadAssets(); }, []);
@@ -1253,36 +1255,92 @@ export const Slideshow = () => {
     setDir(d); setSelected(j);
   };
 
-  const download = (c: HTMLCanvasElement, name: string) => {
+  const download = (href: string, name: string, revoke = false) => {
     const a = document.createElement("a");
-    a.download = name; a.href = c.toDataURL("image/png"); a.click();
+    a.download = name;
+    a.href = href;
+    a.style.display = "none";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    if (revoke) window.setTimeout(() => URL.revokeObjectURL(href), 10_000);
+  };
+
+  /* Export the actual preview DOM instead of maintaining a second, subtly
+     different Canvas layout. canvasWidth/canvasHeight only increase the
+     raster resolution; the composition and line wrapping stay identical. */
+  const capturePreview = async (name: string) => {
+    const node = previewCanvasRef.current;
+    if (!node) throw new Error("preview is not ready");
+    try { await document.fonts.ready; } catch { /* use the available font */ }
+    const imagesReady = Promise.all(
+      Array.from(node.querySelectorAll("img")).map((img) =>
+        img.complete ? img.decode().catch(() => undefined) : new Promise<void>((resolve) => {
+          img.addEventListener("load", () => resolve(), { once: true });
+          img.addEventListener("error", () => resolve(), { once: true });
+        }),
+      ),
+    );
+    // A broken remote/user image must not leave the export button spinning.
+    await Promise.race([
+      imagesReady,
+      new Promise<void>((resolve) => window.setTimeout(resolve, 3_000)),
+    ]);
+    const blob = await toBlob(node, {
+      canvasWidth: FORMAT.w,
+      canvasHeight: FORMAT.h,
+      pixelRatio: 1,
+      cacheBust: true,
+    });
+    if (!blob) throw new Error("the browser could not create the PNG");
+    download(URL.createObjectURL(blob), name, true);
   };
   const exportOne = async () => {
     if (!current) return;
     setExporting(true); setProgress(`rendering slide ${selected + 1}…`);
     try {
-      const { canvas, missingAssets } = await renderSlideToCanvas(current, selected, slides.length, themeId);
-      download(canvas, `alya-slide-${selected + 1}-1x1.png`);
-      flash(missingAssets.length
-        ? `slide ${selected + 1} exported without images — check connection and retry`
-        : `slide ${selected + 1} exported • ${FORMAT.sub}`);
+      await capturePreview(`alya-slide-${selected + 1}-1x1.png`);
+      flash(`slide ${selected + 1} exported • ${FORMAT.sub}`);
+    } catch (err) {
+      warn(err);
+      // Compatibility path for browsers that disallow SVG foreignObject
+      // rasterization (notably some Safari/WebView versions).
+      const { canvas } = await renderSlideToCanvas(current, selected, slides.length, themeId);
+      const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, "image/png"));
+      if (blob) {
+        download(URL.createObjectURL(blob), `alya-slide-${selected + 1}-1x1.png`, true);
+        flash("exported with browser compatibility mode");
+      } else {
+        flash(`export failed: ${err instanceof Error ? err.message : "please reload and try again"}`);
+      }
     } finally { setExporting(false); setProgress(""); }
   };
   const exportAll = async () => {
     setExporting(true);
-    let missing = 0;
+    const originallySelected = selected;
     try {
       for (let i = 0; i < slides.length; i++) {
         setProgress(`rendering ${i + 1} / ${slides.length}…`);
-        const { canvas, missingAssets } = await renderSlideToCanvas(slides[i], i, slides.length, themeId);
-        missing += missingAssets.length;
-        download(canvas, `alya-slide-${i + 1}-of-${slides.length}.png`);
-        await new Promise((r) => setTimeout(r, 350));
+        setDir(i >= selected ? 1 : -1);
+        setSelected(i);
+        // Let React commit and the 280ms slide transition settle before capture.
+        await new Promise((r) => setTimeout(r, 340));
+        try {
+          await capturePreview(`alya-slide-${i + 1}-of-${slides.length}.png`);
+        } catch (err) {
+          warn(err);
+          const { canvas } = await renderSlideToCanvas(slides[i], i, slides.length, themeId);
+          const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, "image/png"));
+          if (!blob) throw err;
+          download(URL.createObjectURL(blob), `alya-slide-${i + 1}-of-${slides.length}.png`, true);
+        }
+        await new Promise((r) => setTimeout(r, 120));
       }
-      flash(missing
-        ? `exported ${slides.length} PNGs, ${missing} image(s) missing — retry on good connection`
-        : `exported ${slides.length} PNGs • ${FORMAT.sub}`);
-    } finally { setExporting(false); setProgress(""); }
+      flash(`exported ${slides.length} PNGs • ${FORMAT.sub}`);
+    } finally {
+      setSelected(originallySelected);
+      setExporting(false); setProgress("");
+    }
   };
   const copyCaption = async () => {
     try { await navigator.clipboard.writeText(caption); } catch { /* clipboard may be blocked */ }
@@ -1429,6 +1487,7 @@ export const Slideshow = () => {
             <div className="relative mt-3 w-full max-w-105">
               <AnimatePresence mode="popLayout" custom={dir}>
                 <motion.div
+                  ref={previewCanvasRef}
                   key={current?.id ?? "empty"}
                   custom={dir}
                   initial={{ opacity: 0, x: 44 * (dir >= 0 ? 1 : -1) }}
