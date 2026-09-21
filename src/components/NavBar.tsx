@@ -75,7 +75,7 @@ export const NavBar = ({ currentPath = "" }: { currentPath?: string }) => {
           </div>
 
           <button
-            className="md:hidden z-50 p-2.5 -mr-1 transition-colors text-neutral-700 hover:text-neutral-900"
+            className="md:hidden z-50 p-2.5 -mr-1 transition-colors rounded-full border border-neutral-900/10 bg-[#f4f0e7]/80 backdrop-blur-md text-neutral-900 hover:bg-[#f4f0e7]"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMobileMenuOpen}
