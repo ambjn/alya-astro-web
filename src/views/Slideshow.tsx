@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { toBlob } from "html-to-image";
 import {
   ArrowLeft,
   ArrowRight,
@@ -1286,6 +1285,7 @@ export const Slideshow = () => {
       imagesReady,
       new Promise<void>((resolve) => window.setTimeout(resolve, 3_000)),
     ]);
+    const { toBlob } = await import("html-to-image");
     const blob = await toBlob(node, {
       canvasWidth: FORMAT.w,
       canvasHeight: FORMAT.h,
